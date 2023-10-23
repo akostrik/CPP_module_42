@@ -2,30 +2,26 @@
 #include <string>
 #include <iostream>
 #include <cstring>
-#include "Contact.h"
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-enum Cmd { ADD = 1, SEARCH, EXIT };
-
-
 int	main()
 {
-    PhoneBook   phb = PhoneBook();
-    Cmd cmd;
+    PhoneBook	phb = new PhoneBook();
+    Cmd				cmd;
 
+		index = 0;
     while (1)
     {
 				std::cout << "Enter a command (ADD / SEARCH / EXIT)> ";
-				std::getline(std::cin, str);
-        if (cmd == ADD)
-            phb.add();
-        else if (cmd == SEARCH)
+				std::getline(std::cin, cmd, "\n");
+        if (cmd == "ADD")
+            phb.add(index++ % 8);
+        else if (cmd == "SEARCH")
             phb.search();
-        else if (cmd == EXIT || std::cin.eof())
+        else if (cmd == "EXIT" || std::cin.eof())
             break ;
     }
-		std::cout << std::endl;
-		phb.PhoneBook~();
+		phb.~PhoneBook();
     return (0);
 }

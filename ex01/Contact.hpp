@@ -16,4 +16,9 @@ private:
 	std::string secret;
 };
 
+public:
+Contact::Contact(char *firstName, char *lastName, char *nickname, char *secret);
+void	print1();
+void	print2();
+
 #endif

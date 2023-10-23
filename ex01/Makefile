@@ -1,8 +1,8 @@
 FLAGS = -std=c++98 -Wall -Wextra -Werror
-NAME  = megaphone
+NAME  = phonebook
 
 all:
-	g++ $(FLAGS) megaphone.cpp -o $(NAME)
+	g++ $(FLAGS) main.cpp Contact.cpp Contact.hpp PhoneBook.cpp PhoneBook.hpp -o $(NAME)
 
 fclean:
-	rm megaphone
+	rm phonebook
