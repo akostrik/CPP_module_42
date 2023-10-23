@@ -6,14 +6,14 @@
 class PhoneBook
 {
 public:
-static std::int		index = 0;
+static int		index;
 
 private:
 	Contact cnt[8];
 
 public:
-	Phonebook(void);
-	~(void);
+	PhoneBook(void);
+	~PhoneBook(void);
 	void	add(void);
 	void	search(void);
 };
