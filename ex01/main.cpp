@@ -8,46 +8,24 @@
 
 enum Cmd { ADD = 1, SEARCH, EXIT };
 
-Contact    add(PhoneBook phb)
-{
-    char *firstName;
-    char *lastName;
-    char *nickname;
-
-    scanf("%[^\n]s", firstName);
-    scanf("%[^\n]s", lastName);
-    scanf("%[^\n]s", nickname);
-    phb.add(Contact(firstName, lastName, nickname));
-}
-
-Contact    search(PhoneBook phb)
-{
-	for(int i; i < 8; i++)
-		
-
-}
-
-int exit_()
-{
-    return (0);
-}
 
 int	main()
 {
     PhoneBook   phb = PhoneBook();
     Cmd cmd;
 
-    // using namespace std;
     while (1)
     {
-        printf("Tape a command (ADD / SEARCH / EXIT)"); 
-        scanf("%[^\n]s", &cmd);
+				std::cout << "Enter a command (ADD / SEARCH / EXIT)> ";
+				std::getline(std::cin, str);
         if (cmd == ADD)
-            add(phb);
+            phb.add();
         else if (cmd == SEARCH)
-            search(phb);
-        else if (cmd == EXIT)
-            exit_();
+            phb.search();
+        else if (cmd == EXIT || std::cin.eof())
+            break ;
     }
+		std::cout << std::endl;
+		phb.PhoneBook~();
     return (0);
 }

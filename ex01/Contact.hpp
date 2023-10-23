@@ -13,9 +13,7 @@ private:
 	std::string firstName;
 	std::string lastName;
 	std::string nickname;
-
-public:
-	get()
+	std::string secret;
 };
 
 #endif

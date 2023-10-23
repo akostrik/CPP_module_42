@@ -5,25 +5,22 @@
 
 #include "Contact.hpp"
 
-Contact::Contact(char *firstName, char *lastName, char *nickname)
+Contact::Contact(char *firstName, char *lastName, char *nickname, char *secret)
 {
-	: firstName(firstName), lastName(lastName), nickname(nickname)
+	: firstName(firstName), lastName(lastName), nickname(nickname), secret(secret)
 }
 
 Contact::~Contact(void)
 {
 }
 
-std::string	Contact::get_fname(void) const
+public:
+std::string	Contact::get(void) const
 {
 	char *ret;
 	std::<< cout << setw(10);
-	std::cout << index << "|" << this.firstName << "|" << this.lastName << "|" << this.nickname;
+	std::cout << index << "|" << this.firstName << "|" << this.lastName << "|" << this.nickname "|" << this.secret;
 
 	return (ret);
 }
 
-void	Contact::set_fname(std::string str)
-{
-	this->_fname = str;
-}
