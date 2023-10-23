@@ -3,8 +3,8 @@
 #include <iostream>
 #include <cstring>
 #include "Contact.h"
-#include "PhoneBook.h"
-#include "Contact.h"
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 enum Cmd { ADD = 1, SEARCH, EXIT };
 
@@ -18,11 +18,12 @@ Contact    add(PhoneBook phb)
     scanf("%[^\n]s", lastName);
     scanf("%[^\n]s", nickname);
     phb.add(Contact(firstName, lastName, nickname));
-
 }
 
 Contact    search(PhoneBook phb)
 {
+	for(int i; i < 8; i++)
+		
 
 }
 
