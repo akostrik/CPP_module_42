@@ -5,15 +5,15 @@
 
 class PhoneBook
 {
-public:
-static int		index;
+private:
+	int		index;
 
 private:
-	Contact cnt[8];
+	Contact c[8];
 
 public:
 	PhoneBook(void);
-	~PhoneBook(void);
+	// ~PhoneBook(void);
 	void	add(void);
 	void	search(void);
 };

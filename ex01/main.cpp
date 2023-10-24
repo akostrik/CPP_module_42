@@ -2,26 +2,31 @@
 #include <string>
 #include <iostream>
 #include <cstring>
+
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
 int	main()
 {
-    PhoneBook	phb = new PhoneBook();
-    Cmd				cmd;
+    std::string input = "";
+    PhoneBook	*phb = new PhoneBook();
 
-		index = 0;
-    while (1)
-    {
-				std::cout << "Enter a command (ADD / SEARCH / EXIT)> ";
-				std::getline(std::cin, cmd, "\n");
-        if (cmd == "ADD")
-            phb.add(index++ % 8);
-        else if (cmd == "SEARCH")
-            phb.search();
-        else if (cmd == "EXIT" || std::cin.eof())
-            break ;
-    }
-		phb.~PhoneBook();
+    do {
+        std::cout << "Enter a command (ADD / SEARCH / EXIT)> ";
+        std::cin >> input;
+        std::cout << "input = " << input << std::endl;
+        std::cout << "input.compare(SEARCH) = " << input.compare("SEARCH") << std::endl;
+        if (input.compare("ADD") == 0)
+            phb->add();
+        else if (input.compare("SEARCH") == 0) {
+            phb->search();
+        }
+        else if (input.compare("EXIT") == 0)
+        {
+
+        }
+        std::cout << std::flush;
+    } while (1);  // && !std::cin.eof()
+	// phb.~PhoneBook();
     return (0);
 }

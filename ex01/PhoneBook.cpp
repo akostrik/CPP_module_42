@@ -1,57 +1,66 @@
+#include <cctype>
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <iomanip>
+
 #include "PhoneBook.hpp"
 
-public:
-PhoneBook::PhoneBook()
+PhoneBook::PhoneBook(void)
 {
 	this->index = 0;
-}
+};
 
-public:
-~PhoneBook()
+// PhoneBook::~PhoneBook(void)
+// {
+// 	for (int i = 0; i < 8; i++)
+// 		this->c[i]~;
+// }
+
+void PhoneBook::add()
 {
-	for (int = 0, i < 8, i++)
-		c[i]~;
-}
+  Contact new_c;
 
-public:
-void add(int index)
+  std::cout << "func add, this index = " << this->index << std::endl;
+  new_c.init();
+  this->c[this->index] = new_c;
+  this->index = (this->index + 1) % 8;
+
+  std::cout << "phb calls print1 in loop"<< std::endl;
+  for(int i = 0; i < 8; i++)
+  {
+    this->c[i].print1(i);
+  }
+};
+
+void PhoneBook::search()
 {
-  std::string firstName;
-  std::string lastName;
-  std::string nickname;
-  std::string secret;
+	int     input = -1;
+	int     index_max = 8; //
+    bool    valid = false;
 
-	std::getline(std::cin, firstName, "\n");
-	std::getline(std::cin, lastName,  "\n");
-	std::getline(std::cin, nickname,  "\n");
-	std::getline(std::cin, secret,    "\n");
+    std::cout << "func search"<< std::endl;
 
-	if (!firstName || !lastName || !nickname || !secret)
-		return (NULL);
-  phb.add(new Contact(index++ % 8, firstName, lastName, nickname, secret));
-}
+    // for (int i = 0; i < 8; i++)
+    // {
+    //     if (c[i])
+    //         break;
+    //     index_max++;
+    // }
+	for(int i; i < index_max; i++)
+		this->c[i].print1(i);
 
-public:
-Contact    search(PhoneBook phb)
-{
-	int index;
-	int index_max;
-
-	for(int i; i < 8; i++)
-		c[i].print1();
-	std::cout << "Entre the index> ";
-	std::getline(std::cin, index, "\n");
-	if (imdex >= 0 && index <= 7)
-		std::cout << c[index].print2();
-	else
-	{
-		index_max = 0;
-		for (int i = 0; i < 8; i++)
-		{
-			if (c[i] == NULL)
-				break;
-			index_max++;
-		}
-		std::cour << "The index should be enter 0 and " << index_max << std::endl;
-	}
-}
+    // do
+    // {
+    //     std::cout << "Please enter the contact index (betzeen 0 and " << index_max << "): " << std::flush;
+    //     std::cin >> input;
+    //     if (std::cin.good() && (input >= 0 && input <= index_max)) {
+    //         valid = true;
+    //     } else {
+    //         std::cin.clear();
+    //         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    //         std::cout << "Invalid index; please re-enter." << std::endl;
+    //     }
+	// 	this->c[i].print2(i);
+    // } while (!valid);
+};
