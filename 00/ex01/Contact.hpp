@@ -21,7 +21,6 @@ private:
 	void trim(std::string &s);
 
 public:
-	Contact();
 	void	init(void);
 	bool	isEmpty(void);
 	void	print1(int index);

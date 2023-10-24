@@ -22,7 +22,7 @@ int	main()
 			phb->add();
 		else if (input.compare("SEARCH") == 0)
 			phb->search();
-		else if (input.compare("EXIT") == 0) // || std::cin.eof()
+		else if (input.compare("EXIT") == 0 || std::cin.eof())
 			break ;
     std::cout << std::flush;
   } while (1);

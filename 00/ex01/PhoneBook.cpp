@@ -12,12 +12,6 @@ PhoneBook::PhoneBook(void)
 	this->index = 0;
 };
 
-PhoneBook::~PhoneBook(void)
-{
-	for (int i = 0; i < 8; i++)
-; //		delete this->c[i];
-}
-
 void PhoneBook::add()
 {
   Contact new_c;
@@ -43,6 +37,12 @@ void PhoneBook::search()
 	int		input = -1;
 	bool	valid = false;
 
+	if (size == 0)
+	{
+		std::cout << "The phonebook is empty" << std::endl;
+		return ;
+	}
+
 	for(int i = 0; i < size; i++)
 		this->c[i].print1(i);
 
@@ -50,13 +50,11 @@ void PhoneBook::search()
 	{
 		std::cin.ignore();
 		std::cout << "Enter the contact index (between 0 and " << size- 1 << "): " << std::flush;
-		// std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
 		std::cin >> input;
 		if (std::cin.good() && input >= 0 && input <= size - 1)
 			valid = true;
 		else {
 			std::cin.clear();
-			// std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 			std::cout << "Invalid index; please re-enter." << std::endl;
 		}
 	} while (!valid);

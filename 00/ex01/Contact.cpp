@@ -7,8 +7,6 @@
 
 #include "Contact.hpp"
 
-Contact::Contact() {}
-
 std::string Contact::getInput(std::string str) {
     std::string input = "";
     bool        valid = false;
@@ -16,6 +14,7 @@ std::string Contact::getInput(std::string str) {
     {
         std::cout << str << std::flush;
         std::getline(std::cin, input);
+				trim(input);
         if (std::cin.good() && !input.empty())
             valid = true;
         else {
@@ -47,15 +46,10 @@ void Contact::trim(std::string &s)
 void    Contact::init(void) {
 	std::cin.ignore();
 	this->firstName = this->getInput("Enter the first name: ");
-	trim(this->firstName);
 	this->lastName  = this->getInput("Enter the last name: ");
-	trim(this->lastName);
 	this->nickname  = this->getInput("Enter the nickname: ");
-	trim(this->nickname);
 	this->phone     = this->getInput("Enter the phone: ");
-	trim(this->phone);
 	this->secret    = this->getInput("Enter the darkest secret: ");
-	trim(this->secret);
 	std::cout << std::endl;
 }
 
@@ -86,5 +80,6 @@ void	Contact::print2(int index)
 	std::cout << this->firstName << std::endl;
 	std::cout << this->lastName  << std::endl;
 	std::cout << this->nickname  << std::endl;
+	std::cout << this->phone     << std::endl;
 	std::cout << this->secret    << std::endl;
 }
