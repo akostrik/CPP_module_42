@@ -7,8 +7,6 @@ class PhoneBook
 {
 private:
 	int		index;
-
-private:
 	Contact c[8];
 
 public:

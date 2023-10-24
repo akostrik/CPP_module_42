@@ -37,6 +37,10 @@ void    Contact::init(void) {
     std::cout << std::endl;
 }
 
+bool    Contact::isEmpty(void) {
+    return (this->firstName.compare("") == 0);
+}
+
 void	Contact::print1(int index)
 {
 	std::cout << std::right << std::setw(10) << "|" << index

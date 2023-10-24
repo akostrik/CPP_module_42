@@ -21,34 +21,27 @@ void PhoneBook::add()
 {
   Contact new_c;
 
-  std::cout << "func add, this index = " << this->index << std::endl;
   new_c.init();
   this->c[this->index] = new_c;
   this->index = (this->index + 1) % 8;
-
-  std::cout << "phb calls print1 in loop"<< std::endl;
-  for(int i = 0; i < 8; i++)
-  {
-    this->c[i].print1(i);
-  }
 };
 
 void PhoneBook::search()
 {
 	int     input = -1;
-	int     index_max = 8; //
+	int     size  = 0; //
     bool    valid = false;
 
     std::cout << "func search"<< std::endl;
 
-    // for (int i = 0; i < 8; i++)
-    // {
-    //     if (c[i])
-    //         break;
-    //     index_max++;
-    // }
-	for(int i; i < index_max; i++)
-		this->c[i].print1(i);
+  for(size = 0; size < 8; size++)
+    {
+        if ((*this).c[size].isEmpty() == 1)
+        break ;
+    }
+  for(int i = 0; i < size; i++)
+    this->c[i].print1(i);
+
 
     // do
     // {

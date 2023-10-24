@@ -17,8 +17,8 @@ private:
 
 public:
 	Contact();
-	Contact(char *firstName, char *lastName, char *nickname, char *secret);
 	void    init(void);
+	bool    isEmpty(void);
 	void	print1(int index);
 	void	print2(int index);
 };
