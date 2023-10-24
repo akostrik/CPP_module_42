@@ -8,6 +8,7 @@ class PhoneBook
 private:
 	int		index;
 	Contact c[8];
+	int size_();
 
 public:
 	PhoneBook(void);

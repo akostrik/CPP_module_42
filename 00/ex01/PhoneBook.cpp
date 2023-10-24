@@ -27,18 +27,25 @@ void PhoneBook::add()
   this->index = (this->index + 1) % 8;
 };
 
+int PhoneBook::size_()
+{
+	int size;
+
+	for(size = 0; size < 8; size++)
+		if (this->c[size].isEmpty() == 1)
+			break ;
+	return (size);
+}
+
 void PhoneBook::search()
 {
 	int     input = -1;
-	// int     size;
+	int     size  = PhoneBook::size_(); // std::distance(std::begin(this->c), std::end(this->c));
 	bool    valid = false;
 
-	std::cout << "func search"<< std::endl;
+	std::cout << "size = " << std::endl;
 
-	// for(size = 0; size < 8; size++)
-	// 	if ((*this).c[size].isEmpty() == 1)
-	// 		break ;
-	for(int i = 0; i < this->c.sizeof(); i++)
+	for(int i = 0; i < size; i++)
 		this->c[i].print1(i);
 
 	do
