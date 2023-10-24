@@ -45,9 +45,7 @@ std::string Contact::shortenedField(std::string str)
 
 	if (str.length() <= 10)
 		return (str);
-	for (int i = 0; i < 9 && i < str.length(); i++)
-		ret += str[i];
-	return (ret + ".");
+	return (str.substr(0, 8) + '.');
 }
 
 void	Contact::print1(int index)
