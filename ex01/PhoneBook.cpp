@@ -34,26 +34,23 @@ void PhoneBook::search()
 
     std::cout << "func search"<< std::endl;
 
-  for(size = 0; size < 8; size++)
-    {
+    for(size = 0; size < 8; size++)
         if ((*this).c[size].isEmpty() == 1)
-        break ;
-    }
-  for(int i = 0; i < size; i++)
-    this->c[i].print1(i);
+            break ;
+    for(int i = 0; i < size; i++)
+        this->c[i].print1(i);
 
-
-    // do
-    // {
-    //     std::cout << "Please enter the contact index (betzeen 0 and " << index_max << "): " << std::flush;
-    //     std::cin >> input;
-    //     if (std::cin.good() && (input >= 0 && input <= index_max)) {
-    //         valid = true;
-    //     } else {
-    //         std::cin.clear();
-    //         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-    //         std::cout << "Invalid index; please re-enter." << std::endl;
-    //     }
-	// 	this->c[i].print2(i);
-    // } while (!valid);
+    do
+    {
+        std::cout << "Enter the contact index (betzeen 0 and " << size- 1 << "): " << std::flush;
+        std::cin >> input;
+        if (std::cin.good() && (input >= 0 && input <= size - 1)) {
+            valid = true;
+        } else {
+            std::cin.clear();
+            // std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            std::cout << "Invalid index; please re-enter." << std::endl;
+        }
+    } while (!valid);
+    this->c[input].print2(input);
 };
