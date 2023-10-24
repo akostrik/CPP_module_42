@@ -14,11 +14,9 @@ private:
 	std::string nickname;
 	std::string phone;
 	std::string secret;
-	std::string shortenedField(std::string str);
 	std::string getInput(std::string str);
-	void ltrim(std::string &s);
-	void rtrim(std::string &s);
-	void trim(std::string &s);
+	std::string shortened(std::string &s);
+	std::string trimmed_(std::string &s);
 
 public:
 	void	init(void);
