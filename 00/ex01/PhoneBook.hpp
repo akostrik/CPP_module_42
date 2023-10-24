@@ -1,7 +1,13 @@
-#include "Contact.hpp"
-
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
+
+#include <cctype>
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <iomanip>
+
+#include "Contact.hpp"
 
 class PhoneBook
 {

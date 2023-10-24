@@ -24,7 +24,6 @@ std::string Contact::getInput(std::string str) {
             std::cout << "Invalid input; please try again." << std::endl;
         }
     } while (!valid);
-		std::cout << "return [" << trimmed << "]" << std::endl;
     return (trimmed);
 }
 
