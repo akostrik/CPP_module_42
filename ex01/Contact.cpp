@@ -6,10 +6,7 @@
 
 #include "Contact.hpp"
 
-Contact::Contact()
-{
-
-}
+Contact::Contact() {}
 
 std::string Contact::getInput(std::string str) {
     std::string input = "";
@@ -29,29 +26,41 @@ std::string Contact::getInput(std::string str) {
 }
 
 void    Contact::init(void) {
-    std::cin.ignore();
-    this->firstName = this->getInput("Please enter you first name: ");
-    this->lastName  = this->getInput("Please enter your last name: ");
-    this->nickname  = this->getInput("Please enter your nickname: ");
-    this->secret    = this->getInput("Please enter your darkest secret: ");
-    std::cout << std::endl;
+	std::cin.ignore();
+	this->firstName = this->getInput("Enter the first name: ");
+	this->lastName  = this->getInput("Enter the last name: ");
+	this->nickname  = this->getInput("Enter the nickname: ");
+	this->phone     = this->getInput("Enter the phone: ");
+	this->secret    = this->getInput("Enter the darkest secret: ");
+	std::cout << std::endl;
 }
 
 bool    Contact::isEmpty(void) {
     return (this->firstName.compare("") == 0);
 }
 
+std::string Contact::shortenedField(std::string str)
+{
+	std::string ret = "";
+
+	if (str.length() <= 10)
+		return (str);
+	for (int i = 0; i < 9 && i < str.length(); i++)
+		ret += str[i];
+	return (ret + ".");
+}
+
 void	Contact::print1(int index)
 {
-	std::cout << std::right << std::setw(10) << "|" << index
-		    << std::right << std::setw(10) << "|" << this->firstName
-			<< std::right << std::setw(10) << "|" << this->lastName
-			<< std::right << std::setw(10) << "|" << this->nickname << std::endl;
+	std::cout << std::setw(10) << std::right << index       << "|";
+	std::cout << std::setw(10) << std::right << shortenedField(firstName) << "|";
+	std::cout << std::setw(10) << std::right << shortenedField(lastName ) << "|";
+	std::cout << std::setw(10) << std::right << shortenedField(nickname ) << std::endl;
 }
 
 void	Contact::print2(int index)
 {
-	std::cout << index     << std::endl;
+	std::cout << index           << std::endl;
 	std::cout << this->firstName << std::endl;
 	std::cout << this->lastName  << std::endl;
 	std::cout << this->nickname  << std::endl;

@@ -12,7 +12,9 @@ private:
 	std::string firstName;
 	std::string lastName;
 	std::string nickname;
+	std::string phone;
 	std::string secret;
+	std::string shortenedField(std::string str);
 	std::string getInput(std::string str);
 
 public:
