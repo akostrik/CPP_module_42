@@ -39,11 +39,9 @@ int PhoneBook::size_()
 
 void PhoneBook::search()
 {
-	int     input = -1;
-	int     size  = PhoneBook::size_(); // std::distance(std::begin(this->c), std::end(this->c));
-	bool    valid = false;
-
-	std::cout << "size = " << std::endl;
+	int		size  = PhoneBook::size_();
+	int		input = -1;
+	bool	valid = false;
 
 	for(int i = 0; i < size; i++)
 		this->c[i].print1(i);
@@ -51,7 +49,8 @@ void PhoneBook::search()
 	do
 	{
 		std::cin.ignore();
-		std::cout << "Enter the contact index (betzeen 0 and " << size- 1 << "): " << std::flush;
+		std::cout << "Enter the contact index (between 0 and " << size- 1 << "): " << std::flush;
+		// std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
 		std::cin >> input;
 		if (std::cin.good() && input >= 0 && input <= size - 1)
 			valid = true;

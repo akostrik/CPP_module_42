@@ -16,11 +16,14 @@ private:
 	std::string secret;
 	std::string shortenedField(std::string str);
 	std::string getInput(std::string str);
+	void ltrim(std::string &s);
+	void rtrim(std::string &s);
+	void trim(std::string &s);
 
 public:
 	Contact();
-	void    init(void);
-	bool    isEmpty(void);
+	void	init(void);
+	bool	isEmpty(void);
 	void	print1(int index);
 	void	print2(int index);
 };
