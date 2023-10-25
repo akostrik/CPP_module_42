@@ -17,6 +17,8 @@ private:
 	std::string getInput(std::string str);
 	std::string shortened(std::string &s);
 	std::string trimmed_(std::string &s);
+	std::string without_tabs_etc_(std::string &s);
+
 
 public:
 	void	init(void);

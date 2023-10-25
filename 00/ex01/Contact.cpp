@@ -10,13 +10,17 @@
 std::string Contact::getInput(std::string str) {
     std::string input = "";
     std::string trimmed;
+	std::string without_tabs_etc;
 
     bool        valid = false;
     do
     {
         std::cout << str << std::flush;
         std::getline(std::cin, input);
-				trimmed = trimmed_(input);
+		{
+			without_tabs_etc = without_tabs_etc_(input);
+			trimmed = trimmed_(without_tabs_etc);
+		}
         if (std::cin.good() && !trimmed.empty())
             valid = true;
         else {
@@ -27,19 +31,30 @@ std::string Contact::getInput(std::string str) {
     return (trimmed);
 }
 
+std::string Contact::without_tabs_etc_(std::string &s)
+{
+    size_t i;
+
+    while ((i = s.find('\t')) != std::string::npos) {
+        s.replace(i, 1," ");
+    }
+    while ((i = s.find('\r')) != std::string::npos) {
+        s.replace(i, 1," ");
+    }
+	return (s);
+}
+
 std::string Contact::trimmed_(std::string &s)
 {
 	int	beg;
 	int	end;
 
-	if (s.length() == 1 && s[0] != ' ')
-		return s;
 	for (beg = 0; s[beg] == ' '; beg++)
 		;
+	if (beg == (int)s.length() - 1 && s[beg] == ' ')
+		return "";
 	for (end = s.length() - 1; s[end] == ' ' && end >= 0; end--)
 		;
-	if (end == 0)
-		return "";
 	return (s.substr(beg, end - beg + 1));
 }
 
