@@ -1,10 +1,3 @@
-#include <cctype>
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <iomanip>
-#include <algorithm>
-
 #include "Zombie.hpp"
 
 Zombie::Zombie(std::string name_p)
