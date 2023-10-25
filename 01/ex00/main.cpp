@@ -4,20 +4,28 @@
 
 int	main()
 {
-  Zombie *z1;	
   Zombie *z2;
-  Zombie *z3;
-
-  z1 = new Zombie("Jan");
-  z1->announce();
-  delete z1;
-
-  z2 = newZombie("Jacques");
+  z2 = new Zombie("Created by Zombie()    *z");
   z2->announce();
   delete z2;
 
-  z3 = randomChump("Paul");
-  delete z3;
+  Zombie *z4;
+  z4 = newZombie("Created by newZombie   *z");
+  z4->announce();
+  delete z4;
+
+  Zombie *z6;
+  z6 = randomChump("Created by randomChump *z");
+  delete z6;
 
   return (0);
 }
+
+// leasks:
+//  Zombie z1 = *(newZombie("Created by Zombie()     z"));
+//  z1.announce();
+//  delete z1; // expression must be a pointer
+//  delete &z1; // Invalid free()
+//   Zombie z3 = *(newZombie("Created by newZombie    z"));
+//   z3.announce();
+//   Zombie z5 = *(randomChump("Created by randomChump  z"));
