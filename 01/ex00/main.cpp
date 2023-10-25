@@ -3,11 +3,13 @@
 #include <iostream>
 #include <cstring>
 
-#include "Zombie.hpp"
+// #include "Zombie.hpp"
+#include "newZombie.cpp"
+#include "randomChump.cpp"
 
 int	main()
 {
-  Zombie *z = new Zombie();
+  Zombie *z = newZombie("Tom");
 
   z->announce();
 

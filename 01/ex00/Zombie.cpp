@@ -7,8 +7,9 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie()
+Zombie::Zombie(std::string name_p)
 {
+	this->name = name_p;
 };
 
 void Zombie::announce(void)
