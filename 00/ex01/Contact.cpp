@@ -69,7 +69,7 @@ void    Contact::init(void) {
 }
 
 bool    Contact::isEmpty(void) {
-    return (this->firstName.compare("") == 0); // empty
+    return (this->firstName.compare("") == 0);
 }
 
 std::string Contact::shortened(std::string &s)
