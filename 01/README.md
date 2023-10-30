@@ -14,6 +14,12 @@ Reference = a dereferenced pointer
 
 A reference can't point to nothing
 
+```
+std::string &stringREF = s;
+std::string                  // тип, на который объявляется ссылка;
+            &stringREF       // переменная типа ссылка на string
+                         s   // переменная, на которую объявляется ссылка
+```
 # Pointer
 
 If something should not always exist and can change, use a pointer
