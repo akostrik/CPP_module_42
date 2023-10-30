@@ -6,9 +6,9 @@ Reference !=  new variable
 
 Reference doesn't occupy memory
 
-A reference = an aliase for existing variables
+A reference = an aliase for an existing variable
 
-A reference = a constant pointer, we can't change where the reference is pointing to, it always points to the same variable
+A reference = a constant pointer, always points to the same variable, we can't change it 
 
 Reference = a dereferenced pointer
 
