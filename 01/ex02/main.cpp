@@ -24,3 +24,17 @@ int	main()
 
   return (0);
 }
+
+// output:
+
+// address of s                  0x7ffe2c36fe10
+// value s                       HI THIS IS BRAIN
+
+// address held by stringPTR     0x7ffe2c36fe10 // holds the same address, points to the same string
+// value pointed to by stringPTR HI THIS IS BRAIN
+
+// address held by stringREF     0x7ffe2c36fe10
+// value pointed to by stringREF HI THIS IS BRAIN
+
+// address &(s[0])               HI THIS IS BRAIN (?)
+// address (void*)&s[0]          0x55a2f8e71eb0
