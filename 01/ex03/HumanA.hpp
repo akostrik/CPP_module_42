@@ -1,11 +1,6 @@
 #ifndef HUMANA_HPP
 # define NUMANA_HPP
 
-# include <cctype>
-# include <iostream>
-# include <string>
-# include <cstring>
-# include <iomanip>
 # include "Weapon.hpp"
 
 class HumanA

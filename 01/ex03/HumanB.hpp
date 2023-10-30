@@ -1,11 +1,6 @@
 #ifndef HUMANB_HPP
 # define NUMANB_HPP
 
-# include <cctype>
-# include <iostream>
-# include <string>
-# include <cstring>
-# include <iomanip>
 # include "Weapon.hpp"
 
 class HumanB
