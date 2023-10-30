@@ -25,3 +25,9 @@ A reference can't point to nothing
 If something should not always exist and can change, use a pointer
 
 A pointer can be pointing to a non-existing address
+
+# ex03
+
+HumanA has one weapon forever => the classe HumanA has `Weapon& weaponREF` attribut
+HumanB cabn change weapon     => the classe HumanB has `Weapon* weaponPTR` attribut
+On the both cases we can change the type of the weapon 
