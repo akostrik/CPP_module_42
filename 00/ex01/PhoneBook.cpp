@@ -42,7 +42,7 @@ void PhoneBook::search()
 	do
 	{
 		std::cin.ignore();
-		std::cout << "Enter the contact index (between 0 and " << size- 1 << "): " << std::flush;
+		std::cout << "Enter the contact index (between 0 and " << size - 1 << "): " << std::flush;
 		std::cin >> input;
 		if (std::cin.good() && input >= 0 && input <= size - 1)
 			valid = true;
