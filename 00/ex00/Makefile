@@ -1,8 +1,7 @@
 FLAGS = -std=c++98 -Wall -Wextra -Werror
-NAME  = megaphone
+SRCS  = megaphone.cpp
 
 all:
-	g++ $(FLAGS) megaphone.cpp -o $(NAME)
-
+	g++ $(FLAGS) $(SRCS)
 fclean:
-	rm megaphone
+	rm a.out

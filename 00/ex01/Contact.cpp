@@ -35,12 +35,10 @@ std::string Contact::without_tabs_etc_(std::string &s)
 {
     size_t i;
 
-    while ((i = s.find('\t')) != std::string::npos) {
+    while ((i = s.find('\t')) != std::string::npos)
         s.replace(i, 1," ");
-    }
-    while ((i = s.find('\r')) != std::string::npos) {
+    while ((i = s.find('\r')) != std::string::npos)
         s.replace(i, 1," ");
-    }
 	return (s);
 }
 

@@ -1,9 +1,9 @@
 FLAGS = -std=c++98 -Wall -Wextra -Werror
-NAME  = phonebook
+SRCS  = main.cpp Contact.cpp Contact.hpp PhoneBook.cpp PhoneBook.hpp
 
 all:
 	clear
-	g++ $(FLAGS) main.cpp Contact.cpp Contact.hpp PhoneBook.cpp PhoneBook.hpp -o $(NAME)
+	g++ $(FLAGS) $(SRCS)
 
 fclean:
-	rm phonebook
+	rm a.out

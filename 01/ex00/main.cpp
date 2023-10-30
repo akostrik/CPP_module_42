@@ -21,11 +21,11 @@ int	main()
   return (0);
 }
 
-// leasks:
+//  leasks = allocations on the stack (?)
 //  Zombie z1 = *(newZombie("Created by Zombie()     z"));
 //  z1.announce();
 //  delete z1; // expression must be a pointer
 //  delete &z1; // Invalid free()
-//   Zombie z3 = *(newZombie("Created by newZombie    z"));
-//   z3.announce();
-//   Zombie z5 = *(randomChump("Created by randomChump  z"));
+//  Zombie z3 = *(newZombie("Created by newZombie    z"));
+//  z3.announce();
+//  Zombie z5 = *(randomChump("Created by randomChump  z"));
