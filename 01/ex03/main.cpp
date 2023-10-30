@@ -1,8 +1,3 @@
-#include <cctype>
-#include <string>
-#include <iostream>
-#include <cstring>
-
 #include "Weapon.hpp"
 #include "HumanA.hpp"
 #include "HumanB.hpp"
