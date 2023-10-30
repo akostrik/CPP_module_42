@@ -2,9 +2,9 @@
 
 If something should always exist and never change, use a references
 
-Reference !=  new variable
+A reference !=  new variable
 
-Reference doesn't occupy memory
+A reference doesn't occupy memory
 
 A reference = an aliase for an existing variable
 
