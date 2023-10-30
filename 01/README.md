@@ -15,10 +15,10 @@ Reference = a dereferenced pointer
 A reference can't point to nothing
 
 ```
-   std::string &stringREF = s;
-// std::string                  тип, на который объявляется ссылка;
-//             &stringREF       переменная типа ссылка на string
-//                          s   переменная, на которую объявляется ссылка
+   std::string &sREF = s;
+// std::string             тип, на который объявляется ссылка;
+//             &sREF       переменная типа ссылка на string
+//                     s   переменная, на которую объявляется ссылка
 ```
 # Pointer
 
