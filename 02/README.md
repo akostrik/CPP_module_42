@@ -1,8 +1,19 @@
-# Ressources
-https://rphlr.github.io/42-Evals/
+# Orthodox canonical class form
 
-http://www.cplusplus.com/reference/iomanip/
+In C++98 the OCCF had four different methods that the C++ compiler is willing to generate:
 
-http://www.cplusplus.com/reference/string/string
+Default constructor
+Copy constructor
+Destructor
+Copy assignment operator
 
-https://github.com/achrafelkhnissi/CPP_Modules
+```
+class A final
+{
+   public:
+      A ();
+      A (const A &a);
+      ~A ();
+      A & operator = (const A &a);
+};
+```
