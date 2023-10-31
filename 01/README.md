@@ -48,6 +48,15 @@ char       * c = str.data();
 - Using the assign function
 
 # Reference vs pointer (ex03)
+Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
+used.
+
+HumanA can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here HumanA has `Weapon& weaponREF` attribut).
+
+HumanB must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here HumanB has `Weapon* weaponPTR` attribut).
+
+In the both cases we can change the type of the weapon. 
+
 ## Reference
 If something should always exist and never change, use a references
 
@@ -75,16 +84,7 @@ If something should not always exist and can change, use a pointer
 
 A pointer can be pointing to a non-existing address
 
-# Notes ex03
 
-Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
-used.
-
-HumanA can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here HumanA has `Weapon& weaponREF` attribut).
-
-HumanB must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here HumanB has `Weapon* weaponPTR` attribut).
-
-In the both cases we can change the type of the weapon. 
 
 # Notes ex05
 Pointers to class member functions
