@@ -1,5 +1,6 @@
 # Is forbidden:
 - C function (*alloc, *printf, free)
+- The implementation of the function should be done using functions from std::string, no by reading the string character by character
 - C file manipulation functions
 - External libraries or features from versions other than C++98
 
