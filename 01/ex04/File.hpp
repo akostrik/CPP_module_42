@@ -2,14 +2,17 @@
 # define FILE_HPP
 # include <string>
 # include <iostream>
+# include <fstream>
 
 class File {
-private:
-  std::string name;
+public: //private:
+	const char *name_as_arr;
 
 public:
-              File(std::string type);
+              File(const char* name_as_string);
   void        replace(std::string s1, std::string s2);
+  void        func();
+	void        func2(std::string s1);
 };
 
 #endif
