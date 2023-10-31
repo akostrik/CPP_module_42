@@ -2,12 +2,12 @@
 
 int	main()
 {
-  Harl h = Harl(av[1]);
+  Harl h = Harl();
 
-	h.complain("DEBUG");
-	h.complain("INFO");
-	h.complain("WARNING");
-	h.complain("ERRO");
+	h.complain("debug");
+	h.complain("info");
+	// h.complain("warning");
+	// h.complain("error");
 
 	return 0;
 }
