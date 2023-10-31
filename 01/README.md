@@ -5,7 +5,7 @@
 - External libraries or features from versions other than C++98
 - Using a ugly if/elseif/else (ex05)
 
-## C vs C++ file manipulation functions (ex04)
+# C vs C++ file manipulation functions (ex04)
 
 ## C (forbidden)
 
