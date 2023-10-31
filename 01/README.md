@@ -28,7 +28,7 @@ Dynamically sizing receiving strings based on the actual input
 
 Exceptions
 
-# Convert std::String to char*
+# Convert std::String to char* (ex04)
 std::string str;
 const char * c = str.c_str();
 char       * c = str.data();
