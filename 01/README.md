@@ -45,8 +45,8 @@ char       * c = str.data();
 - Using the string constructor
 - Using the assign function
 
-# Reference (ex03)
-
+# Reference vs pointer (ex03)
+## Reference
 If something should always exist and never change, use a references
 
 A reference !=  new variable
@@ -67,7 +67,7 @@ A reference can't point to nothing
 //             &sREF       переменная типа ссылка на string
 //                     s   переменная, на которую объявляется ссылка
 ```
-# Pointer (ex03)
+## Pointer
 
 If something should not always exist and can change, use a pointer
 
