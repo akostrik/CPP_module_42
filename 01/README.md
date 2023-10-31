@@ -5,7 +5,9 @@
 - External libraries or features from versions other than C++98
 - Using a ugly if/elseif/else (ex05)
 
-# C file manipulation functions (forbidden) (ex04)
+## C vs C++ file manipulation functions (ex04)
+
+## C (forbidden)
 
 FILE *fp
 
@@ -17,7 +19,7 @@ Crashes: int my_int = 32; printf("%s", my_int)
 
 Hard-coded maximum buffer sizes
 
-# C++ file manipulation functions (ex04)
+## C++ 
 
 fstream f
 
