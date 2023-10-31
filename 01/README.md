@@ -8,7 +8,7 @@ Modes : r, w, a
 
 Crashes: int my_int = 32; printf("%s", my_int)
 
-Need hard-coded maximum buffer sizes
+Hard-coded maximum buffer sizes
 
 # C++ file manipulation functions
 
