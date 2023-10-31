@@ -1,11 +1,9 @@
-# Orthodox canonical class form
+# Orthodox canonical class form in C++98 (ex00)
 
-In C++98 the OCCF had four different methods that the C++ compiler is willing to generate:
-
-Default constructor
-Copy constructor
-Destructor
-Copy assignment operator
+- Default constructor
+- Copy constructor
+- Destructor
+- Copy assignment operator
 
 ```
 class A final
