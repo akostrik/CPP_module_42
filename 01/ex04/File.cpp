@@ -33,14 +33,25 @@ int File::replace(std::string s1, std::string s2) {
 	if (content.length() > 0)
     content.resize(content.length() - 1);
 
-	std::size_t pos = 0;
-  for (int i = 0; (pos = content.find(s1, i)) != std::string::npos; i++)
+  for (int i = 0; 1; i++)
 	{
-		content.erase(pos, s1.length()).insert(pos, s2);
-		i += s2.length() - 1;
+	  std::cout << "*** content :\n" << content << std::endl;
+		std::size_t pos = content.find(s1, i);
+		if (pos ==std::string::npos)
+			break ;
+		if (s1.length() == 1)
+		{
+			content.erase(pos, s1.length()).insert(pos, s2);
+			i = pos + s2.length(); // ?
+		}
+		else
+		{
+			content.erase(pos, s1.length()).insert(pos, s2);
+			i = pos + s2.length() - 1;
+		}
+		std::cout << "pos = " << pos << ", i = " << i << std::endl << std::endl;
 	}
 
-  std::cout << "content :\n" << content << std::endl;
   out       << content << std::endl;
 
   in.close();
