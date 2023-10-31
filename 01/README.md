@@ -67,7 +67,7 @@ If something should not always exist and can change, use a pointer
 
 A pointer can be pointing to a non-existing address
 
-# ex03
+# Notes ex03
 
 HumanA has one weapon forever => the classe HumanA has `Weapon& weaponREF` attribut
 
