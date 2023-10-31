@@ -1,4 +1,4 @@
-# C file manipulation functions (forbidden)
+# C file manipulation functions (forbidden) (ex04)
 
 FILE *fp
 
@@ -10,7 +10,7 @@ Crashes: int my_int = 32; printf("%s", my_int)
 
 Hard-coded maximum buffer sizes
 
-# C++ file manipulation functions
+# C++ file manipulation functions (ex04)
 
 fstream f
 
@@ -28,7 +28,18 @@ Dynamically sizing receiving strings based on the actual input
 
 Exceptions
 
-# Reference
+# Convert std::String to char*
+std::string str;
+const char * c = str.c_str();
+char       * c = str.data();
+
+# Convert char* to string (ex04)
+- Using the “=” operator
+- Using the string constructor
+- Using the assign function
+
+
+# Reference (ex03)
 
 If something should always exist and never change, use a references
 
@@ -50,7 +61,7 @@ A reference can't point to nothing
 //             &sREF       переменная типа ссылка на string
 //                     s   переменная, на которую объявляется ссылка
 ```
-# Pointer
+# Pointer (ex03)
 
 If something should not always exist and can change, use a pointer
 
