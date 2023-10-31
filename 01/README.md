@@ -1,6 +1,18 @@
-# Constraints
+# C file manipulation functions (forbidden)
 
-Using C file manipulation functions is forbidden
+fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc.
+
+FILE *fp for file pointer.
+
+Modes like r, w, a
+
+# C++ file manipulation functions
+
+fstream f
+
+f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof.
+
+Modes like ios::in, ios::out, ios::bin , etc...
 
 # Reference
 
