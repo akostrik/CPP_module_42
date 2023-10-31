@@ -77,8 +77,8 @@ A pointer can be pointing to a non-existing address
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
 used.
 
-HumanA has one weapon forever => the classe HumanA has `Weapon& weaponREF` attribut
+HumanA can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here HumanA has `Weapon& weaponREF` attribut).
 
-HumanB cabn change weapon     => the classe HumanB has `Weapon* weaponPTR` attribut
+HumanB must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here HumanB has `Weapon* weaponPTR` attribut).
 
-On the both cases we can change the type of the weapon 
+On the both cases we can change the type of the weapon. 
