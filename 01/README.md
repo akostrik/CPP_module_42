@@ -1,3 +1,8 @@
+# Is forbidden:
+- C function (*alloc, *printf, free)
+- C file manipulation functions
+- External libraries or features from versions other than C++98
+
 # C file manipulation functions (forbidden) (ex04)
 
 FILE *fp
