@@ -3,6 +3,7 @@
 - The implementation of the function should be done using functions from std::string, no by reading the string character by character
 - C file manipulation functions
 - External libraries or features from versions other than C++98
+- Using a ugly if/elseif/else (ex05)
 
 # C file manipulation functions (forbidden) (ex04)
 
@@ -83,3 +84,10 @@ HumanA can have a reference or a pointer to the Weapon. Ideally, it should be im
 HumanB must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here HumanB has `Weapon* weaponPTR` attribut).
 
 In the both cases we can change the type of the weapon. 
+
+# Notes ex05
+Pointers to class member functions
+
+Harl : at least the 5 functions required in the subject
+
+complain() executes the other functions using a pointer to them, matching the different strings corresponding to the log level to the pointers of the corresponding member function.
