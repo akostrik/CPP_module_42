@@ -35,16 +35,15 @@ Dynamically sizing receiving strings based on the actual input
 
 Exceptions
 
-# Convert std::String to char* (ex04)
+# Convert (ex04)
+## std::String to char* 
 std::string str;
 const char * c = str.c_str();
 char       * c = str.data();
-
-# Convert char* to string (ex04)
+## char* to string
 - Using the “=” operator
 - Using the string constructor
 - Using the assign function
-
 
 # Reference (ex03)
 
