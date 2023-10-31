@@ -3,7 +3,6 @@
 - The implementation of the function should be done using functions from std::string, no by reading the string character by character
 - C file manipulation functions
 - External libraries or features from versions other than C++98
-- Using a ugly if/elseif/else (ex05)
 
 # C vs C++ file manipulation functions (ex04)
 
