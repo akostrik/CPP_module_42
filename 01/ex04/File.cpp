@@ -1,4 +1,6 @@
 #include "File.hpp"
+#include <iostream>
+#include <string> //
 
 // try to pass a file that does not exist, change the permissions, pass it empty, etc.
 
@@ -9,6 +11,7 @@ int File::replace(std::string s1, std::string s2) {
   std::ifstream in(this->in_file);
 	std::string   in_file_str = this->in_file;
   std::ofstream out((in_file_str + ".replace").c_str());
+  std::string   content = "";
   std::string   line;
 
   if (!in.is_open() || !out.is_open())
@@ -19,9 +22,23 @@ int File::replace(std::string s1, std::string s2) {
 
   while (getline (in, line))
   {
-    std::cout << line << '\n';
-    out       << line << '\n';
+		content += line + "\n";
+    std::cout << line << std::endl;
+    out       << line << std::endl;
   }
+	if (content.length() > 0)
+    content.resize(content.length() - 1);
+
+  std::cout << "content :\n" << content << std::endl;
+
+	std::size_t pos = 0;
+  for (int i = 0; 1; i = pos + 1)
+	{
+		pos = content.find(s1, i);
+		if (pos == std::string::npos)
+			break ;
+    std::cout << "pos = " << pos << '\n';;
+	}
 
   in.close();
   out.close();
