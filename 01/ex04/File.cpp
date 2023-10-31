@@ -24,6 +24,7 @@ int File::replace(std::string s1, std::string s2) {
   out.open((in_file_str + ".replace").c_str());
 	if (!out.is_open())
   {
+	  in.close();
 		std::cout << "can't open file " << (in_file_str + ".replace").c_str() << std::endl;
     return 1;
   }
@@ -51,8 +52,6 @@ int File::replace(std::string s1, std::string s2) {
 		}
 		std::cout << "pos = " << pos << ", i = " << i << std::endl << std::endl;
 	}
-
-  out       << content << std::endl;
 
   in.close();
   out.close();
