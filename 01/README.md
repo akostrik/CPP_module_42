@@ -1,18 +1,18 @@
 # C file manipulation functions (forbidden)
 
-fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc.
+FILE *fp
 
-FILE *fp for file pointer.
+fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc
 
-Modes like r, w, a
+Modes : r, w, a
 
 # C++ file manipulation functions
 
 fstream f
 
-f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof.
+f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof
 
-Modes like ios::in, ios::out, ios::bin , etc...
+Modes : ios::in, ios::out, ios::bin , ...
 
 # Reference
 
