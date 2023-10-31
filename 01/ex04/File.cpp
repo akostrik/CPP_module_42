@@ -19,7 +19,7 @@ int File::replace(std::string s1, std::string s2) {
 	std::size_t   pos;
 
 	if (s1.length() == 0)
-		return 1;
+		return 0;
 
   if (!in.is_open())
   {
