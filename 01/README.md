@@ -84,5 +84,6 @@ If something should not always exist and can change, use a pointer
 A pointer can be pointing to a non-existing address
 
 
-# Pointer to class member function (ex05)
+# To do
+ex 05 func Harl::
 
