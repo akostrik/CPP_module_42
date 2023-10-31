@@ -84,10 +84,5 @@ If something should not always exist and can change, use a pointer
 A pointer can be pointing to a non-existing address
 
 
+# Pointer to class member function (ex05)
 
-# Notes ex05
-Pointers to class member functions
-
-Harl : at least the 5 functions required in the subject
-
-complain() executes the other functions using a pointer to them, matching the different strings corresponding to the log level to the pointers of the corresponding member function.
