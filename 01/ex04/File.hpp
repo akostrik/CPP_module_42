@@ -6,11 +6,11 @@
 
 class File {
 private:
-	const char *name_as_arr;
+  const char  *in_file;
 
 public:
-              File(const char* name_as_string);
-  void        replace(std::string s1, std::string s2);
+              File(const char* in_file_);
+  int         replace(std::string s1, std::string s2);
 };
 
 #endif
