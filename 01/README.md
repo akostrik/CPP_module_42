@@ -74,6 +74,9 @@ A pointer can be pointing to a non-existing address
 
 # Notes ex03
 
+Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
+used.
+
 HumanA has one weapon forever => the classe HumanA has `Weapon& weaponREF` attribut
 
 HumanB cabn change weapon     => the classe HumanB has `Weapon* weaponPTR` attribut
