@@ -20,12 +20,10 @@ void error(void) {
 };
 
 void Harl::complain(std::string level) {
-  void (*funcs[4])() = {debug, info, warning, error};
-
-	funcs[0]();
-	funcs[1]();
-
-  // (*func_ptr)();
-	(void)level;
-	// https://ravesli.com/urok-104-ukazateli-na-funktsii/#toc-1 
+  std::map<std::string, void(*)()> m;
+  m["debug"]   = debug;
+  m["info"]    = info;
+  m["warning"] = warning;
+  m["error"]   = error;
+  m[level]();
 };
