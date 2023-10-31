@@ -8,7 +8,7 @@ HumanB::HumanB(std::string name_) {
 	this->weaponPTR = NULL;
 };
 
-void HumanB::setWeapon(Weapon& weaponPTR_) { //
+void HumanB::setWeapon(Weapon& weaponPTR_) {
 	this->weaponPTR = &weaponPTR_;
 };
 

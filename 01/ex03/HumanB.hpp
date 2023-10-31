@@ -11,8 +11,10 @@ private:
 
 public:
 	            HumanB(std::string name_);
-	void        setWeapon(Weapon& weapon_);
+	void        setWeapon(Weapon& weaponPTR_); //
 	void        attack(void);
 };
 
 #endif
+
+// weaponPTR->getType()

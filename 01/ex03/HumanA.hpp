@@ -10,8 +10,10 @@ private:
 	Weapon&     weaponREF; //
 
 public:
-	            HumanA(std::string name_, Weapon& weaponREF_);
+	            HumanA(std::string name_, Weapon& weaponREF_); //
 	void        attack(void);
 };
 
 #endif
+
+// weaponREF.getType()
