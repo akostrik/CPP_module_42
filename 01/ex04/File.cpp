@@ -32,7 +32,7 @@ int File::replace(std::string s1, std::string s2) {
   std::cout << "content :\n" << content << std::endl;
 
 	std::size_t pos = 0;
-  for (int i = 0; 1; i = pos + 1)
+  for (int i = 0; 1; i++)
 	{
 		pos = content.find(s1, i);
 		if (pos == std::string::npos)
