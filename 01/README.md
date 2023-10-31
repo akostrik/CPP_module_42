@@ -6,6 +6,10 @@ fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets
 
 Modes : r, w, a
 
+I/O has potential for crashes: e.g. int my_int = 32; printf("%s", my_int)
+
+Need hard-coded maximum buffer sizes
+
 # C++ file manipulation functions
 
 fstream f
@@ -13,6 +17,16 @@ fstream f
 f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof
 
 Modes : ios::in, ios::out, ios::bin , ...
+
+Fstreams close the files they manage when they leave scope
+
+Exceptions when errors occur (http://en.cppreference.com/w/cpp/io/basic_ios/exceptions for API function and example)
+
+How input and output is performed is implicitly selected using the variable type
+
+Extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)
+
+Dynamically sizing receiving strings based on the actual input
 
 # Reference
 
