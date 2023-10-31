@@ -1,3 +1,7 @@
+# Constraints
+
+Using C file manipulation functions is forbidden
+
 # Reference
 
 If something should always exist and never change, use a references
