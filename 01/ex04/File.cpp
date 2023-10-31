@@ -3,6 +3,7 @@
 #include <string> //
 
 // try to pass a file that does not exist, change the permissions, pass it empty, etc.
+// empty string
 
 File::File(const char *in_file_) : in_file(in_file_){
 };
@@ -37,8 +38,11 @@ int File::replace(std::string s1, std::string s2) {
 		pos = content.find(s1, i);
 		if (pos == std::string::npos)
 			break ;
-    std::cout << "pos = " << pos << '\n';;
+    std::cout << "pos = " << pos << '\n';
+		content.erase(pos, s1.length());
 	}
+
+  std::cout << "content :\n" << content << std::endl;
 
   in.close();
   out.close();
