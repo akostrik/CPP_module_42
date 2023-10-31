@@ -1,4 +1,10 @@
-# C file manipulation functions (forbidden)
+# Is forbidden:
+- C function (*alloc, *printf, free)
+- The implementation of the function should be done using functions from std::string, no by reading the string character by character
+- C file manipulation functions
+- External libraries or features from versions other than C++98
+
+# C file manipulation functions (forbidden) (ex04)
 
 FILE *fp
 
@@ -10,7 +16,7 @@ Crashes: int my_int = 32; printf("%s", my_int)
 
 Hard-coded maximum buffer sizes
 
-# C++ file manipulation functions
+# C++ file manipulation functions (ex04)
 
 fstream f
 
@@ -28,7 +34,18 @@ Dynamically sizing receiving strings based on the actual input
 
 Exceptions
 
-# Reference
+# Convert std::String to char* (ex04)
+std::string str;
+const char * c = str.c_str();
+char       * c = str.data();
+
+# Convert char* to string (ex04)
+- Using the “=” operator
+- Using the string constructor
+- Using the assign function
+
+
+# Reference (ex03)
 
 If something should always exist and never change, use a references
 
@@ -50,14 +67,19 @@ A reference can't point to nothing
 //             &sREF       переменная типа ссылка на string
 //                     s   переменная, на которую объявляется ссылка
 ```
-# Pointer
+# Pointer (ex03)
 
 If something should not always exist and can change, use a pointer
 
 A pointer can be pointing to a non-existing address
 
-# ex03
+# Notes ex03
 
-HumanA has one weapon forever => the classe HumanA has `Weapon& weaponREF` attribut
-HumanB cabn change weapon     => the classe HumanB has `Weapon* weaponPTR` attribut
-On the both cases we can change the type of the weapon 
+Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
+used.
+
+HumanA can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here HumanA has `Weapon& weaponREF` attribut).
+
+HumanB must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here HumanB has `Weapon* weaponPTR` attribut).
+
+In the both cases we can change the type of the weapon. 
