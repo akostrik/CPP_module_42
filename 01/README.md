@@ -81,4 +81,4 @@ HumanA can have a reference or a pointer to the Weapon. Ideally, it should be im
 
 HumanB must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here HumanB has `Weapon* weaponPTR` attribut).
 
-On the both cases we can change the type of the weapon. 
+In the both cases we can change the type of the weapon. 
