@@ -1,6 +1,9 @@
 #ifndef HUMANB_HPP
 # define NUMANB_HPP
+
 # include "Weapon.hpp"
+# include <string>
+# include <iostream>
 
 class HumanB {
 private:

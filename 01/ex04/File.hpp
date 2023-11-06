@@ -1,5 +1,6 @@
 #ifndef FILE_HPP
 # define FILE_HPP
+
 # include <string>
 # include <iostream>
 # include <fstream>

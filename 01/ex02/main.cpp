@@ -14,8 +14,8 @@ int	main()
   std::string &stringREF = s;
 
   std::cout << "address of s                  " << &s           << std::endl;
-  std::cout << "// address &(s[0])            " << &(s[0])      << std::endl;
-  std::cout << "// address (void*)&s[0]       " << (void*)&s[0] << std::endl;
+  //std::cout << "address &(s[0])               " << &(s[0])      << std::endl;
+  //std::cout << "address (void*)&s[0]          " << (void*)&s[0] << std::endl;
   std::cout << "address held by stringPTR     " << stringPTR    << std::endl;
   std::cout << "address held by stringREF     " << &stringREF   << std::endl;
   std::cout << "value s                       " << s            << std::endl;
