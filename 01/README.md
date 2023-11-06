@@ -47,9 +47,11 @@ Exceptions
 
 # Convert (ex04)
 ## std::String to char* 
+```
 std::string str;
 const char * c = str.c_str();
 char       * c = str.data();
+```
 ## char* to string
 - Using the “=” operator
 - Using the string constructor
