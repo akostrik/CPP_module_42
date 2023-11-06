@@ -20,3 +20,5 @@ A method of representing non-integer numbers by storing a fixed number of digits
 
 A valuable balance between performance, accuracy, range, precision.
 
+Particularly applicable to computer graphics, sound processing or scientific programming,
+
