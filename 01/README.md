@@ -46,7 +46,7 @@ Dynamically sizing receiving strings based on the actual input
 Exceptions
 
 # Convert (ex04)
-## std::String to char* 
+## std::string to char* 
 ```
 std::string str;
 const char * c = str.c_str();
