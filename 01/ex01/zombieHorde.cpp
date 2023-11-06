@@ -1,7 +1,7 @@
 #include "Zombie.hpp"
 
 // version list
-// but only a single allocatoin is allowed
+// only a single allocatoin is allowed by subject
 // std::list <Zombie *> lst;
 // for (int i = 0; i < N; i++)
 //   lst.push_back(new Zombie(name));

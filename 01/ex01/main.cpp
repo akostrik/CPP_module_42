@@ -1,7 +1,6 @@
 #include "Zombie.hpp"
 #include "zombieHorde.cpp"
 
-
 int	main()
 {
   int N = 5;
