@@ -22,3 +22,11 @@ A valuable balance between performance, accuracy, range, precision.
 
 Particularly applicable to computer graphics, sound processing or scientific programming,
 
+# Sources
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
+
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html
+
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html
+
+https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html 
