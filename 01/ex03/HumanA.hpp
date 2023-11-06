@@ -1,5 +1,5 @@
 #ifndef HUMANA_HPP
-# define NUMANA_HPP
+# define HUMANA_HPP
 
 # include "Weapon.hpp"
 # include <string>
@@ -16,5 +16,3 @@ public:
 };
 
 #endif
-
-// weaponREF.getType()

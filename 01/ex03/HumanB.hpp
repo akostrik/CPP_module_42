@@ -1,5 +1,5 @@
 #ifndef HUMANB_HPP
-# define NUMANB_HPP
+# define HUMANB_HPP
 
 # include "Weapon.hpp"
 # include <string>
@@ -8,7 +8,7 @@
 class HumanB {
 private:
 	std::string name;
-	Weapon*     weaponPTR; //
+	Weapon*     weaponPTR; // ptr
 
 public:
 	            HumanB(std::string name_);
@@ -17,5 +17,3 @@ public:
 };
 
 #endif
-
-// weaponPTR->getType()

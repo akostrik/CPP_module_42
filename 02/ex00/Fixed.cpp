@@ -1,29 +1,37 @@
-#include "Harl.hpp"
+#include "Fixed.hpp"
 
-Harl::Harl() {
+Fixed::Fixed(void)
+{
+	std::cout << BYEL << "Default constructor called" << DEFCOLO << std::endl;
+	this->_num = 0;
+}
+
+
+// * A new object is created as a copy of the existing object
+//	this->_num = obj.getRawBits();
+Fixed::Fixed(const Fixed &obj)
+{
+	std::cout << BMAG << "Copy constructor called" << DEFCOLO << std::endl;
+	*this = obj;
+}
+
+
+// An already initialized object is assigned to a new value from another existing object
+Fixed &Fixed::operator = (Fixed const &obj)
+{
+	std::cout << BCYN << "Copy assignment operator called" << DEFCOLO << std::endl;
+	this->_num = obj.getRawBits();
+	return (*this);
+}
+
+
+~Fixed() {
+	std::cout << BYEL << "Destructor called" << DEFCOLO << std::endl;
+
 };
 
-void debug(void) {
-	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!\n";
-};
 
-void info(void) {
-	std::cout << "I cannot believe adding extra bacon costs more money. You didn’t put enough bacon in my burger! If you did, I wouldn’t be asking for more!\n";
-};
-
-void warning(void) {
-	std::cout << "I think I deserve to have some extra bacon for free. I’ve been coming for years whereas you started working here since last month.\n";
-};
-
-void error(void) {
-	std::cout << "This is unacceptable! I want to speak to the manager now.\n";
-};
-
-void Harl::complain(std::string level) {
-  std::map<std::string, void(*)()> m;
-  m["debug"]   = debug;
-  m["info"]    = info;
-  m["warning"] = warning;
-  m["error"]   = error;
-  m[level]();
-};
+void Fixed::setRawBits(int const raw)
+{
+	this->_num = raw;
+}
