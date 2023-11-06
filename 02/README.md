@@ -18,3 +18,5 @@ class A final
 # Fixed-point 
 A method of representing non-integer numbers by storing a fixed number of digits of their fractional part. Dollar amounts, for example, are often stored with exactly two fractional digits, representing the cents.
 
+A valuable balance between performance, accuracy, range, precision.
+
