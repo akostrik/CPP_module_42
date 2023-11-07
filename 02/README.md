@@ -25,7 +25,7 @@ Precision = how much information you have about a quantity, how uniquely you hav
 
 seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm (s = bit n°31)
 
-number = s * $2^e$ * 1.(mantissa bits)
+number = $(-1)^s$ * $2^e$ * 1.(mantissa bits)
 
 - s sign bit
 - e exponent giving its order of magnitude (= порядок = показатель степени)
