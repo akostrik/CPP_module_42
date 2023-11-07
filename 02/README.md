@@ -59,12 +59,14 @@ A valuable balance between performance, accuracy, range, precision.
 
 
 # Sources
+## Floating-point
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
 
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html
 
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html
 
-https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html 
-
 https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold
+
+## Fixed-point
+https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html 
