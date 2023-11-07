@@ -29,8 +29,7 @@ The IEEE-754 standard: float (4 bytes) or double (8 bytes) has:
 - mantissa specifying the actual digits of the number ∊ [1;10) 
 
  seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm 
- 
-31                              0    bit #
+s = bit n°31 
 
 number = (s ? -1:1) * 2^e * 1.(mantissa bits)
 
