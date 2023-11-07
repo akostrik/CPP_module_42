@@ -46,8 +46,8 @@ number = ${(-1)}^{s}$ * 1.(mantissa bits) * $2^e$
 Property	                                 | float                                           | double
 ------------------------------------------|-------------------------------------------------|----------------------------
 bits                                      | seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm (1+8+23)       | (1+11+52)
-Largest representable number	            | 340282346638528859811704183484516925440vv10vv   | 1.7976931348623157e+308
-Smallest number without losing precision	| 1.175494351e-38	                                | 2.2250738585072014e-308
+Largest representable number	            | 340282346638528859811704183484516925440 vv10vv  | 1.7976931348623157e+308
+Smallest number without losing precision	| !!1.175494351e-38!!	                          | 2.2250738585072014e-308
 Smallest representable number  	         | 1.401298464e-45	                                | 5e-324
 the smallest x such that 1+x > 1          | 1.1929093e-7	                                   | 2.220446049250313e-16
 3.14                                      | 0 10000000 10010001111010111000011 = 0x4048F5C3 | +
