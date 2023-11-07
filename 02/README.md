@@ -51,11 +51,11 @@ the smallest x such that 1+x > 1   |                              |     |  1.192
 
 ## Fixed-point
 
-Representing non-integer numbers by storing a fixed number of digits of their fractional part. 
+Representing non-integer numbers by storing a fixed number of digits of their fractional part
 
-For example : Dollar amounts are often stored with exactly two fractional digits, representing the cents.
+For example : Dollar amounts are often stored with exactly two fractional digits, representing the cents
 
-A valuable balance between performance, accuracy, range, precision.
+fixed<8,3> = a 8-bit fixed point number, of which 3 right most bits are fractional
 
 
 # Sources
