@@ -1,9 +1,25 @@
-FLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS  = main.cpp Harl.hpp Harl.cpp
+SRCS    = main.cpp Harl.cpp
+HEADERS = Harl.hpp  
+OBJS    = $(SRCS:.cpp=.o)
+OBJS   := $(addprefix ./objs/, $(OBJS))
+FLAGS   = -std=c++98 -Wall -Wextra -Werror
+CPP     = c++
 
-all:
+all: $(OBJS) $(HEADER)
 	clear
-	g++ $(FLAGS) $(SRCS)
+	$(CPP) $(FLAGS) $(SRCS)
 
-fclean:
-	rm a.out
+./objs/%.o: %.cpp
+	mkdir ./objs/ 2> /dev/null || true
+	$(CPP) -o $@ -c $<
+
+clean:
+	rm -f $(OBJS)
+	rmdir ./objs/ 2> /dev/null || true
+
+fclean: clean
+	rm -f a.out
+
+re: fclean all
+
+.PHONY: all, clean, fclean, re, debug

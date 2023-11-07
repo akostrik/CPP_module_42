@@ -1,19 +1,20 @@
-SRCS  = main.cpp Fixed.hpp Fixed.cpp
-OBJS  = $(SRCS:.c=.o)
-OBJS := $(addprefix ./objs/, $(OBJS))
-FLAGS = -std=c++98 -Wall -Wextra -Werror
-CPP   = c++
+SRCS    = main.cpp Fixed.cpp
+HEADERS = Fixed.hpp  
+OBJS    = $(SRCS:.cpp=.o)
+OBJS   := $(addprefix ./objs/, $(OBJS))
+FLAGS   = -std=c++98 -Wall -Wextra -Werror
+CPP     = c++
 
-all: $(OBJS)
+all: $(OBJS) $(HEADER)
 	clear
 	$(CPP) $(FLAGS) $(SRCS)
 
-./objs/%.o: ./src/%.c
+./objs/%.o: %.cpp
 	mkdir ./objs/ 2> /dev/null || true
 	$(CPP) -o $@ -c $<
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 	rmdir ./objs/ 2> /dev/null || true
 
 fclean: clean

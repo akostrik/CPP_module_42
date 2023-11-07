@@ -12,7 +12,7 @@ private:
 
 public:
 	            HumanB(std::string name_);
-	void        setWeapon(Weapon& weaponPTR_); // &
+	void        setWeapon(Weapon& weaponPTR_); // ref
 	void        attack(void);
 };
 
