@@ -44,7 +44,7 @@ $\frac{3,14 -2 }{4 - 2} = 0,57$ => m = $2^{23}*0,57$ = 4781507 = 100100011110101
 Property	                                 | float                              | double
 ------------------------------------------|------------------------------------|----------------------------
 3.14                                      | 0 10000000 10010001111010111000011 |
-                                          | 8 e bits, 23 m bits	             | 11 e bits, 52 m bits
+.                                         | 8 e bits, 23 m bits	             | 11 e bits, 52 m bits
 Largest representable number	            | 3.402823466e+38	                   | 1.7976931348623157e+308
 Smallest number without losing precision	| 1.175494351e-38	                   | 2.2250738585072014e-308
 Smallest representable number  	         | 1.401298464e-45	                   | 5e-324
