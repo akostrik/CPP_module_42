@@ -49,7 +49,7 @@ Largest 	                          | .     |   |  -
 Smallest without losing precision  | .     |   |  1.175494351e-38	                                
 Smallest                	        | .     |   |  1.401298464e-45     	                          
 the smallest x such that 1+x > 1   |       |   |  1.1929093e-7	                                   
-3.14                               | 3,14 ∊ [ $2^1$ ; $2^2$ ) => e = $2^7$ = 128 = 10000000b | $\frac{3,14 -2 }{4 - 2} = 0,57$ => m = $2^{23}*0,57$ = 4781507 = 10010001111010111000011b |  0 10000000 10010001111010111000011 = 0x4048F5C3
+3.14                               | ∊ [ $2^1$ ; $2^2$ ) => e = $2^7$ = 10000000b | $\frac{3,14 -2 }{4 - 2} = 0,57$ => m = $2^{23}*0,57$ = 4781507 = 10010001111010111000011b |  0 10000000 10010001111010111000011 = 0x4048F5C3
 0                                  |       |   |  0 00000000 00000000000000000000000 = 0x00000000
 1.0                                |       |   |  0 01111111 00000000000000000000000 = 0x3f800000
 0.5                                |       |   |  0 01111110 00000000000000000000000 = 0x3f000000
@@ -76,3 +76,5 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html
 
 https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html 
+
+https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold
