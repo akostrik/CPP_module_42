@@ -30,7 +30,7 @@ Float (4 bytes) or double (8 bytes) has:
 
 seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm (s = bit n°31) 
 
-number = (s ? -1:1) * 2^e * 1.(mantissa bits)
+number = (s ? -1:1) * 2<sup>e</sup> * 1.(mantissa bits)
 
 Property	                                 | float                    | double
 ------------------------------------------|--------------------------|--------------------------
