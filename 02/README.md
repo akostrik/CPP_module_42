@@ -15,12 +15,14 @@ class A final
       A & operator = (const A &a);
 };
 ```
-# Fixed-point 
+# Floating-point numbers
+
+# Fixed-point numbers
+
 A method of representing non-integer numbers by storing a fixed number of digits of their fractional part. Dollar amounts, for example, are often stored with exactly two fractional digits, representing the cents.
 
 A valuable balance between performance, accuracy, range, precision.
 
-Particularly applicable to computer graphics, sound processing or scientific programming,
 
 # Sources
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
