@@ -64,6 +64,11 @@ You cannot call a non-const method a const object
 
 You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not)
 
+An object declared as const can neither be changed by a const nor a non-const member function (except for constructor and destructor). Even if it is passed by reference. There are two exceptions to this rule:
+- The constness can be casted away (casting the const away) but is generally not advised;
+- Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const.
+
+
 # Sources
 ## Floating-point
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
