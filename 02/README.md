@@ -34,7 +34,7 @@ number = (s ? -1:1) * 2^e * 1.(mantissa bits)
 
 Property	                                 | Value for float	         | Value for double
 ------------------------------------------|--------------------------|------------------------
-                                          | 8 e bits, 23 m bits	   | 11 e bits, 52 m bits
+-                                         | 8 e bits, 23 m bits	   | 11 e bits, 52 m bits
 Largest representable number	            | 3.402823466e+38	         | 1.7976931348623157e+308
 Smallest number without losing precision	| 1.175494351e-38	         | 2.2250738585072014e-308
 Smallest representable number  	         | 1.401298464e-45	         | 5e-324
