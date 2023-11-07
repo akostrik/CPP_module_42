@@ -23,18 +23,18 @@ Precision = how much information you have about a quantity, how uniquely you hav
 
 ## Floating-point
 
-Float (4 bytes) or double (8 bytes) has:
-- s sign bit
-- e exponent giving its order of magnitude (= порядок = показатель степени)
-- m mantissa specifying the actual digits of the number ∊ [1;10) 
-
 seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm (s = bit n°31) 
 
 number = (s ? -1:1) * 2<sup>e</sup> * 1.(mantissa bits)
 
+- s sign bit
+- e exponent giving its order of magnitude (= порядок = показатель степени)
+- m mantissa specifying the actual digits of the number ∊ [1;10) 
+
 Example 3.14:
-3,14 ∊ [2<sup>1</sup>; 2<sup>2</sup>] => окно числа с плавающей запятой должно начинаться с $2^1$ => e=128$ 
-Наконец, есть $2^{23}$ смещений, которыми можно выразить расположение 3,14 внутри интервала [2-4]. Оно находится в $\frac{3,14 -2 }{4 - 2} = 0,57$ внутри интервала, что даёт нам смещение $M = 2^{23}*0,57 = 4781507$
+3,14 ∊ [$2^1$; $2^2$) => окно числа начинается с $2^1$ => e=$2^7$=128
+
+$2^23$ смещений, которыми можно выразить расположение 3,14 внутри [2;4) Оно находится в $\frac{3,14 -2 }{4 - 2} = 0,57$ внутри интервала, что даёт нам смещение $M = 2^{23}*0,57 = 4781507$
 
 Property	                                 | float                    | double
 ------------------------------------------|--------------------------|--------------------------
