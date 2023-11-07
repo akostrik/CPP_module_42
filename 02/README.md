@@ -43,21 +43,21 @@ number = ${(-1)}^{s}$ * 1.(mantissa bits) * $2^e$
 >
 > 0 10000000 10010001111010111000011
 
-Property	                                 | float                                   | double
-------------------------------------------|-----------------------------------------|----------------------------
-bits                                      | seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm 1+8+23 | 1+11+52
-Largest representable number	            | 3.402823466e+38	                        | 1.7976931348623157e+308
-Smallest number without losing precision	| 1.175494351e-38	                        | 2.2250738585072014e-308
-Smallest representable number  	         | 1.401298464e-45	                        | 5e-324
-the smallest x such that 1+x > 1          | 1.1929093e-7	                           | 2.220446049250313e-16
-3.14                                      | 0 10000000 10010001111010111000011      |
-0                                         | 0x00000000                              |
-1.0                                       | 0x3f800000                              |
-0.5                                       | 0x3f000000                              |
-3                                         | 0x40400000                              |
-+inf                                      | 0x7f800000                              |
--inf                                      | 0xff800000                              |
-+NaN                                      | 0x7fc00000 or 0x7ff00000                |
+Property	                                 | float                                         | double
+------------------------------------------|-----------------------------------------------|----------------------------
+bits                                      | seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm 1+8+23       | 1+11+52
+Largest representable number	            | 3.402823466e+38	                              | 1.7976931348623157e+308
+Smallest number without losing precision	| 1.175494351e-38	                              | 2.2250738585072014e-308
+Smallest representable number  	         | 1.401298464e-45	                              | 5e-324
+the smallest x such that 1+x > 1          | 1.1929093e-7	                                 | 2.220446049250313e-16
+3.14                                      | 0 10000000 10010001111010111000011 = 4048F5C3 |
+0                                         | 0x00000000                                    |
+1.0                                       | 0x3f800000                                    |
+0.5                                       | 0x3f000000                                    |
+3                                         | 0x40400000                                    |
++inf                                      | 0x7f800000                                    |
+-inf                                      | 0xff800000                                    |
++NaN                                      | 0x7fc00000 or 0x7ff00000                      |
 
 ## Fixed-point
 
