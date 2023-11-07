@@ -32,10 +32,15 @@ number = s * $2^e$ * 1.(mantissa bits)
 - m mantissa specifying the actual digits of the number ∊ [1;10)
 
 > Example 3.14:
+> 
 > $3,14 = (-1)^0 * 1,57 * 2^{(128-127)}$
+>
 > s = 0b
+>
 > 3,14 ∊ [ $2^1$ ; $2^2$ ) => e = $2^7$ = 128 = 10000000b
+>
 > $\frac{3,14 -2 }{4 - 2} = 0,57$ => m = $2^{23}*0,57$ = 4781507 = 10010001111010111000011b
+>
 > 0 10000000 10010001111010111000011
 
 Property	                                 | float                                   | double
