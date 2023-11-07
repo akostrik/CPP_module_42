@@ -33,7 +33,7 @@ number = s * $2^e$ * 1.(mantissa bits)
 
 Example 3.14:
 
-s sign bit = 0b
+s = 0b
 
 3,14 ∊ [ $2^1$ ; $2^2$ ) => e = $2^7$ = 128 = 10000000b
 
