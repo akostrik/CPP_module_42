@@ -58,6 +58,11 @@ For example : Dollar amounts are often stored with exactly two fractional digits
 fixed<8,3> = a 8-bit fixed point number, of which 3 right most bits are fractional
 
 # Const
+
+Const object = whose type is const-qualified, or a non-mutable subobject of a const object. 
+
+Such object cannot be modified: attempt to do so directly is a compile-time error, and attempt to do so indirectly (e.g., by modifying the const object through a reference or pointer to non-const type) results in undefined behavior.
+
 You need to explicitly tell the compiler that your function will not modify any members
 
 You cannot call a non-const method a const object
