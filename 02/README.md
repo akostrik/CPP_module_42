@@ -23,21 +23,23 @@ Precision = how much information you have about a quantity, how uniquely you hav
 
 ## Floating-point
 
-seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm (s = bit n°31) 
+<span style="color:orange">s</span><span style="color:red">eeeeeeee</span><span style="color:blue">mmmmmmmmmmmmmmmmmmmmmmm</span> (s = bit n°31)
 
-number = (s ? -1:1) * 2<sup>e</sup> * 1.(mantissa bits)
+number = (<span style="color:orange">s</span> ? -1:1) * $2^<span style="color:red">e</span>$ * 1.<span style="color:blue">(mantissa bits)</span>
 
-- s sign bit
-- e exponent giving its order of magnitude (= порядок = показатель степени)
-- m mantissa specifying the actual digits of the number ∊ [1;10) 
+- <span style="color:orange">s sign bit</span>
+- <span style="color:red">e exponent giving its order of magnitude (= порядок = показатель степени) </span>
+- <span style="color:blue">m mantissa specifying the actual digits of the number ∊ [1;10) </span>
 
 Example 3.14:
 
-s = 0b
+<span style="color:orangee">s sign bit = 0b</span>
 
-3,14 ∊ [ $2^1$ ; $2^2$ ) => e = $2^7$ = 128 = 10000000b
+3,14 ∊ [ $2^1$ ; $2^2$ ) => <span style="color:red">e = $2^7$ = 128 = 10000000b</span>
 
-$\frac{3,14 -2 }{4 - 2} = 0,57$ => m = $2^{23}*0,57$ = 4781507 = 10010001111010111000011b
+$\frac{3,14 -2 }{4 - 2} = 0,57$ => <span style="color:blue">m = $2^{23}*0,57$ = 4781507 = 10010001111010111000011b </span>
+
+<span style="color:orange">0</span> <span style="color:red">10000000</span> <span style="color:blue">10010001111010111000011</span>
 
 Property	                                 | float                    | double
 ------------------------------------------|--------------------------|--------------------------
