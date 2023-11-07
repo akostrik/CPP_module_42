@@ -57,6 +57,12 @@ For example : Dollar amounts are often stored with exactly two fractional digits
 
 fixed<8,3> = a 8-bit fixed point number, of which 3 right most bits are fractional
 
+# Const
+You need to explicitly tell the compiler that your function will not modify any members
+
+You cannot call a non-const method a const object
+
+You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not)
 
 # Sources
 ## Floating-point
