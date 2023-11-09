@@ -24,23 +24,33 @@ int pow(int a, int n) {
 Fixed::Fixed() {
   std::cout << "Default constructor called" << std::endl;
   this->fpv = 0;
-  this->n = 8;
 }
 
-// NEW converts p to the corresponding fpv
-// INT_MAX ?
-Fixed::Fixed(int const _fpv) {
+// // NEW converts p to the corresponding fpv
+// Fixed::Fixed(int const _fpv) {
+//   std::cout << "Int constructor called" << std::endl;
+//   this->fpv = _fpv * 100000000;
+// }
+
+// // NEW converts p to the corresponding fpv
+// // INT_MAX = 2 147 483 647
+// Fixed::Fixed(float const _fpv) {
+//   std::cout << "Float constructor called" << std::endl;
+//   this->fpv = roundf(_fpv * 100000000);
+//   std::cout << "fpv = " << _fpv << " * 100 000 000 = " << this->fpv << std::endl;
+// }
+
+Fixed::Fixed(const int _fpv) { // : fpv(_fpv << 8) {
   std::cout << "Int constructor called" << std::endl;
-  this->fpv = _fpv * 100000000;
-  this->n = 8;
+  this->fpv = _fpv << 8;
 }
 
-// NEW converts p to the corresponding fpv
-Fixed::Fixed(float const _fpv) {
+Fixed::Fixed(const float _fpv) {
   std::cout << "Float constructor called" << std::endl;
-  this->n = nb_decimal_figures(_fpv);
-  this->fpv = roundf(_fpv * pow(10, this->n));
+	this->fpv = (int)roundf(_fpv * (1 << 8));
+  std::cout << "fpv : " << _fpv << " -> " << (1 << 2) << " -> " << (1 << 4) << " -> " << (1 << 8) << "->" << this->fpv << std::endl;
 }
+
 
 // a new object is created as a copy of the existing object
 Fixed::Fixed(const Fixed &obj) {
@@ -52,10 +62,7 @@ Fixed::Fixed(const Fixed &obj) {
 Fixed& Fixed::operator = (Fixed const &obj) {
   std::cout << "Copy assignment operator called" << std::endl;
   if (this != &obj)
-  {
     this->fpv = obj.getRawBits();
-    this->n = 8;
-  }
   return (*this);
 }
 
@@ -73,12 +80,12 @@ void Fixed::setRawBits(const int _fpv) {
 
 // NEW member function (Fixed::), converts the fixed-point value to a floating-point value
 float Fixed::toFloat(void) const {
-  return roundf(this->fpv / pow(10,this->n)) + ((float)(this->fpv % pow(10,this->n))) / pow(10,this->n);
+  return roundf(this->fpv / 100000000) + ((float)(this->fpv % 100000000)) / 100000000;
 }
 
 // NEW member function (Fixed::), converts the fixed-point value to an integer value
 int Fixed::toInt(void) const {
-  return roundf(this->fpv /  pow(10,this->n));
+  return roundf(this->fpv / 100000000);
 }
 
 // NEW overload of the insertion operator <<

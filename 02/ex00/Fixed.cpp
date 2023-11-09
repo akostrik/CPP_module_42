@@ -1,37 +1,34 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed(void)
-{
-	std::cout << BYEL << "Default constructor called" << DEFCOLO << std::endl;
-	this->_num = 0;
+Fixed::Fixed() {
+  std::cout << "Default constructor called" << std::endl;
+  this->fpv = 0;
 }
 
-
-// * A new object is created as a copy of the existing object
-//	this->_num = obj.getRawBits();
-Fixed::Fixed(const Fixed &obj)
-{
-	std::cout << BMAG << "Copy constructor called" << DEFCOLO << std::endl;
+// a new object is created as a copy of the existing object
+Fixed::Fixed(const Fixed &obj) {
+  std::cout << "Copy constructor called" << std::endl;
+  // this->setRawBits(obj.getRawBits()); ?
 	*this = obj;
 }
 
-
-// An already initialized object is assigned to a new value from another existing object
-Fixed &Fixed::operator = (Fixed const &obj)
-{
-	std::cout << BCYN << "Copy assignment operator called" << DEFCOLO << std::endl;
-	this->_num = obj.getRawBits();
-	return (*this);
+// an already initialized object is assigned to a new value from another existing object
+Fixed& Fixed::operator = (Fixed const &obj) {
+  std::cout << "Copy assignment operator called" << std::endl;
+  if (this != &obj)
+    this->fpv = obj.getRawBits();
+  return (*this);
 }
 
-
-~Fixed() {
-	std::cout << BYEL << "Destructor called" << DEFCOLO << std::endl;
-
+Fixed::~Fixed() {
+    std::cout << "Destructor called" << std::endl;
 };
 
+int Fixed::getRawBits(void) const {
+  std::cout << "getRawBits member function called" << std::endl;
+  return this->fpv;
+}
 
-void Fixed::setRawBits(int const raw)
-{
-	this->_num = raw;
+void Fixed::setRawBits(const int _fpv) {
+	this->fpv = _fpv;
 }
