@@ -51,6 +51,8 @@ the smallest x : t 1+x > 1         |                              |     |  1.192
 
 ## Fixed-point
 
+Fixed point arithmetic is much faster than floating point arithmetic
+
 Representing non-integer numbers by storing a fixed number of digits of their fractional part
 
 For example : Dollar amounts are often stored with exactly two fractional digits, representing the cents
@@ -75,7 +77,6 @@ An object declared as const can neither be changed by a const nor a non-const me
 
 
 # Sources
-## Floating-point
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
 
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html
@@ -84,5 +85,10 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 
 https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold
 
-## Fixed-point
 https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html 
+
+https://github.com/achrafelkhnissi/CPP_Modules/tree/master
+
+https://github.com/Saxsori/CPP_Modules/tree/main
+
+https://github.com/42YerevanProjects/cpp_modules/tree/master
