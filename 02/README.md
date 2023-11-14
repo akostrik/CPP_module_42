@@ -24,21 +24,18 @@ Fixed point arithmetic is much faster than floating point arithmetic
 
 ## Floating-point
 
-seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm 
-
-bit n°31 ............... bit n°0
-
-number = ${(-1)}^{s}$ * 1.(mantissa bits) * $2^e$ 
+[IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
 
 - s sign bit
 - e exponent giving its order of magnitude (= порядок = показатель степени)
 - m mantissa specifying the actual digits of the number ∊ [1;10)
 
-[IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
-
 Decimal	                          | e                            | m   | float                                            
 -----------------------------------|------------------------------|-----|--------------------------------------------------
-bits                               |                              |     | seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm (1+8+23)        
+${(-1)}^{s}$ * 1.(mantissa bits) * $2^e$ |                        |     | seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm (1+8+23) 
+
+1234.4321                          |                              |     | 0 10001001 00110100100110111010100
+
 3.14                               | ∊ [ $2^1$ ; $2^2$ ) => $2^7$ | $\frac{3,14 -2 }{4 - 2} *2^{23}$ |  0 10000000 10010001111010111000011 = 0x4048F5C3
 0                                  |                              |     |  0 00000000 00000000000000000000000 = 0x00000000
 1.0                                |                              |     |  0 01111111 00000000000000000000000 = 0x3f800000
