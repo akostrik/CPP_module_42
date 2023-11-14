@@ -57,7 +57,7 @@ Representing non-integer numbers by storing a fixed number of digits of their fr
 
 For example : Dollar amounts are often stored with exactly two fractional digits, representing the cents
 
-1234.4321 = (123443210000, 8) = $1110010111101110010011110011100010000_{2}$ 
+1234.4321 = (123443210000, 8) = $11100 10111101 11001001 11100111 00010000_{2}$ 
 
 # Const
 
