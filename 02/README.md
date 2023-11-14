@@ -20,6 +20,7 @@ Accuracy = to how close a measurement is to the true value
 
 Precision = how much information you have about a quantity, how uniquely you have it pinned down
 
+Fixed point arithmetic is much faster than floating point arithmetic
 
 ## Floating-point
 
@@ -52,8 +53,6 @@ the smallest x : 1+x > 1           |                              |     |  1.192
 +NaN                               | 11111111                     | ~0~ |  0 11111111 10000000000000000000000 = 0x7fc00000
 
 ## Fixed-point
-
-Fixed point arithmetic is much faster than floating point arithmetic
 
 Representing non-integer numbers by storing a fixed number of digits of their fractional part
 
