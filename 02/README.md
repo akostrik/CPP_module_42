@@ -57,7 +57,7 @@ Representing non-integer numbers by storing a fixed number of digits of their fr
 
 Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents
 
-$1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000_00000100_11010010_01101111_{2}$, 8) 
+$1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = (00000000_00000100_11010010_$01101111_{2}$, 8) 
 
 # Const
 
