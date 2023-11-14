@@ -20,7 +20,7 @@ void Harl::error(void) {
 };
 
 void Harl::complain(std::string level) {
-  void        (Harl::*functionPtr[4])();
+  void (Harl::*functionPtr[4])();
   std::string messages[] = {"debug", "info", "warning", "error" };
 
   functionPtr[0] = &Harl::debug;
