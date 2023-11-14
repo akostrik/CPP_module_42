@@ -57,7 +57,7 @@ Representing non-integer numbers by storing a fixed number of digits of their fr
 
 For example : Dollar amounts are often stored with exactly two fractional digits, representing the cents
 
-fixed<8,3> = a 8-bit fixed point number, of which 3 right most bits are fractional
+1234.4321 = (123443210000, 8) = $1110010111101110010011110011100010000_{2}$ 
 
 # Const
 
