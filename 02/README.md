@@ -25,7 +25,7 @@ Precision = how much information you have about a quantity, how uniquely you hav
 
 seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm 
 
-bit n°31                 bit n°0
+bit n°31 ............... bit n°0
 
 number = ${(-1)}^{s}$ * 1.(mantissa bits) * $2^e$ 
 
