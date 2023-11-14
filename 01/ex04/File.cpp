@@ -20,7 +20,7 @@ int File::replace(std::string s1, std::string s2) {
     return 1;
   }
   while (getline (in, line))
-    content += line + "\n";
+    content += line + "\n"; /////// to verify
 	if (content.length() > 0)
     content.resize(content.length() - 1);
   in.close();

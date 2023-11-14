@@ -23,46 +23,48 @@ int pow(int a, int n) {
 /////////////////////////////
 Fixed::Fixed() {
   std::cout << "Default constructor called" << std::endl;
-  this->fpv = 0;
+  this->raw = 0;
 }
 
 // // NEW converts p to the corresponding fpv
-// Fixed::Fixed(int const _fpv) {
+// Fixed::Fixed(int const _raw) {
 //   std::cout << "Int constructor called" << std::endl;
-//   this->fpv = _fpv * 100000000;
+//   this->raw = _raw * 100000000;
 // }
 
-// // NEW converts p to the corresponding fpv
+// // NEW converts p to the corresponding 
 // // INT_MAX = 2 147 483 647
-// Fixed::Fixed(float const _fpv) {
+// Fixed::Fixed(float const _raw) {
 //   std::cout << "Float constructor called" << std::endl;
-//   this->fpv = roundf(_fpv * 100000000);
-//   std::cout << "fpv = " << _fpv << " * 100 000 000 = " << this->fpv << std::endl;
+//   this->raw = roundf(_raw * 100000000);
+//   std::cout << "raw = " << _raw << " * 100 000 000 = " << this->raw << std::endl;
 // }
 
-Fixed::Fixed(const int _fpv) { // : fpv(_fpv << 8) {
+Fixed::Fixed(const int _raw) {
   std::cout << "Int constructor called" << std::endl;
-  this->fpv = _fpv << 8;
+  this->raw = _raw << 8;
 }
 
-Fixed::Fixed(const float _fpv) {
-  std::cout << "Float constructor called" << std::endl;
-	this->fpv = (int)roundf(_fpv * (1 << 8));
-  std::cout << "fpv : " << _fpv << " -> " << (1 << 2) << " -> " << (1 << 4) << " -> " << (1 << 8) << "->" << this->fpv << std::endl;
+Fixed::Fixed(const float _raw) {
+  std::cout << "Float constructor called"       << std::endl;
+  std::cout << "  _raw            = : "         << _raw << std::endl;
+  std::cout << "  1 << 8          = : "         << (1 << 8) << std::endl;
+  std::cout << "  _raw * (1 << 8) = : "         << _raw * (1 << 8) << std::endl;
+  std::cout << "  roundf(_raw * (1 << 8)) = : " << roundf(_raw * (1 << 8)) << std::endl;
+	this->raw = roundf(_raw * (1 << 8));
 }
-
 
 // a new object is created as a copy of the existing object
 Fixed::Fixed(const Fixed &obj) {
   std::cout << "Copy constructor called" << std::endl;
-	*this = obj;
+	*this = obj; // ?
 }
 
 // an already initialized object is assigned to a new value from another existing object
 Fixed& Fixed::operator = (Fixed const &obj) {
   std::cout << "Copy assignment operator called" << std::endl;
   if (this != &obj)
-    this->fpv = obj.getRawBits();
+    this->raw = obj.getRawBits();
   return (*this);
 }
 
@@ -71,21 +73,21 @@ Fixed::~Fixed() {
 };
 
 int Fixed::getRawBits(void) const {
-  return this->fpv;
+  return this->raw;
 }
 
-void Fixed::setRawBits(const int _fpv) {
-	this->fpv = _fpv;
+void Fixed::setRawBits(const int _raw) {
+	this->raw = _raw;
 }
 
 // NEW member function (Fixed::), converts the fixed-point value to a floating-point value
 float Fixed::toFloat(void) const {
-  return roundf(this->fpv / 100000000) + ((float)(this->fpv % 100000000)) / 100000000;
+  return roundf(this->raw >> 8) + (float)(((this->raw % 256)) >> 8);
 }
 
 // NEW member function (Fixed::), converts the fixed-point value to an integer value
 int Fixed::toInt(void) const {
-  return roundf(this->fpv / 100000000);
+  return roundf(this->raw >> 8);
 }
 
 // NEW overload of the insertion operator <<

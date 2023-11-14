@@ -9,8 +9,8 @@
 
 class Fixed {
 private:
-  static int const n = 8;                         // number of fractional bits
-  int              fpv;                       // fixed-point number value
+  static int const n = 8;                      // number of fractional bits
+  int              raw;                       // fixed-point number value
 
 public:
                    Fixed();

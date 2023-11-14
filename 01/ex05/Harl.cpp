@@ -20,7 +20,7 @@ void error(void) {
 };
 
 void Harl::complain(std::string level) {
-  std::map<std::string, void(*)()> m;
+  std::map<std::string, void(*)()> m; ///////////////// map non
   m["debug"]   = debug;
   m["info"]    = info;
   m["warning"] = warning;
