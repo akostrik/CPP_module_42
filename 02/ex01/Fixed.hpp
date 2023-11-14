@@ -9,13 +9,13 @@
 
 class Fixed {
 private:
-  static int const n = 8;                      // number of fractional bits
+  static int const n = 8;                     // number of fractional bits
   int              raw;                       // fixed-point number value
 
 public:
                    Fixed();
-                   Fixed(int const _fpv);   // NEW converts p to the corresponding fpv, n is initialized to 8
-                   Fixed(float const _fpv);// NEW converts p to the corresponding fpv, n is initialized to 8
+                   Fixed(int const fpv_);     // NEW converts p to the corresponding fpv, n is initialized to 8
+                   Fixed(float const fpv_);   // NEW converts p to the corresponding fpv, n is initialized to 8
                    Fixed(const Fixed &obj);
   Fixed&           operator = (const Fixed &obj);
                    ~Fixed();

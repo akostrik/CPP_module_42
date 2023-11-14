@@ -11,7 +11,7 @@ Fixed::Fixed(const int raw_) {
   this->raw = raw_ * 256; // raw_ << 8;
 }
 
-// NEW converts p to the corresponding 
+// NEW converts p to the corresponding fpv
 Fixed::Fixed(const float raw_) {
   std::cout << "Float constructor called"       << std::endl;
   int raw_int = (int)(raw_);
@@ -45,12 +45,12 @@ void Fixed::setRawBits(const int _raw) {
 	this->raw = _raw;
 }
 
-// NEW member function (Fixed::), converts the fixed-point value to a floating-point value
+// NEW converts the fixed-point value to a floating-point value
 float Fixed::toFloat(void) const {
   return roundf(this->raw / 256) + ((this->raw % 256)) / 256.0;
 }
 
-// NEW member function (Fixed::), converts the fixed-point value to an integer value
+// NEW converts the fixed-point value to an integer value
 int Fixed::toInt(void) const {
   return roundf(this->raw / 256);
 }
