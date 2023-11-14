@@ -20,10 +20,13 @@ Accuracy = to how close a measurement is to the true value
 
 Precision = how much information you have about a quantity, how uniquely you have it pinned down
 
+Fixed point arithmetic is much faster than floating point arithmetic
 
 ## Floating-point
 
-seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm (s = bit n°31)
+seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm 
+
+bit n°31 ............... bit n°0
 
 number = ${(-1)}^{s}$ * 1.(mantissa bits) * $2^e$ 
 
@@ -44,14 +47,12 @@ $2^{1−127}$*(0+m/ $2^{23}$ )       | 00000000                     |     |
 Largest $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) = 340282346638528859811704183484516925440 | 11111110       |     |   
 Smallest without losing precision  |                              |     |  1.175494351e-38	                                
 Smallest                	        |                              |     |  1.401298464e-45     	                          
-the smallest x : t 1+x > 1         |                              |     |  1.1929093e-7	                                   
+the smallest x : 1+x > 1           |                              |     |  1.1929093e-7	                                   
 +inf                               | 11111111                     |     |  0 11111111 00000000000000000000000 = 0x7f800000
 -inf                               | 11111111                     |     |  1 11111111 00000000000000000000000 = 0xff800000
 +NaN                               | 11111111                     | ~0~ |  0 11111111 10000000000000000000000 = 0x7fc00000
 
 ## Fixed-point
-
-Fixed point arithmetic is much faster than floating point arithmetic
 
 Representing non-integer numbers by storing a fixed number of digits of their fractional part
 
