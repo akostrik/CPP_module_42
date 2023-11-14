@@ -34,6 +34,8 @@ number = ${(-1)}^{s}$ * 1.(mantissa bits) * $2^e$
 - e exponent giving its order of magnitude (= порядок = показатель степени)
 - m mantissa specifying the actual digits of the number ∊ [1;10)
 
+[IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
+
 Decimal	                          | e                            | m   | float                                            
 -----------------------------------|------------------------------|-----|--------------------------------------------------
 bits                               |                              |     | seeeeeeeemmmmmmmmmmmmmmmmmmmmmmm (1+8+23)        
