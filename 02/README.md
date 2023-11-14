@@ -55,9 +55,9 @@ Largest $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) = 34028234663852885981170
 
 Representing non-integer numbers by storing a fixed number of digits of their fractional part
 
-For example : Dollar amounts are often stored with exactly two fractional digits, representing the cents
+Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents
 
-1234.4321 = (123443210000, 8) = $11100 10111101 11001001 11100111 00010000_{2}$ 
+$1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000 00000100 11010010 01101111_{2}$, 8) 
 
 # Const
 
