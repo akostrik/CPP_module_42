@@ -127,3 +127,15 @@ Fixed& Fixed::max (const Fixed &ref1, const Fixed &ref2) {
     return (Fixed&)ref1;
   return (Fixed&)ref2;
 }
+
+Fixed& Fixed::min (Fixed &ref1, Fixed &ref2) {
+  if (ref1.toFloat() <= ref2.toFloat())
+    return ref1;    
+  return ref2;
+}
+
+Fixed& Fixed::min (const Fixed &ref1, const Fixed &ref2) {
+  if (ref1.toFloat() <= ref2.toFloat())
+    return (Fixed&)ref1;
+  return (Fixed&)ref2;
+}
