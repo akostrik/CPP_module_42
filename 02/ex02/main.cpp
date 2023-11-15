@@ -3,7 +3,7 @@
 
 int main( void ) {
   Fixed       a;
-  Fixed const b(Fixed(5.05f) * Fixed(2));
+  Fixed const b(Fixed(-5.05f) * Fixed(2));
 
   std::cout << a << std::endl;
   std::cout << ++a << std::endl;
@@ -14,11 +14,11 @@ int main( void ) {
   std::cout << Fixed::max( a, b ) << std::endl << std::endl;
 
   // my testes
-  a = Fixed(1.1f);
-  Fixed       c(1.1f);
-  Fixed       d(3.3f);
-  Fixed const e(1.1f);
-  Fixed const f(3.3f);
+  a = Fixed(-1.1f);
+  Fixed       c(-1.1f);
+  Fixed       d(-3.3f);
+  Fixed const e(-1.1f);
+  Fixed const f(-3.3f);
 
   std::cout << "a               : " << a                << std::endl;
   std::cout << "c               : " << c                << std::endl;
@@ -39,11 +39,11 @@ int main( void ) {
   std::cout << "a               : " <<  a               << std::endl;
   std::cout << "a++             : " <<  a++             << std::endl;
   std::cout << "a               : " <<  a               << std::endl;
-  std::cout << "a.operator++()  : " <<  a.operator++()  << std::endl;
+  std::cout << "a.operator++(5) : " <<  a.operator++(5) << std::endl;
   std::cout << "a               : " <<  a               << std::endl;
   std::cout << "++a             : " <<  ++a             << std::endl;
   std::cout << "a               : " <<  a               << std::endl;
-  std::cout << "a.operator++(5) : " <<  a.operator++(5) << std::endl;
+  std::cout << "a.operator++()  : " <<  a.operator++()  << std::endl;
   std::cout << "a               : " <<  a               << std::endl;
   std::cout << "a--             : " <<  a--             << std::endl;
   std::cout << "a               : " <<  a               << std::endl;
