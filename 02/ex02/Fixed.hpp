@@ -9,8 +9,8 @@
 
 class Fixed {
 private:
-  static int const n = 8;
   int              raw;
+  static int const n = 8;
 
 public:
                    Fixed();
@@ -23,6 +23,8 @@ public:
   int              getRawBits(void) const;         // member function
   float            toFloat(void) const;            // member function
   int              toInt(void) const;              // member function
+  bool             operator==(const Fixed &rhOther ) const;
+};
 
   // member functions:
   // >
@@ -38,16 +40,13 @@ public:
   // --a
   // a++
   // a--
-  
   // overloaded member functions
   // static min (two references on fp numbers)           returns a reference to the smallest one.
   // static min (two references to constant fixed-point) returns a reference to the smallest one.
   // static max (two references on fp numbers)           returns a reference to the greatest one.
   // static max (two references to constant fp numbers)  returns a reference to the greatest one.
 
-  int           operator==(Fixed const &f1, Fixed const &f2);
-};
 
-std::ostream&      operator<<(std::ostream& os, Fixed const &f); // overload of the insertion operator <<, inserts a floating-p representation of the fp number into the output stream object passed as param
+  std::ostream&      operator<<(std::ostream& os, Fixed const &f); // overload of the insertion operator <<, inserts a floating-p representation of the fp number into the output stream object passed as param
 
 #endif
