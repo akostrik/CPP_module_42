@@ -91,10 +91,23 @@ Has no *this pointer.
 
 Can directly access other static members (variables or functions), but not non-static members, because non-static members must belong to a class object.
 
-In the context of member functions, static = "this member function does not have a receiver object. It's basically a normal function that's nested inside of the scope of the class".
-
 In the context of function declarations, static = "this function is scoped only to this file and can't be called from other places".
 
+In the context of member functions, static = "this member function does not have a receiver object. It's basically a normal function that's nested inside of the scope of the class".
+
+Example:
+```
+class MyClass {
+ public:
+  static void myfunc();
+};
+
+void MyClass::myfunc() {} // do not write 'static'
+
+int main() {
+  MyClass::myfunc();
+}
+```
 # Sources
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
 
