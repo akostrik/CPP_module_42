@@ -73,23 +73,19 @@ Can neither be changed by a const nor a non-const member function (except for co
 - Ccasting the const away (not advised);
 - Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const.
 
-# A static data member of a class
+# A static member data member of a class
+
 Is not associated with a particular object.
+
+Belongs to the class rather than objects of the class. 
 
 If a it is public, it can be accessed directly using the class name.
 
 Can also be called through objects of the class type, though this is not recommended.
 
-Belongs to the class rather than objects of the class. 
+## A static data member
 
-# A static member function
-Is not associated with a particular object.
-
-If a it is public, it can be accessed directly using the class name.
-
-Can also be called through objects of the class type, though this is not recommended.
-
-Belongs to the class rather than objects of the class. 
+## A static member function
 
 Has no *this pointer.
 
