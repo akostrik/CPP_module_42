@@ -14,24 +14,31 @@ private:
 
 public:
                    Fixed();
-                   Fixed(int const fpv_);
-                   Fixed(float const fpv_);
+                   Fixed(int const raw_);
+                   Fixed(float const raw_);
                    Fixed(const Fixed &obj);
-  Fixed&           operator = (const Fixed &obj);
                    ~Fixed();
-  void             setRawBits(int const raw);      // member function
-  int              getRawBits(void) const;         // member function
-  float            toFloat(void) const;            // member function
-  int              toInt(void) const;              // member function
-  bool             operator==(const Fixed &rhOther ) const;
-};
 
   // member functions:
-  // >
-  // <
-  // >=
-  // <=
-  // !=
+  void             setRawBits(int const raw);
+  int              getRawBits(void) const;
+  float            toFloat(void) const;
+  int              toInt(void) const;
+  Fixed&           operator =  (const Fixed &obj);
+  bool             operator >  (const Fixed &refOther) const;
+  bool             operator >= (const Fixed &refOther) const;
+  bool             operator <  (const Fixed &refOther) const;
+  bool             operator <= (const Fixed &refOther) const;
+  bool             operator == (const Fixed &refOther) const;
+  bool             operator != (const Fixed &refOther) const;
+  Fixed            operator +  (const Fixed &refOther) const;
+  Fixed            operator -  (const Fixed &refOther) const;
+  Fixed            operator *  (const Fixed &refOther) const;
+  Fixed            operator /  (const Fixed &refOther) const;
+  Fixed&           operator ++ (void);
+  Fixed            operator ++ (int);
+};
+
   // +
   // -
   // *

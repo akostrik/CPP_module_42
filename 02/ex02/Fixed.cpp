@@ -54,6 +54,53 @@ std::ostream& operator<<(std::ostream& os, Fixed const &f)
 }
 
 ////////////////////////// NEW
-bool  Fixed::operator==(const Fixed &rhOther ) const {
-    return this->getRawBits() == rhOther.getRawBits();
+bool  Fixed::operator == (const Fixed &refOther ) const {
+  return this->getRawBits() == refOther.getRawBits();
+}
+
+bool  Fixed::operator != (const Fixed &refOther) const {
+  return this->getRawBits() != refOther.getRawBits();
+}
+
+bool  Fixed::operator >  (const Fixed &refOther) const {
+  return this->getRawBits() > refOther.getRawBits();
+}
+
+bool  Fixed::operator >= (const Fixed &refOther) const {
+  return this->getRawBits() >= refOther.getRawBits();
+}
+
+bool  Fixed::operator < (const Fixed &refOther) const {
+  return this->getRawBits() < refOther.getRawBits();
+}
+
+bool  Fixed::operator <= (const Fixed &refOther) const {
+  return this->getRawBits() <= refOther.getRawBits();
+}
+
+Fixed  Fixed::operator + (const Fixed &refOther) const {
+  return Fixed(this->toFloat() + refOther.toFloat());
+}
+
+Fixed  Fixed::operator - (const Fixed &refOther) const {
+  return Fixed(this->toFloat() - refOther.toFloat());
+}
+
+Fixed  Fixed::operator * (const Fixed &refOther) const {
+  return Fixed(this->toFloat() * refOther.toFloat());
+}
+
+Fixed  Fixed::operator / (const Fixed &refOther) const {
+  return Fixed(this->toFloat() / refOther.toFloat());
+}
+
+Fixed& Fixed::operator ++ (void) {
+  ++(this->raw);
+  return *this;
+}
+
+Fixed  Fixed::operator ++ (int) {
+    Fixed tmp(*this);
+    tmp.raw = (this->raw)++;
+    return tmp;
 }
