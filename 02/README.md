@@ -79,7 +79,7 @@ Is not associated with a particular object.
 
 Belongs to the class rather than objects of the class. 
 
-If a it is public, it can be accessed directly using the class name.
+If it is public, it can be accessed directly using the class name.
 
 Can also be called through objects of the class type, though this is not recommended.
 
