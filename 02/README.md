@@ -81,7 +81,7 @@ Belongs to the class rather than objects of the class.
 
 If it is public, it can be accessed directly using the class name.
 
-Can also be called through objects of the class type, though this is not recommended.
+Can also be called through objects of the class type, though this is not rechttps://companies.intra.42.fr/en/offersommended.
 
 ## A static data member
 
@@ -90,6 +90,10 @@ Can also be called through objects of the class type, though this is not recomme
 Has no *this pointer.
 
 Can directly access other static members (variables or functions), but not non-static members, because non-static members must belong to a class object.
+
+In the context of member functions, static = "this member function does not have a receiver object. It's basically a normal function that's nested inside of the scope of the class".
+
+In the context of function declarations, static = "this function is scoped only to this file and can't be called from other places".
 
 # Sources
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
