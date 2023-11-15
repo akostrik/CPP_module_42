@@ -12,18 +12,19 @@ private:
   int              raw;
   static int const n = 8;
 
-public:
+public: 
+  // Constructors
                    Fixed();
                    Fixed(int const raw_);
                    Fixed(float const raw_);
                    Fixed(const Fixed &obj);
                    ~Fixed();
 
-  // member functions:
-  void             setRawBits(int const raw);
-  int              getRawBits(void) const;
-  float            toFloat(void) const;
-  int              toInt(void) const;
+  // member functions
+  void             setRawBits  (int const raw);
+  int              getRawBits  (void)                  const;
+  float            toFloat     (void)                  const;
+  int              toInt       (void)                  const;
   Fixed&           operator =  (const Fixed &obj);
   bool             operator >  (const Fixed &refOther) const;
   bool             operator >= (const Fixed &refOther) const;
@@ -35,24 +36,18 @@ public:
   Fixed            operator -  (const Fixed &refOther) const;
   Fixed            operator *  (const Fixed &refOther) const;
   Fixed            operator /  (const Fixed &refOther) const;
-  Fixed&           operator ++ (void);
-  Fixed            operator ++ (int);
-};
+  Fixed            operator ++ (int);  // a++
+  Fixed&           operator ++ (void); // ++a
+  Fixed            operator -- (int);
+  Fixed&           operator -- (void);
 
-  // +
-  // -
-  // *
-  // /
-  // ++a  increase or decrease the fixed-point value from the smallest representable ϵ such as 1 + ϵ > 1
-  // --a
-  // a++
-  // a--
   // overloaded member functions
-  // static min (two references on fp numbers)           returns a reference to the smallest one.
-  // static min (two references to constant fixed-point) returns a reference to the smallest one.
-  // static max (two references on fp numbers)           returns a reference to the greatest one.
-  // static max (two references to constant fp numbers)  returns a reference to the greatest one.
+  static Fixed&    max (Fixed &ref1, Fixed &ref2); // returns a ref to the greatest one
+  // static max (const Fixed &ref1, const Fixed &ref2)  // returns a ref to the greatest one
+  // static min (two references on fp numbers)
+  // static min (two references to constant fixed-point)
 
+};
 
   std::ostream&      operator<<(std::ostream& os, Fixed const &f); // overload of the insertion operator <<, inserts a floating-p representation of the fp number into the output stream object passed as param
 
