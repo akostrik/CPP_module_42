@@ -105,17 +105,25 @@ Fixed& Fixed::operator ++ (void) { // ++a
   return *this;
 }
 
-Fixed  Fixed::operator -- (int) { // a++
+Fixed  Fixed::operator -- (int) {
   Fixed tmp(*this);
   tmp.raw = (this->raw)--;
   return tmp;
 }
 
-Fixed& Fixed::operator -- (void) { // ++a
+Fixed& Fixed::operator -- (void) {
   --(this->raw);
   return *this;
 }
 
-static Fixed& Fixed::max (Fixed &ref1, Fixed &ref2) { // returns a ref to the greatest one
-  return &this;
+Fixed& Fixed::max (Fixed &ref1, Fixed &ref2) {
+  if (ref1.toFloat() >= ref2.toFloat())
+    return ref1;    
+  return ref2;
+}
+
+Fixed& Fixed::max (const Fixed &ref1, const Fixed &ref2) {
+  if (ref1.toFloat() >= ref2.toFloat())
+    return (Fixed&)ref1;
+  return (Fixed&)ref2;
 }

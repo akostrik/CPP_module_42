@@ -6,6 +6,8 @@ int main( void ) {
   // Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
   Fixed c(1.1f);
   Fixed d(3.3f);
+  Fixed const e(1.1f);
+  Fixed const f(3.3f);
 
   std::cout << "a               : " << a                << std::endl;
   std::cout << "c               : " << c                << std::endl;
@@ -32,6 +34,9 @@ int main( void ) {
   std::cout << "a               : " <<  a               << std::endl;
   std::cout << "a--             : " <<  a--             << std::endl;
   std::cout << "a               : " <<  a               << std::endl;
+  std::cout << "Fixed::max(a,c) : " <<  Fixed::max(a,c) << std::endl;
+  std::cout << "Fixed::max(a,d) : " <<  Fixed::max(a,d) << std::endl;
+  std::cout << "Fixed::max(e,f) : " <<  Fixed::max(e,f) << std::endl;
   // std::cout << Fixed::max( a, b ) << std::endl;
   return 0;
 }

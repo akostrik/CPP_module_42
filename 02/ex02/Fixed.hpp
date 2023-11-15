@@ -42,11 +42,10 @@ public:
   Fixed&           operator -- (void);
 
   // overloaded member functions
-  static Fixed&    max (Fixed &ref1, Fixed &ref2); // returns a ref to the greatest one
-  // static max (const Fixed &ref1, const Fixed &ref2)  // returns a ref to the greatest one
-  // static min (two references on fp numbers)
-  // static min (two references to constant fixed-point)
-
+  static Fixed&    max (Fixed &ref1, Fixed &ref2);             // returns a ref 
+  static Fixed&    max (const Fixed &ref1, const Fixed &ref2); // returns a ref
+  // static Fixed&    min (Fixed &ref1, Fixed &ref2)
+  // static Fixed&    min (const Fixed &ref1, const Fixed &ref2)
 };
 
   std::ostream&      operator<<(std::ostream& os, Fixed const &f); // overload of the insertion operator <<, inserts a floating-p representation of the fp number into the output stream object passed as param
