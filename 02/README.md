@@ -59,20 +59,16 @@ Example : Dollar amounts are often stored with exactly two fractional digits, re
 
 $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
 
-# Const
+# Const object = non-mutable
 
-Const object = whose type is const-qualified, or a non-mutable subobject of a const object. 
+Attempt to modify it directly is a compile-time error, and attempt to do so indirectly (e.g., by modifying the const object through a reference or pointer to non-const type) results in undefined behavior.
 
-Such object cannot be modified: attempt to do so directly is a compile-time error, and attempt to do so indirectly (e.g., by modifying the const object through a reference or pointer to non-const type) results in undefined behavior.
+You cannot call a non-const method a const object.
 
-You need to explicitly tell the compiler that your function will not modify any members
-
-You cannot call a non-const method a const object
-
-You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not)
+You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not).
 
 An object declared as const can neither be changed by a const nor a non-const member function (except for constructor and destructor). Even if it is passed by reference. There are two exceptions to this rule:
-- The constness can be casted away (casting the const away) but is generally not advised;
+- Ccasting the const away (not advised);
 - Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const.
 
 
