@@ -61,16 +61,39 @@ $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010
 
 # Const object = non-mutable
 
-Attempt to modify it directly is a compile-time error, and attempt to do so indirectly (e.g., by modifying the const object through a reference or pointer to non-const type) results in undefined behavior.
+Attempt to modify it directly -> a compile-time error.
+
+Attempt to modify it indirectly (e.g., by modifying the const object through a reference or pointer to non-const type) -> undefined behavior.
 
 You cannot call a non-const method a const object.
 
 You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not).
 
-An object declared as const can neither be changed by a const nor a non-const member function (except for constructor and destructor). Even if it is passed by reference. There are two exceptions to this rule:
+Can neither be changed by a const nor a non-const member function (except for constructor and destructor), even if it is passed by reference. There are two exceptions to this rule:
 - Ccasting the const away (not advised);
 - Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const.
 
+# A static data member of a class
+Is not associated with a particular object.
+
+If a it is public, it can be accessed directly using the class name.
+
+Can also be called through objects of the class type, though this is not recommended.
+
+Belongs to the class rather than objects of the class. 
+
+# A static member function
+Is not associated with a particular object.
+
+If a it is public, it can be accessed directly using the class name.
+
+Can also be called through objects of the class type, though this is not recommended.
+
+Belongs to the class rather than objects of the class. 
+
+Has no *this pointer.
+
+Can directly access other static members (variables or functions), but not non-static members, because non-static members must belong to a class object.
 
 # Sources
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
