@@ -1,20 +1,3 @@
-# Orthodox canonical class form in C++98 (ex00)
-
-- Default constructor
-- Copy constructor
-- Destructor
-- Copy assignment operator
-
-```
-class A final
-{
-   public:
-      A ();
-      A (const A &a);
-      ~A ();
-      A & operator = (const A &a);
-};
-```
 # Floating-point numbers vs Fixed-point numbers
 Accuracy = to how close a measurement is to the true value
 
