@@ -31,7 +31,15 @@ class A final
 };
 ```
 
-# Const object = non-mutable
+# Private public protected - const - static
+
+## Access specifiers:
+
+public - members are accessible from outside the class
+private - members cannot be accessed (or viewed) from outside the class
+protected - members cannot be accessed from outside the class, however, they can be accessed in inherited classes. You will learn more about Inheritance later.
+
+## Const object = non-mutable
 
 Attempt to modify it directly -> a compile-time error.
 
@@ -45,7 +53,7 @@ Can neither be changed by a const nor a non-const member function (except for co
 - Ccasting the const away (not advised);
 - Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const.
 
-# A static member data member of a class
+## A static member data member of a class
 
 Is not associated with a particular object.
 
@@ -55,9 +63,9 @@ If it is public, it can be accessed directly using the class name.
 
 Can also be called through objects of the class type, though this is not rechttps://companies.intra.42.fr/en/offersommended.
 
-## A static data member
+### A static data member
 
-## A static member function
+### A static member function
 
 Has no *this pointer.
 
@@ -80,6 +88,7 @@ int main() {
   MyClass::myfunc();
 }
 ```
+
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
 used.
