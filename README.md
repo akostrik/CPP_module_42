@@ -219,7 +219,7 @@ $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010
 # Class
 A class is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods)
 
-## Concret
+## Concret class
 Can be directly instantiated
 
 ## Abstract class
