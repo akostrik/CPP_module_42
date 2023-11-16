@@ -80,7 +80,42 @@ int main() {
   MyClass::myfunc();
 }
 ```
+# Reference vs pointer (01 / ex03)
+Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
+used.
 
+HumanA can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here HumanA has `Weapon& weaponREF` attribut).
+
+HumanB must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here HumanB has `Weapon* weaponPTR` attribut).
+
+In the both cases we can change the type of the weapon. 
+
+## Reference
+If something should always exist and never change, use a references
+
+A reference !=  new variable
+
+A reference doesn't occupy memory
+
+A reference = an aliase for an existing variable
+
+A reference = a constant pointer, always points to the same variable, we can't change it 
+
+Reference = a dereferenced pointer
+
+A reference can't point to nothing
+
+```
+   std::string &sREF = s;
+// std::string             тип, на который объявляется ссылка
+//             &sREF       переменная типа ссылка на string
+//                     s   переменная, на которую объявляется ссылка
+```
+## Pointer
+
+If something should not always exist and can change, use a pointer
+
+A pointer can be pointing to a non-existing address
 
 # C vs C++ file manipulation functions (01 / ex04)
 
@@ -125,44 +160,6 @@ char       * c = str.data();
 - Using the “=” operator
 - Using the string constructor
 - Using the assign function
-
-# Reference vs pointer (01 / ex03)
-Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
-used.
-
-HumanA can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here HumanA has `Weapon& weaponREF` attribut).
-
-HumanB must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here HumanB has `Weapon* weaponPTR` attribut).
-
-In the both cases we can change the type of the weapon. 
-
-## Reference
-If something should always exist and never change, use a references
-
-A reference !=  new variable
-
-A reference doesn't occupy memory
-
-A reference = an aliase for an existing variable
-
-A reference = a constant pointer, always points to the same variable, we can't change it 
-
-Reference = a dereferenced pointer
-
-A reference can't point to nothing
-
-```
-   std::string &sREF = s;
-// std::string             тип, на который объявляется ссылка
-//             &sREF       переменная типа ссылка на string
-//                     s   переменная, на которую объявляется ссылка
-```
-## Pointer
-
-If something should not always exist and can change, use a pointer
-
-A pointer can be pointing to a non-existing address
-
 
 # Floating-point numbers vs Fixed-point numbers (02)
 Accuracy = to how close a measurement is to the true value
