@@ -1,4 +1,7 @@
-# Forbidden:
+# Requirements
+You should be able to use each of your headers independently from others. Thus, they must include all the dependencies they need. However, you must avoid the problem of double inclusion by adding include guards.
+
+## Forbidden:
 - C++11 (and derived forms) and Boost libraries
 - *printf(), *alloc() and free()
 - the using namespace <ns_name> and friend keywords
@@ -9,9 +12,6 @@
 - Algorithms (anything that requires to include the <algorithm> header)
 - Any function implementation put in a header file (except for function templates)
 - Memory leaks
-
-# Requirements
-You should be able to use each of your headers independently from others. Thus, they must include all the dependencies they need. However, you must avoid the problem of double inclusion by adding include guards.
 
 # Orthodox canonical class form in C++98 
 
