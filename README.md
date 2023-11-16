@@ -233,6 +233,13 @@ Cannot be directly instantiated
 
 _Abstract method_ = virtual function = объявлена с помощью синтаксиса чистого описателя (= 0))
 
+Нельзя использовать для:
+- переменных и данных членов
+- типов аргументов
+- типов возвращаемых функциями значений
+- типов явных преобразований
+
+
 ## Pure abstract class = interface
 
 Consists of only virtual methods 
