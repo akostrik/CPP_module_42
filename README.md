@@ -130,7 +130,7 @@ A pointer can be pointing to a non-existing address
 
 # C vs C++ file manipulation functions (01 / ex04)
 
-## C (forbidden here)
+## C (forbidden by subject)
 
 FILE *fp
 
