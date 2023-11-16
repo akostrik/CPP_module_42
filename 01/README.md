@@ -1,35 +1,3 @@
-# C vs C++ file manipulation functions (ex04)
-
-## C (forbidden)
-
-FILE *fp
-
-fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc
-
-Modes : r, w, a
-
-Crashes: int my_int = 32; printf("%s", my_int)
-
-Hard-coded maximum buffer sizes
-
-## C++ 
-
-fstream f
-
-f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof
-
-Modes : ios::in, ios::out, ios::bin , ...
-
-Fstreams close the files they manage when they leave scope
-
-How input and output is performed is implicitly selected using the variable type
-
-Extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)
-
-Dynamically sizing receiving strings based on the actual input
-
-Exceptions
-
 # Convert (ex04)
 ## std::string to char* 
 ```
