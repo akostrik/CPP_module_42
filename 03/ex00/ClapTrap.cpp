@@ -21,11 +21,11 @@ ClapTrap::ClapTrap(std::string name_) {
 
 // a new object is created as a copy of the existing object
 ClapTrap::ClapTrap(const ClapTrap &obj) {
-  *this = obj; // ?
+  std::cout << obj.name << " copy constructor called" << std::endl;
+  *this = obj;
 };
 
 // an already initialized object is assigned to a new value from another existing object
-// copy assignment operator overload
 ClapTrap& ClapTrap::operator = (ClapTrap const &obj) {
   if (this != &obj) {
     this->name         = obj.name;
@@ -40,20 +40,33 @@ ClapTrap::~ClapTrap() {
   std::cout << this->name << " destructor called" << std::endl;
 };
 
-ClapTrap&   operator = (const ClapTrap &obj) {
-
-}
-
 void ClapTrap::attack(const std::string& target) {
-
+  if (this->energyPoints <= 0)
+  {
+    std::cout << "ClapTrap " << this->name << " is out of energy!" << std::endl;
+    return;
+  }
+  std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << this->attackDamage << " points of damage" << std::endl;
+  this->energyPoints --;
 };
 
 void ClapTrap::takeDamage(unsigned int amount) {
-
+  if (this->hitPoints <= amount)
+  {
+    std::cout << "ClapTrap " << this->name << " is dead!" << std::endl;
+    return;
+  }
+  std::cout << "ClapTrap " << this->name << " takes " << amount << " damage!" << std::endl;
+  this->hitPoints -= amount;
 };
 
 void ClapTrap::beRepaired(unsigned int amount) {
-
+  if (this->energyPoints <= amount)
+  {
+    std::cout << "ClapTrap " << this->name << " is out of energy!" << std::endl;
+    return;
+  }
+  std::cout << "ClapTrap " << this->name << " repairs itself for " << amount << " hit points!" << std::endl;
+  this->energyPoints --;
+  this->hitPoints += amount;
 };
-
-// ClapTrap <name> attacks <target>, causing <damage> points of damage!
