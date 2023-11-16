@@ -45,17 +45,17 @@ void Fixed::setRawBits(const int _raw) {
 	this->raw = _raw;
 }
 
-// NEW converts the fixed-point value to a floating-point value
+// converts the fixed-point value to a floating-point value
 float Fixed::toFloat(void) const {
   return roundf(this->raw / 256) + ((this->raw % 256)) / 256.0;
 }
 
-// NEW converts the fixed-point value to an integer value
+// converts the fixed-point value to an integer value
 int Fixed::toInt(void) const {
-  return roundf(this->raw / 256);
+  return roundf(this->raw / 256.0);
 }
 
-// NEW overload of the insertion operator <<
+// overload of the insertion operator <<
 std::ostream& operator<<(std::ostream& os, Fixed const & f)
 {
   os << f.toFloat();

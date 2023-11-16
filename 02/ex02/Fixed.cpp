@@ -16,7 +16,7 @@ Fixed::Fixed(const float raw_) {
 
 // a new object is created as a copy of the existing object
 Fixed::Fixed(const Fixed &obj) {
-  *this = obj; // ?
+  *this = obj;
 }
 
 // an already initialized object is assigned to a new value from another existing object
@@ -43,7 +43,7 @@ float Fixed::toFloat(void) const {
 }
 
 int Fixed::toInt(void) const {
-  return roundf(this->raw / 256);
+  return roundf(this->raw / 256.0);
 }
 
 // overload of the insertion operator <<

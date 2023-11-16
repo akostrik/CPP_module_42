@@ -9,7 +9,7 @@
 # include <cmath>
 # include "ClapTrap.hpp"
 
-class ScavTrap : : public ClapTrav {
+class ScavTrap : public ClapTrav {
 private:
   std::string name;
   unsigned int hitPoints;    // the health

@@ -8,7 +8,6 @@ Fixed::Fixed() {
 // a new object is created as a copy of the existing object
 Fixed::Fixed(const Fixed &obj) {
   std::cout << "Copy constructor called" << std::endl;
-  // this->setRawBits(obj.getRawBits()); ?
 	*this = obj;
 }
 

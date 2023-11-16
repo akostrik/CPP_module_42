@@ -1,5 +1,5 @@
 SRCS    = main.cpp Fixed.cpp
-HEADERS = Fixed.hpp  
+HEADERS =          Fixed.hpp  
 OBJS    = $(SRCS:.cpp=.o)
 OBJS   := $(addprefix ./objs/, $(OBJS))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror
