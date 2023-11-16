@@ -1,3 +1,18 @@
+# Forbidden:
+- C++11 (and derived forms) and Boost libraries
+- *printf(), *alloc() and free()
+- the using namespace <ns_name> and friend keywords
+- The implementation of the function should be done using functions from std::string, no by reading the string character by character
+- C file manipulation functions
+- External libraries or features from versions other than C++98
+- Containers (vector/list/map/and so forth)
+- Algorithms (anything that requires to include the <algorithm> header)
+- Any function implementation put in a header file (except for function templates)
+- Memory leaks
+
+# Requirements
+You should be able to use each of your headers independently from others. Thus, they must include all the dependencies they need. However, you must avoid the problem of double inclusion by adding include guards.
+
 # Orthodox canonical class form in C++98 
 
 - Default constructor
