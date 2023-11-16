@@ -33,7 +33,7 @@ class A final
 
 # Private public protected - const - static
 
-## Access specifiers:
+## Access specifiers
 
 public    - members are accessible from outside the class
 
@@ -55,7 +55,7 @@ Can neither be changed by a const nor a non-const member function (except for co
 - Ccasting the const away (not advised);
 - Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const.
 
-## A static member data member of a class
+## A static member of a class
 
 Is not associated with a particular object.
 
