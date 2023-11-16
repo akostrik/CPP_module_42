@@ -217,22 +217,21 @@ Example : Dollar amounts are often stored with exactly two fractional digits, re
 $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
 
 # Class
-A class is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods).
+A class is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods)
+
 ## Concret
-A concrete class = can be directly instantiated
+Can be directly instantiated
 
 ## Abstract class
-An abstract class = cannot be directly instantiated
+Cannot be directly instantiated
 
-Have at least one a pure virtual function (abstract method)
+- may be labeled as abstract 
 
-Is either labeled as such explicitly or it may simply specifies abstract (virtual) methods
+- may specifies abstract methods via signatures that are to be implemented by its descendants (before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented)
 
-May provide implementations of some methods
+- may provide implementations of some methods
 
-May specify virtual methods via signatures that are to be implemented by its descendants 
-
-Before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented in the derivation chain.
+_Abstract method_ = virtual function = объявлена с помощью синтаксиса чистого описателя (= 0))
 
 ## Pure abstract class = interface
 
