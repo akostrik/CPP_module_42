@@ -216,6 +216,28 @@ Example : Dollar amounts are often stored with exactly two fractional digits, re
 
 $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
 
+# Class
+A class is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods).
+## Concret
+A concrete class = can be directly instantiated
+
+## Abstract class
+An abstract class = cannot be directly instantiated
+
+Have at least one a pure virtual function (abstract method)
+
+Is either labeled as such explicitly or it may simply specifies abstract (virtual) methods
+
+May provide implementations of some methods
+
+May specify virtual methods via signatures that are to be implemented by its descendants 
+
+Before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented in the derivation chain.
+
+## Pure abstract class = interface
+
+Consists of only virtual methods 
+
 # Sources
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
 
