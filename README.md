@@ -31,9 +31,11 @@ class A final
 };
 ```
 
-# specifiers : private public protected - const - static - final - virtual
+# Variable specifiers : private public protected - const - static - final - virtual
 
-## Access specifiers
+# Function specifiers : private public protected - const - static - final - virtual
+
+## Access
 
 public    - members are accessible from outside the class
 
