@@ -97,10 +97,10 @@ int main() {
 }
 ```
 
-## virtual function
-A member function that is declared within a base class and is re-defined by a derived class. 
+## Virtual function
+A member function that is declared within a parent class and is re-defined by a child class
 
-When you refer to a derived class object using a pointer or a reference to the base class, you can call a virtual function for that object and execute the derived class’s version of the method
+When you refer to a child class object by a pointer / reference to the parent class, you call a virtual function and execute its child class’s version 
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
