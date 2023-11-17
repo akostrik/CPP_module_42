@@ -10,12 +10,11 @@
 # include <cctype>
 # include <cstring>
 # include <iomanip>
-
 # include "ClapTrap.hpp"
 
+// inherits the constructors and destructor from Clap-Trap
 class ScavTrap : public ClapTrap {
 public: 
-  // inherits the constructors and destructor from Clap-Trap
                ScavTrap   ();
                ScavTrap   (std::string name);
                ScavTrap   (const ScavTrap &obj);

@@ -10,13 +10,15 @@
 # include <cstring>
 # include <iomanip>
 
+// can’t do anything if it has no hit points or energy points
 class ClapTrap {
-public: 
+protected:                                            // NEW (the only new thing inClapTap.cpp and ClapTrav.hpp)
   std::string  _name;
-  unsigned int _hitPoints;    // the health
-  unsigned int _energyPoints; // can’t do anything if it has no hit points or energy points
+  unsigned int _hitPoints;                            // health
+  unsigned int _energyPoints;
   unsigned int _attackDamage;
 
+public:
                ClapTrap   ();
                ClapTrap   (std::string name);
                ClapTrap   (const ClapTrap &obj);

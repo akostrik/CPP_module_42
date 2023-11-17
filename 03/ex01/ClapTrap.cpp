@@ -1,15 +1,19 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() {
-  ClapTrap("");
+  std::cout << "ClapTrap              default constructor" << std::endl;
+  this->_name = "anonymous";
+  this->_hitPoints    = 10;
+  this->_energyPoints = 10;
+  this->_attackDamage = 0;
 };
 
 ClapTrap::ClapTrap(std::string name) {
+  std::cout << "ClapTrap " << std::setw(12) << std::left << this->_name << " string constructor" << std::endl;
   if(name == "")
     this->_name = "anonymous";
   else
     this->_name = name;
-  std::cout << "ClapTrap " << std::setw(12) << std::left << this->_name << " string constructor" << std::endl;
   this->_hitPoints    = 10;
   this->_energyPoints = 10;
   this->_attackDamage = 0;
