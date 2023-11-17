@@ -7,6 +7,10 @@
 # include <fstream>
 # include <map>
 # include <cmath>
+# include <cctype>
+# include <cstring>
+# include <iomanip>
+
 # include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap {

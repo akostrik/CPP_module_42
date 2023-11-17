@@ -6,6 +6,9 @@
 # include <fstream>
 # include <map>
 # include <cmath>
+# include <cctype>
+# include <cstring>
+# include <iomanip>
 
 class ClapTrap {
 public: 
