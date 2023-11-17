@@ -41,6 +41,8 @@ private   - members cannot be accessed or viewed from outside the class
 
 protected - members cannot be accessed from outside the class, however, they can be accessed in inherited classes
 
+три типа наследования: public, protected, private
+
 ## Const object = non-mutable
 
 Attempt to modify it directly -> a compile-time error.
