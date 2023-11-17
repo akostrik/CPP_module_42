@@ -1,6 +1,6 @@
 *.o
-ex00/megaphone
-ex01/phonebook
+00/ex00/megaphone
+00/ex01/phonebook
 crappy
 dream
 *.out

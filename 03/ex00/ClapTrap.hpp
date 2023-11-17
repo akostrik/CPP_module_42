@@ -9,10 +9,10 @@
 
 class ClapTrap {
 private:
-  std::string name;
-  unsigned int hitPoints;    // the health
-  unsigned int energyPoints; // can’t do anything if it has no hit points or energy points
-  unsigned int attackDamage;
+  std::string  _name;
+  unsigned int _hitPoints;    // the health
+  unsigned int _energyPoints; // can’t do anything if it has no hit points or energy points
+  unsigned int _attackDamage;
 
 public: 
                ClapTrap   ();

@@ -9,25 +9,16 @@
 # include <cmath>
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrav {
-private:
-  std::string name;
-  unsigned int hitPoints;    // the health
-  unsigned int energyPoints; // can’t do anything if it has no hit points or energy points
-  unsigned int attackDamage;
-
+class ScavTrap : public ClapTrap {
 public: 
-  // inherit the constructors and destructor from Clap-Trap
-               ClapTrap   ();
-               ClapTrap   (std::string name);
-               ClapTrap   (const ClapTrap &obj);
-               ~ClapTrap  ();
-  ClapTrap&    operator = (const ClapTrap &obj);
+  // inherits the constructors and destructor from Clap-Trap
+               ScavTrap   ();
+               ScavTrap   (std::string name);
+               ScavTrap   (const ScavTrap &obj);
+               ~ScavTrap  ();
 
-  void         attack     (const std::string& target); // causes its target to lose <attack damage> hit points, costs 1 energyPoint
-  void         takeDamage (unsigned int amount);
-  void         beRepaired (unsigned int amount);       // gets <amount> hit points back, costs 1 energyPoint
+  void         attack     (const std::string& target);
+  void         guardGate  ();
 };
-
 
 #endif
