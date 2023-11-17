@@ -31,7 +31,7 @@ class A final
 };
 ```
 
-# Private public protected - const - static
+# Private public protected - const - static - final
 
 ## Access specifiers
 
@@ -90,6 +90,9 @@ int main() {
   MyClass::myfunc();
 }
 ```
+
+## final
+class Person final - запрет наследования
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
