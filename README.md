@@ -244,6 +244,10 @@ _Abstract method_ = virtual function = объявлена с помощью си
 
 Consists of only virtual methods 
 
+# Наследование
+
+конструкторы не наследуются
+
 # Sources
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
 
