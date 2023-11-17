@@ -6,12 +6,16 @@
 # include <fstream>
 # include <map>
 # include <cmath>
+# include <cctype>
+# include <cstring>
+# include <iomanip>
 
+// can’t do anything if it has no hit points or energy points
 class ClapTrap {
 private:
   std::string  _name;
-  unsigned int _hitPoints;    // the health
-  unsigned int _energyPoints; // can’t do anything if it has no hit points or energy points
+  unsigned int _hitPoints;                             // health
+  unsigned int _energyPoints; 
   unsigned int _attackDamage;
 
 public: 

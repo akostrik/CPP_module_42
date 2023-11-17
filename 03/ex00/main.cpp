@@ -2,17 +2,18 @@
 #include "ClapTrap.hpp"
 
 int main( void ) {
-  ClapTrap loup("Loup");
-	ClapTrap chat;
+  std::cout << "initialisation:" << std::endl;
+  ClapTrap cat1("Cat1");
+  ClapTrap cat2;
 
-	chat = ClapTrap("Chat");
+  std::cout << std::endl << "copy:" << std::endl;
+  cat2 = ClapTrap("Cat2");
 
-  chat.attack("Loup");
-  chat.attack("Loup");
-  loup.takeDamage(2);
-  loup.beRepaired(1);
-  loup.takeDamage(2);
-  loup.beRepaired(1);
+  std::cout << std::endl << "functions (takeDamage, beRepaired, attack):" << std::endl;
+  cat1.takeDamage(2);
+  cat1.beRepaired(2);
+  cat1.attack("Mouse");
 
+  std::cout << std::endl << "return:" << std::endl;
   return 0;
 }
