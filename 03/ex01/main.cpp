@@ -3,28 +3,33 @@
 #include "ScavTrap.hpp"
 
 int main( void ) {
-  std::cout << "initialisation Cat:" << std::endl;
-  ClapTrap cat("Cat");
+  std::cout << "default constructor tests:" << std::endl;
+  ClapTrap clap1;                   // 1 constructor
+  ClapTrap clap2 = ClapTrap();      // 1 constructor
+  ScavTrap scav1;                   // 2 constructors
 
-  std::cout << std::endl << "initialisation Cat Robot:" << std::endl;
-  ScavTrap cat_robot;
+  std::cout << std::endl << "string constructor tests:" << std::endl;
+  ClapTrap clap3 = ClapTrap("Clap"); // 1 constructor
+  ClapTrap scav2 = ScavTrap("Scav"); // 3 constructors and 2 destructors
+  ScavTrap scav3 = ScavTrap("Scav"); // 2 constructors
 
-  std::cout << std::endl << "copy:" << std::endl;
-  cat_robot = ScavTrap("Cat Robot");
+  std::cout << std::endl << "copy constructor tests:" << std::endl;
+  ClapTrap clap4 = ClapTrap(clap1);  // 1 constructor
+  ScavTrap scav4 = ScavTrap(scav1);  // 2 constructors
 
-  std::cout << std::endl << "functions inherited by Cat Robot (takeDamage, beRepaired):" << std::endl;
-  cat.takeDamage(2);
-  cat.beRepaired(2);
-  cat_robot.takeDamage(2);
-  cat_robot.beRepaired(2);
+  std::cout << std::endl << "functions inherited by ClapTrap from ClapTrap (takeDamage, beRepaired):" << std::endl;
+  clap1.takeDamage(2);
+  scav1.takeDamage(2);
+  clap1.beRepaired(2);
+  scav1.beRepaired(2);
 
-  std::cout << std::endl << "functions implemented in both Cat and Cat Robot (attack):" << std::endl; // ?
-  cat.attack("Mouse");
-  cat_robot.attack("Mouse Robot");
+  std::cout << std::endl << "functions implemented diffenently in ClapTrap and ScavTrap (attack):" << std::endl;
+  clap1.attack("Mouse");
+  scav1.attack("Mouse");
 
-  std::cout << std::endl << "functions implemented in Cat Robot (guardGate):" << std::endl; // ?
-  cat_robot.guardGate();
+  std::cout << std::endl << "functions implemented in ScavTrap only (guardGate):" << std::endl;
+  scav1.guardGate();
 
   std::cout << std::endl << "return:" << std::endl;
-  return 0;
+  return 0;                          // 11 destructors
 }

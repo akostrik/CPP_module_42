@@ -1,5 +1,5 @@
 SRCS    = main.cpp ClapTrap.cpp ScavTrap.cpp
-HEADERS = ClapTrap.hpp ScavTrap.hpp
+HEADERS =          ClapTrap.hpp ScavTrap.hpp
 OBJS    = $(SRCS:.cpp=.o)
 OBJS   := $(addprefix ./objs/, $(OBJS))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror

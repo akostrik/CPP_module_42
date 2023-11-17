@@ -37,5 +37,4 @@ void FragTrap::highFivesGuys() {
     return;
   }
   std::cout << "FragTrap " << std::setw(12) << std::left << this->_name << " displays a positive high fives request" << std::endl;
-  // this->_energyPoints --;
 };

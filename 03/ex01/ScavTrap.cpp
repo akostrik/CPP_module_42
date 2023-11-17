@@ -24,10 +24,16 @@ ScavTrap::~ScavTrap() {
 };
 
 // member functions
-void ScavTrap::attack(const std::string& target) { // herite ?!
+
+void ScavTrap::attack(const std::string& target) { // herite ?
+  if (this->_hitPoints <= 0)
+  {
+    std::cout << "ScavTrap " << std::setw(12) << std::left << this->_name << " can not attack, he is out of hitPoints" << std::endl;
+    return;
+  }
   if (this->_energyPoints <= 0)
   {
-    std::cout << "ScavTrap " << std::setw(12) << std::left << this->_name << " is out of energy!" << std::endl;
+    std::cout << "ScavTrap " << std::setw(12) << std::left << this->_name << " can not attack, he is out of energy!" << std::endl;
     return;
   }
   std::cout << "ScavTrap " << std::setw(12) << std::left << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage" << std::endl;
@@ -35,5 +41,15 @@ void ScavTrap::attack(const std::string& target) { // herite ?!
 };
 
 void ScavTrap::guardGate() {
+  if (this->_hitPoints <= 0)
+  {
+    std::cout << "ScavTrap " << std::setw(12) << std::left << this->_name << " can not be a guard, he is out of hitPoints" << std::endl;
+    return;
+  }
+  if (this->_energyPoints <= 0)
+  {
+    std::cout << "ScavTrap " << std::setw(12) << std::left << this->_name << " can not be a guard, is out of energy" << std::endl;
+    return;
+  }
   std::cout << "ScavTrap " << std::setw(12) << std::left << this->_name << " is now in Gate keeper mode" << std::endl;
 };
