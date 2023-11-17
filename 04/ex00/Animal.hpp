@@ -7,8 +7,6 @@
 # include <map>
 # include <cmath>
 
-// all virtual methods that are not pure should be defined
-// a destructor must be defined even if it is declared pure-virtual
 class Animal {
 protected:
   std::string  _type;
@@ -16,11 +14,11 @@ protected:
 public: 
                Animal     ();
                Animal     (const Animal &obj);
-               ~Animal    ();
+  virtual      ~Animal    ();                    // virtual too ! (PB non-final 'Animal' has virtual functions but non-virtual destructor)
   Animal&      operator = (const Animal &obj);
 
   std::string  getType    (void) const;
-  virtual void makeSound  ()     const; // virtual
+  virtual void makeSound  ()     const;          // virtual!
 };
 
 #endif
