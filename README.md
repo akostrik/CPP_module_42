@@ -31,9 +31,7 @@ class A final
 };
 ```
 
-# Variable specifiers : private public protected - const - static - final - virtual
-
-# Function specifiers : private public protected - const - static - final - virtual
+# Data specifiers : private public protected - const - static - final - virtual
 
 ## Access
 
@@ -43,15 +41,19 @@ private   - members cannot be accessed or viewed from outside the class
 
 protected - members cannot be accessed from outside the class, however, they can be accessed in inherited classes
 
-Inheritance: public, protected, private
+
+## final classe
+class Person final - запрет наследования
+
+# Function specifiers : private public protected - const - static - final - virtual
 
 ## Const object = non-mutable
 
-Attempt to modify it directly -> a compile-time error.
+Attempt to modify it directly -> a compile-time error
 
-Attempt to modify it indirectly (e.g., by modifying the const object through a reference or pointer to non-const type) -> undefined behavior.
+Attempt to modify it indirectly (e.g., by modifying the const object through a reference or pointer to non-const type) -> undefined behavior
 
-You cannot call a non-const method a const object.
+You cannot call a non-const method a const object
 
 You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not).
 
@@ -61,13 +63,13 @@ Can neither be changed by a const nor a non-const member function (except for co
 
 ## A static member of a class
 
-Is not associated with a particular object.
+Is not associated with a particular object
 
-Belongs to the class rather than objects of the class. 
+Belongs to the class rather than objects of the class
 
-If it is public, it can be accessed directly using the class name.
+If it is public, it can be accessed directly using the class name
 
-Can also be called through objects of the class type, though this is not rechttps://companies.intra.42.fr/en/offersommended.
+Can also be called through objects of the class type, though this is not rechttps://companies.intra.42.fr/en/offersommended
 
 ### A static data member
 
@@ -95,8 +97,10 @@ int main() {
 }
 ```
 
-## final
-class Person final - запрет наследования
+## virtual function
+A member function that is declared within a base class and is re-defined by a derived class. 
+
+When you refer to a derived class object using a pointer or a reference to the base class, you can call a virtual function for that object and execute the derived class’s version of the method
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
