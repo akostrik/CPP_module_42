@@ -14,7 +14,7 @@ protected:
 public: 
                WrongAnimal ();
                WrongAnimal (const WrongAnimal &obj);
-               ~WrongAnimal(); // THE ONLY DIFFERENCE WITH ANIMAL : 2 words virtual removed
+               ~WrongAnimal();           // THE ONLY DIFFERENCE WITH ANIMAL : 2 words virtual removed
   WrongAnimal& operator =  (const WrongAnimal &obj);
 
   std::string  getType     (void) const;
