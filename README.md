@@ -41,9 +41,15 @@ private   - members cannot be accessed or viewed from outside the class
 
 protected - members cannot be accessed from outside the class, however, they can be accessed in inherited classes
 
+## final class
 
-## final classe
-class Person final - запрет наследования
+запрет наследования
+
+## static
+
+Is not associated with a particular object, belongs to the class rather than objects of the class
+
+Can be called using the class name (if it is public) or through an object (not recommended)
 
 # Function specifiers : private public protected - const - static - final - virtual
 
@@ -61,27 +67,19 @@ Can neither be changed by a const nor a non-const member function (except for co
 - Ccasting the const away (not advised);
 - Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const.
 
-## A static member of a class
+## static function
 
-Is not associated with a particular object
+Is not associated with a particular object, belongs to the class rather than objects of the class
 
-Belongs to the class rather than objects of the class
+Can be called using the class name (if it is public) or through an object (not recommended)
 
-If it is public, it can be accessed directly using the class name
+No `*this` pointer
 
-Can also be called through objects of the class type, though this is not rechttps://companies.intra.42.fr/en/offersommended
+Can directly access other static members (variables or functions), but not non-static members (non-static members belong to an object)
 
-### A static data member
+In the context of function declarations, static = "this function is scoped only to this file and can't be called from other places"
 
-### A static member function
-
-Has no *this pointer.
-
-Can directly access other static members (variables or functions), but not non-static members, because non-static members must belong to a class object.
-
-In the context of function declarations, static = "this function is scoped only to this file and can't be called from other places".
-
-In the context of member functions, static = "this member function does not have a receiver object. It's basically a normal function that's nested inside of the scope of the class".
+In the context of member functions, static = "this member function does not have a receiver object. It's basically a normal function that's nested inside of the scope of the class"
 
 Example:
 ```
