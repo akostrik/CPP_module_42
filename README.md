@@ -251,9 +251,11 @@ _Abstract method_ = virtual function = объявлена с помощью си
 
 Consists of only virtual methods 
 
-# Inheritance
+## Inheritance
 
 конструкторы не наследуются
+
+Внутри потомка можно создать одноимённую функцию с функцией родителя => отказ от этой части наследства, функция становится самостоятельной функцией своего класса
 
 # Sources
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
