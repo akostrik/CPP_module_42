@@ -41,7 +41,7 @@ private   - members cannot be accessed or viewed from outside the class
 
 protected - members cannot be accessed from outside the class, however, they can be accessed in inherited classes
 
-три типа наследования: public, protected, private
+Inheritance: public, protected, private
 
 ## Const object = non-mutable
 
@@ -109,15 +109,13 @@ In the both cases we can change the type of the weapon.
 ## Reference
 If something should always exist and never change, use a references
 
-A reference !=  new variable
+A reference = a dereferenced pointer
+
+A reference = an aliase for an existing variable !=  new variable
+
+A reference = a constant pointer, always points to the same variable, we can't change it (?)
 
 A reference doesn't occupy memory
-
-A reference = an aliase for an existing variable
-
-A reference = a constant pointer, always points to the same variable, we can't change it 
-
-Reference = a dereferenced pointer
 
 A reference can't point to nothing
 
@@ -249,7 +247,7 @@ _Abstract method_ = virtual function = объявлена с помощью си
 
 Consists of only virtual methods 
 
-# Наследование
+# Inheritance
 
 конструкторы не наследуются
 
