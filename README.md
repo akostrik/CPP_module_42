@@ -51,9 +51,7 @@ Is not associated with a particular object, belongs to the class rather than obj
 
 Can be called using the class name (if it is public) or through an object (not recommended)
 
-# Function specifiers : private public protected - const - static - final - virtual
-
-## Const object = non-mutable
+## const = non-mutable
 
 Attempt to modify it directly -> a compile-time error
 
@@ -61,11 +59,13 @@ Attempt to modify it indirectly (e.g., by modifying the const object through a r
 
 You cannot call a non-const method a const object
 
-You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not).
+You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not)
 
-Can neither be changed by a const nor a non-const member function (except for constructor and destructor), even if it is passed by reference. There are two exceptions to this rule:
+Can nor be changed by a const nor a non-const member function (except for constructor and destructor), even if it is passed by reference. There are two exceptions to this rule:
 - Ccasting the const away (not advised);
 - Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const.
+
+# Function specifiers : private public protected - const - static - final - virtual
 
 ## static function
 
