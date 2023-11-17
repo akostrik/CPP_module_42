@@ -242,6 +242,8 @@ Consists of only virtual methods
 
 Внутри потомка можно создать одноимённую функцию с функцией родителя => отказ от этой части наследства, функция становится самостоятельной функцией своего класса
 
+Наследованные деструкторы вызываются наоборот по сравнению с вызыванием конструктора
+
 # Requirements
 You should be able to use each of your headers independently from others. Thus, they must include all the dependencies they need. However, you must avoid the problem of double inclusion by adding include guards.
 
