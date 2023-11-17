@@ -31,7 +31,7 @@ class A final
 };
 ```
 
-# Private public protected - const - static - final
+# specifiers : private public protected - const - static - final - virtual
 
 ## Access specifiers
 
