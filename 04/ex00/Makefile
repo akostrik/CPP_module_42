@@ -1,5 +1,5 @@
-SRCS    = main.cpp Animal.cpp
-HEADERS = Animal.hpp  
+SRCS    = main.cpp Animal.cpp Cat.cpp Dog.cpp
+HEADERS =          Animal.hpp Cat.hpp Dog.hpp
 OBJS    = $(SRCS:.cpp=.o)
 OBJS   := $(addprefix ./objs/, $(OBJS))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror
