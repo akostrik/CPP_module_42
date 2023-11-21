@@ -113,6 +113,14 @@ int main() {
 ```
 ## const funciton
 
+компилятор знает, что возвращенное функцией значение поменять нельзя
+```
+const char *func() {
+  return "текст";
+}
+```
+
+
 ## virtual function
 A member function that is declared within a parent class and is re-defined by a child class
 
