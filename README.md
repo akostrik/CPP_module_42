@@ -124,7 +124,7 @@ We cannot have a virtual constructor
 
 We can have a virtual destructor
 
-Polymorphic class := который определяет или наследует виртуальную функцию
+Polymorphic class := определяет или наследует виртуальную функцию
 
 ## override function
 
