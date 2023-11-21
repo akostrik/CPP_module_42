@@ -36,7 +36,7 @@ Is not associated with a particular object, belongs to the class rather than obj
 
 Can be called using the class name (if it is public) or through an object (not recommended)
 
-## const data 
+## const / mutable data 
 
 Non-mutable
 
@@ -50,7 +50,7 @@ Can modity if by constructor/destructor
 
 Can modity if by casting the const away (not advised)
 
-Can modify a class member declared mutable through member functions even if the containing object is const
+Can modify a class member declared `mutable` through member functions even if the containing object is const
 
 Can't call a non-const method a const object
 
@@ -69,8 +69,6 @@ Can't call a non-const method through a pointer/reference to a const object if t
 `int const * const C` постоянный указатель на постоянный int 
 
 константные объекты класса могут явно вызывать только константные методы класса
-
-## mutable
 
 ## virtual data
 
@@ -109,7 +107,7 @@ int main() {
   MyClass::myfunc();
 }
 ```
-## const funciton
+## const / mutable funciton
 
 компилятор знает, что возвращенное функцией значение поменять нельзя
 ```
