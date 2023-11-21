@@ -36,7 +36,9 @@ Is not associated with a particular object, belongs to the class rather than obj
 
 Can be called using the class name (if it is public) or through an object (not recommended)
 
-## const data = non-mutable
+## const data 
+
+Non-mutable
 
 Can't modify it directly -> a compile-time error
 
