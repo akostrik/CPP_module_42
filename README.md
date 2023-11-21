@@ -47,7 +47,7 @@ You cannot call a non-const method a const object
 You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not)
 
 Can nor be changed by a const nor a non-const member function (except for constructor and destructor), even if it is passed by reference. There are two exceptions to this rule:
-- Ccasting the const away (not advised)
+- Casting the const away (not advised)
 - Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const
 
 ## virtual
@@ -93,6 +93,8 @@ int main() {
 A member function that is declared within a parent class and is re-defined by a child class
 
 When you refer to a child class object by a pointer / reference to the parent class, you call a virtual function and execute its child class’s version 
+
+Non-final class with virtual functions should have virtual destructor
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
