@@ -104,6 +104,10 @@ The single pointer to refer to all the objects of the different classes
 
 Polymorphic class = который определяет или наследует виртуальную функцию
 
+# override
+
+Явным образом указать, что мы хотим переопредлить функцию, а не скрыть ее
+
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
 used.
