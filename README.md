@@ -291,6 +291,8 @@ You should be able to use each of your headers independently from others. Thus, 
 
 Nothing should be public for no reason.
 
+07/ex01: тестируют const (!).
+
 ## Forbidden:
 - C++11 (and derived forms) and Boost libraries
 - *printf(), *alloc() and free()
