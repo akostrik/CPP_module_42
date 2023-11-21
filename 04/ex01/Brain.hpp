@@ -13,9 +13,9 @@ private:
 public: 
                Brain     ();
                Brain     (const Brain &obj);
-              ~Brain    ();
-  Brain&      operator = (const Brain &obj);
-
+               ~Brain    ();
+  Brain&       operator = (const Brain &obj);
+  std::string* getIdeas();
 };
 
 #endif

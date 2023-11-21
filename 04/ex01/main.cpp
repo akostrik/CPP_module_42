@@ -2,26 +2,45 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+#include "Brain.hpp"
 
-#define N = 8;
+#define N 3
 
 int main()
 {
-  Animal a[N];
+  Animal *a[N];
 
+  std::cout << "Creation of " << N << " animals:" << std::endl;
   for (int i = 0; i < N; i++)
     if (i % 2 == 0)
       a[i] = new Cat();
     else
       a[i] = new Dog();
 
+  std::cout << std::endl << "Make sound the animals:" << std::endl;
   for (int i = 0; i < N; i++)
-    a[i].makeSound();
+    a[i]->makeSound();
 
+  std::cout << std::endl << "Test that the copies are deep copies:" << std::endl;
+  std::cout              << "1) I am the original, I am a " << a[0]->getType() << ", my ideas are: ";
+  for (int i = 0; i < 100; i++)
+    std::cout << a[0]->getBrain()->getIdeas()[i] << " ";
+  Animal *copy = a[0];
+  std::cout << std::endl << "1) I am a copy      , I am a " << copy->getType() << ", my ideas are: ";
+  for (int i = 0; i < 100; i++)
+    std::cout << copy->getBrain()->getIdeas()[i] << " ";
+  a[0]->getBrain()->getIdeas()[0] = "NEW IDEA";
+  std::cout << std::endl << "2) I am the original, I am a " << a[0]->getType() << ", my ideas are: ";
+  for (int i = 0; i < 100; i++)
+    std::cout << a[0]->getBrain()->getIdeas()[i] << " ";
+  std::cout << std::endl << "2) I am a copy      , I am a " << copy->getType() << ", my ideas are: ";
+  for (int i = 0; i < 100; i++)
+    std::cout << copy->getBrain()->getIdeas()[i] << " ";
+
+
+  std::cout << std::endl << "Desctruction of the animals:" << std::endl;
   for (int i = 0; i < N; i++)
-    if (a[i].getType() == "Cat")
+    if (a[i]->getType() == "Cat")
       delete a[i];
     else
       delete a[i];
