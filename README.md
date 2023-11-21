@@ -38,17 +38,25 @@ Can be called using the class name (if it is public) or through an object (not r
 
 ## const data = non-mutable
 
-Attempt to modify it directly -> a compile-time error
+Can't modify it directly -> a compile-time error
 
-Attempt to modify it indirectly (e.g., by modifying the const object through a reference or pointer to non-const type) -> undefined behavior
+Can't modify it through a pointer/reference to non-const type -> undefined behavior
 
-You cannot call a non-const method a const object
+Can't modify it by a (const nor a non-const) member function, even if it is passed by reference
 
-You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not)
+Can modity if by constructor/destructor 
 
-Can nor be changed by a const nor a non-const member function (except for constructor and destructor), even if it is passed by reference. There are two exceptions to this rule:
-- Casting the const away (not advised)
-- Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const
+Can modity if by casting the const away (not advised)
+
+Can modify a class member declared mutable through member functions even if the containing object is const
+
+Can't call a non-const method a const object
+
+Can't call a non-const method through a pointer/reference to a const object if the referred-to object is const 
+
+Can't call a non-const method through a pointer/reference to a const object if the referred-to object is not const 
+
+## mutable
 
 ## virtual data
 
