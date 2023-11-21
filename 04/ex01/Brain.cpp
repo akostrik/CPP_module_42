@@ -2,7 +2,8 @@
 
 Brain::Brain() {
   std::cout << "Brain       default constructor" << std::endl;
-  for (int i = 0; i < 100; i++) 
+  const
+  for (int i = 0; i < NB_IDEAS; i++) 
     this->ideas[i] = "idea!";
 };
 
@@ -13,8 +14,8 @@ Brain::Brain(const Brain &obj) {
 
 Brain& Brain::operator = (Brain const &obj) {
   if (this != &obj)
-    for (int i = 0; i < 100; i++)
-      this->ideas[i] = obj.ideas[i];
+    for (int i = 0; i < NB_IDEAS; i++)
+      this->ideas[i] = std::string(obj.ideas[i]);
   return *this;
 };
 
@@ -22,7 +23,12 @@ Brain::~Brain() {
   std::cout << "Brain       destructor" << std::endl;
 };
 
-std::string* Brain::getIdeas() {
+std::string * Brain::getIdeas() const {
   return this->ideas;
 };
 
+std::ostream& operator<<(std::ostream& os, Brain const &obj) {
+  for (int i = 0; i < NB_IDEAS; i++)
+    os << obj.getIdeas()[i] << " ";
+  return os;
+}

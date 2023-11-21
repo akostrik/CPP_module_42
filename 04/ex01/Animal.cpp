@@ -17,18 +17,20 @@ Animal& Animal::operator = (Animal const &obj) {
 };
 
 Animal::~Animal() {
-  std::cout << "Animal      destructor    (type = " << this->_type << ") VIRTUAL" << std::endl;
+  std::cout << "Animal      destructor            (type = " << this->_type << ") VIRTUAL" << std::endl;
 };
 
 // member functions
 
 void Animal::makeSound( void ) const {
   std::cout << "Animal      makes undefined sound (type = " << this->_type << ") VIRTUAL" << std::endl;
-} // lishnee ?
+}
 
 std::string Animal::getType(void) const {
   return this->_type;
 }
+
 Brain* Animal::getBrain() {
   return NULL;
 };
+

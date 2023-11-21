@@ -2,17 +2,17 @@
 
 Dog::Dog() : Animal() {
   this->_type = "Dog";
-  this->brain = new Brain();
+  this->_brain = new Brain();
   std::cout << "Dog         default constructor" << std::endl;
 };
 
 Dog::~Dog() {
   std::cout << "Dog         destructor" << std::endl;
-  delete brain;
+  delete _brain;
 };
 
 Brain* Dog::getBrain() {
-  return this->brain;
+  return this->_brain;
 }
 
 void Dog::makeSound() const {

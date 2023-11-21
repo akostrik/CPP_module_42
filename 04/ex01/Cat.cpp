@@ -2,30 +2,33 @@
 
 Cat::Cat() : Animal() {
   this->_type = "Cat";
-  this->brain = new Brain();
+  this->_brain = new Brain();
   std::cout << "Cat         default constructor" << std::endl;
 };
 
 Cat::~Cat() {
   std::cout << "Cat         destructor" << std::endl;
-  delete brain;
+  delete this->_brain; // delete _brain[] ?
 };
 
 Cat& Cat::operator = (Cat const &obj) {
   if (this != &obj)
   {
-    this->_type = obj._type;
-    for (int i = 0; i < 100; i++)
-      this->brain->getIdeas()[i] = obj.getBrain()->getIdeas()[i];
+    this->_type  = obj._type;
+    this->_brain = obj._brain;
   }
   return *this;
 };
 
-Brain* Cat::getBrain() { // 'this' argument to member function 'getBrain' has type 'const Cat', but function is not marked const
-  return this->brain;
+Brain* Cat::getBrain() const {
+  return this->_brain;
 };
 
 void Cat::makeSound() const {
   std::cout << "Cat         says Miaou Miaou" << std::endl;
 };
 
+std::ostream& operator<<(std::ostream& os, Cat const &obj) {
+  os << "I am Cat, my brain is: " << obj.getBrain() << std::endl;
+  return os;
+}
