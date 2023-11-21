@@ -98,9 +98,21 @@ The single pointer to refer to all the objects of the different classes
 
 Можно применить к функции, если она определена внутри класса, а производный класс может переопределить ее поведение
 
-Вызов виртуальной функции через имя объекта всегда разрешается статически, динамическое связывание возможно только через указатель или ссылку
+Вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
 
-Polymorphic class = который определяет или наследует виртуальную функцию
+Must be members of some class
+
+Cannot be a static member
+
+Is accessed through object pointers
+
+Must be defined in the base class, even though it is not used.
+ 
+We cannot have a virtual constructor
+
+We can have a virtual destructor
+
+Polymorphic class := который определяет или наследует виртуальную функцию
 
 ## override
 
