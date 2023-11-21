@@ -68,9 +68,7 @@ Can't call a non-const method through a pointer/reference to a const object if t
 
 `int const * const C` постоянный указатель на постоянный int 
 
-
-
-
+константные объекты класса могут явно вызывать только константные методы класса
 
 ## mutable
 
@@ -119,7 +117,6 @@ const char *func() {
   return "текст";
 }
 ```
-
 
 ## virtual function
 A member function that is declared within a parent class and is re-defined by a child class
