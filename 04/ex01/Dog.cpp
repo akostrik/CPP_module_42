@@ -11,7 +11,7 @@ Dog::~Dog() {
   delete _brain;
 };
 
-Brain* Dog::getBrain() {
+Brain* Dog::getBrain() const {
   return this->_brain;
 }
 

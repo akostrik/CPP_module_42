@@ -6,16 +6,23 @@ Cat::Cat() : Animal() {
   std::cout << "Cat         default constructor" << std::endl;
 };
 
+
+Cat::Cat(const Cat &ref) {
+  std::cout << "Cat         copy    constructor" << std::endl;
+  *this = ref;
+};
+
 Cat::~Cat() {
   std::cout << "Cat         destructor" << std::endl;
   delete this->_brain; // delete _brain[] ?
 };
 
-Cat& Cat::operator = (Cat const &obj) {
-  if (this != &obj)
+Cat& Cat::operator = (Cat const &ref) {
+  if (this != &ref)
   {
-    this->_type  = obj._type;
-    this->_brain = obj._brain;
+    this->_type  = ref._type;
+    this->_brain = new Brain(*ref._brain);
+
   }
   return *this;
 };
@@ -27,8 +34,3 @@ Brain* Cat::getBrain() const {
 void Cat::makeSound() const {
   std::cout << "Cat         says Miaou Miaou" << std::endl;
 };
-
-std::ostream& operator<<(std::ostream& os, Cat const &obj) {
-  os << "I am Cat, my brain is: " << obj.getBrain() << std::endl;
-  return os;
-}

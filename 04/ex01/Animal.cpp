@@ -5,14 +5,14 @@ Animal::Animal() {
   std::cout << "Animal      default constructor   (type = not defined)" << std::endl;
 };
 
-Animal::Animal(const Animal &obj) {
+Animal::Animal(const Animal &ref) {
   std::cout << "Animal      copy    constructor   (type = " << this->_type << ")" << std::endl;
-  *this = obj;
+  *this = ref;
+  // this->_type = ref._type; ?
 };
 
-Animal& Animal::operator = (Animal const &obj) {
-  if (this != &obj)
-    this->_type = obj._type;
+Animal& Animal::operator = (Animal const &ref) {
+  this->_type = ref._type;
   return *this;
 };
 
@@ -22,15 +22,10 @@ Animal::~Animal() {
 
 // member functions
 
-void Animal::makeSound( void ) const {
+void Animal::makeSound () const {
   std::cout << "Animal      makes undefined sound (type = " << this->_type << ") VIRTUAL" << std::endl;
 }
 
-std::string Animal::getType(void) const {
+std::string Animal::getType() const {
   return this->_type;
 }
-
-Brain* Animal::getBrain() {
-  return NULL;
-};
-

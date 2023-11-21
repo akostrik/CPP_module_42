@@ -13,15 +13,18 @@ protected:
   std::string   _type;
 
 public: 
-                  Animal     ();
-                  Animal     (const Animal &obj);
-  virtual         ~Animal    (); // what will happen without Virtual? Test it
-                                 // non-final class with virtual functions should have virtual destructor
-                                 // without Virtual Animal::~Animal() is called in any case, and never func Cat::~Animal()
-  virtual Animal& operator = (const Animal &obj);
-  std::string     getType    (void) const;
-  virtual Brain*  getBrain   (void);
-  virtual void    makeSound  (void) const;          // virtual
+                      Animal     ();
+  virtual             ~Animal    (); 
+                      Animal     (Animal const &ref); // constructor cannot be virtual
+  virtual Animal      &operator = (Animal const &ref); // virtual ?
+
+  virtual std::string getType    () const;
+  virtual void        makeSound  () const;
+  //virtual Brain*      getBrain   () const;
 };
 
 #endif
+
+// what will happen if non virtual ~Animal? Only ~Animal() is called, never ~Cat()
+// non-final class with virtual functions should have virtual destructor
+// Virtual destructor lets delete an instance of a child class through a pointer to parent class

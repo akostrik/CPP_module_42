@@ -2,33 +2,33 @@
 
 Brain::Brain() {
   std::cout << "Brain       default constructor" << std::endl;
-  const
+  this->_ideas = new std::string[NB_IDEAS];
   for (int i = 0; i < NB_IDEAS; i++) 
-    this->ideas[i] = "idea!";
+    this->_ideas[i] = "idea!";
 };
 
-Brain::Brain(const Brain &obj) {
-  std::cout << "Brain       copy    constructor" << std::endl;
-  *this = obj;
-};
-
-Brain& Brain::operator = (Brain const &obj) {
-  if (this != &obj)
-    for (int i = 0; i < NB_IDEAS; i++)
-      this->ideas[i] = std::string(obj.ideas[i]);
-  return *this;
-};
 
 Brain::~Brain() {
   std::cout << "Brain       destructor" << std::endl;
+  delete [] this->_ideas;
 };
 
-std::string * Brain::getIdeas() const {
-  return this->ideas;
-};
-
-std::ostream& operator<<(std::ostream& os, Brain const &obj) {
+Brain::Brain(Brain const &ref) {
+  std::cout << "Brain       copy    constructor" << std::endl;
   for (int i = 0; i < NB_IDEAS; i++)
-    os << obj.getIdeas()[i] << " ";
-  return os;
-}
+    this->_ideas[i] = ref._ideas[i];
+  // *this = ref; ?!
+};
+
+Brain& Brain::operator = (Brain const &ref) {
+  for (int i = 0; i < NB_IDEAS; i++)
+    this->_ideas[i] = ref._ideas[i];
+    // this->_ideas[i] = std::string(ref._ideas[i]);
+  return *this;
+};
+
+// member functions
+
+std::string * Brain::getIdeas() { //const {
+  return this->_ideas;
+};

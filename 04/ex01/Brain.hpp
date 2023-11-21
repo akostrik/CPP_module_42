@@ -11,15 +11,13 @@
 
 class Brain {
 private:
-  std::string *ideas; ///
+  std::string  *_ideas;
 public: 
                Brain     ();
-               Brain     (const Brain &obj);
                ~Brain    ();
-  Brain&       operator = (const Brain &obj);
-  std::string  *getIdeas() const;
+               Brain     (Brain const &ref); // bez const ?
+  Brain        &operator = (Brain const &ref);
+  std::string  *getIdeas(); // const ?
 };
-
-std::ostream& operator<<(std::ostream& os, Brain const &obj);
 
 #endif
