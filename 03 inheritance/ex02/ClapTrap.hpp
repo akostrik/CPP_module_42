@@ -12,7 +12,7 @@
 
 // can’t do anything if it has no hit points or energy points
 class ClapTrap {
-protected:                                            // NEW (the only new thing inClapTap.cpp and ClapTrav.hpp)
+protected:                                            // NEW (the only new thing in ClapTap.cpp and ClapTrav.hpp)
   std::string  _name;
   unsigned int _hitPoints;                            // health
   unsigned int _energyPoints;
