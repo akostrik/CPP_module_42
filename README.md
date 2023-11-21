@@ -324,6 +324,8 @@ You should be able to use each of your headers independently from others. Thus, 
 
 Nothing should be public for no reason.
 
+For every exercise, you have to provide the most complete tests you can.
+
 07/ex01: тестируют const (!).
 
 ## Forbidden:
