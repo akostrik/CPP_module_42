@@ -58,6 +58,20 @@ Can't call a non-const method through a pointer/reference to a const object if t
 
 Can't call a non-const method through a pointer/reference to a const object if the referred-to object is not const 
 
+`const int C=3` для параметров, которые не надо изменять после компиляции
+
+`const int *C` указатель на постоянное int, указатель изменять можно, значение нельзя
+
+`int const *C` указатель на постоянное int, указатель изменять можно, значение нельзя
+
+`int * const C` постоянный указатель на int, значение указателя нельзя менять, а значение переменной можно 
+
+`int const * const C` постоянный указатель на постоянный int 
+
+
+
+
+
 ## mutable
 
 ## virtual data
