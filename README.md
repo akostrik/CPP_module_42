@@ -56,9 +56,7 @@ Can nor be changed by a const nor a non-const member function (except for constr
 
 ## private / public / protected function
 
-The same
-
-## final function
+see data
 
 ## static function
 
@@ -104,9 +102,13 @@ The single pointer to refer to all the objects of the different classes
 
 Polymorphic class = который определяет или наследует виртуальную функцию
 
-# override
+## override
 
 Явным образом указать, что мы хотим переопредлить функцию, а не скрыть ее
+
+## final
+
+Запретить определение в производных классах функций, которые имеют то же самое имя, возвращаемый тип и список параметров, что и виртуальная функция в базовом классе
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
