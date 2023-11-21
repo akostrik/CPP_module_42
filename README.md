@@ -16,9 +16,9 @@ class A final
 };
 ```
 
-# Data specifiers : private public protected - const - static - final - virtual
+# Data specifiers
 
-## Access
+## private / public / protected data
 
 public    - members are accessible from outside the class
 
@@ -30,13 +30,13 @@ protected - members cannot be accessed from outside the class, however, they can
 
 запрет наследования
 
-## static
+## static data
 
 Is not associated with a particular object, belongs to the class rather than objects of the class
 
 Can be called using the class name (if it is public) or through an object (not recommended)
 
-## const = non-mutable
+## const data = non-mutable
 
 Attempt to modify it directly -> a compile-time error
 
@@ -47,10 +47,18 @@ You cannot call a non-const method a const object
 You cannot call a non-const method through a pointer or reference to a const object (regardless of whether the referred-to object is const or not)
 
 Can nor be changed by a const nor a non-const member function (except for constructor and destructor), even if it is passed by reference. There are two exceptions to this rule:
-- Ccasting the const away (not advised);
-- Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const.
+- Ccasting the const away (not advised)
+- Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const
 
-# Function specifiers : private public protected - const - static - final - virtual
+## virtual
+
+# Function specifiers
+
+## private / public / protected function
+
+The same
+
+## final function
 
 ## static function
 
@@ -79,8 +87,9 @@ int main() {
   MyClass::myfunc();
 }
 ```
+## const funciton
 
-## Virtual function
+## virtual function
 A member function that is declared within a parent class and is re-defined by a child class
 
 When you refer to a child class object by a pointer / reference to the parent class, you call a virtual function and execute its child class’s version 
