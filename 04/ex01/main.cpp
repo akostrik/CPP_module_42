@@ -11,16 +11,23 @@ int main()
   Animal *a[N];
 
   std::cout << "*** Creation of " << N << " animals:" << std::endl;
-  for (int i = 0; i < N; i++)
+  for (int i = 0; i < N; i++) 
+  {
     if (i % 2 == 0)
       a[i] = new Cat();
     else
       a[i] = new Dog();
+    std::cout << std::endl;
+  }
 
-
-  std::cout << std::endl << "*** Make sound the animals:" << std::endl;
+  std::cout << "*** Make sound the " << N << " animals:" << std::endl;
   for (int i = 0; i < N; i++)
     a[i]->makeSound();
+  std::cout << std::endl;
+
+  std::cout << "*** Desctruction of the " << N << " animals:" << std::endl;
+  for (int i = 0; i < N; i++)
+    delete a[i];
   std::cout << std::endl;
 
   std::cout << "*** Creation Cat cat1:" << std::endl;
@@ -40,18 +47,6 @@ int main()
     std::cout << cat1->getBrain()->getIdeas()[i] << " ";
   std::cout << std::endl << std::endl;
 
-  std::cout << "*** Modifying of the two first ides of the copy:" << std::endl;
-  cat2->getBrain()->getIdeas()[0] = "IDEA1";
-  cat2->getBrain()->getIdeas()[1] = "IDEA2";
-  std::cout << "cat1 ideas: ";
-  for (int i = 0; i < NB_IDEAS; i++)
-    std::cout << cat1->getBrain()->getIdeas()[i] << " ";
-  std::cout << std::endl;
-  std::cout << "cat2 ideas: ";
-  for (int i = 0; i < NB_IDEAS; i++)
-    std::cout << cat2->getBrain()->getIdeas()[i] << " ";
-  std::cout << std::endl << std::endl;
-
   std::cout << "*** Modifying of the two first ides of cat1:" << std::endl;
   cat1->getBrain()->getIdeas()[0] = "NEW1!";
   cat1->getBrain()->getIdeas()[1] = "NEW2!";
@@ -64,14 +59,21 @@ int main()
     std::cout << cat2->getBrain()->getIdeas()[i] << " ";
   std::cout << std::endl << std::endl;
 
+  std::cout << "*** Modifying of the two first ides of the copy:" << std::endl;
+  cat2->getBrain()->getIdeas()[0] = "IDEA1";
+  cat2->getBrain()->getIdeas()[1] = "IDEA2";
+  std::cout << "cat1 ideas: ";
+  for (int i = 0; i < NB_IDEAS; i++)
+    std::cout << cat1->getBrain()->getIdeas()[i] << " ";
+  std::cout << std::endl;
+  std::cout << "cat2 ideas: ";
+  for (int i = 0; i < NB_IDEAS; i++)
+    std::cout << cat2->getBrain()->getIdeas()[i] << " ";
+  std::cout << std::endl << std::endl;
 
-  // std::cout << "\n\n*** Desctruction of the animals:" << std::endl;
-  // for (int i = 0; i < N; i++)
-  //   if (a[i]->getType() == "Cat")
-  //     delete a[i];
-  //   else
-  //     delete a[i];
+  std::cout << "*** Desctruction cat1 qnd cqt2:" << std::endl;
+  delete cat1;
+  delete cat2;
 
-  // std::cout << "\n\n* return" << std::endl;
   return 0;
 }
