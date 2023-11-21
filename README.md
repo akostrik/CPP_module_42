@@ -50,7 +50,9 @@ Can nor be changed by a const nor a non-const member function (except for constr
 - Casting the const away (not advised)
 - Class members can be declared using the mutable keyword; these members can be changed through member functions even if the containing object is declared const
 
-## virtual
+## virtual data
+
+## template class
 
 # Function specifiers
 
