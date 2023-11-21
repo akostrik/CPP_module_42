@@ -289,6 +289,8 @@ Consists of only virtual methods
 # Requirements
 You should be able to use each of your headers independently from others. Thus, they must include all the dependencies they need. However, you must avoid the problem of double inclusion by adding include guards.
 
+Nothing should be public for no reason.
+
 ## Forbidden:
 - C++11 (and derived forms) and Boost libraries
 - *printf(), *alloc() and free()
