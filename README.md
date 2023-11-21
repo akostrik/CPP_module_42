@@ -114,13 +114,16 @@ We can have a virtual destructor
 
 Polymorphic class := который определяет или наследует виртуальную функцию
 
-## override
+## override function
 
 Явным образом указать, что мы хотим переопредлить функцию, а не скрыть ее
 
-## final
+## final function
 
 Запретить определение virtual функции в производных классах 
+
+## template function
+Allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
