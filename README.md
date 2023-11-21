@@ -121,29 +121,26 @@ const char *func() {
 Можно иметь константную и неконстантную версии одной и той же функции.
 
 ## virtual function
-A member function that is declared within a parent class and is re-defined by a child class
-
-When you refer to a child class object by a pointer / reference to the parent class, you call a virtual function and execute its child class’s version 
-
-Non-final class with virtual functions should have virtual destructor
-
-The single pointer to refer to all the objects of the different classes
-
-Можно применить к функции, если она определена внутри класса, а производный класс может переопределить ее поведение
-
-Вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
 
 Must be members of some class
 
-Cannot be a static member
+Must be defined in the base class, even though it is not used
+
+A member function declared within a parent class and re-defined by a child class
+
+Производный класс может переопределить ее поведение
+
+When you refer to a child class object by a pointer / reference to the parent class, you call a virtual function and execute its child class’s version 
 
 Is accessed through object pointers
 
-Must be defined in the base class, even though it is not used.
- 
-We cannot have a virtual constructor
+Вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
 
-We can have a virtual destructor
+We cannot have a virtual constructor or destructor
+
+Cannot be a static member
+
+Non-final class with virtual functions should have virtual destructor
 
 Polymorphic class := определяет или наследует виртуальную функцию
 
