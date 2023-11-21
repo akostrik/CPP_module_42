@@ -120,7 +120,7 @@ Polymorphic class := который определяет или наследуе
 
 ## final
 
-Запретить определение в производных классах функций, которые имеют то же самое имя, возвращаемый тип и список параметров, что и виртуальная функция в базовом классе
+Запретить определение virtual функции в производных классах 
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
