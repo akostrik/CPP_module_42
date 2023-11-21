@@ -98,6 +98,8 @@ Non-final class with virtual functions should have virtual destructor
 
 The single pointer to refer to all the objects of the different classes
 
+Можно применить к функции, если она определена внутри класса, а производный класс может переопределить ее поведение
+
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
 used.
