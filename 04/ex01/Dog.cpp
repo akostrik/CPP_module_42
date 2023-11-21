@@ -1,18 +1,18 @@
 #include "Dog.hpp"
 
 Dog::Dog() : Animal() {
-  this->_type = "Dog";
-  this->_brain = new Brain();
+  this->type = "Dog";
+  this->brain = new Brain();
   std::cout << "Dog         default constructor" << std::endl;
 };
 
 Dog::~Dog() {
   std::cout << "Dog         destructor" << std::endl;
-  delete _brain;
+  delete brain;
 };
 
 Brain* Dog::getBrain() const {
-  return this->_brain;
+  return this->brain;
 }
 
 void Dog::makeSound() const {

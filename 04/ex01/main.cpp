@@ -24,10 +24,10 @@ int main()
 
 
   std::cout << std::endl << "Test that the copies are deep ones:" << std::endl;
-  Animal * const cat1 = new Cat();
+  Cat * const cat1 = new Cat();
   cat1->makeSound();
   std::cout << std::endl << "Test that the copies are deep ones:" << std::endl;
-  Animal *cat2;
+  Cat *cat2;
 	cat2 = new Cat(*cat1);
   (void)cat2;
 	//cat2->makeSound();

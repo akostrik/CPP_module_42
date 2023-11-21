@@ -11,7 +11,7 @@
 
 class Brain {
 private:
-  std::string  *_ideas;
+  std::string  *ideas;
 public: 
                Brain     ();
                ~Brain    ();
