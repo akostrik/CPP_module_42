@@ -172,7 +172,7 @@ Polymorphic class := определяет или наследует виртуа
 
 ## pure virtual funcitons
 
-In the case of destructors, they must be implemented even when they are pure virtual
+Unlike other pure virtual functions, a destructor must always have a definition
 
 ## override function
 
