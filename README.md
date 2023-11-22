@@ -74,6 +74,10 @@ Can't call a non-const method through a pointer/reference to a const object if t
 
 ## template class
 
+## abstract class
+
+C++ has no keyword abstract
+
 # Function specifiers
 
 ## private / public / protected function
