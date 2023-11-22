@@ -76,9 +76,29 @@ Can't call a non-const method through a pointer/reference to a const object if t
 
 ## abstract class
 
+Абстрактные классы = содержат или наследуют без переопределения хотя бы одну чистую виртуальную функцию
+
+Cannot be directly instantiated
+
+- may be labeled as abstract 
+
+- may specifies abstract methods via signatures that are to be implemented by its descendants (before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented)
+
+- may provide implementations of some methods
+
+_Abstract method_ = virtual function = объявлена с помощью синтаксиса чистого описателя (= 0))
+
+Нельзя использовать для:
+- переменных и данных членов
+- типов аргументов
+- типов возвращаемых функциями значений
+- типов явных преобразований
+
 C++ has no keyword abstract
 
-Абстрактные классы = содержат или наследуют без переопределения хотя бы одну чистую виртуальную функцию
+## Pure abstract class = interface
+
+Consists of only virtual methods 
 
 # Function specifiers
 
@@ -166,6 +186,12 @@ Allows functions and classes to operate with generic types. This allows a functi
 ## abstract function
 
 = pure virtual
+
+Не имеет определения
+
+Цель - просто определить функционал без реализации, реализацию определят производные классы
+
+C++ has no keyword abstract
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
@@ -289,34 +315,6 @@ Representing non-integer numbers by storing a fixed number of digits of their fr
 Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents
 
 $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
-
-# Class
-A class is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods)
-
-## Concret class
-Can be directly instantiated
-
-## Abstract class
-Cannot be directly instantiated
-
-- may be labeled as abstract 
-
-- may specifies abstract methods via signatures that are to be implemented by its descendants (before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented)
-
-- may provide implementations of some methods
-
-_Abstract method_ = virtual function = объявлена с помощью синтаксиса чистого описателя (= 0))
-
-Нельзя использовать для:
-- переменных и данных членов
-- типов аргументов
-- типов возвращаемых функциями значений
-- типов явных преобразований
-
-
-## Pure abstract class = interface
-
-Consists of only virtual methods 
 
 ## Inheritance
 
