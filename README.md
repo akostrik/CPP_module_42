@@ -100,6 +100,10 @@ C++ has no keyword abstract
 
 Consists of only virtual methods 
 
+## to prevent a class from being instantiated 
+
+Make all constructors protected
+
 # Function specifiers
 
 ## private / public / protected function
