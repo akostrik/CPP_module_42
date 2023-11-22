@@ -78,6 +78,8 @@ Can't call a non-const method through a pointer/reference to a const object if t
 
 C++ has no keyword abstract
 
+abstract = pure virtual
+
 # Function specifiers
 
 ## private / public / protected function
