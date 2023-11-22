@@ -16,8 +16,8 @@ protected:
 public: 
                       Animal      ();
   virtual             ~Animal     (); 
-                      Animal      (Animal const &ref); // constructor cannot be virtual
-  virtual Animal      &operator = (Animal const &ref); // virtual ?
+                      Animal      (Animal const &ref);
+  virtual Animal      &operator = (Animal const &ref);
 
   virtual std::string getType     ()                  const;
   void                setType     (std::string);

@@ -19,6 +19,7 @@ Animal& Animal::operator = (Animal const &ref) {
   return *this;
 };
 
+
 // member functions
 
 void Animal::makeSound () const {

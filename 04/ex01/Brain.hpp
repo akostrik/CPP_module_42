@@ -7,7 +7,7 @@
 # include <map>
 # include <cmath>
 
-# define NB_IDEAS 3 ///// 100
+# define NB_IDEAS 100
 
 class Brain {
 
