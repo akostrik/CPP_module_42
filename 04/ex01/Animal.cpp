@@ -5,6 +5,10 @@ Animal::Animal() {
   std::cout << "Animal      default constructor   (type = not defined)" << std::endl;
 };
 
+Animal::~Animal() {
+  std::cout << "Animal      destructor            (type = " << this->type << ") VIRTUAL" << std::endl;
+};
+
 Animal::Animal(const Animal &ref) {
   *this = ref;
   std::cout << "Animal      copy    constructor   (type = " << this->type << ")" << std::endl;
@@ -15,10 +19,6 @@ Animal& Animal::operator = (Animal const &ref) {
   return *this;
 };
 
-Animal::~Animal() {
-  std::cout << "Animal      destructor            (type = " << this->type << ") VIRTUAL" << std::endl;
-};
-
 // member functions
 
 void Animal::makeSound () const {
@@ -27,4 +27,8 @@ void Animal::makeSound () const {
 
 std::string Animal::getType() const {
   return this->type;
+}
+
+void Animal::setType(std::string newType) {
+  this->type = newType;
 }

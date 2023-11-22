@@ -8,7 +8,22 @@ Dog::Dog() : Animal() {
 
 Dog::~Dog() {
   std::cout << "Dog         destructor" << std::endl;
-  delete brain;
+  delete this->brain;
+};
+
+Dog::Dog(const Dog &ref) {
+  std::cout << "Dog         copy    constructor" << std::endl;
+  *this = ref;
+};
+
+Dog& Dog::operator = (Dog const &ref) {
+  if (this != &ref)
+  {
+    this->type  = ref.type;
+    this->brain = new Brain(*ref.brain);
+
+  }
+  return *this;
 };
 
 Brain* Dog::getBrain() const {

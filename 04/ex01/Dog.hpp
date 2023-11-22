@@ -5,13 +5,17 @@
 # include "Brain.hpp"
 
 class Dog : public Animal {
+
 private:
-  Brain* brain;
+  Brain *brain;
+
 public: 
-         Dog();
-         ~Dog();
-  Dog&   operator = (const Dog &ref);
-  Brain* getBrain   () const;
+         Dog        ();
+         ~Dog       ();
+         Dog        (Dog const &ref);
+  Dog&   operator = (Dog const &ref);
+
+  Brain  *getBrain  () const;
   void   makeSound  () const;
 };
 

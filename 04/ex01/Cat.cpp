@@ -6,15 +6,14 @@ Cat::Cat() : Animal() {
   std::cout << "Cat         default constructor" << std::endl;
 };
 
+Cat::~Cat() {
+  std::cout << "Cat         destructor" << std::endl;
+  delete this->brain;
+};
 
 Cat::Cat(const Cat &ref) {
   std::cout << "Cat         copy    constructor" << std::endl;
   *this = ref;
-};
-
-Cat::~Cat() {
-  std::cout << "Cat         destructor" << std::endl;
-  delete this->brain;
 };
 
 Cat& Cat::operator = (Cat const &ref) {

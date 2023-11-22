@@ -10,14 +10,17 @@
 # define NB_IDEAS 3 ///// 100
 
 class Brain {
+
 private:
   std::string  *ideas;
+
 public: 
-               Brain     ();
-               ~Brain    ();
-               Brain     (Brain const &ref); // bez const ?
+               Brain       ();
+               ~Brain      ();
+               Brain       (Brain const &ref);
   Brain        &operator = (Brain const &ref);
-  std::string  *getIdeas(); // const ?
+
+  std::string  *getIdeas   ();
 };
 
 #endif
