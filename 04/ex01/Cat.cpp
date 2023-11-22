@@ -14,7 +14,7 @@ Cat::Cat(const Cat &ref) {
 
 Cat::~Cat() {
   std::cout << "Cat         destructor" << std::endl;
-  delete this->brain; // delete brain[] ?
+  delete this->brain;
 };
 
 Cat& Cat::operator = (Cat const &ref) {

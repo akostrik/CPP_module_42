@@ -30,6 +30,7 @@ int main()
     delete a[i];
   std::cout << std::endl;
 
+  ////////////////////////////////////////////////////////////
   std::cout << "*** Creation Cat cat1:" << std::endl;
   Cat * const cat1 = new Cat();
   std::cout << "cat1        = " << cat1 << std::endl;
@@ -71,9 +72,31 @@ int main()
     std::cout << cat2->getBrain()->getIdeas()[i] << " ";
   std::cout << std::endl << std::endl;
 
-  std::cout << "*** Desctruction cat1 qnd cqt2:" << std::endl;
+  std::cout << "*** Desctruction cat1 and cat2:" << std::endl;
   delete cat1;
   delete cat2;
+  std::cout << std::endl;
+
+  ///////////////////////////////////////////////
+  std::cout << "*** Creation Animal a1:" << std::endl;
+  Animal * const a1 = new Animal();
+  std::cout << "a1          = " << a1 << std::endl;
+  std::cout << "a1 type     = " << a1->getType() << std::endl << std::endl;
+
+  std::cout << "*** Creation Animal at2 - copy of a1:" << std::endl;
+  Animal *a2;
+  a2 = new Animal(*a1);
+  std::cout << "a2          = " << a2 << std::endl;
+  std::cout << "a2 type     = " << a2->getType() << std::endl << std::endl;
+
+  std::cout << "*** Modifying the type of a1:" << std::endl;
+  a1->getType() = "new_type";
+  std::cout << "a1 type      = " << a1->getType() << std::endl;
+  std::cout << "a2 type      = " << a2->getType() << std::endl << std::endl;
+
+  std::cout << "*** Desctruction a1 and a2:" << std::endl;
+  delete a1;
+  delete a2;
 
   return 0;
 }

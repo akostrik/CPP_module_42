@@ -6,9 +6,8 @@ Animal::Animal() {
 };
 
 Animal::Animal(const Animal &ref) {
-  std::cout << "Animal      copy    constructor   (type = " << this->type << ")" << std::endl;
   *this = ref;
-  // this->type = ref.type; ?
+  std::cout << "Animal      copy    constructor   (type = " << this->type << ")" << std::endl;
 };
 
 Animal& Animal::operator = (Animal const &ref) {
