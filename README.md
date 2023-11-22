@@ -78,7 +78,7 @@ Can't call a non-const method through a pointer/reference to a const object if t
 
 C++ has no keyword abstract
 
-abstract = pure virtual
+Абстрактные классы = содержат или наследуют без переопределения хотя бы одну чистую виртуальную функцию
 
 # Function specifiers
 
@@ -162,6 +162,10 @@ Polymorphic class := определяет или наследует виртуа
 
 ## template function
 Allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
+
+## abstract function
+
+= pure virtual
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
