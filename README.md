@@ -170,6 +170,10 @@ Non-final class with virtual functions should have virtual destructor
 
 Polymorphic class := определяет или наследует виртуальную функцию
 
+## pure virtual funcitons
+
+In the case of destructors, they must be implemented even when they are pure virtual
+
 ## override function
 
 Явным образом указать, что мы хотим переопредлить функцию, а не скрыть ее
