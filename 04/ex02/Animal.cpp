@@ -21,7 +21,6 @@ Animal& Animal::operator = (Animal const &ref) {
 };
 
 
-// member functions
 
 // void Animal::makeSound () const {
 //   std::cout << "Animal      makes undefined sound (type = " << this->type << ") VIRTUAL" << std::endl;
@@ -30,7 +29,3 @@ Animal& Animal::operator = (Animal const &ref) {
 std::string Animal::getType() const {
   return this->type;
 };
-
-// void Animal::setType(std::string newType) {
-//   this->type = newType;
-// }

@@ -17,19 +17,18 @@ Dog::Dog(const Dog &ref) {
 };
 
 Dog& Dog::operator = (Dog const &ref) {
-  if (this != &ref)
-  {
-    this->type  = ref.type;
-    this->brain = new Brain(*ref.brain);
-
-  }
+  this->type  = ref.type;
+  this->brain = new Brain(*ref.brain);
+  std::cout << "Dog         assignment operator" << std::endl;
   return *this;
 };
 
+
+
 Brain* Dog::getBrain() const {
   return this->brain;
-}
+};
 
 void Dog::makeSound() const {
   std::cout << "Dog         says Ouaf Ouaf" << std::endl;
-}
+};

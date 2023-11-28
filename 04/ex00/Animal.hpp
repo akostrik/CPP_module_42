@@ -9,12 +9,12 @@
 
 class Animal {
 protected:
-  std::string  _type;
+  std::string  type;
 
 public: 
                Animal     ();
                Animal     (const Animal &obj);
-  virtual      ~Animal    ();                    // virtual too ! (PB non-final 'Animal' has virtual functions but non-virtual destructor)
+  virtual      ~Animal    ();                    // virtual ! (PB non-final 'Animal' has virtual functions but non-virtual destructor)
   Animal&      operator = (const Animal &obj);
 
   std::string  getType    (void) const;

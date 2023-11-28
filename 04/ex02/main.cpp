@@ -8,7 +8,7 @@
 
 int main()
 {
-  Animal test; // a compile error about the class being abstract
+  // Animal test; // a compile error : variable type 'Animal' is an abstract class
   Animal *a[N];
 
   std::cout << "********** Creation of " << N << " animals:" << std::endl;

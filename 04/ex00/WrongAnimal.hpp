@@ -9,16 +9,18 @@
 
 class WrongAnimal {
 protected:
-  std::string  _type;
+  std::string  type;
 
 public: 
                WrongAnimal ();
-               WrongAnimal (const WrongAnimal &obj);
-               ~WrongAnimal();           // THE ONLY DIFFERENCE WITH ANIMAL : 2 words virtual removed
-  WrongAnimal& operator =  (const WrongAnimal &obj);
+  virtual      ~WrongAnimal();           // THE DIFFERENCE WITH ANIMAL : virtual removed
+               WrongAnimal (const WrongAnimal &ref);
+  WrongAnimal& operator =  (const WrongAnimal &ref);
 
-  std::string  getType     (void) const;
-  void         makeSound   ()     const; // THE ONLY DIFFERENCE WITH ANIMAL : 2 words virtual removed
+  std::string  getType     () const;
+  // WrongCat should output the WrongAnimal sound
+  // The WrongCat must output the WrongCat makeSound() only when used as a wrongCat
+  void makeSound   () const;     // THE DIFFERENCE WITH ANIMAL : virtual removed
 };
 
 #endif

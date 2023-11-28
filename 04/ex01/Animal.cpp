@@ -16,20 +16,20 @@ Animal::Animal(const Animal &ref) {
 
 Animal& Animal::operator = (Animal const &ref) {
   this->type = ref.type;
+  std::cout << "Animal      assignment operator   (type = " << this->type << ") VIRTUAL" << std::endl;
   return *this;
 };
 
 
-// member functions
 
 void Animal::makeSound () const {
   std::cout << "Animal      makes undefined sound (type = " << this->type << ") VIRTUAL" << std::endl;
-}
+};
 
 std::string Animal::getType() const {
   return this->type;
-}
+};
 
 void Animal::setType(std::string newType) {
   this->type = newType;
-}
+};

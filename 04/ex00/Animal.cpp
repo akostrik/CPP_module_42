@@ -1,31 +1,31 @@
 #include "Animal.hpp"
 
 Animal::Animal() {
-  this->_type = "not defined";
+  this->type = "not defined";
   std::cout << "Animal      default constructor  (type not defined)" << std::endl;
 };
 
 Animal::Animal(const Animal &obj) {
-  std::cout << "Animal      copy    constructor  (type " << this->_type << ")" << std::endl;
   *this = obj;
+  std::cout << "Animal      copy    constructor  (type " << this->type << ")" << std::endl;
 };
 
 Animal& Animal::operator = (Animal const &obj) {
-  if (this != &obj)
-    this->_type = obj._type;
+  this->type = obj.type;
+  std::cout << "Animal      assignment operator   (type = " << this->type << ")" << std::endl;
   return *this;
 };
 
 Animal::~Animal() {
-  std::cout << "Animal      destructor            (type " << this->_type << ")" << std::endl;
+  std::cout << "Animal      destructor            (type " << this->type << ")" << std::endl;
 };
 
-// member functions
+
 
 void Animal::makeSound( void ) const {
-  std::cout << "Animal      makes undefined sound (type " << this->_type << ")" << std::endl;
-}
+  std::cout << "Animal      makes undefined sound (type " << this->type << ")" << std::endl;
+};
 
 std::string Animal::getType(void) const {
-  return this->_type;
-}
+  return this->type;
+};

@@ -17,14 +17,13 @@ Cat::Cat(const Cat &ref) {
 };
 
 Cat& Cat::operator = (Cat const &ref) {
-  if (this != &ref)
-  {
-    this->type  = ref.type;
-    this->brain = new Brain(*ref.brain);
-
-  }
+  this->type  = ref.type;
+  this->brain = new Brain(*ref.brain);
+  std::cout << "Cat         assignment operator" << std::endl;
   return *this;
 };
+
+
 
 Brain* Cat::getBrain() const {
   return this->brain;

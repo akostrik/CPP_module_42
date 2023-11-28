@@ -130,8 +130,8 @@ int main()
 
   std::cout << "********** Modifying the type of a1:" << std::endl;
   a1->setType("newType");
-  std::cout << "a1 type      = " << a1->getType() << std::endl;
-  std::cout << "a2 type      = " << a2->getType() << std::endl << std::endl;
+  std::cout << "a1 type     = " << a1->getType() << std::endl;
+  std::cout << "a2 type     = " << a2->getType() << std::endl << std::endl;
 
   std::cout << "********** Desctruction a1 and a2:" << std::endl;
   delete a1;
