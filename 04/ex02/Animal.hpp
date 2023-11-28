@@ -10,17 +10,17 @@
 
 class Animal {
 
-protected:                                                       // NEW, Animal should not be instantiable
-  std::string   type;
+protected:                                                      // NEW, Animal should not be instantiable
+  std::string         type;
 
                       Animal      ();
-  virtual             ~Animal     (); 
                       Animal      (Animal const &ref);
   virtual Animal      &operator = (Animal const &ref);
 
 public: 
+  virtual             ~Animal     ();                            // NEW public destructor (not protected)
   virtual std::string getType     ()                  const;
-  virtual void        makeSound   ()                  const = 0; // NEW pure virtual, Animal should not be instantiable
+  virtual void        makeSound   ()                  const = 0; // NEW pure virtual
 };
 
 #endif

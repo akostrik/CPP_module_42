@@ -26,10 +26,10 @@ int main()
     a[i]->makeSound();
   std::cout << std::endl;
 
-  // std::cout << "********** Desctruction of the " << N << " animals:" << std::endl;
-  // for (int i = 0; i < N; i++)
-  //   delete a[i];
-  // std::cout << std::endl;
+  std::cout << "********** Desctruction of the " << N << " animals:" << std::endl;
+  for (int i = 0; i < N; i++)
+    delete a[i];
+  std::cout << std::endl;
 
   ////////////////////////////////////////////////////////////
   std::cout << "********** Creation Cat cat1:" << std::endl;
@@ -40,7 +40,7 @@ int main()
     std::cout << cat1->getBrain()->getIdeas()[i] << " ";
   std::cout << std::endl << std::endl;
 
-  std::cout << "********** Creation Cat cat2, copy of cat1, by copy constructor :" << std::endl;
+  std::cout << "********** Creation Cat cat2, deep copy of cat1, by copy constructor :" << std::endl;
   Cat *cat2;
   cat2 = new Cat(*cat1);
   std::cout << "cat2        = " << cat2 << std::endl;
@@ -86,7 +86,7 @@ int main()
     std::cout << dog1.getBrain()->getIdeas()[i] << " ";
   std::cout << std::endl << std::endl;
 
-  std::cout << "********** Creation Dog dog2, by dog2 = dog1:" << std::endl;
+  std::cout << "********** Creation Dog dog2, by dog2 = dog1 (deep copy):" << std::endl;
   Dog dog2 = dog1;
   std::cout << "ideas:      ";
   for (int i = 0; i < NB_IDEAS; i++)
