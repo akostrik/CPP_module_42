@@ -10,10 +10,11 @@ AMateria::AMateria(std::string const & type) {
   std::cout << "Materia     string  constructor   (type = " << type << ")" << std::endl;
 }
 
+// While assigning a Materia to another, copying the type doesn’t make sense
 AMateria::AMateria(AMateria const & src) {
   *this = src;
   std::cout << "Materia     copy    constructor   (type = " << type << ")" << std::endl;
-  }
+}
 
 AMateria::~AMateria() {
   std::cout << "Materia     destructor            (type = " << type << ")" << std::endl;

@@ -5,8 +5,8 @@ Ice::Ice() : AMateria("ice") {
 }
 
 Ice::Ice(Ice const & src) : AMateria("ice") {
-    *this = src;
-    // std::cout << "* Ice: materia is copied *" << std::endl;
+  *this = src;
+  // std::cout << "* Ice: materia is copied *" << std::endl;
 }
 
 Ice&   Ice::operator=(const Ice& ref) {
@@ -21,11 +21,12 @@ Ice::~Ice() {
 
 
 
+// returns a new instance of the same type
 AMateria* Ice::clone() const {
   std::cout << "Ice         clone" << std::endl;
   return (new Ice(*this));
 }
 
 void Ice::use(ICharacter& target) {
-  std::cout << "I shoots an ice bolt at " << target.getName() << std::endl;
+  std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

@@ -21,6 +21,7 @@ Cure::~Cure() {
 
 
 
+// returns a new instance of the same type
 AMateria* Cure::clone() const {
   std::cout << "Cure        clone" << std::endl;
   return (new Cure(*this));

@@ -1,23 +1,21 @@
 #include "Character.hpp"
 
-Character::Character( std::string const & name ) : _name(name) {
+Character::Character(std::string const & name) {
+  this->_name = name;
   for (int i = 0; i < 4; i++) 
     this->_inventory[i] = NULL;
   std::cout << "Character   " << this->_name << " default constructor" << std::endl;
 }
 
-// Any copy (using copy constructor or copy assignment operator) must be deep
+// a deep copy
 // the Materias of a Character must be deleted before the new ones are added to their inventory
-Character::Character(Character const & src) : _name(src._name) {
-  // for (int i = 0; i < 4; i++)
-  //     this->_inventory[i] = src._inventory[i];
+Character::Character(Character const & src) {
   *this = src;
   std::cout << "Character   " << this->_name << " copy     constructor" << std::endl;
 }
 
-// Any copy (using copy constructor or copy assignment operator) must be deep
-// the Materias of a Character must be deleted before the new ones are added to their inventory
-Character& Character::operator=( Character const & ref ) {
+// a deep copy
+Character& Character::operator=(Character const & ref) {
   this->_name = ref._name;
   for (int i = 0; i < 4; i++)
       this->_inventory[i] = ref._inventory[i];
@@ -25,18 +23,18 @@ Character& Character::operator=( Character const & ref ) {
   return *this;
 }
 
-// the Materias must be deleted when a Character is destroyed
+// the Materias must be deleted
 Character::~Character() {
   std::cout << "Character   " << this->_name << " descructor" << std::endl;
   for (int i = 0; i < 4; i++)
-      if (this->_inventory[i])
-          delete this->_inventory[i];
+    if (this->_inventory[i])
+      delete this->_inventory[i];
 }
 
 
 
 // Your character’s inventory will be able to support any type of AMateria
-void Character::equip( AMateria* m) {
+void Character::equip(AMateria* m) {
   for (int i = 0; i < 4; i++)
     if (this->_inventory[i] == NULL) {
       this->_inventory[i] = m;
@@ -47,9 +45,9 @@ void Character::equip( AMateria* m) {
 }
 
 // must NOT delete the Materia
-// Handle the Materias your character left on the floor as you like
-// Save the addresses before calling unequip(), or anything else, to avoid memory leaks
-void Character::unequip( int idx ) {
+// the Materias of a Character must be deleted before the new ones are added to their inventory
+// Handle the Materias your character left on the floor as you like to avoid memory leaks: save the addresses before calling unequip(), anything else, ...
+void Character::unequip(int idx) {
   if (this->_inventory[idx]) {
     delete this->_inventory[idx];
     this->_inventory[idx] = NULL;
