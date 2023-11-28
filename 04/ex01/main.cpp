@@ -122,7 +122,7 @@ int main()
   std::cout << "a1          = " << a1 << std::endl;
   std::cout << "a1 type     = " << a1->getType() << std::endl << std::endl;
 
-  std::cout << "********** Creation Animal at2 - copy of a1:" << std::endl;
+  std::cout << "********** Creation Animal at2 - deep copy of a1:" << std::endl;
   Animal *a2;
   a2 = new Animal(*a1);
   std::cout << "a2          = " << a2 << std::endl;

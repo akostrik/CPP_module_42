@@ -11,11 +11,15 @@ Cat::~Cat() {
   delete this->brain;
 };
 
+// The copy and assignment behaviors are like the subject requires
+// The copy constructor should do a deep copy
 Cat::Cat(const Cat &ref) {
   std::cout << "Cat         copy    constructor" << std::endl;
   *this = ref;
 };
 
+// The copy and assignment behaviors are like the subject requires
+// The copy should be a deep copy
 Cat& Cat::operator = (Cat const &ref) {
   this->type  = ref.type;
   this->brain = new Brain(*ref.brain);

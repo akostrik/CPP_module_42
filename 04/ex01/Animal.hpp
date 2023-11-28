@@ -26,6 +26,6 @@ public:
 
 #endif
 
-// what will happen if non virtual ~Animal? Only ~Animal() is called, never ~Cat()
+// if not virtual ~Animal, than onnly ~Animal() is called, never ~Cat()
 // non-final class with virtual functions should have virtual destructor
 // Virtual destructor lets delete an instance of a child class through a pointer to parent class
