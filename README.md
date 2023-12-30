@@ -96,7 +96,7 @@ _Abstract method_ = virtual function = объявлена с помощью си
 
 NB: Another way to prevent a class from being instantiated: make all constructors protected
 
-NB: C++ has no keyword abstract
+NB: C++ has no keyword `abstract`
 
 ## Pure abstract class = interface
 
@@ -195,9 +195,9 @@ Allows functions and classes to operate with generic types. This allows a functi
 
 Не имеет определения
 
-Цель - просто определить функционал без реализации, реализацию определят производные классы
+Определяет функционал без реализации (реализацию определяют производные классы)
 
-C++ has no keyword abstract
+NB: C++ has no keyword `abstract`
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
