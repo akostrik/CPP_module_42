@@ -189,39 +189,24 @@ Unlike other pure virtual functions, a destructor must always have a definition
 ## template function
 Allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
-## abstract function
-
-= pure virtual
-
-Не имеет определения
-
-Определяет функционал без реализации (реализацию определяют производные классы)
-
-NB: C++ has no keyword `abstract`
+## abstract function = pure virtual
+Не имеет определения  
+Определяет функционал без реализации (реализацию определяют производные классы)  
+NB: C++ has no keyword `abstract`  
 
 # Reference vs pointer (01 / ex03)
-Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object
-used.
-
-HumanA can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here HumanA has `Weapon& weaponREF` attribut).
-
-HumanB must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here HumanB has `Weapon* weaponPTR` attribut).
-
-In the both cases we can change the type of the weapon. 
+Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object used.  
+`HumanA` can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here `HumanA` has `Weapon& weaponREF` attribut).  
+`HumanB` must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here `HumanB` has `Weapon* weaponPTR` attribut).  
+In the both cases we can change the type of the weapon.   
 
 ## Reference
-If something should always exist and never change, use a references
-
-A reference = a dereferenced pointer
-
-A reference = an aliase for an existing variable !=  new variable
-
-A reference = a constant pointer, always points to the same variable, we can't change it (?)
-
-A reference doesn't occupy memory
-
-A reference can't point to nothing
-
+If something should always exist and never change, use a references  
+A reference = a dereferenced pointer  
+A reference = an aliase for an existing variable !=  new variable  
+A reference = a constant pointer, always points to the same variable, we can't change it (?)  
+A reference doesn't occupy memory  
+A reference can't point to nothing  
 ```
    std::string &sREF = s;
 // std::string             тип, на который объявляется ссылка
@@ -229,42 +214,32 @@ A reference can't point to nothing
 //                     s   переменная, на которую объявляется ссылка
 ```
 ## Pointer
+If something should not always exist and can change, use a pointer  
+A pointer can be pointing to a non-existing address  
 
-If something should not always exist and can change, use a pointer
-
-A pointer can be pointing to a non-existing address
+## Inheritance
+Конструкторы не наследуются.  
+Внутри потомка можно создать одноимённую функцию с функцией родителя => отказ от этой части наследства, функция становится самостоятельной функцией своего класса.  
+Наследованные деструкторы вызываются наоборот по сравнению с вызыванием конструктора.  
 
 # C vs C++ file manipulation functions (01 / ex04)
 
 ## C (forbidden by subject)
-
-FILE *fp
-
-fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc
-
-Modes : r, w, a
-
-Crashes: int my_int = 32; printf("%s", my_int)
-
-Hard-coded maximum buffer sizes
+FILE *fp  
+fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc  
+Modes : r, w, a  
+Crashes: int my_int = 32; printf("%s", my_int)  
+Hard-coded maximum buffer sizes  
 
 ## C++ 
-
-fstream f
-
-f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof
-
-Modes : ios::in, ios::out, ios::bin , ...
-
-Fstreams close the files they manage when they leave scope
-
-How input and output is performed is implicitly selected using the variable type
-
-Extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)
-
-Dynamically sizing receiving strings based on the actual input
-
-Exceptions
+fstream f  
+f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof  
+Modes : ios::in, ios::out, ios::bin , ...  
+Fstreams close the files they manage when they leave scope  
+How input and output is performed is implicitly selected using the variable type  
+Extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
+Dynamically sizing receiving strings based on the actual input  
+Exceptions  
 
 # Convert (01 / ex04)
 ## std::string to char* 
@@ -279,14 +254,11 @@ char       * c = str.data();
 - Using the assign function
 
 # Floating-point numbers vs Fixed-point numbers (02)
-Accuracy = to how close a measurement is to the true value
-
-Precision = how much information you have about a quantity, how uniquely you have it pinned down
-
-Fixed point arithmetic is much faster than floating point arithmetic
+Accuracy = to how close a measurement is to the true value.  
+Precision = how much information you have about a quantity, how uniquely you have it pinned down.  
+Fixed point arithmetic is much faster than floating point arithmetic.  
 
 ## Floating-point
-
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
 
 - s sign bit
@@ -315,28 +287,14 @@ Largest $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) = 34028234663852885981170
 +NaN                             |                              | ~0~ | 0 11111111 10000000000000000000000
 
 ## Fixed-point
-
-Representing non-integer numbers by storing a fixed number of digits of their fractional part
-
-Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents
-
+Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
+Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents.  
 $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
 
-## Inheritance
-
-конструкторы не наследуются
-
-Внутри потомка можно создать одноимённую функцию с функцией родителя => отказ от этой части наследства, функция становится самостоятельной функцией своего класса
-
-Наследованные деструкторы вызываются наоборот по сравнению с вызыванием конструктора
-
-# Requirements
-You should be able to use each of your headers independently from others. Thus, they must include all the dependencies they need. However, you must avoid the problem of double inclusion by adding include guards.
-
-Nothing should be public for no reason.
-
-For every exercise, you have to provide the most complete tests you can.
-
+# School Requirements
+You should be able to use each of your headers independently from others. Thus, they must include all the dependencies they need. However, you must avoid the problem of double inclusion by adding include guards.  
+Nothing should be public for no reason.  
+For every exercise, you have to provide the most complete tests you can.  
 07/ex01: тестируют const (!).
 
 ## Forbidden:
@@ -352,26 +310,15 @@ For every exercise, you have to provide the most complete tests you can.
 - Memory leaks
   
 # Sources
-https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
-
-https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html
-
-https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html
-
-https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold
-
-https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html 
-
-https://github.com/achrafelkhnissi/CPP_Modules/tree/master
-
-https://github.com/Saxsori/CPP_Modules/tree/main
-
-https://github.com/42YerevanProjects/cpp_modules/tree/master
-
-https://rphlr.github.io/42-Evals/
-
-http://www.cplusplus.com/reference/iomanip/
-
-http://www.cplusplus.com/reference/string/string
-
-https://github.com/achrafelkhnissi/CPP_Modules
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html  
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
+https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold  
+https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
+https://github.com/achrafelkhnissi/CPP_Modules/tree/master  
+https://github.com/Saxsori/CPP_Modules/tree/main  
+https://github.com/42YerevanProjects/cpp_modules/tree/master  
+https://rphlr.github.io/42-Evals/  
+http://www.cplusplus.com/reference/iomanip/  
+http://www.cplusplus.com/reference/string/string  
+https://github.com/achrafelkhnissi/CPP_Modules  
