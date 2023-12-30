@@ -94,15 +94,13 @@ _Abstract method_ = virtual function = объявлена с помощью си
 - типов возвращаемых функциями значений
 - типов явных преобразований
 
-C++ has no keyword abstract
+NB: Another way to prevent a class from being instantiated: make all constructors protected
+
+NB: C++ has no keyword abstract
 
 ## Pure abstract class = interface
 
 Consists of only virtual methods 
-
-## to prevent a class from being instantiated 
-
-Make all constructors protected
 
 # Function specifiers
 
