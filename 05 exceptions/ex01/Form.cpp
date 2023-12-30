@@ -51,8 +51,12 @@ int Form::getGradeToExecute() const {
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 void Form::beSigned (Bureaucrat &b) {
+
   if (b.getGrade() > this->getGradeToSign())
+  {
+    std::cout << b.getName() << " couldn’t sign " << this->getName() << " because of: ";
     throw Form::GradeTooLowException();
+  }
   this->isSigned = true;
 }
 
