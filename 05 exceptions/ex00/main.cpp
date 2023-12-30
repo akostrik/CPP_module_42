@@ -5,6 +5,7 @@ int main() {
 	try {
 		Bureaucrat b("Alice", 3);
 		b.decrGrade();
+		std::cout << b << std::endl;
 		b.decrGrade();
 		b.decrGrade();
 	}
