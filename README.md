@@ -62,7 +62,7 @@ Can't call a non-const method through a pointer/reference to a const object if t
 
 `const int *C` указатель на постоянное int, указатель изменять можно, значение нельзя
 
-`int const *C` указатель на постоянное int, указатель изменять можно, значение нельзя
+`int const *C` the same
 
 `int * const C` постоянный указатель на int, значение указателя нельзя менять, а значение переменной можно 
 
