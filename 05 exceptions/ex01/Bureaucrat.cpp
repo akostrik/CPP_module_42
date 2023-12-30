@@ -51,11 +51,11 @@ void Bureaucrat::decrGrade() {
   this->grade++;
 }
 
-void Bureaucrat::signForm (Form f) {
-  if (f.getIsSigned() == true)
+void Bureaucrat::signForm (Form *f) {
+  if (f->getIsSigned() == true)
     return ;
-  f.beSigned(*this);
-  std::cout << this->getName() << " signed " << f.getName() << std::endl;
+  f->beSigned(*this);
+  std::cout << this->getName() << " signed " << f->getName() << std::endl;
 }
 
 /////////////////////////////////////////////////// EXCEPTIONS

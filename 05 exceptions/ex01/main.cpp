@@ -2,58 +2,47 @@
 #include "Form.hpp"
 
 int main() {
-	std::cout << "\nAlice, 3\n";
+	std::cout << "\nAlice\n";
 	try {
 		Bureaucrat b("Alice", 3);
-		b.decrGrade();
+		Form f("University Form", 1, 5);
+
 		std::cout << b << std::endl;
-		b.decrGrade();
-		b.decrGrade();
-	}
-	catch (Bureaucrat::GradeTooHighException &e) {
-		std::cerr << e.what() << std::endl;
-	}
-	catch(Bureaucrat::GradeTooLowException &e) {
-		std::cerr << e.what() << std::endl;
-	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << std::endl;
-	}
-
-	std::cout << "\nBob, 1\n";
-	try {
-		Bureaucrat b("Bob", 1);
-		b.decrGrade();
 		b.incrGrade();
 		b.incrGrade();
-	}
-	catch (Bureaucrat::GradeTooHighException &e) {
-		std::cerr << e.what() << std::endl;
-	}
-	catch(Bureaucrat::GradeTooLowException &e) {
-		std::cerr << e.what() << std::endl;
+		std::cout << b << std::endl;
+
+		std::cout << "The form before being signed : " << f << std::endl;
+		b.signForm(&f);
+		std::cout << "The form after  being signed : " << f << std::endl;
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << "\nCarol, -11\n";
+	std::cout << "\nBob and Carol sign a form\n";
 	try {
-		Bureaucrat b("Carol", -3);
-	}
-	catch (Bureaucrat::GradeTooHighException &e) {
-		std::cerr << e.what() << std::endl;
-	}
-	catch(Bureaucrat::GradeTooLowException &e) {
-		std::cerr << e.what() << std::endl;
-	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << std::endl;
-	}
+		Bureaucrat b1("Bob", 150);
+		Bureaucrat b2("Carol", 1);
+		Form f("42 School Form", 1, 5);
 
-	std::cout << "\nDavid, 151\n";
-	try {
-		Bureaucrat b("David", 151);
+		std::cout << b1 << std::endl;
+		std::cout << b2 << std::endl;
+		std::cout << "The form before being signed :                    " << f << std::endl;
+		try {
+			f.beSigned(b1);
+		}
+		catch (std::exception &e) {
+			std::cerr << e.what() << std::endl;
+		}
+		std::cout << "The form after  being signed by " << b1 << ": " << f << std::endl;
+		try {
+			f.beSigned(b2);
+		}
+		catch (std::exception &e) {
+			std::cerr << e.what() << std::endl;
+		}
+		std::cout << "The form after  being signed by " << b2 << ": " << f << std::endl;
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;

@@ -2,9 +2,9 @@
 
 /////////////////////////////////////////////////// OCCF
 Form::Form(std::string name0, int gradeToSign0, int gradeToExecute0) {
-  if (gradeToSign0 < 1 || gradeToExecute < 1)
+  if (gradeToSign0 < 1 || gradeToExecute0 < 1)
     throw Form::GradeTooHighException();
-  if (gradeToSign0 > 150 || gradeToExecute > 150)
+  if (gradeToSign0 > 150 || gradeToExecute0 > 150)
     throw Form::GradeTooLowException();
   this->name           = name0;
   this->isSigned       = false;
@@ -28,7 +28,7 @@ Form& Form::operator = (Form const &obj) {
 
 std::ostream & operator <<(std::ostream &out, const Form &obj)
 {
-  out << obj.getName() << ", gradeToSign = " << obj.getGradeToSign() << ", gradeToExecute = " << obj.getGradeToExecute();
+  out << obj.getName() << ", gradeToSign = " << obj.getGradeToSign() << ", gradeToExecute = " << obj.getGradeToExecute() << ", isSigned = " << obj.getIsSigned();
   return (out);
 }
 
@@ -51,7 +51,7 @@ int Form::getGradeToExecute() const {
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 void Form::beSigned (Bureaucrat &b) {
-  if (b.getGrade() < this->getGradeToSign())
+  if (b.getGrade() > this->getGradeToSign())
     throw Form::GradeTooLowException();
   this->isSigned = true;
 }
