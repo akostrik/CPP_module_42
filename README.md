@@ -194,6 +194,11 @@ Allows functions and classes to operate with generic types. This allows a functi
 Определяет функционал без реализации (реализацию определяют производные классы)  
 NB: C++ has no keyword `abstract`  
 
+# Inheritance
+Конструкторы не наследуются.  
+Внутри потомка можно создать одноимённую функцию с функцией родителя => отказ от этой части наследства, функция становится самостоятельной функцией своего класса.  
+Наследованные деструкторы вызываются наоборот по сравнению с вызыванием конструктора.  
+
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object used.  
 `HumanA` can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here `HumanA` has `Weapon& weaponREF` attribut).  
@@ -216,11 +221,6 @@ A reference can't point to nothing
 ## Pointer
 If something should not always exist and can change, use a pointer  
 A pointer can be pointing to a non-existing address  
-
-## Inheritance
-Конструкторы не наследуются.  
-Внутри потомка можно создать одноимённую функцию с функцией родителя => отказ от этой части наследства, функция становится самостоятельной функцией своего класса.  
-Наследованные деструкторы вызываются наоборот по сравнению с вызыванием конструктора.  
 
 # C vs C++ file manipulation functions (01 / ex04)
 
