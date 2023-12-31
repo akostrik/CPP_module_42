@@ -99,8 +99,8 @@ const char *func() {
 * is accessed through object pointers
 * a constructor and a destructor can not be virtual
 * a non-final class with virtual functions should have virtual destructor
-* реализуют polymorphisme: в иерархии классов есть функции, имеющие одинаковое имя и параметры и отмеченные `virtual` -> объект и вызов функции из набора виртуальных будут сформированы при выполнении (**позднее связывание**) (один интерфейс, несколько реализаций)
 * a destructor must have a definition (?)
+* реализуют **polymorphisme** (один интерфейс, несколько реализаций): если в иерархии классов есть функции, имеющие одинаковое имя и параметры и отмеченные `virtual`, то объект и вызов функции из набора виртуальных будут сформированы при выполнении (**позднее связывание**) 
 * 1-st scenario: pure virtual function (**abstract function**) defines a functionality without realisation in an abstract non-instancable class (**interface**), the realisation is defined in the inherited classes,    
 ```
 class Interface {
