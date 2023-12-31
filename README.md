@@ -91,37 +91,29 @@ const char *func() {
 ```
 ## mutable funciton != const
 
-## virtual function
-* a member function declared within a parent class and re-defined by a child class
-* must be members of some class
+## virtual (member) function
+* a member function of a Parent, redefined by a Child 
+* must be defined in Parent, even though it is not used
 * cannot be static
-* must be defined in the base class, even though it is not used
-* when you refer to a child class object by a pointer / reference to the parent class, you call a virtual function and execute its child class’s version 
+* when you refer to a Child object by a pointer to the Parent, you call a virtual function and execute its Child’s version 
 * is accessed through object pointers
 * a constructor and a destructor can not be virtual
 * a non-final class with virtual functions should have virtual destructor
-* **Раннее связывание** известно, какие объекты используются при вызове функции
-* может быть в полиморфном состоянии: конкретный объект и вызов нужной функции из набора виртуальных будут сформированы при выполнении программы (**позднее связывание**), для этого требуется:
-    - классы образовывают иерархию с помощью механизма наследования
-    - в иерархии классов определены функции, имеющие одинаковое имя и список параметров и они отмечены `virtual`
+
+### polymorphysme
+* виртуальные функции реализуют polymorphisme 
+* **polymorphisme** вызов виртуальных функций, реализуемых в иерархически связанных классах: «один интерфейс, несколько реализаций» или «один интерфейс, несколько методов»
 * вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
-* polymorphisme реализуется виртуальными функциями 
+* virtual function может быть в полиморфном состоянии: объект и вызов функции из набора виртуальных будут сформированы при выполнении программы (**позднее связывание**), для этого требуется в иерархии классов функции, имеющие одинаковое имя и параметры и отмеченные `virtual`
 * **polymorphic class** определяет или наследует виртуальную функцию
-* polymorphisme технология вызова виртуальных функций, реализуемых в иерархически связанных классах
-* polymorphisme: «один интерфейс, несколько реализаций» или «один интерфейс, несколько методов»
 * полиморфными могут быть функции-члены класса (но не класс)
 
 ### vtable = virtual function table
-* is the implementation of polymorphism
-* every polymorphic class has a vtable
-* stores pointers to (virtual) functions 
-* when a virtual function is called, the program goes to the vtable entry associated with the function and invokes the function  
-* by looking at the pointer, the program can tell what the "real" type of an object is  
-* ≈ (hidden) static data member of the class  
-* every object of a polymorphic class is associated with the vtable for its most-derived class  
-* each polymorphic object has a (hidden) pointer to the vtable for the object's most-derived class (possibly multiple pointers)
-* for example, if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A.
-
+* ≈ hidden static data member of the class  
+* every object of a polymorphic class is associated with (possibly multiple) vtable for its most-derived class  
+* stores pointers to virtual functions 
+* when a virtual function is called, the program calls the functions associated ... by vtable   
+* if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A
 
 ## abstract function = pure virtual
 **Abstract method** = **virtual function** = declared with `=0`  
@@ -159,10 +151,10 @@ const char *func() {
 * super class = base class = parent class
 * a constructor is not inherited
 * a destructor is not inherited
-* all virtual methods that are not pure should be defined
 * a destructor must be defined even if it is declared pure-virtual
-* они вызываются, когда дочерний класс инициализирует свой объект. Конструкторы вызываются один за другим иерархически, начиная с базового класса и заканчивая последним производным классом, destructors are called in the inverse order
-* operator = is inherited, but hidden by the implicitely declared, явно или неявно определенный оператор закрывает одноименный из базового класса
+* a virtual method that is not pure should be defined
+* когда дочерний класс инициализирует свой объект, конструкторы вызываются один за другим иерархически, начиная с базового класса и заканчивая последним производным классом, destructors are called in the inverse order
+* operator = is inherited, but hidden by the implicitely declared one (явно или неявно определенный оператор закрывает одноименный из базового класса)
 * how to use the opetaor = of the parent class in the child class:
 ```
 class Parent {
