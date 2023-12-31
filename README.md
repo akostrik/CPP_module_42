@@ -47,8 +47,7 @@
 * a child class calls the constructer of the base class, than its own comstructor
 * C++ has no keyword `abstract`
 
-## interface
-* is pure abstract class 
+## interface = pure abstract class 
 * consists of only virtual member functions (only declarations)
 
 ## template class
@@ -102,10 +101,18 @@ const char *func() {
 * must be defined in the base class, even though it is not used
 * when you refer to a child class object by a pointer / reference to the parent class, you call a virtual function and execute its child class’s version 
 * is accessed through object pointers
-* Вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
 * a constructor and a destructor can not be virtual
 * a non-final class with virtual functions should have virtual destructor
+* **Раннее связывание** известно, какие объекты используются при вызове функции
+* может быть в полиморфном состоянии: конкретный объект и вызов нужной функции из набора виртуальных будут сформированы при выполнении программы (**позднее связывание**), для этого требуется:
+    - классы образовывают иерархию с помощью механизма наследования
+    - в иерархии классов определены функции, имеющие одинаковое имя и список параметров и они отмечены `virtual`
+* вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
+* polymorphisme реализуется виртуальными функциями 
 * **polymorphic class** определяет или наследует виртуальную функцию
+* polymorphisme технология вызова виртуальных функций, реализуемых в иерархически связанных классах
+* polymorphisme: «один интерфейс, несколько реализаций» или «один интерфейс, несколько методов»
+* полиморфными могут быть функции-члены класса (но не класс)
 
 ### vtable = virtual function table
 * is the implementation of polymorphism
