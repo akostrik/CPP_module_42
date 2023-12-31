@@ -34,7 +34,7 @@ class A final
 * can be called using the class name or through an object
 
 ## const / mutable data 
-### const
+### const data
 * we can't modify it directly (a compile-time error)  
 * we can't modify it through a pointer/reference to non-const type (undefined behavior)  
 * we can't modify it by a (const nor a non-const) member function, even if it is passed by reference  
@@ -50,15 +50,13 @@ class A final
 `int const * const C` a constant pointer to a constant int
 * a constant object can call directly only a contant methode of a class
 
-### mutable
+### mutable data
 * we can modify a mutable class member through member functions even if the containing object is const  
 
 ## virtual data
 
-## template class
-
 ## abstract class
-* contains or inherits without redefinition at least one pure virtual function  
+* contains (or inherits without redefinition) at least one pure virtual function (the virtual function should be defined in the child class) 
 * cannot be directly instantiated  
 * may specifies abstract methods via signatures that are to be implemented by its descendants
 * all the abstract methods of the parent must be implemented in the child
@@ -67,15 +65,18 @@ class A final
 * a child class calls the constructer of the base class, than its own comstructor
 * C++ has no keyword `abstract`
 
-## Pure abstract class = interface
-* consists of only virtual member functions 
+## interface
+* is pure abstract class 
+* consists of only virtual member functions (only declarations)
+
+## template class
 
 # Function specifiers
 
 ## private / public / protected function
 * see data modifiers
 
-## static function 
+## static (not member) function 
 * can't be called from other places
 
 ## static member function of a classe
@@ -139,16 +140,26 @@ const char *func() {
 * allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
 # Inheritance
+* subclass = derived class = child class
+* super class = base class = parent class
 * a constructor can not be inherited
-* a child can have a function with the same name that its parent, this function becomes an independant funciton of the classe 
-* inherited destructors are called in the inverse order 
+* a destructor can not be inherited
+* они вызываются, когда дочерний класс инициализирует свой объект. Конструкторы вызываются один за другим иерархически, начиная с базового класса и заканчивая последним производным классом, destructors are called in the inverse order
+* a child can have a function with the same name, this function becomes an independant funciton of the child
+* three types of inheritance:
+     + public: public data are inherited as public, protected data are inherited as protected 
+     + protected: all inherited data become protected
+     + private: all inherited data become private
+* **virtual inheritance** предотвращает появление множественных объектов базового класса в иерархии наследования 
 
-# Reference vs pointer (01 / ex03)
+## Some C++ particularities
+
+## Reference vs pointer (01 / ex03)
 `HumanA` can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here `HumanA` has `Weapon& weaponREF` attribut).  
 `HumanB` must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here `HumanB` has `Weapon* weaponPTR` attribut).  
 In the both cases we can change the type of the weapon.   
 
-## Reference
+### Reference
 * is a dereferenced pointer  
 * is an aliase for an existing variable !=  new variable  
 * is a constant pointer, always points to the same variable, we can't change it (?)  
@@ -161,20 +172,20 @@ In the both cases we can change the type of the weapon.
 //             &sREF       переменная типа ссылка на string
 //                     s   переменная, на которую объявляется ссылка
 ```
-## Pointer
+### Pointer
 * can point to a non-existing address  
 * if something should not always exist and can change, use a pointer  
 
-# C vs C++ file manipulation (01 / ex04)
+## File manipulation (01 / ex04)
 
-## C (forbidden by the subject)
+### C (forbidden by the subject)
 * FILE *fp  
 * fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc  
 * modes : r, w, a  
 * `int my_int = 32; printf("%s", my_int)` fails  
 * hard-coded maximum buffer sizes  
 
-## C++ 
+### C++ 
 * fstream f  
 * f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof  
 * modes : ios::in, ios::out, ios::bin , ...  
@@ -184,24 +195,24 @@ In the both cases we can change the type of the weapon.
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-# Convert (01 / ex04)
-## std::string to char* 
+## Convertion (01 / ex04)
+### std::string to char* 
 ```
 std::string str;
 const char * c = str.c_str();
 char       * c = str.data();
 ```
-## char* to string
+### char* to string
 - Using the “=” operator
 - Using the string constructor
 - Using the assign function
 
-# Floating-point numbers vs Fixed-point numbers (02)
+## Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
 * **Precision** how much information you have about a quantity, how uniquely you have it pinned down
 * fixed point arithmetic is much faster than floating point one
 
-## Floating-point
+### Floating-point
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
 
 - s sign bit
@@ -229,7 +240,7 @@ Largest $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) = 34028234663852885981170
 -inf                             |                              |     | 1 11111111 00000000000000000000000
 +NaN                             |                              | ~0~ | 0 11111111 10000000000000000000000
 
-## Fixed-point
+### Fixed-point
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
 Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents.  
 $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
