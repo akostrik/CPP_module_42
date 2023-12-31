@@ -108,24 +108,23 @@ const char *func() {
 ```
 Можно иметь константную и неконстантную версии одной и той же функции.  
 
-## virtual function = a member function declared within a parent class and re-defined by a child class
-* Must be members of some class
-* Cannot be a static member
-* Must be defined in the base class, even though it is not used
-* Производный класс может переопределить ее поведение
-* When you refer to a child class object by a pointer / reference to the parent class, you call a virtual function and execute its child class’s version 
-* Is accessed through object pointers
+## virtual function
+* a member function declared within a parent class and re-defined by a child class
+* must be members of some class
+* cannot be static
+* must be defined in the base class, even though it is not used
+* when you refer to a child class object by a pointer / reference to the parent class, you call a virtual function and execute its child class’s version 
+* is accessed through object pointers
 * Вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
 * a constructor and a destructor can not be virtual
 * Non-final class with virtual functions should have virtual destructor
-
-Polymorphic class := определяет или наследует виртуальную функцию
+* **polymorphic class** определяет или наследует виртуальную функцию
 
 ## pure virtual funcitons
-* unlike other pure virtual functions, a destructor must have a definition
+* a destructor must have a definition (?)
 
 ## override function
-* explicit indication that the function is redefined (and not hidden) 
+* explicit indication that the function is redefined
 * `override` keyword is a C++11 extension
 
 ## final function
