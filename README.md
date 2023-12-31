@@ -1,11 +1,10 @@
 # Data specifiers
 
-## private / public / protected data
-### public
+## public data != private, != protected
 * members are accessible from outside the class  
-### private
+## private data != public, != protected
 * members cannot be accessed or viewed from outside the class  
-### protected
+## protected datta != public, != private
 * members cannot be accessed from outside the class, however, they can be accessed in inherited classes
 
 ## final class
@@ -15,8 +14,7 @@
 * is not associated with a particular object, belongs to the class rather than objects of the class  
 * can be called using the class name or through an object
 
-## const / mutable data 
-### const data
+## const data != mutable
 * we can't modify it directly (a compile-time error)  
 * we can't modify it through a pointer/reference to non-const type (undefined behavior)  
 * we can't modify it by a (const nor a non-const) member function, even if it is passed by reference  
@@ -32,7 +30,7 @@
 `int const * const C` a constant pointer to a constant int
 * a constant object can call directly only a contant methode of a class
 
-### mutable data
+## mutable data != const
 * we can modify a mutable class member through member functions even if the containing object is const  
 
 ## virtual data
@@ -55,12 +53,12 @@
 # Function specifiers
 
 ## private / public / protected function
-* see data modifiers
+* see private / public / protected data modifiers
 
 ## static (not member) function 
 * can't be called from other places
 
-## static member function of a classe
+## static member function
 * does not have a receiver object
 * is basically a normal function that's nested inside of the scope of the class
 * is not associated with a particular object, belongs to the class rather than objects of the class  
@@ -81,18 +79,17 @@ int main() {
   MyClass::myfunc();
 }
 ```
-## const / mutable funciton
-Можно иметь константную и неконстантную версии одной и той же функции.  
-### const funciton
-Не изменяет объект и не вызывает неконстантные методы класса (поскольку они могут изменить объект)  
-Компилятор знает, что возвращенное функцией значение поменять нельзя  
+## const funciton != mutable
+* не изменяет объект и не вызывает неконстантные методы класса (поскольку они могут изменить объект)  
+* компилятор знает, что возвращенное функцией значение поменять нельзя  
+* можно иметь константную и неконстантную версии одной и той же функции  
 
 ```
 const char *func() {
   return "текст";
 }
 ```
-### mutable funciton
+## mutable funciton != const
 
 ## virtual function
 * a member function declared within a parent class and re-defined by a child class
@@ -125,6 +122,7 @@ const char *func() {
 * each polymorphic object has a (hidden) pointer to the vtable for the object's most-derived class (possibly multiple pointers)
 * for example, if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A.
 
+
 ## abstract function = pure virtual
 **Abstract method** = **virtual function** = declared with `=0`  
 * defines a functionality without any realisation (the realisation is defined in the inherited classes)  
@@ -142,14 +140,18 @@ const char *func() {
 * allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
 # Inheritance specifiers
-## public
+
+## public inheritance
 * public data are inherited as public
 * protected data are inherited as protected 
-## protected
+
+## protected inheritance
 * all inherited data become protected
-## private
+
+## private inheritance
 * all inherited data become private
-## virtual
+
+## virtual inheritance
 * предотвращает появление множественных объектов базового класса в иерархии наследования 
 
 # Inheritance
