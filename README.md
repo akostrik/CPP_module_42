@@ -107,30 +107,15 @@ const char *func() {
 * полиморфными могут быть функции-члены класса (но не класс)
 * 1-st scenario:  **Interface** (abstract non-instancable class) defines a functionality of a pure virtual (**abstract**) function without realisation, Child defines the realisation    
 ```
-class Interface {
-    virtual void f() **= 0**;
-};
-class Concrete: public Interface {
-    void f() {}
-};
+class Interface { virtual void f() = 0; }   class Child: public Interface { void f() {} }
 ```
 * 2-nd scenario: Child override a virtual function  
 ```
-class Parent {
-    virtual void f();
-}
-class Child: public Parent {
-    void f() {}
-}
+class Parent    { virtual void f();     }   class Child: public Parent    { void f() {} }
 ```
 * 3-d scenario: Child (**hide**) not-`virtual` function   
 ```
-class Parent {
-    void f();
-}
-class Child: public Parent {
-    void f() {}
-}
+class Parent    {         void f();     }   class Child: public Parent    { void f() {} }
 ```
 
 
