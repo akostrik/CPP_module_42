@@ -229,11 +229,11 @@ char       * c = str.data();
 - Using the string constructor
 - Using the assign function
 
-## Floating-point numbers vs Fixed-point numbers (02)
+# Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
 * **Precision** how much information you have about a quantity, how uniquely you have it pinned down
 
-### Floating-point
+## Floating-point
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
 
 - s sign bit
@@ -261,7 +261,7 @@ Largest $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) = 34028234663852885981170
 -inf                             |                              |     | 1 11111111 00000000000000000000000
 +NaN                             |                              | ~0~ | 0 11111111 10000000000000000000000
 
-### Fixed-point
+## Fixed-point
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
 Fixed point arithmetic is much faster.  
 Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents.  
