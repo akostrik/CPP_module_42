@@ -19,55 +19,33 @@ class A final
 # Data specifiers
 
 ## private / public / protected data
-
-public    - members are accessible from outside the class
-
-private   - members cannot be accessed or viewed from outside the class
-
+public    - members are accessible from outside the class  
+private   - members cannot be accessed or viewed from outside the class  
 protected - members cannot be accessed from outside the class, however, they can be accessed in inherited classes
 
 ## final class
-
 запрет наследования
 
 ## static data
-
-Is not associated with a particular object, belongs to the class rather than objects of the class
-
+Is not associated with a particular object, belongs to the class rather than objects of the class  
 Can be called using the class name (if it is public) or through an object (not recommended)
 
 ## const / mutable data 
-
-Non-mutable
-
-Can't modify it directly -> a compile-time error
-
-Can't modify it through a pointer/reference to non-const type -> undefined behavior
-
-Can't modify it by a (const nor a non-const) member function, even if it is passed by reference
-
-Can modity if by constructor/destructor 
-
-Can modity if by casting the const away (not advised)
-
-Can modify a class member declared `mutable` through member functions even if the containing object is const
-
-Can't call a non-const method a const object
-
-Can't call a non-const method through a pointer/reference to a const object if the referred-to object is const 
-
-Can't call a non-const method through a pointer/reference to a const object if the referred-to object is not const 
-
-`const int C=3` для параметров, которые не надо изменять после компиляции
-
-`const int *C` указатель на постоянное int, указатель изменять можно, значение нельзя
-
-`int const *C` the same
-
-`int * const C` постоянный указатель на int, значение указателя нельзя менять, а значение переменной можно 
-
-`int const * const C` постоянный указатель на постоянный int 
-
+Non-mutable  
+Can't modify it directly -> a compile-time error  
+Can't modify it through a pointer/reference to non-const type -> undefined behavior  
+Can't modify it by a (const nor a non-const) member function, even if it is passed by reference  
+Can modity if by constructor/destructor   
+Can modity if by casting the const away (not advised)  
+Can modify a class member declared `mutable` through member functions even if the containing object is const  
+Can't call a non-const method a const object   
+Can't call a non-const method through a pointer/reference to a const object if the referred-to object is const   
+Can't call a non-const method through a pointer/reference to a const object if the referred-to object is not const  
+`const int C=3` для параметров, которые не надо изменять после компиляции  
+`const int *C` указатель на постоянное int, указатель изменять можно, значение нельзя  
+`int const *C` the same  
+`int * const C` постоянный указатель на int, значение указателя нельзя менять, а значение переменной можно  
+`int const * const C` постоянный указатель на постоянный int  
 константные объекты класса могут явно вызывать только константные методы класса
 
 ## virtual data
@@ -75,52 +53,37 @@ Can't call a non-const method through a pointer/reference to a const object if t
 ## template class
 
 ## abstract class
-
-Абстрактные классы = содержат или наследуют без переопределения хотя бы одну чистую виртуальную функцию
-
-Cannot be directly instantiated
-
+Абстрактные классы = содержат или наследуют без переопределения хотя бы одну чистую виртуальную функцию  
+Cannot be directly instantiated  
 - may be labeled as abstract 
-
 - may specifies abstract methods via signatures that are to be implemented by its descendants (before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented)
-
 - may provide implementations of some methods
 
-_Abstract method_ = virtual function = объявлена с помощью синтаксиса чистого описателя (= 0))
-
+_Abstract method_ = virtual function = объявлена с помощью синтаксиса чистого описателя (= 0))  
 Нельзя использовать для:
 - переменных и данных членов
 - типов аргументов
 - типов возвращаемых функциями значений
 - типов явных преобразований
 
-NB: Another way to prevent a class from being instantiated: make all constructors protected
-
+NB: Another way to prevent a class from being instantiated: make all constructors protected  
 NB: C++ has no keyword `abstract`
 
 ## Pure abstract class = interface
-
 Consists of only virtual methods 
 
 # Function specifiers
 
 ## private / public / protected function
-
-see data
+see data modifiers
 
 ## static function
-
-Is not associated with a particular object, belongs to the class rather than objects of the class
-
-Can be called using the class name (if it is public) or through an object (not recommended)
-
-No `*this` pointer
-
-Can directly access other static members (variables or functions), but not non-static members (non-static members belong to an object)
-
-In the context of function declarations, static = "this function is scoped only to this file and can't be called from other places"
-
-In the context of member functions, static = "this member function does not have a receiver object. It's basically a normal function that's nested inside of the scope of the class"
+Is not associated with a particular object, belongs to the class rather than objects of the class  
+Can be called using the class name (if it is public) or through an object (not recommended)  
+No `*this` pointer  
+Can directly access other static members (variables or functions), but not non-static members (non-static members belong to an object)  
+In the context of function declarations, static = "this function is scoped only to this file and can't be called from other places"  
+In the context of member functions, static = "this member function does not have a receiver object. It's basically a normal function that's nested inside of the scope of the class"  
 
 Example:
 ```
@@ -136,17 +99,15 @@ int main() {
 }
 ```
 ## const / mutable funciton
+Не изменяет объект и не вызывает неконстантные методы класса (поскольку они могут изменить объект)  
+Компилятор знает, что возвращенное функцией значение поменять нельзя  
 
-Не изменяет объект и не вызывает неконстантные методы класса (поскольку они могут изменить объект)
-
-Компилятор знает, что возвращенное функцией значение поменять нельзя
 ```
 const char *func() {
   return "текст";
 }
 ```
-
-Можно иметь константную и неконстантную версии одной и той же функции.
+Можно иметь константную и неконстантную версии одной и той же функции.  
 
 ## virtual function = a member function declared within a parent class and re-defined by a child class
 * Must be members of some class
@@ -213,7 +174,7 @@ A pointer can be pointing to a non-existing address
 
 # C vs C++ file manipulation (01 / ex04)
 
-## C (forbidden by subject)
+## C (forbidden by the subject)
 FILE *fp  
 fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc  
 Modes : r, w, a  
