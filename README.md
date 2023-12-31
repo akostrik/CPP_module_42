@@ -123,6 +123,17 @@ const char *func() {
 ## template function
 * allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
+# Inheritance specifiers
+## public
+* public data are inherited as public
+* protected data are inherited as protected 
+## protected
+* all inherited data become protected
+## private
+* all inherited data become private
+## virtual
+* предотвращает появление множественных объектов базового класса в иерархии наследования 
+
 # Inheritance
 * subclass = derived class = child class
 * super class = base class = parent class
@@ -151,17 +162,6 @@ public:
 }
 ```
 * a child can have a function with the same name, this function becomes an independant funciton of the child
-
-# Inheritance specifiers
-## public
-* public data are inherited as public
-* protected data are inherited as protected 
-## protected
-* all inherited data become protected
-## private
-* all inherited data become private
-## virtual
-* предотвращает появление множественных объектов базового класса в иерархии наследования 
 
 # Some C++ particularities
 
