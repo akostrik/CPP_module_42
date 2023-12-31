@@ -64,8 +64,6 @@ class A final
 * may specifies abstract methods via signatures that are to be implemented by its descendants (before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented)
 * may provide implementations of some methods
 
-**Abstract method** = **virtual function** = declared with `=0`  
-
 NB: Another way to prevent a class from being instantiated: make all constructors protected  
 NB: C++ has no keyword `abstract`
 
@@ -137,15 +135,15 @@ Unlike other pure virtual functions, a destructor must always have a definition
 
 ## final function
 
-Запретить определение virtual функции в производных классах 
+* proihibite `virtual` functions in the inherited classes 
 
 ## template function
 Allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
 ## abstract function = pure virtual
-Не имеет определения  
-Определяет функционал без реализации (реализацию определяют производные классы)  
-NB: C++ has no keyword `abstract`  
+**Abstract method** = **virtual function** = declared with `=0`  
+* defines a functionality without any realisation (the realisation is defined in the inherited classes)  
+* NB: C++ has no keyword `abstract`  
 
 # Inheritance
 Конструкторы не наследуются.  
