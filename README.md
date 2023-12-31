@@ -212,7 +212,6 @@ char       * c = str.data();
 ## Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
 * **Precision** how much information you have about a quantity, how uniquely you have it pinned down
-* fixed point arithmetic is much faster than floating point one
 
 ### Floating-point
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
@@ -244,8 +243,9 @@ Largest $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) = 34028234663852885981170
 
 ### Fixed-point
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
+Fixed point arithmetic is much faster.  
 Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents.  
-$1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
+Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
 
 # School Requirements
 * a header should include all the dependencies it needs
