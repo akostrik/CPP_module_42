@@ -145,18 +145,17 @@ Polymorphic class := определяет или наследует виртуа
 * inherited destructors are called in the inverse order 
 
 # Reference vs pointer (01 / ex03)
-Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object used.  
 `HumanA` can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here `HumanA` has `Weapon& weaponREF` attribut).  
 `HumanB` must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here `HumanB` has `Weapon* weaponPTR` attribut).  
 In the both cases we can change the type of the weapon.   
 
 ## Reference
-If something should always exist and never change, use a references  
-A reference = a dereferenced pointer  
-A reference = an aliase for an existing variable !=  new variable  
-A reference = a constant pointer, always points to the same variable, we can't change it (?)  
-A reference doesn't occupy memory  
-A reference can't point to nothing  
+* is a dereferenced pointer  
+* is an aliase for an existing variable !=  new variable  
+* is a constant pointer, always points to the same variable, we can't change it (?)  
+* doesn't occupy memory  
+* can't point to nothing  
+* if something should always exist and never change, use a references  
 ```
    std::string &sREF = s;
 // std::string             тип, на который объявляется ссылка
@@ -164,8 +163,8 @@ A reference can't point to nothing
 //                     s   переменная, на которую объявляется ссылка
 ```
 ## Pointer
-If something should not always exist and can change, use a pointer  
-A pointer can be pointing to a non-existing address  
+* can point to a non-existing address  
+* if something should not always exist and can change, use a pointer  
 
 # C vs C++ file manipulation (01 / ex04)
 
@@ -199,9 +198,9 @@ char       * c = str.data();
 - Using the assign function
 
 # Floating-point numbers vs Fixed-point numbers (02)
-Accuracy = to how close a measurement is to the true value.  
-Precision = how much information you have about a quantity, how uniquely you have it pinned down.  
-Fixed point arithmetic is much faster than floating point arithmetic.  
+* **Accuracy** to how close a measurement is to the true value  
+* **Precision** how much information you have about a quantity, how uniquely you have it pinned down
+* fixed point arithmetic is much faster than floating point one
 
 ## Floating-point
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
@@ -237,22 +236,24 @@ Example : Dollar amounts are often stored with exactly two fractional digits, re
 $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
 
 # School Requirements
-You should be able to use each of your headers independently from others. Thus, they must include all the dependencies they need. However, you must avoid the problem of double inclusion by adding include guards.  
-Nothing should be public for no reason.  
-For every exercise, you have to provide the most complete tests you can.  
+* to use each of your headers independently from others, thus they must include all the dependencies they need
+* to avoid the problem of double inclusion by adding include guards.  
+* nothing should be public for no reason.  
+
 07/ex01: тестируют const (!).
 
-## Forbidden:
-- C++11 (and derived forms) and Boost libraries
-- *printf(), *alloc() and free()
-- the using namespace <ns_name> and friend keywords
-- The implementation of the function should be done using functions from std::string, no by reading the string character by character
+## Are forbidden:
+- external libraries or features from versions other than C++98
+- boost libraries
+- *printf(), *alloc(), free()
+- namespace
+- `friend` keywords
+- reading the string character by character (we should use functions std::string) 
 - C file manipulation functions
-- External libraries or features from versions other than C++98
-- Containers (vector/list/map/and so forth)
-- Algorithms (anything that requires to include the <algorithm> header)
-- Any function implementation put in a header file (except for function templates)
-- Memory leaks
+- containers (vector/list/map/and so forth)
+- algorithms (anything that requires to include the <algorithm> header)
+- a function implementation put in a header file (except for function templates)
+- memory leaks
   
 # Sources
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
