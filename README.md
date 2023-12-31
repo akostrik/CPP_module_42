@@ -120,8 +120,11 @@ const char *func() {
 * Non-final class with virtual functions should have virtual destructor
 * **polymorphic class** определяет или наследует виртуальную функцию
 
-## pure virtual funcitons
+## abstract function = pure virtual
+**Abstract method** = **virtual function** = declared with `=0`  
+* defines a functionality without any realisation (the realisation is defined in the inherited classes)  
 * a destructor must have a definition (?)
+* NB: C++ has no keyword `abstract`  
 
 ## override function
 * explicit indication that the function is redefined
@@ -132,11 +135,6 @@ const char *func() {
 
 ## template function
 * allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
-
-## abstract function = pure virtual
-**Abstract method** = **virtual function** = declared with `=0`  
-* defines a functionality without any realisation (the realisation is defined in the inherited classes)  
-* NB: C++ has no keyword `abstract`  
 
 # Inheritance
 * a constructor can not be inherited
