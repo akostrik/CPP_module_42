@@ -36,13 +36,11 @@
 ## virtual data
 
 ## abstract class
-* contains (or inherits without redefinition) at least one pure virtual function (the virtual function should be defined in the child class) 
-* cannot be directly instantiated  
-* may specifies abstract methods via signatures that are to be implemented by its descendants
+* contains (or inherits without redefinition) at least one pure virtual (abstract) function
 * all the abstract methods of the parent must be implemented in the child
 * may provide implementations of some methods
-* another way to prevent a class from being instantiated: make all constructors protected
-* a child class calls the constructer of the base class, than its own comstructor
+* cannot be instantiated  
+* another way to prevent a class from being instantiated: make all the constructors `protected`
 * C++ has no keyword `abstract`
 
 ## interface = pure abstract class 
