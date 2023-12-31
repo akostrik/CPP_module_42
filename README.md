@@ -19,34 +19,39 @@ class A final
 # Data specifiers
 
 ## private / public / protected data
-public    - members are accessible from outside the class  
-private   - members cannot be accessed or viewed from outside the class  
-protected - members cannot be accessed from outside the class, however, they can be accessed in inherited classes
+### public
+* members are accessible from outside the class  
+### private
+* members cannot be accessed or viewed from outside the class  
+### protected
+* members cannot be accessed from outside the class, however, they can be accessed in inherited classes
 
 ## final class
-запрет наследования
+* запрет наследования
 
 ## static data
-Is not associated with a particular object, belongs to the class rather than objects of the class  
-Can be called using the class name (if it is public) or through an object (not recommended)
+* is not associated with a particular object, belongs to the class rather than objects of the class  
+* can be called using the class name or through an object
 
 ## const / mutable data 
-Non-mutable  
-Can't modify it directly -> a compile-time error  
-Can't modify it through a pointer/reference to non-const type -> undefined behavior  
-Can't modify it by a (const nor a non-const) member function, even if it is passed by reference  
-Can modity if by constructor/destructor   
-Can modity if by casting the const away (not advised)  
-Can modify a class member declared `mutable` through member functions even if the containing object is const  
-Can't call a non-const method a const object   
-Can't call a non-const method through a pointer/reference to a const object if the referred-to object is const   
-Can't call a non-const method through a pointer/reference to a const object if the referred-to object is not const  
-`const int C=3` для параметров, которые не надо изменять после компиляции  
-`const int *C` указатель на постоянное int, указатель изменять можно, значение нельзя  
+### const
+* we can't modify it directly (a compile-time error)  
+* we can't modify it through a pointer/reference to non-const type (undefined behavior)  
+* we can't modify it by a (const nor a non-const) member function, even if it is passed by reference  
+* we can modity if by constructor/destructor   
+* we can modity if by casting the const away (not advised)  
+* we can't call a non-const method a const object   
+* we can't call a non-const method through a pointer/reference to a const object if the referred-to object is const   
+* we can't call a non-const method through a pointer/reference to a const object if the referred-to object is not const  
+`const int C=3` parameters which will not be changed fter compiling  
+`const int *C` a pointer to a constant int, we can change the pointer, we can not change the value of the variable 
 `int const *C` the same  
-`int * const C` постоянный указатель на int, значение указателя нельзя менять, а значение переменной можно  
-`int const * const C` постоянный указатель на постоянный int  
-константные объекты класса могут явно вызывать только константные методы класса
+`int * const C` a constant pointer to int, we can not change the pinter, we cn change the value of the variable   
+`int const * const C` a constant pointer to a constant int
+* a constant object can call directly only a contant methode of a class
+
+### mutable
+* we can modify a mutable class member through member functions even if the containing object is const  
 
 ## virtual data
 
