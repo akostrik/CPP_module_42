@@ -1,21 +1,3 @@
-# Orthodox canonical class form in C++98 
-
-- Default constructor
-- Copy constructor
-- Destructor
-- Copy assignment operator
-
-```
-class A final
-{
-   public:
-      A ();
-      A (const A &a);
-      ~A ();
-      A & operator = (const A &a);
-};
-```
-
 # Data specifiers
 
 ## private / public / protected data
@@ -182,6 +164,23 @@ public:
 * предотвращает появление множественных объектов базового класса в иерархии наследования 
 
 # Some C++ particularities
+
+## Orthodox canonical class form in C++98 
+- Default constructor
+- Copy constructor
+- Destructor
+- Copy assignment operator
+
+```
+class A final
+{
+   public:
+      A ();
+      A (const A &a);
+      ~A ();
+      A & operator = (const A &a);
+};
+```
 
 ## Reference vs pointer (01 / ex03)
 `HumanA` can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here `HumanA` has `Weapon& weaponREF` attribut).  
