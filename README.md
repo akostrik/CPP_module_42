@@ -211,7 +211,7 @@ A reference can't point to nothing
 If something should not always exist and can change, use a pointer  
 A pointer can be pointing to a non-existing address  
 
-# C vs C++ file manipulation functions (01 / ex04)
+# C vs C++ file manipulation (01 / ex04)
 
 ## C (forbidden by subject)
 FILE *fp  
