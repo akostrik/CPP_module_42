@@ -60,10 +60,12 @@ class A final
 ## abstract class
 * contains or inherits without redefinition at least one pure virtual function  
 * cannot be directly instantiated  
-* may specifies abstract methods via signatures that are to be implemented by its descendants (before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented)
+* may specifies abstract methods via signatures that are to be implemented by its descendants
+* all the abstract methods of the parent must be implemented in the child
 * may provide implementations of some methods
+* another way to prevent a class from being instantiated: make all constructors protected
+* a child class calls the constructer of the base class, than its own comstructor
 * C++ has no keyword `abstract`
-* another way to prevent a class from being instantiated: make all constructors protected  
 
 ## Pure abstract class = interface
 * consists of only virtual member functions 
