@@ -152,7 +152,7 @@ const char *func() {
      + private: all inherited data become private
 * **virtual inheritance** предотвращает появление множественных объектов базового класса в иерархии наследования 
 
-## Some C++ particularities
+# Some C++ particularities
 
 ## Reference vs pointer (01 / ex03)
 `HumanA` can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here `HumanA` has `Weapon& weaponREF` attribut).  
