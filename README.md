@@ -108,7 +108,7 @@ const char *func() {
 * 1-st scenario:  **Interface** (abstract non-instancable class) defines a functionality of a pure virtual (**abstract**) function without realisation, Child defines the realisation    
 ```
 class Interface {
-    virtual void f() = 0;
+    virtual void f() **= 0**;
 };
 class Concrete: public Interface {
     void f() {}
