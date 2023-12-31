@@ -100,8 +100,7 @@ const char *func() {
 * a constructor and a destructor can not be virtual
 * a non-final class with virtual functions should have virtual destructor
 * реализуют polymorphisme: в иерархии классов есть функции, имеющие одинаковое имя и параметры и отмеченные `virtual` -> объект и вызов функции из набора виртуальных будут сформированы при выполнении (**позднее связывание**) (один интерфейс, несколько реализаций)
-* three scenario:
-    - pure virtual function, abstract class and non-instancable = interface   
+* 1-st scenario: pure virtual function, abstract class and non-instancable = interface   
 ```
 class Interface {
     virtual void f() = 0;
@@ -110,9 +109,7 @@ class Concrete: public Interface {
     void f() override {} // override f()
 };
 ```
-
-    - virtual function is declared as normal function, it is override by Child  
-
+* 2-nd scenario: virtual function is declared as normal function, it is override by Child  
 ```
 class Parent {
     virtual void g();
@@ -121,8 +118,7 @@ class Child: public Parent {
     void g() override{}
 }
 ```
-
-    - **Hidden**: a function with the same name of parent, not declared `virtual`  
+* 3-d scenario: a function with the same name of parent, not declared `virtual` (**hidden**)  
 
 ### polymorphysme
 * вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
