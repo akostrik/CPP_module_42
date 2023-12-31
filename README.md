@@ -233,11 +233,7 @@ Example : Dollar amounts are often stored with exactly two fractional digits, re
 $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
 
 # School Requirements
-* to use each of your headers independently from others, thus they must include all the dependencies they need
-* to avoid the problem of double inclusion by adding include guards.  
-* nothing should be public for no reason.  
-
-07/ex01: тестируют const (!).
+* a header should include all the dependencies it needs
 
 ## Are forbidden:
 - external libraries or features from versions other than C++98
@@ -251,6 +247,8 @@ $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010
 - algorithms (anything that requires to include the <algorithm> header)
 - a function implementation put in a header file (except for function templates)
 - memory leaks
+- double inclusion (avoid it by adding include guards)  
+- `public` without any reason
   
 # Sources
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
@@ -265,3 +263,6 @@ https://rphlr.github.io/42-Evals/
 http://www.cplusplus.com/reference/iomanip/  
 http://www.cplusplus.com/reference/string/string  
 https://github.com/achrafelkhnissi/CPP_Modules  
+
+## ***
+07/ex01: тестируют const (!)
