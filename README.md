@@ -147,8 +147,26 @@ const char *func() {
 * a constructor is not inherited
 * a destructor is not inherited
 * они вызываются, когда дочерний класс инициализирует свой объект. Конструкторы вызываются один за другим иерархически, начиная с базового класса и заканчивая последним производным классом, destructors are called in the inverse order
-* operator = is inherited, but hidden by the inmlicitelu declared
-* how to use the opetaor = of the parent class in the child class: Base::operator=(r);
+* operator = is inherited, but hidden by the implicitely declared, явно или неявно определенный оператор закрывает одноименный из базового класса
+* how to use the opetaor = of the parent class in the child class:
+```
+class Parent {
+public:
+  Parent& operator = (const Parent &obj) {
+    return *this;
+  }
+};
+
+class Child : public Parent {
+public:
+  Child& operator=(const Child &obj) {
+    Parent::operator=(obj);
+    // если тут копирование всех нестатических членов-данных, добавленных в Child, то оператор присваивания можно не определять компилятор сам его добавит неявно
+    return *this;
+  }
+}
+```
+
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 * three types of inheritance:
      + public: public data are inherited as public, protected data are inherited as protected 
