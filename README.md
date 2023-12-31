@@ -53,18 +53,13 @@ Can't call a non-const method through a pointer/reference to a const object if t
 ## template class
 
 ## abstract class
-Абстрактные классы = содержат или наследуют без переопределения хотя бы одну чистую виртуальную функцию  
-Cannot be directly instantiated  
-- may be labeled as abstract 
-- may specifies abstract methods via signatures that are to be implemented by its descendants (before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented)
-- may provide implementations of some methods
+* contains or inherits without redefinition at least one pure virtual function  
+* cannot be directly instantiated  
+* may be labeled as abstract 
+* may specifies abstract methods via signatures that are to be implemented by its descendants (before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented)
+* may provide implementations of some methods
 
-_Abstract method_ = virtual function = объявлена с помощью синтаксиса чистого описателя (= 0))  
-Нельзя использовать для:
-- переменных и данных членов
-- типов аргументов
-- типов возвращаемых функциями значений
-- типов явных преобразований
+**Abstract method** = **virtual function** = declared with `=0`  
 
 NB: Another way to prevent a class from being instantiated: make all constructors protected  
 NB: C++ has no keyword `abstract`
@@ -77,13 +72,16 @@ Consists of only virtual methods
 ## private / public / protected function
 see data modifiers
 
-## static function
-Is not associated with a particular object, belongs to the class rather than objects of the class  
-Can be called using the class name (if it is public) or through an object (not recommended)  
-No `*this` pointer  
-Can directly access other static members (variables or functions), but not non-static members (non-static members belong to an object)  
-In the context of function declarations, static = "this function is scoped only to this file and can't be called from other places"  
-In the context of member functions, static = "this member function does not have a receiver object. It's basically a normal function that's nested inside of the scope of the class"  
+## static function 
+* can't be called from other places
+
+## static member function of a classe
+* does not have a receiver object
+* is basically a normal function that's nested inside of the scope of the class
+* is not associated with a particular object, belongs to the class rather than objects of the class  
+* can be called using the class name or through an object  
+* can directly access only static variables and functions  
+* doesn't have `*this` pointer  
 
 Example:
 ```
