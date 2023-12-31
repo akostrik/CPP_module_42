@@ -90,7 +90,7 @@ const char *func() {
 ```
 ## mutable funciton != const
 
-## virtual (member) function
+## virtual (member) function and polymorphysme
 * a member function of a Parent, redefined by a Child 
 * must be defined in Parent, even though it is not used
 * cannot be static
