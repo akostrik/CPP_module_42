@@ -26,7 +26,7 @@ AForm& AForm::operator = (AForm const &obj) {
 };
 
 std::ostream & operator <<(std::ostream &out, const AForm &obj) {
-  out << obj.getName() << ", gradeToSign = " << obj.getGradeToSign() << ", gradeToExecute = " << obj.getGradeToExecute() << ", isSigned = " << obj.getIsSigned();
+  out << obj.getName() << ", " << obj.getGradeToSign() << ", " << obj.getGradeToExecute() << ", isSigned = " << obj.getIsSigned();
   return (out);
 }
 
@@ -58,6 +58,7 @@ void AForm::beSigned (Bureaucrat &b) {
     throw AForm::GradeTooLowException();
   }
   this->isSigned = true;
+  std::cout << b.getName() << " signed " << this->getName() << std::endl;
 }
 
 /////////////////////////////////////////////////// EXCEPTIONS

@@ -14,6 +14,7 @@ int main() {
 		b.signForm(&f);
 		std::cout << "The form after  being signed : " << f << std::endl;
 	}
+
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
