@@ -102,6 +102,7 @@ const char *func() {
 * реализуют polymorphisme: в иерархии классов есть функции, имеющие одинаковое имя и параметры и отмеченные `virtual` -> объект и вызов функции из набора виртуальных будут сформированы при выполнении (**позднее связывание**) (один интерфейс, несколько реализаций)
 * three scenario:
     - Interface/ abstract class. Pure virtual function, (abstract class and non-instancable (interface).
+
 ```
 class Interface {
     virtual void f() = 0;
@@ -110,6 +111,7 @@ class Concrete: public Interface {
     void f() override {} // override f()
 };
 ```
+
     - Polymorphism/ concrete class. Virtual function was declared as normal function except it can be override by derived class. You must implement it.
 
 ```
