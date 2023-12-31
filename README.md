@@ -106,7 +106,7 @@ class Interface {
     virtual void f() = 0;
 };
 class Concrete: public Interface {
-    void f() override {}
+    void f() {}
 };
 ```
 * 2-nd scenario: virtual function is declared as normal function, it is override by Child  
@@ -115,7 +115,7 @@ class Parent {
     virtual void f();
 }
 class Child: public Parent {
-    void f() override{}
+    void f() {}
 }
 ```
 * 3-d scenario: a function with the same name of parent, not declared `virtual` (**hide**)  
@@ -124,7 +124,7 @@ class Parent {
     void f();
 }
 class Child: public Parent {
-    void f() override{}
+    void f() {}
 }
 ```
 
@@ -137,7 +137,7 @@ class Child: public Parent {
 * ≈ hidden static data member of the class  
 * every object of a polymorphic class is associated with (possibly multiple) vtable for its most-derived class  
 * stores pointers to virtual functions 
-* when a virtual function is called, the program calls the functions associated ... by vtable   
+* when a virtual function is called, the program finds the associated function by vtable   
 * if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A
 
 ## abstract function = pure virtual
