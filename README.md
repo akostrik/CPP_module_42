@@ -70,15 +70,16 @@ Example:
 ```
 class MyClass {
  public:
-  static void myfunc();
+  static void f();
 };
 
-void MyClass::myfunc() {} // do not write 'static'
+void MyClass::f() {} // do not write 'static'
 
 int main() {
-  MyClass::myfunc();
+  MyClass::f();
 }
 ```
+
 ## const funciton != mutable
 * не изменяет объект и не вызывает неконстантные методы класса (поскольку они могут изменить объект)  
 * компилятор знает, что возвращенное функцией значение поменять нельзя  
