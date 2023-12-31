@@ -106,19 +106,27 @@ class Interface {
     virtual void f() = 0;
 };
 class Concrete: public Interface {
-    void f() override {} // override f()
+    void f() override {}
 };
 ```
 * 2-nd scenario: virtual function is declared as normal function, it is override by Child  
 ```
 class Parent {
-    virtual void g();
+    virtual void f();
 }
 class Child: public Parent {
-    void g() override{}
+    void f() override{}
 }
 ```
-* 3-d scenario: a function with the same name of parent, not declared `virtual` (**hidden**)  
+* 3-d scenario: a function with the same name of parent, not declared `virtual` (**hide**)  
+```
+class Parent {
+    void f();
+}
+class Child: public Parent {
+    void f() override{}
+}
+```
 
 ### polymorphysme
 * вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
