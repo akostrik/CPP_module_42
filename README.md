@@ -111,6 +111,7 @@ class Concrete: public Interface {
 };
 ```
     - Polymorphism/ concrete class. Virtual function was declared as normal function except it can be override by derived class. You must implement it.
+
 ```
 class Parent {
     virtual void g();
@@ -119,6 +120,7 @@ class Child: public Parent {
     void g() override{}
 }
 ```
+
     - **Hide**: a function with the same name of parent, not declared `virtual`
 
 ### polymorphysme
