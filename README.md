@@ -60,20 +60,18 @@ class A final
 ## abstract class
 * contains or inherits without redefinition at least one pure virtual function  
 * cannot be directly instantiated  
-* may be labeled as abstract 
 * may specifies abstract methods via signatures that are to be implemented by its descendants (before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented)
 * may provide implementations of some methods
-
-NB: Another way to prevent a class from being instantiated: make all constructors protected  
-NB: C++ has no keyword `abstract`
+* C++ has no keyword `abstract`
+* another way to prevent a class from being instantiated: make all constructors protected  
 
 ## Pure abstract class = interface
-Consists of only virtual methods 
+* consists of only virtual member functions 
 
 # Function specifiers
 
 ## private / public / protected function
-see data modifiers
+* see data modifiers
 
 ## static function 
 * can't be called from other places
@@ -124,21 +122,17 @@ const char *func() {
 Polymorphic class := определяет или наследует виртуальную функцию
 
 ## pure virtual funcitons
-
-Unlike other pure virtual functions, a destructor must always have a definition
+* unlike other pure virtual functions, a destructor must have a definition
 
 ## override function
-
-Явным образом указать, что мы хотим переопредлить функцию, а не скрыть ее
-
-`override` keyword is a C++11 extension
+* explicit indication that the function is redefined (and not hidden) 
+* `override` keyword is a C++11 extension
 
 ## final function
-
 * proihibite `virtual` functions in the inherited classes 
 
 ## template function
-Allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
+* allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
 ## abstract function = pure virtual
 **Abstract method** = **virtual function** = declared with `=0`  
@@ -146,9 +140,9 @@ Allows functions and classes to operate with generic types. This allows a functi
 * NB: C++ has no keyword `abstract`  
 
 # Inheritance
-Конструкторы не наследуются.  
-Внутри потомка можно создать одноимённую функцию с функцией родителя => отказ от этой части наследства, функция становится самостоятельной функцией своего класса.  
-Наследованные деструкторы вызываются наоборот по сравнению с вызыванием конструктора.  
+* a constructor can not be inherited
+* a child can have a function with the same name that its parent, this function becomes an independant funciton of the classe 
+* inherited destructors are called in the inverse order 
 
 # Reference vs pointer (01 / ex03)
 Pointers and references present some small differences that make them less or more appropriate depending on the use and the lifecycle of the object used.  
