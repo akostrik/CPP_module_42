@@ -101,6 +101,8 @@ int main() {
 }
 ```
 ## const / mutable funciton
+Можно иметь константную и неконстантную версии одной и той же функции.  
+### const funciton
 Не изменяет объект и не вызывает неконстантные методы класса (поскольку они могут изменить объект)  
 Компилятор знает, что возвращенное функцией значение поменять нельзя  
 
@@ -109,7 +111,7 @@ const char *func() {
   return "текст";
 }
 ```
-Можно иметь константную и неконстантную версии одной и той же функции.  
+### mutable funciton
 
 ## virtual function
 * a member function declared within a parent class and re-defined by a child class
