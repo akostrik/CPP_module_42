@@ -27,7 +27,7 @@ class A final
 * members cannot be accessed from outside the class, however, they can be accessed in inherited classes
 
 ## final class
-* запрет наследования
+* inheritance is prohibited
 
 ## static data
 * is not associated with a particular object, belongs to the class rather than objects of the class  
