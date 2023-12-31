@@ -104,8 +104,19 @@ const char *func() {
 * is accessed through object pointers
 * Вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
 * a constructor and a destructor can not be virtual
-* Non-final class with virtual functions should have virtual destructor
+* a non-final class with virtual functions should have virtual destructor
 * **polymorphic class** определяет или наследует виртуальную функцию
+
+### vtable = virtual function table
+* is the implementation of polymorphism
+* every polymorphic class has a vtable
+* stores pointers to (virtual) functions 
+* when a virtual function is called, the program goes to the vtable entry associated with the function and invokes the function  
+* by looking at the pointer, the program can tell what the "real" type of an object is  
+* ≈ (hidden) static data member of the class  
+* every object of a polymorphic class is associated with the vtable for its most-derived class  
+* each polymorphic object has a (hidden) pointer to the vtable for the object's most-derived class (possibly multiple pointers)
+* for example, if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A.
 
 ## abstract function = pure virtual
 **Abstract method** = **virtual function** = declared with `=0`  
