@@ -99,12 +99,10 @@ const char *func() {
 * is accessed through object pointers
 * a constructor and a destructor can not be virtual
 * a non-final class with virtual functions should have virtual destructor
+* реализуют polymorphisme: в иерархии классов есть функции, имеющие одинаковое имя и параметры и отмеченные `virtual` -> объект и вызов функции из набора виртуальных будут сформированы при выполнении (**позднее связывание**) (один интерфейс, несколько реализаций)
 
 ### polymorphysme
-* виртуальные функции реализуют polymorphisme 
-* **polymorphisme** вызов виртуальных функций, реализуемых в иерархически связанных классах: «один интерфейс, несколько реализаций» или «один интерфейс, несколько методов»
 * вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
-* virtual function может быть в полиморфном состоянии: объект и вызов функции из набора виртуальных будут сформированы при выполнении программы (**позднее связывание**), для этого требуется в иерархии классов функции, имеющие одинаковое имя и параметры и отмеченные `virtual`
 * **polymorphic class** определяет или наследует виртуальную функцию
 * полиморфными могут быть функции-члены класса (но не класс)
 
@@ -116,10 +114,10 @@ const char *func() {
 * if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A
 
 ## abstract function = pure virtual
-**Abstract method** = **virtual function** = declared with `=0`  
-* defines a functionality without any realisation (the realisation is defined in the inherited classes)  
+* declared with `=0`  
+* defines a functionality without realisation (the realisation is defined in the inherited classes)  
 * a destructor must have a definition (?)
-* NB: C++ has no keyword `abstract`  
+* C++ has no keyword `abstract`  
 
 ## override function
 * explicit indication that the function is redefined
