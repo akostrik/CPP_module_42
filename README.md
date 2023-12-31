@@ -144,9 +144,11 @@ const char *func() {
 # Inheritance
 * subclass = derived class = child class
 * super class = base class = parent class
-* a constructor can not be inherited
-* a destructor can not be inherited
+* a constructor is not inherited
+* a destructor is not inherited
 * они вызываются, когда дочерний класс инициализирует свой объект. Конструкторы вызываются один за другим иерархически, начиная с базового класса и заканчивая последним производным классом, destructors are called in the inverse order
+* operator = is inherited, but hidden by the inmlicitelu declared
+* how to use the opetaor = of the parent class in the child class: Base::operator=(r);
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 * three types of inheritance:
      + public: public data are inherited as public, protected data are inherited as protected 
