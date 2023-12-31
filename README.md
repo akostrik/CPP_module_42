@@ -101,6 +101,9 @@ const char *func() {
 * a non-final class with virtual functions should have virtual destructor
 * a destructor must have a definition (?)
 * реализуют **polymorphisme** (один интерфейс, несколько реализаций): если в иерархии классов есть функции, имеющие одинаковое имя и параметры и отмеченные `virtual`, то объект и вызов функции из набора виртуальных будут сформированы при выполнении (**позднее связывание**) 
+* вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
+* **polymorphic class** определяет или наследует виртуальную функцию
+* полиморфными могут быть функции-члены класса (но не класс)
 * 1-st scenario: pure virtual function (**abstract function**) defines a functionality without realisation in an abstract non-instancable class (**interface**), the realisation is defined in the inherited classes,    
 ```
 class Interface {
@@ -129,10 +132,6 @@ class Child: public Parent {
 }
 ```
 
-### polymorphysme
-* вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
-* **polymorphic class** определяет или наследует виртуальную функцию
-* полиморфными могут быть функции-члены класса (но не класс)
 
 ### vtable = virtual function table
 * ≈ hidden static data member of the class  
