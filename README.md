@@ -100,7 +100,8 @@ const char *func() {
 * a constructor and a destructor can not be virtual
 * a non-final class with virtual functions should have virtual destructor
 * реализуют polymorphisme: в иерархии классов есть функции, имеющие одинаковое имя и параметры и отмеченные `virtual` -> объект и вызов функции из набора виртуальных будут сформированы при выполнении (**позднее связывание**) (один интерфейс, несколько реализаций)
-* 1-st scenario: pure virtual function, abstract class and non-instancable = interface   
+* a destructor must have a definition (?)
+* 1-st scenario: pure virtual function (**abstract function**) defines a functionality without realisation in an abstract non-instancable class (**interface**), the realisation is defined in the inherited classes,    
 ```
 class Interface {
     virtual void f() = 0;
@@ -141,9 +142,7 @@ class Child: public Parent {
 * if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A
 
 ## abstract function = pure virtual
-* declared with `=0`  
-* defines a functionality without realisation (the realisation is defined in the inherited classes)  
-* a destructor must have a definition (?)
+* cf. virtual function   
 * C++ has no keyword `abstract`  
 
 ## override function
