@@ -104,7 +104,7 @@ const char *func() {
 * вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
 * **polymorphic class** определяет или наследует виртуальную функцию
 * полиморфными могут быть функции-члены класса (но не класс)
-* 1-st scenario: pure virtual function (**abstract function**) defines a functionality without realisation in an abstract non-instancable class (**interface**), the realisation is defined in the inherited classes,    
+* 1-st scenario:  **Interface** (abstract non-instancable class) defines a functionality of a pure virtual (**abstract**) function without realisation, Child defines the realisation    
 ```
 class Interface {
     virtual void f() = 0;
@@ -113,7 +113,7 @@ class Concrete: public Interface {
     void f() {}
 };
 ```
-* 2-nd scenario: virtual function is declared as normal function, it is override by Child  
+* 2-nd scenario: Child override a virtual function  
 ```
 class Parent {
     virtual void f();
@@ -122,7 +122,7 @@ class Child: public Parent {
     void f() {}
 }
 ```
-* 3-d scenario: a function with the same name of parent, not declared `virtual` (**hide**)  
+* 3-d scenario: Child (**hide**) not-`virtual` function   
 ```
 class Parent {
     void f();
