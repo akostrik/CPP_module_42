@@ -117,7 +117,6 @@ class Parent  { virtual void f();     }   class Child: public Parent  { void f()
 class Parent  {         void f();     }   class Child: public Parent  { void f() {} }
 ```
 
-
 ### vtable = virtual function table
 * ≈ hidden static data member of the class  
 * every object of a polymorphic class is associated with (possibly multiple) vtable for its most-derived class  
@@ -184,6 +183,8 @@ public:
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 
 # Some C++ particularities
+http://www.cplusplus.com/reference/iomanip/   
+http://www.cplusplus.com/reference/string/string   
 
 ## Orthodox canonical class form in C++98 
 - Default constructor
@@ -261,12 +262,17 @@ char       * c = str.data();
 
 ## Floating-point
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
-
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html  
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
+https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold  
+https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
+  
 - s sign bit
 - e exponent giving its order of magnitude (= порядок = показатель степени)
 - m mantissa specifying the actual digits of the number ∊ [1;10)
 
-Decimal	                        | e                            | m   | float                                            
+Decimal	                         | e                            | m   | float                                            
 ---------------------------------|------------------------------|-----|--------------------------------------------------
 ${(-1)}^{s}$ * 1.(mantissa bits) * $2^e$ |                      |     | s eeeeeeee mmmmmmmmmmmmmmmmmmmmmmm 
 (1+m/ $2^{23}$ )* $2^{e−127}$    | ~11111111~ ~00000000~        |     |
@@ -290,7 +296,7 @@ Largest $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) = 34028234663852885981170
 ## Fixed-point
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
 Fixed point arithmetic is much faster.  
-Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents.  
+Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents  
 Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
 
 # School Requirements
@@ -311,19 +317,5 @@ Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.0000
 - double inclusion (avoid it by adding include guards)  
 - `public` without any reason
   
-# Sources
-https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
-https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html  
-https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
-https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold  
-https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
-https://github.com/achrafelkhnissi/CPP_Modules/tree/master  
-https://github.com/Saxsori/CPP_Modules/tree/main  
-https://github.com/42YerevanProjects/cpp_modules/tree/master  
-https://rphlr.github.io/42-Evals/  
-http://www.cplusplus.com/reference/iomanip/  
-http://www.cplusplus.com/reference/string/string  
-https://github.com/achrafelkhnissi/CPP_Modules  
-
 ## ***
 07/ex01: тестируют const (!)
