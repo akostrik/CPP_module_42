@@ -112,21 +112,21 @@ int main() {
 		std::cerr << e.what() << " (catched in main)" << std::endl;
 	}
 
-	// try {
-	// 	Bureaucrat b("Henry", 1);
-	// 	std::cout << std::endl << b << std::endl;
-	// 	Intern i = Intern();
-	// 	std::cout << "Intern :       " << i << std::endl;
-	// 	AForm *f = (i.makeForm("PresidentialPardonForm", "Predident"));
+	try {
+		Bureaucrat b("Henry", 1);
+		std::cout << std::endl << b << std::endl;
+		Intern i = Intern();
+		std::cout << "Intern :       " << i << std::endl;
+		AForm *f = (i.makeForm("PresidentialPardonForm", "Predident"));
 
-	// 	std::cout << "The form :     " << *f << std::endl;
-	// 	b.signForm(f);
-	// 	std::cout << "The form :     " << *f << std::endl;
-	// 	b.executeForm(*f);
-	// 	// free ?
-	// }
-	// catch (std::exception &e) {
-	// 	std::cerr << e.what() << " (catched in main)" << std::endl;
-	// }
+		std::cout << "The form :     " << *f << std::endl;
+		b.signForm(f);
+		std::cout << "The form :     " << *f << std::endl;
+		b.executeForm(*f);
+		delete f;
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what() << " (catched in main)" << std::endl;
+	}
 	return 0;
 }
