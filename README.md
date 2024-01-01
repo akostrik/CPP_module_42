@@ -227,7 +227,6 @@ In the both cases we can change the type of the weapon.
 * if something should not always exist and can change, use a pointer  
 
 ## Cast
-Continue statement https://www.geeksforgeeks.org/continue-statement-cpp/  
 Convert string to double https://cplusplus.com/reference/cstdlib/strtod/  
 Convert string to float https://www.geeksforgeeks.org/strtof-function-c/  
 static_cast https://www.geeksforgeeks.org/static_cast-in-c-type-casting-operators/  
