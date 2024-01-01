@@ -285,7 +285,7 @@ int b = static_cast<int>(a);
 * casting to reference to a type that is not a type of actual object -> bad_cast exception
 * we cannot verify the success by `if(reference types == 0)` (because there is no such thing as a 0-reference)
 * may be used to find the type of object (!)
-* there should be at least one virtual function in the Base class (in practice, this is not a limitation because base classes have a virtual destructor)
+* the base classe should have at least one virtual function (in practice, a base classe always has a virtual destructor)
 * a runtime check to ensure the validity of the cast
 
 ```
