@@ -5,11 +5,11 @@
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target0) : AForm("ShrubberyCreationForm", 145, 137, target0) {
 };
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &obj) :  AForm(obj) { 
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &obj) : AForm(obj) {  // obligatory
   *this = obj;
 };
 
-ShrubberyCreationForm::~ShrubberyCreationForm() { // not obligatory ?
+ShrubberyCreationForm::~ShrubberyCreationForm() { // obligatory
 };
 
 // если тут копирование всех нестатических членов-данных, добавленных в Child, то оператор присваивания можно не определять, компилятор сам его добавит неявно
