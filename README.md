@@ -283,7 +283,10 @@ https://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c
 ## Cast 
 ### Static Cast
 * a compile-time cast 
-
+```
+float a = 5.2;
+int b = static_cast<int>(a);
+```
 ### Dynamic cast 
 https://www.ibm.com/docs/en/i/7.2?topic=operator-dynamic-casts-references https://www.ibm.com/docs/en/zos/2.3.0?topic=expressions-dynamic-cast-operator-c-only  
 
