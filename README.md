@@ -270,9 +270,6 @@ char       * c = str.data();
 1) interpret its content as a floating-point number
 2) returns the value as a float
 
-### static_cast 
-https://www.geeksforgeeks.org/static_cast-in-c-type-casting-operators/  
-
 ### uintptr_t data type
 https://stackoverflow.com/questions/1845482/what-is-the-uintptr-t-data-type  
 
@@ -282,8 +279,17 @@ https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/#:~:t
 ### Findinig type of object 
 https://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c  
 
+
+## Cast 
+### Static Cast
+* a compile-time cast 
+
 ### Dynamic cast 
 https://www.ibm.com/docs/en/i/7.2?topic=operator-dynamic-casts-references https://www.ibm.com/docs/en/zos/2.3.0?topic=expressions-dynamic-cast-operator-c-only  
+
+### Const Cast
+
+### Reinterpret Cast
 
 # Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
