@@ -19,6 +19,7 @@ public:
 
   std::string  getName     () const;
   int          getGrade    () const;
+
   void         incrGrade   ();
   void         decrGrade   ();
 
