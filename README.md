@@ -245,7 +245,7 @@ In the both cases we can change the type of the weapon.
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Convertion (01/ex04, 06/ex00)
+## Convertion and types (01/ex04, 06/ex00)
 ### std::string to char* 
 ```
 std::string str;
@@ -271,7 +271,9 @@ char       * c = str.data();
 2) returns the value as a float
 
 ### uintptr_t data type
-https://stackoverflow.com/questions/1845482/what-is-the-uintptr-t-data-type  
+* an unsigned integer type: any valid pointer to void can be converted to this type, then converted back to pointer to void, and the result will compare equal to the original pointer
+* an optional type since C99 (?)
+* might be the same size as a void*, it might be larger, it could be smaller: for example on some hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit uintptr_t
 
 ### reinterpret_cast 
 https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/#:~:text=reinterpret_cast%20is%20a%20type%20of,pointer%20is%20same%20or%20not.  
