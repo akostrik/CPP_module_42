@@ -297,10 +297,9 @@ catch (bad_cast) { ... }
 ### Const Cast
 
 ### Reinterpret Cast
-* `data_type *var_name = reinterpret_cast <data_type *>(pointer_variable)`
+* `int *n = reinterpret_cast <int *>(ptr)`
 * converts a pointer into a pointer of another type
-* does not check if the pointer type = type of the pointed data 
-* doesn’t have any return type
+* does not check if the pointer type = the type of the data 
 
 ### uintptr_t data type (06/ex01)
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
