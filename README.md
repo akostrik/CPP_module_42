@@ -117,7 +117,6 @@ class Parent  { virtual void f();     }   class Child: public Parent  { void f()
 class Parent  {         void f();     }   class Child: public Parent  { void f() {} }
 ```
 
-
 ### vtable = virtual function table
 * ≈ hidden static data member of the class  
 * every object of a polymorphic class is associated with (possibly multiple) vtable for its most-derived class  
@@ -184,6 +183,8 @@ public:
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 
 # Some C++ particularities
+http://www.cplusplus.com/reference/iomanip/   
+http://www.cplusplus.com/reference/string/string   
 
 ## Orthodox canonical class form in C++98 
 - Default constructor
@@ -295,7 +296,7 @@ Largest $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) = 34028234663852885981170
 ## Fixed-point
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
 Fixed point arithmetic is much faster.  
-Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents.  
+Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents  
 Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
 
 # School Requirements
@@ -316,9 +317,5 @@ Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.0000
 - double inclusion (avoid it by adding include guards)  
 - `public` without any reason
   
-  
-http://www.cplusplus.com/reference/iomanip/  
-http://www.cplusplus.com/reference/string/string  
-
 ## ***
 07/ex01: тестируют const (!)
