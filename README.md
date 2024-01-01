@@ -245,19 +245,19 @@ In the both cases we can change the type of the weapon.
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Convertion and cast (01/ex04, 06/ex00)
-### std::string to char* 
+## Convertion and cast
+### std::string to char* (01/ex04)
 ```
 std::string str;
 const char * c = str.c_str();
 char       * c = str.data();
 ```
-### char* to string
+### char* to string (01/ex04)
 - Using the “=” operator
 - Using the string constructor
 - Using the assign function
 
-### string to double `double strtod (const char* str, NULL)`
+### string to double `double strtod (const char* str, NULL)`(06/ex00)
 1) discards whitespace
 2) takes a floating point literals and interprets them as a numerical value
 3) returns
@@ -266,7 +266,7 @@ char       * c = str.data();
    * a value whose magnitude is no greater than the smallest normalized positive number (and sets errno to ERANGE), if the correct value would cause underflow  
 4) never throws exceptions
 
-### string to float `strtof(const char* str, NULL)`
+### string to float `strtof(const char* str, NULL)` (06/ex00)
 1) interpret its content as a floating-point number
 2) returns the value as a float
 
@@ -302,7 +302,7 @@ catch (bad_cast) { ... }
 * does not check if the pointer type = type of the pointed data 
 * doesn’t have any return type
 
-### uintptr_t data type
+### uintptr_t data type (06/ex01)
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
 * an optional type since C99 (?)
 * might be the same size as a void*, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit uintptr_t
