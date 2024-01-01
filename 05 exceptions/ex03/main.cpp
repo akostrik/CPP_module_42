@@ -1,3 +1,9 @@
+// условие 
+// evaluation
+// каждый операция - а что, если не пройдёт 
+// valgrind для ошибок
+// INT_MAX, 0, "\0" "" NULL EOF вводимые данные BUFSIZE>0
+
 #include "Bureaucrat.hpp"
 #include "Intern.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -17,7 +23,7 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << " (catched in main)" << std::endl;
 	}
 
 	try {
@@ -31,7 +37,7 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << " (catched in main)" << std::endl;
 	}
 
 	try {
@@ -45,7 +51,7 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << " (catched in main)" << std::endl;
 	}
 
 	try {
@@ -57,7 +63,7 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << " (catched in main)" << std::endl;
 	}
 
 	try {
@@ -81,7 +87,7 @@ int main() {
 		b.executeForm(f3);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << " (catched in main)" << std::endl;
 	}
 
 	try {
@@ -95,7 +101,7 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << " (catched in main)" << std::endl;
 	}
 
 	try {
@@ -109,7 +115,7 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << " (catched in main)" << std::endl;
 	}
 
 	try {
@@ -126,7 +132,7 @@ int main() {
 		delete f;
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << " (catched in main)" << std::endl;
 	}
 
 	try {
@@ -138,7 +144,7 @@ int main() {
 		delete f;
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << " (catched in main)" << std::endl;
 	}
 	return 0;
 }

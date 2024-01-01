@@ -53,6 +53,10 @@ int main() {
 		std::cout << std::endl << b1 << std::endl;
 		std::cout << b2 << std::endl;
 		std::cout << b3 << std::endl;
+		b1.incrGrade();
+		std::cout << b1 << std::endl;
+		std::cout << b2 << std::endl;
+		std::cout << b3 << std::endl;
 	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;

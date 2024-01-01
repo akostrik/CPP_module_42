@@ -1,3 +1,9 @@
+// условие 
+// evaluation
+// каждый операция - а что, если не пройдёт 
+// valgrind для ошибок
+// INT_MAX, 0, "\0" "" NULL EOF вводимые данные BUFSIZE>0
+
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
