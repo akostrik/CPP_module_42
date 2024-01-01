@@ -2,6 +2,10 @@
 
 /////////////////////////////////////////////////// OCCF and <<
 AForm::AForm(std::string name0, int gradeToSign0, int gradeToExecute0, std::string target0) {
+  if (gradeToSign0 < 1 || gradeToExecute0 < 1) // add this to ex00, ex01
+    throw Bureaucrat::GradeTooHighException();
+  if (gradeToSign0 > 150 || gradeToExecute0 > 150)
+    throw Bureaucrat::GradeTooLowException();
   this->name           = name0;
   this->gradeToSign    = gradeToSign0;
   this->gradeToExecute = gradeToExecute0;
@@ -35,11 +39,11 @@ std::string AForm::getName()  const {
   return this->name;
 };
 
-bool AForm::getIsSigned()     const {
+bool AForm::getIsSigned()      const {
   return this->isSigned;
 };
 
-int AForm::getGradeToSign()   const {
+int AForm::getGradeToSign()    const {
   return this->gradeToSign;
 };
 
@@ -54,11 +58,11 @@ std::string AForm::getTarget() const {
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 void AForm::beSigned (Bureaucrat &b) {
   if (b.getGrade() > this->getGradeToSign()) {
-    std::cout << b.getName() << " couldn’t sign " << this->getName() << " because of: ";
+    std::cout << b.getName() << "          couldn’t sign " << this->getName() << " because ";
     throw AForm::GradeTooLowException();
   }
   this->isSigned = true;
-  std::cout << b.getName() << " signed " << this->getName() << std::endl;
+  std::cout << b.getName() << " signed   " << this->getName() << std::endl;
 }
 
 /////////////////////////////////////////////////// EXCEPTIONS

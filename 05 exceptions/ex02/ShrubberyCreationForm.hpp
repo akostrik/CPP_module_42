@@ -18,11 +18,6 @@ public:
   ShrubberyCreationForm  &operator =            (const ShrubberyCreationForm &obj);
 
   void                   execute                (Bureaucrat const &b) const; // pure virtual func of the parent, should be defined here
-
-  class ShrubberyException: public std::exception { // no needed ?
-    public:
-      const char * what() const throw();
-  };
 };
 
 #endif

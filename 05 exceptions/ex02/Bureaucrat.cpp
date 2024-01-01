@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-/////////////////////////////////////////////////// OCCF
+/////////////////////////////////////////////////// OCCF and <<
 Bureaucrat::Bureaucrat(std::string name0, int grade0) {
   if (grade0 < 1)
     throw Bureaucrat::GradeTooHighException();
@@ -50,19 +50,14 @@ void Bureaucrat::decrGrade() {
   this->grade++;
 }
 
-void Bureaucrat::signForm (AForm *f) {
+void Bureaucrat::signForm (AForm *f) {                 // AForm const &f) ?
   if (f->getIsSigned() == true)
     return ;
   f->beSigned(*this);
 }
 
 void Bureaucrat::executeForm(AForm const &f) {                     // NEW
-  if (f.getIsSigned() == false)
-    throw AForm::NotSignedException();
-  if (this->getGrade() > f.getGradeToExecute())
-    throw AForm::GradeTooLowException();
   f.execute(*this);
-  std::cout << this->getName() << " executed " << f.getName() << std::endl;
 }
 
 /////////////////////////////////////////////////// EXCEPTIONS
