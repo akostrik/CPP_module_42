@@ -13,6 +13,7 @@ int main() {
 		std::cout << "The form before being signed : " << f << std::endl;
 		b.signForm(&f);
 		std::cout << "The form after  being signed : " << f << std::endl;
+		b.executeForm(f);
 	}
 
 	catch (std::exception &e) {

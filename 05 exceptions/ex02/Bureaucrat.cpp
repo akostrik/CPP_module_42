@@ -56,7 +56,7 @@ void Bureaucrat::signForm (AForm *f) {
   f->beSigned(*this);
 }
 
-void Bureaucrat::executeForm(AForm const &f) { // NEW
+void Bureaucrat::executeForm(AForm const &f) {                     // NEW
   if (f.getIsSigned() == false)
     throw AForm::NotSignedException();
   if (this->getGrade() > f.getGradeToExecute())

@@ -25,7 +25,7 @@ public:
   void         incrGrade   ();
   void         decrGrade   ();
   void         signForm    (AForm *f);
-  void         executeForm (AForm const &f);                     // NEW
+  void         executeForm (AForm const &f);                     // Form, not AForm //NEW
 
   class GradeTooHighException : public std::exception {
     public:

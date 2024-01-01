@@ -16,16 +16,16 @@ class AForm {
 
 protected:
   std::string  name;
-  bool         isSigned;
   int          gradeToSign;
   int          gradeToExecute;
+  bool         isSigned;
   std::string  target;
 
 public:
                AForm             (std::string name0, int gradeToSign0, int gradeToExecute0, std::string target);
                AForm             (AForm const &obj);
                ~AForm            ();
-  AForm&       operator =        (AForm const &obj);
+  AForm        &operator =       (AForm const &obj);
 
   std::string  getName           () const;
   bool         getIsSigned       () const;

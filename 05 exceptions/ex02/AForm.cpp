@@ -31,15 +31,15 @@ std::ostream & operator <<(std::ostream &out, const AForm &obj) {
 }
 
 /////////////////////////////////////////////////// GETTERS
-std::string AForm::getName() const {
+std::string AForm::getName()  const {
   return this->name;
 };
 
-bool AForm::getIsSigned() const {
+bool AForm::getIsSigned()     const {
   return this->isSigned;
 };
 
-int AForm::getGradeToSign() const {
+int AForm::getGradeToSign()   const {
   return this->gradeToSign;
 };
 
@@ -66,10 +66,10 @@ const char *AForm::GradeTooHighException::what() const throw() {
   return "AForm: GradeTooHighException";
 };
 
-const char *AForm::GradeTooLowException::what() const throw() {
+const char *AForm::GradeTooLowException::what()  const throw() {
   return "AForm: GradeTooLowException";
 };
 
-const char *AForm::NotSignedException::what() const throw() {
+const char *AForm::NotSignedException::what()    const throw() {
   return "AForm: NotSignedException";
 };
