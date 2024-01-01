@@ -1,9 +1,3 @@
-// условие 
-// evaluation
-// каждый операция - а что, если не пройдёт 
-// valgrind для ошибок
-// INT_MAX, 0, "\0" "" NULL EOF вводимые данные BUFSIZE>0
-
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -22,7 +16,7 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	try {
@@ -36,7 +30,7 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	try {
@@ -50,7 +44,7 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	try {
@@ -62,35 +56,11 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	try {
-		Bureaucrat b("Eliot", 3);
-		ShrubberyCreationForm f1("home");
-		ShrubberyCreationForm f2(f1);
-		ShrubberyCreationForm f3 = f1;
-
-		std::cout << std::endl << b << std::endl;
-		std::cout << "The form :     " << f1 << std::endl;
-		std::cout << "The form :     " << f2 << std::endl;
-		std::cout << "The form :     " << f3 << std::endl;
-		b.signForm(&f1);
-		b.signForm(&f2);
-		b.signForm(&f3);
-		std::cout << "The form :     " << f1 << std::endl;
-		std::cout << "The form :     " << f2 << std::endl;
-		std::cout << "The form :     " << f3 << std::endl;
-		b.executeForm(f1);
-		b.executeForm(f2);
-		b.executeForm(f3);
-	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
-	}
-
-	try {
-		Bureaucrat b("Fedia", 3);
+		Bureaucrat b("Elias", 3);
 		RobotomyRequestForm f("President");
 
 		std::cout << std::endl << b << std::endl;
@@ -100,11 +70,11 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	try {
-		Bureaucrat b("Gregy", 1);
+		Bureaucrat b("Fredy", 1);
 		PresidentialPardonForm f("Predident");
 
 		std::cout << std::endl << b << std::endl;
@@ -114,7 +84,7 @@ int main() {
 		b.executeForm(f);
 	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << " (catched in main)" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	return 0;
