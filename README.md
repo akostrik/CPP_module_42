@@ -257,7 +257,7 @@ char       * c = str.data();
 - Using the string constructor
 - Using the assign function
 
-## string to double `double strtod (const char* str, char** endptr)`
+### string to double `double strtod (const char* str, char** endptr)`
 1) discards whitespace
 2) takes a floating point literals and interprets them as a numerical value
 3) returns
@@ -266,14 +266,28 @@ char       * c = str.data();
    * a value whose magnitude is no greater than the smallest normalized positive number (and sets errno to ERANGE), if the correct value would cause underflow  
 4) never throws exceptions
 
-Convert string to float https://www.geeksforgeeks.org/strtof-function-c/  
-static_cast https://www.geeksforgeeks.org/static_cast-in-c-type-casting-operators/  
-What is the uintptr_t data type? https://stackoverflow.com/questions/1845482/what-is-the-uintptr-t-data-type  
-reinterpret_cast https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/#:~:text=reinterpret_cast%20is%20a%20type%20of,pointer%20is%20same%20or%20not.  
-Findinig type of object https://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c  
-Dynamic cast https://www.ibm.com/docs/en/i/7.2?topic=operator-dynamic-casts-references https://www.ibm.com/docs/en/zos/2.3.0?topic=expressions-dynamic-cast-operator-c-only  
+### string to float `strtof(const char* str, char **endptr)`
+Parses the C-string str(assumed) interpreting its content as a floating-point number (according to the current locale ) and returns its value as a float. If endptr(end pointer) is not a null pointer, the function also sets the value of endptr to point to the first character after the number.
 
+endptr : Reference to an already allocated object of type char*, 
+whose value is set by the function to the next character in str after the numerical value.
+This parameter can also be a null pointer, in which case it is not used.
+Return Value : On success, the function returns the converted floating-point number as a value of type float.
 
+### static_cast 
+https://www.geeksforgeeks.org/static_cast-in-c-type-casting-operators/  
+
+### uintptr_t data type
+https://stackoverflow.com/questions/1845482/what-is-the-uintptr-t-data-type  
+
+### reinterpret_cast 
+https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/#:~:text=reinterpret_cast%20is%20a%20type%20of,pointer%20is%20same%20or%20not.  
+
+### Findinig type of object 
+https://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c  
+
+### Dynamic cast 
+https://www.ibm.com/docs/en/i/7.2?topic=operator-dynamic-casts-references https://www.ibm.com/docs/en/zos/2.3.0?topic=expressions-dynamic-cast-operator-c-only  
 
 # Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
