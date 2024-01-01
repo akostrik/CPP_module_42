@@ -286,7 +286,25 @@ float a = 5.2;
 int b = static_cast<int>(a);
 ```
 ### Dynamic cast 
-https://www.ibm.com/docs/en/i/7.2?topic=operator-dynamic-casts-references https://www.ibm.com/docs/en/zos/2.3.0?topic=expressions-dynamic-cast-operator-c-only  
+1) TYPE& dynamic_cast<TYPE&> (object); to cast from references to base class objects to references to derived class objects
+2) TYPE* dynamic_cast<TYPE*> (object);
+
+* casts a datum from one pointer or reference type to another
+* a runtime check to ensure the validity of the cast
+* to cast to pointer to a type that is not a type of actual object -> result = NULL 
+* to cast to reference to a type that is not a type of actual object -> bad_cast exception
+* we cannot verify the success using reference types by comparing the result with 0 because there is no such thing as a 0-reference
+* there should be at least one virtual function in Base class (in practice, this is not a limitation because base classes must have a virtual destructor to allow objects of derived classes to perform proper cleanup if they are deleted from a base pointer)
+
+```
+void payroll::calc (employee &e) {
+   try {
+      manager &m = dynamic_cast<manager&>(e);
+   }
+   catch (bad_cast) {
+   }
+}
+```
 
 ### Const Cast
 
