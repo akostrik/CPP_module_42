@@ -245,7 +245,7 @@ In the both cases we can change the type of the weapon.
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Convertion and types (01/ex04, 06/ex00)
+## Convertion (01/ex04, 06/ex00)
 ### std::string to char* 
 ```
 std::string str;
@@ -275,12 +275,8 @@ char       * c = str.data();
 * an optional type since C99 (?)
 * might be the same size as a void*, it might be larger, it could be smaller: for example on some hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit uintptr_t
 
-### reinterpret_cast 
-https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/#:~:text=reinterpret_cast%20is%20a%20type%20of,pointer%20is%20same%20or%20not.  
-
 ### Findinig type of object 
 https://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c  
-
 
 ## Cast 
 ### Static Cast
@@ -295,6 +291,10 @@ https://www.ibm.com/docs/en/i/7.2?topic=operator-dynamic-casts-references https:
 ### Const Cast
 
 ### Reinterpret Cast
+* `data_type *var_name = reinterpret_cast <data_type *>(pointer_variable)`
+* converts a pointer into a pointer of another data type
+* does not check if the pointer type and data pointed by the pointer is same or not
+* doesn’t have any return type
 
 # Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
