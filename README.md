@@ -11,8 +11,8 @@
 * inheritance is prohibited
 
 ## static data
-* is not associated with a particular object, belongs to the class rather than objects of the class  
-* can be called using the class name or through an object
+* belongs to the class, is not associated with a particular object  
+* is called using the class name or through an object
 
 ## const data != mutable
 * we can't modify it directly (a compile-time error)  
