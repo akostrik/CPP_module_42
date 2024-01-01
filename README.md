@@ -295,6 +295,7 @@ int b = static_cast<int>(a);
 * to cast to reference to a type that is not a type of actual object -> bad_cast exception
 * we cannot verify the success using reference types by comparing the result with 0 because there is no such thing as a 0-reference
 * there should be at least one virtual function in Base class (in practice, this is not a limitation because base classes must have a virtual destructor to allow objects of derived classes to perform proper cleanup if they are deleted from a base pointer)
+* findinig the type of object (!)
 
 ```
 void payroll::calc (employee &e) {
@@ -310,8 +311,8 @@ void payroll::calc (employee &e) {
 
 ### Reinterpret Cast
 * `data_type *var_name = reinterpret_cast <data_type *>(pointer_variable)`
-* converts a pointer into a pointer of another data type
-* does not check if the pointer type and data pointed by the pointer is same or not
+* converts a pointer into a pointer of another type
+* does not check if the pointer type = type of the pointed data 
 * doesn’t have any return type
 
 # Floating-point numbers vs Fixed-point numbers (02)
