@@ -11,8 +11,20 @@
 * inheritance is prohibited
 
 ## static data
-* is not associated with a particular object, belongs to the class rather than objects of the class  
-* can be called using the class name or through an object
+* belongs to the class, is not associated with a particular object  
+* is called using the class name or through an object
+* static class = a private and unimplemented default constructor (formally C++ does not have static classes)
+
+## abstract class
+* contains (or inherits without redefinition) at least one pure virtual (abstract) function
+* all the abstract methods of the parent must be implemented in the child
+* may provide implementations of some methods
+* cannot be instantiated  
+* another way to prevent a class from being instantiated: make all the constructors `protected`
+* C++ has no keyword `abstract`
+
+## interface = pure abstract class 
+* consists of only virtual member functions (only declarations)
 
 ## const data != mutable
 * we can't modify it directly (a compile-time error)  
@@ -34,17 +46,6 @@
 * we can modify a mutable class member through member functions even if the containing object is const  
 
 ## virtual data
-
-## abstract class
-* contains (or inherits without redefinition) at least one pure virtual (abstract) function
-* all the abstract methods of the parent must be implemented in the child
-* may provide implementations of some methods
-* cannot be instantiated  
-* another way to prevent a class from being instantiated: make all the constructors `protected`
-* C++ has no keyword `abstract`
-
-## interface = pure abstract class 
-* consists of only virtual member functions (only declarations)
 
 ## template class
 
