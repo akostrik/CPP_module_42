@@ -226,15 +226,6 @@ In the both cases we can change the type of the weapon.
 * can point to a non-existing address  
 * if something should not always exist and can change, use a pointer  
 
-## Cast
-Convert string to double https://cplusplus.com/reference/cstdlib/strtod/  
-Convert string to float https://www.geeksforgeeks.org/strtof-function-c/  
-static_cast https://www.geeksforgeeks.org/static_cast-in-c-type-casting-operators/  
-What is the uintptr_t data type? https://stackoverflow.com/questions/1845482/what-is-the-uintptr-t-data-type  
-reinterpret_cast https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/#:~:text=reinterpret_cast%20is%20a%20type%20of,pointer%20is%20same%20or%20not.  
-Findinig type of object https://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c  
-Dynamic cast https://www.ibm.com/docs/en/i/7.2?topic=operator-dynamic-casts-references https://www.ibm.com/docs/en/zos/2.3.0?topic=expressions-dynamic-cast-operator-c-only  
-
 ## File manipulation (01 / ex04)
 
 ### C (forbidden by the subject)
@@ -254,7 +245,7 @@ Dynamic cast https://www.ibm.com/docs/en/i/7.2?topic=operator-dynamic-casts-refe
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Convertion (01 / ex04)
+## Convertion (01/ex04, 06/ex00)
 ### std::string to char* 
 ```
 std::string str;
@@ -265,6 +256,24 @@ char       * c = str.data();
 - Using the “=” operator
 - Using the string constructor
 - Using the assign function
+
+## string to double `double strtod (const char* str, char** endptr)`
+1) discards whitespace
+2) takes a floating point literals and interprets them as a numerical value
+3) returns
+   * its value as a double
+   * 0.0 if no valid conversion could be performed
+   * a value whose magnitude is no greater than the smallest normalized positive number (and sets errno to ERANGE), if the correct value would cause underflow  
+4) never throws exceptions
+
+Convert string to float https://www.geeksforgeeks.org/strtof-function-c/  
+static_cast https://www.geeksforgeeks.org/static_cast-in-c-type-casting-operators/  
+What is the uintptr_t data type? https://stackoverflow.com/questions/1845482/what-is-the-uintptr-t-data-type  
+reinterpret_cast https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/#:~:text=reinterpret_cast%20is%20a%20type%20of,pointer%20is%20same%20or%20not.  
+Findinig type of object https://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c  
+Dynamic cast https://www.ibm.com/docs/en/i/7.2?topic=operator-dynamic-casts-references https://www.ibm.com/docs/en/zos/2.3.0?topic=expressions-dynamic-cast-operator-c-only  
+
+
 
 # Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
