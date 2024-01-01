@@ -34,13 +34,11 @@ AForm *Intern::makeForm (std::string formName, std::string target) {
   this->data[2].type = "ShrubberyCreationForm";
   this->data[2].form = new ShrubberyCreationForm(target);
   toReturn = NULL;
-  for (int i = 0; i < 3; i++) {
-    // std::cout << i << ": " << data[i].type << " == " << formName << " ?" << std::endl;
+  for (int i = 0; i < 3; i++)
     if (this->data[i].type.compare(formName) == 0)
       toReturn = this->data[i].form;
     else
       delete data[i].form;
-	}
   if (toReturn == NULL) {
     std::cout << "Intern         can't find the form " << formName << std::endl;
     throw Intern::FormNameDoesntExistException();

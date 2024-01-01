@@ -58,7 +58,7 @@ std::string AForm::getTarget() const {
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 void AForm::beSigned (Bureaucrat &b) {
   if (b.getGrade() > this->getGradeToSign()) {
-    std::cout << b.getName() << "          couldn’t sign " << this->getName() << " because ";
+    std::cout << b.getName() << "          can’t sign " << this->getName() << " because ";
     throw AForm::GradeTooLowException();
   }
   this->isSigned = true;

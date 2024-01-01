@@ -18,7 +18,7 @@ public:
                          ~PresidentialPardonForm ();                                  // obligatory
   PresidentialPardonForm  &operator =            (const PresidentialPardonForm &obj); // obligatory
 
-  void                   execute                 (Bureaucrat const &b) const;         // pure virtual func of the parent, should be defined here
+  void                   execute                 (Bureaucrat const &obj) const;       // pure virtual func of the parent, should be defined here
 };
 
 #endif

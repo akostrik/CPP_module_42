@@ -23,11 +23,11 @@ void ShrubberyCreationForm::execute(Bureaucrat const &b) const {
   std::ofstream out;
 
   if (this->getIsSigned() == false) {
-    std::cout << b.getName() << "          couldn’t execute " << this->getName() << " because ";
+    std::cout << b.getName() << "          can’t execute " << this->getName() << " because ";
     throw AForm::NotSignedException();
   }
   if (b.getGrade() > this->getGradeToExecute()) {
-    std::cout << b.getName() << "          couldn’t execute " << this->getName() << " because ";
+    std::cout << b.getName() << "          can’t execute " << this->getName() << " because ";
     throw AForm::GradeTooLowException();
   }
   out.open((this->target + "_shrubbery").c_str());

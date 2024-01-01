@@ -5,7 +5,7 @@ int main() {
 	std::cout << "\nAlice\n";
 	try {
 		Bureaucrat b("Alice", 3);
-		Form f("University Form", 1, 5);
+		AForm f("University Form", 1, 5);
 
 		std::cout << b << std::endl;
 		b.incrGrade();
@@ -24,7 +24,7 @@ int main() {
 	try {
 		Bureaucrat b1("Bob", 150);
 		Bureaucrat b2("Carol", 1);
-		Form f("42 School Form", 1, 5);
+		AForm f("42 School Form", 1, 5);
 
 		std::cout << b1 << std::endl;
 		std::cout << b2 << std::endl;

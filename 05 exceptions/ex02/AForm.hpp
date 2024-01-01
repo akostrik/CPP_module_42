@@ -48,6 +48,6 @@ public:
   };
 };
 
-std::ostream &operator <<(std::ostream &out, AForm const &f);
+std::ostream &operator <<(std::ostream &out, AForm const &obj);
 
 #endif

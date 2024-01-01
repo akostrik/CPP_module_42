@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 
+/////////////////////////////////////////////////// OCCF
 Bureaucrat::Bureaucrat(std::string name0, int grade0) {
   if (grade0 < 1)
     throw Bureaucrat::GradeTooHighException();
@@ -20,7 +21,7 @@ Bureaucrat::~Bureaucrat() {
 };
 
 Bureaucrat& Bureaucrat::operator = (Bureaucrat const &obj) {
-  this->name = obj.getName(); // ?
+  this->name = obj.getName();
   this->grade = obj.getGrade();
   std::cout << "Bureaucrat assignment operator, name = " << this->name << ", grade = " << this->grade << std::endl;
   return *this;
@@ -32,7 +33,7 @@ std::ostream & operator <<(std::ostream &out, const Bureaucrat &obj)
   return (out);
 }
 
-///////////////////////////////////////////////////
+/////////////////////////////////////////////////// GETTERS
 std::string Bureaucrat::getName() const {
   return this->name;
 };
@@ -41,6 +42,7 @@ int Bureaucrat::getGrade() const {
   return this->grade;
 };
 
+/////////////////////////////////////////////////// MEMBER FUNCTIONS
 void Bureaucrat::incrGrade() {
   if (this->grade <= 1)
     throw Bureaucrat::GradeTooHighException();
@@ -55,7 +57,7 @@ void Bureaucrat::decrGrade() {
   std::cout << "decrGrade, name = " << this->name << ", new grade = " << this->grade << std::endl;
 }
 
-///////////////////////////////////////////////////
+/////////////////////////////////////////////////// EXCEPTIONS
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
   return "GradeTooHighException";
 }

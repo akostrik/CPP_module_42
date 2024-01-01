@@ -51,7 +51,7 @@ void Bureaucrat::decrGrade() {
   this->grade++;
 }
 
-void Bureaucrat::signForm (Form *f) {
+void Bureaucrat::signForm (AForm *f) {
   if (f->getIsSigned() == true)
     return ;
   f->beSigned(*this);

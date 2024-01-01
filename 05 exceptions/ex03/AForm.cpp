@@ -35,7 +35,7 @@ std::ostream & operator <<(std::ostream &out, const AForm &obj) {
 }
 
 /////////////////////////////////////////////////// GETTERS
-std::string AForm::getName()  const {
+std::string AForm::getName()   const {
   return this->name;
 };
 

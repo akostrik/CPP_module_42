@@ -15,12 +15,12 @@ public:
                Bureaucrat  (std::string name0, int grade0);
                Bureaucrat  (const Bureaucrat &obj);
                ~Bureaucrat ();
-  Bureaucrat&  operator =  (const Bureaucrat &obj);
+  Bureaucrat   &operator = (const Bureaucrat &obj);
 
   std::string  getName     () const;
   int          getGrade    () const;
-  void         incrGrade    ();
-  void         decrGrade    ();
+  void         incrGrade   ();
+  void         decrGrade   ();
 
   class GradeTooHighException : public std::exception {
     public:
@@ -33,6 +33,6 @@ public:
   };
 };
 
-std::ostream & operator <<(std::ostream &out, const Bureaucrat &b);
+std::ostream & operator <<(std::ostream &out, const Bureaucrat &obj);
 
 #endif
