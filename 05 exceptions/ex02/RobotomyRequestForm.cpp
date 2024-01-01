@@ -1,7 +1,7 @@
 #include "RobotomyRequestForm.hpp"
 
 /////////////////////////////////////////////////// OCCF
-RobotomyRequestForm::RobotomyRequestForm(std::string target0) : AForm("RobotomyRequestForm", 145, 137, target0) {
+RobotomyRequestForm::RobotomyRequestForm(std::string target0) : AForm("RobotomyRequestForm", 72, 45, target0) {
 };
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &obj) : AForm(obj) {
@@ -20,8 +20,6 @@ RobotomyRequestForm& RobotomyRequestForm::operator = (RobotomyRequestForm const 
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 void RobotomyRequestForm::execute(Bureaucrat const &b) const {
-  std::ofstream out;
-
   if (this->getIsSigned() == false) {
     std::cout << b.getName() << "          couldn’t execute " << this->getName() << " because ";
     throw AForm::NotSignedException();
@@ -30,18 +28,9 @@ void RobotomyRequestForm::execute(Bureaucrat const &b) const {
     std::cout << b.getName() << "          couldn’t execute " << this->getName() << " because ";
     throw AForm::GradeTooLowException();
   }
-  out.open((this->target + "_shrubbery").c_str());
-  out << 
-  "            # #### ####\n"
-  "        ### \\/#|### |/####\n"
-  "        ##\\/#/ \\||/##/_/##/_#\n"
-  "       ###  \\/###|/ \\/ # ###\n"
-  "    ##_\\_#\\_\\## | #/###_/_####\n"
-  "    ## #### # \\ #| /  #### ##/##\n"
-  "      __#_--###`  ||,###---###-~\n"
-  "                 ||\n"
-  "                 ||\n"
-  "                 ||\n";
-  out.close();
+  if (rand() & 1)
+    std::cout << "               BZZZZZZZZZZ..." << getTarget() << " has been robotomized successfully !" << std::endl;
+  else
+    std::cout << "The " << getTarget() << "robotomization failed !" << std::endl;
   std::cout << b.getName() << " executed " << this->getName() << std::endl;
 };

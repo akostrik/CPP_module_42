@@ -5,6 +5,8 @@
 # include <exception>
 # include <iostream>
 # include <fstream>
+# include <ctime>
+# include <cstdlib>
 # include "Bureaucrat.hpp"
 # include "AForm.hpp"
 

@@ -6,7 +6,6 @@
 # include <iostream>
 # include "Bureaucrat.hpp"
 
-
 class Bureaucrat;
 
 class AForm {

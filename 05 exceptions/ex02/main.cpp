@@ -82,5 +82,19 @@ int main() {
 		std::cerr << e.what() << " (catched in main)" << std::endl;
 	}
 
+	try {
+		Bureaucrat b("Fedia", 3);
+		RobotomyRequestForm f("home");
+
+		std::cout << std::endl << b << std::endl;
+		std::cout << "The form :     " << f << std::endl;
+		b.signForm(&f);
+		std::cout << "The form :     " << f << std::endl;
+		b.executeForm(f);
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what() << " (catched in main)" << std::endl;
+	}
+
 	return 0;
 }

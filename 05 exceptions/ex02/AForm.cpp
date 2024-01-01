@@ -2,7 +2,7 @@
 
 /////////////////////////////////////////////////// OCCF and <<
 AForm::AForm(std::string name0, int gradeToSign0, int gradeToExecute0, std::string target0) {
-  if (gradeToSign0 < 1 || gradeToExecute0 < 1) // add this to ex00, ex01
+  if (gradeToSign0 < 1 || gradeToExecute0 < 1)
     throw Bureaucrat::GradeTooHighException();
   if (gradeToSign0 > 150 || gradeToExecute0 > 150)
     throw Bureaucrat::GradeTooLowException();

@@ -6,6 +6,7 @@
 # include <iostream>
 # include <fstream>
 # include "Bureaucrat.hpp"
+# include "AForm.hpp"
 
 class Bureaucrat;
 
