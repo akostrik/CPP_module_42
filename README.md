@@ -14,6 +14,7 @@
 * belongs to the class, is not associated with a particular object  
 * is called using the class name or through an object
 * a static class = only static methods and members (?)
+* C++ does not have static classes as they formally exist in other languages, but a private and unimplemented default constructor has the same effect
 
 ## const data != mutable
 * we can't modify it directly (a compile-time error)  
