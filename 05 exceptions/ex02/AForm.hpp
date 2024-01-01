@@ -6,9 +6,6 @@
 # include <iostream>
 # include "Bureaucrat.hpp"
 
-// abstract class
-// contains at least one pure virtual function
-// the virtual function should be defined in the child class
 
 class Bureaucrat;
 

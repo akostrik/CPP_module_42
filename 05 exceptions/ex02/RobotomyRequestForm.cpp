@@ -1,18 +1,17 @@
-#include "AForm.hpp"
-#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 /////////////////////////////////////////////////// OCCF
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target0) : AForm("ShrubberyCreationForm", 145, 137, target0) {
+RobotomyRequestForm::RobotomyRequestForm(std::string target0) : AForm("RobotomyRequestForm", 145, 137, target0) {
 };
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &obj) : AForm(obj) {
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &obj) : AForm(obj) {
   *this = obj;
 };
 
-ShrubberyCreationForm::~ShrubberyCreationForm() {
+RobotomyRequestForm::~RobotomyRequestForm() {
 };
 
-ShrubberyCreationForm& ShrubberyCreationForm::operator = (ShrubberyCreationForm const &obj) {
+RobotomyRequestForm& RobotomyRequestForm::operator = (RobotomyRequestForm const &obj) {
   this->name = obj.getName();
   this->gradeToSign = obj.getGradeToSign();
   this->gradeToExecute = obj.getGradeToExecute();
@@ -20,7 +19,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator = (ShrubberyCreationForm 
 };
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
-void ShrubberyCreationForm::execute(Bureaucrat const &b) const {
+void RobotomyRequestForm::execute(Bureaucrat const &b) const {
   std::ofstream out;
 
   if (this->getIsSigned() == false) {

@@ -12,12 +12,12 @@ class Bureaucrat;
 class ShrubberyCreationForm : public  AForm{
 
 public:
-                         ShrubberyCreationForm  (std::string target);
-                         ShrubberyCreationForm  (const ShrubberyCreationForm &obj);
-                         ~ShrubberyCreationForm ();
-  ShrubberyCreationForm  &operator =            (const ShrubberyCreationForm &obj);
+                         ShrubberyCreationForm  (std::string target);               // obligatory
+                         ShrubberyCreationForm  (const ShrubberyCreationForm &obj); // obligatory
+                         ~ShrubberyCreationForm ();                                 // obligatory
+  ShrubberyCreationForm  &operator =            (const ShrubberyCreationForm &obj); // obligatory
 
-  void                   execute                (Bureaucrat const &b) const; // pure virtual func of the parent, should be defined here
+  void                   execute                (Bureaucrat const &b) const;        // pure virtual func of the parent, should be defined here
 };
 
 #endif

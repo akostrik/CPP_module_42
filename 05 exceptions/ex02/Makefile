@@ -1,5 +1,5 @@
-SRCS    = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
-HEADERS =          Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp
+SRCS    = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
+HEADERS =          Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.cpp
 OBJS    = $(SRCS:.cpp=.o)
 OBJS   := $(addprefix ./objs/, $(OBJS))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror
