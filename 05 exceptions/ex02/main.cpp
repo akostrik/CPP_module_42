@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main() {
 
@@ -84,7 +85,21 @@ int main() {
 
 	try {
 		Bureaucrat b("Fedia", 3);
-		RobotomyRequestForm f("home");
+		RobotomyRequestForm f("President");
+
+		std::cout << std::endl << b << std::endl;
+		std::cout << "The form :     " << f << std::endl;
+		b.signForm(&f);
+		std::cout << "The form :     " << f << std::endl;
+		b.executeForm(f);
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what() << " (catched in main)" << std::endl;
+	}
+
+	try {
+		Bureaucrat b("Gregy", 1);
+		PresidentialPardonForm f("Predident");
 
 		std::cout << std::endl << b << std::endl;
 		std::cout << "The form :     " << f << std::endl;

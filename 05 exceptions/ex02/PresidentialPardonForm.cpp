@@ -1,17 +1,17 @@
-#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 /////////////////////////////////////////////////// OCCF
-RobotomyRequestForm::RobotomyRequestForm(std::string target0) : AForm("RobotomyRequestForm", 25, 5, target0) {
+PresidentialPardonForm::PresidentialPardonForm(std::string target0) : AForm("PresidentialPardonForm", 145, 137, target0) {
 };
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &obj) : AForm(obj) {
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &obj) : AForm(obj) {
   *this = obj;
 };
 
-RobotomyRequestForm::~RobotomyRequestForm() {
+PresidentialPardonForm::~PresidentialPardonForm() {
 };
 
-RobotomyRequestForm& RobotomyRequestForm::operator = (RobotomyRequestForm const &obj) {
+PresidentialPardonForm& PresidentialPardonForm::operator = (PresidentialPardonForm const &obj) {
   this->name = obj.getName();
   this->gradeToSign = obj.getGradeToSign();
   this->gradeToExecute = obj.getGradeToExecute();
@@ -19,7 +19,8 @@ RobotomyRequestForm& RobotomyRequestForm::operator = (RobotomyRequestForm const 
 };
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
-void RobotomyRequestForm::execute(Bureaucrat const &b) const {
+void PresidentialPardonForm::execute(Bureaucrat const &b) const {
+
   if (this->getIsSigned() == false) {
     std::cout << b.getName() << "          couldn’t execute " << this->getName() << " because ";
     throw AForm::NotSignedException();
@@ -28,9 +29,6 @@ void RobotomyRequestForm::execute(Bureaucrat const &b) const {
     std::cout << b.getName() << "          couldn’t execute " << this->getName() << " because ";
     throw AForm::GradeTooLowException();
   }
-  if (rand() & 1)
-    std::cout << "               BZZZZZZZZZZ..." << getTarget() << " has been robotomized successfully !" << std::endl;
-  else
-    std::cout << "The " << getTarget() << "robotomization failed !" << std::endl;
+  std::cout << "               " << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
   std::cout << b.getName() << " executed " << this->getName() << std::endl;
 };
