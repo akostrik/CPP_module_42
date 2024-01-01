@@ -21,11 +21,11 @@ RobotomyRequestForm& RobotomyRequestForm::operator = (RobotomyRequestForm const 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 void RobotomyRequestForm::execute(Bureaucrat const &b) const {
   if (this->getIsSigned() == false) {
-    std::cout << b.getName() << "          couldn’t execute " << this->getName() << " because ";
+    std::cout << b.getName() << "          can’t execute " << this->getName() << " because ";
     throw AForm::NotSignedException();
   }
   if (b.getGrade() > this->getGradeToExecute()) {
-    std::cout << b.getName() << "          couldn’t execute " << this->getName() << " because ";
+    std::cout << b.getName() << "          can’t execute " << this->getName() << " because ";
     throw AForm::GradeTooLowException();
   }
   if (rand() & 1)

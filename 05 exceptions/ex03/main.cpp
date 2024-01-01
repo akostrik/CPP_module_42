@@ -128,5 +128,17 @@ int main() {
 	catch (std::exception &e) {
 		std::cerr << e.what() << " (catched in main)" << std::endl;
 	}
+
+	try {
+		Intern i = Intern();
+		std::cout << std::endl << "Intern :       " << i << std::endl;
+		AForm *f = (i.makeForm("NonExisting", "Predident"));
+
+		std::cout << "The form :     " << *f << std::endl;
+		delete f;
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what() << " (catched in main)" << std::endl;
+	}
 	return 0;
 }

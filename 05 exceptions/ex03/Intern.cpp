@@ -42,7 +42,7 @@ AForm *Intern::makeForm (std::string formName, std::string target) {
       delete data[i].form;
 	}
   if (toReturn == NULL) {
-    std::cout << "Intern can't find the form " << formName << std::endl;
+    std::cout << "Intern         can't find the form " << formName << std::endl;
     throw Intern::FormNameDoesntExistException();
   }
   std::cout << "Intern creates " << formName << std::endl;
@@ -51,5 +51,5 @@ AForm *Intern::makeForm (std::string formName, std::string target) {
 
 /////////////////////////////////////////////////// EXCEPTIONS
 const char *Intern::FormNameDoesntExistException::what() const throw() {
-  return "Intern: FormNameDoesntExistException";
+  return "Intern:        FormNameDoesntExistException";
 }
