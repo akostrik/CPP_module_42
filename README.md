@@ -245,7 +245,7 @@ In the both cases we can change the type of the weapon.
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Convertion (01/ex04, 06/ex00)
+## Convertion and cast (01/ex04, 06/ex00)
 ### std::string to char* 
 ```
 std::string str;
@@ -271,14 +271,10 @@ char       * c = str.data();
 2) returns the value as a float
 
 ### uintptr_t data type
-* an unsigned integer type: any valid pointer to void can be converted to this type, then converted back to pointer to void, and the result will compare equal to the original pointer
+* an unsigned integer type: any valid pointer to void can be converted to this type, then converted back to pointer to void, the result will compare equal to the original pointer
 * an optional type since C99 (?)
 * might be the same size as a void*, it might be larger, it could be smaller: for example on some hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit uintptr_t
 
-### Findinig type of object 
-https://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c  
-
-## Cast 
 ### Static Cast
 * a compile-time cast 
 ```
@@ -290,21 +286,17 @@ int b = static_cast<int>(a);
 2) TYPE* dynamic_cast<TYPE*> (object);
 
 * casts a datum from one pointer or reference type to another
+* casting to pointer to a type that is not a type of actual object -> result = NULL 
+* casting to reference to a type that is not a type of actual object -> bad_cast exception
+* we cannot verify the success by `if(reference types == 0)` (because there is no such thing as a 0-reference)
+* may be used to find the type of object (!)
+* there should be at least one virtual function in the Base class (in practice, this is not a limitation because base classes have a virtual destructor)
 * a runtime check to ensure the validity of the cast
-* to cast to pointer to a type that is not a type of actual object -> result = NULL 
-* to cast to reference to a type that is not a type of actual object -> bad_cast exception
-* we cannot verify the success using reference types by comparing the result with 0 because there is no such thing as a 0-reference
-* there should be at least one virtual function in Base class (in practice, this is not a limitation because base classes must have a virtual destructor to allow objects of derived classes to perform proper cleanup if they are deleted from a base pointer)
-* findinig the type of object (!)
 
 ```
-void payroll::calc (employee &e) {
-   try {
-      manager &m = dynamic_cast<manager&>(e);
-   }
-   catch (bad_cast) {
-   }
-}
+employee &e;
+try { manager &m = dynamic_cast<manager&>(e); }
+catch (bad_cast) { ... }
 ```
 
 ### Const Cast
