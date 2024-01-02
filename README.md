@@ -86,18 +86,18 @@ int main() {
 }
 ```
 
-## const funciton != mutable
-* не изменяет объект
-* не вызывает неконстантные методы класса (поскольку они могут изменить объект)  
-* возвращенное функцией значение поменять нельзя  
-* можно иметь константную и неконстантную версии одной и той же функции  
+## const member funciton != mutable
+* doest't change the object
+* doesn't call non-constant member functions  
+* we can't chqnge the return value
+* we can have a constant version and a non-constant version of the same function
 
 ```
 const char *func() {
-  return "текст";
+  return "text";
 }
 ```
-## mutable funciton != const
+## mutable member funciton != const
 
 ## virtual (member) function and polymorphysme
 * a member function of a Parent, redefined by a Child 
