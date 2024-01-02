@@ -158,6 +158,9 @@ class Parent  {         void f();     }   class Child: public Parent  { void f()
 ## virtual inheritance
 * предотвращает появление множественных объектов базового класса в иерархии наследования 
 
+# Object-oriented programming. C++ particularities.
+http://www.cplusplus.com/reference
+
 # Inheritance
 * subclass = derived class = child class
 * super class = base class = parent class
@@ -187,12 +190,8 @@ public:
 ```
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 
-# Object-oriented programming
 ## incapsulation
-* данные должны быть **инкапсулированы**, насколько возможно -> она скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений, поскольку изменения касаются лишь тех частей, которым эти изменения видны 
-
-# Some C++ particularities
-http://www.cplusplus.com/reference
+* данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
 
 ## Orthodox canonical class form in C++98 
 - Default constructor
