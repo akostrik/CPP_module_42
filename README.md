@@ -41,7 +41,7 @@
 
 After compiling:  
 `const int                с = 3`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can't change the value  
-`const int               *с    `  can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value
+`const int               *с    `  can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
 `       int         const *с     ` can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
 `       int       * const  с     ` can't change the pointer, can&nbsp;&nbsp;&nbsp;change the value    
 `       int const * const  с     ` can't change the pointer, can't change the value  
