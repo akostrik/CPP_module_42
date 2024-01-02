@@ -139,6 +139,10 @@ class Parent  {         void f();     }   class Child: public Parent  { void f()
 ## template function
 * allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
+## friend functon
+* не являются членами класса
+* имеют доступ к его private переменным и функциям
+
 # Inheritance specifiers
 
 ## public inheritance
@@ -270,12 +274,16 @@ char       * c = str.data();
 1) interpret its content as a floating-point number
 2) returns the value as a float
 
+### int to string (06/ex00)
+std::atoi(num)
+
 ### Static Cast
 * a compile-time cast 
 ```
 float a = 5.2;
 int b = static_cast<int>(a);
 ```
+
 ### Dynamic cast 
 1) TYPE& dynamic_cast<TYPE&> (object); to cast from references to base class objects to references to derived class objects
 2) TYPE* dynamic_cast<TYPE*> (object);
@@ -285,7 +293,7 @@ int b = static_cast<int>(a);
 * casting to reference to a type that is not a type of actual object -> bad_cast exception
 * we cannot verify the success by `if(reference types == 0)` (because there is no such thing as a 0-reference)
 * may be used to find the type of object (!)
-* the base classe should have at least one virtual function (in practice, a base classe always has a virtual destructor)
+* there should be at least one virtual function in the Base class (in practice, this is not a limitation because base classes have a virtual destructor)
 * a runtime check to ensure the validity of the cast
 
 ```
@@ -297,11 +305,12 @@ catch (bad_cast) { ... }
 ### Const Cast
 
 ### Reinterpret Cast
-* `int *n = reinterpret_cast <int *>(ptr)`
+* `data_type *var_name = reinterpret_cast <data_type *>(pointer_variable)`
 * converts a pointer into a pointer of another type
-* does not check if the pointer type = the type of the data 
+* does not check if the pointer type = type of the pointed data 
+* doesn’t have any return type
 
-### uintptr_t data type (06/ex01)
+### uintptr_t data type (06/ex02)
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
 * an optional type since C99 (?)
 * might be the same size as a void*, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit uintptr_t
