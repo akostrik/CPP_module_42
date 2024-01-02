@@ -156,7 +156,7 @@ Virtual function table :
 ## virtual inheritance
 * предотвращает появление множественных объектов базового класса в иерархии наследования 
 
-# Object-oriented programming. C++ particularities.
+# Object-oriented programmine
 http://www.cplusplus.com/reference
 
 # Inheritance
@@ -191,7 +191,8 @@ public:
 ## incapsulation
 * данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
 
-## Orthodox canonical class form in C++98 
+ # C++ feautures
+ ## Orthodox canonical class form in C++98 
 - Default constructor
 - Copy constructor
 - Destructor
