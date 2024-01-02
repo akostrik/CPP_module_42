@@ -29,13 +29,13 @@
 ## const data != mutable
 * const variable cannot be left un-initialized at the time
 * `any              function` can't           modify `                    const data`  
+* `any              function` can &nbsp;&nbsp;modity `casted const away   const data` (not advised)  
 * `    const member function` can't           modify `passed by value     const data`  
 * `    const member function` can't           modify `passed by reference const data`  
 * `non-const member function` can't           modify `passed by value     const data`  
 * `non-const member function` can't           modify `passed by reference const data`  
 * `constructor              ` can &nbsp;&nbsp;modify `                    const data` 
 * `destructor               ` can &nbsp;&nbsp;modify `                    const data` 
-* `any              function` can &nbsp;&nbsp;modity `casted const away   const data` (not advised)  
 * `const object`.`non-const member function` NON    
 * `pointer/reference to a const object`.`non-const member function` NON
 * `pointer/reference to a non const object`.`non-const member function` NON  
