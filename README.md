@@ -36,11 +36,11 @@
 `non-const member function` can't           modify `passed by reference const data`   
 `constructor              ` can &nbsp;&nbsp;modify `                    const data`  
 `destructor               ` can &nbsp;&nbsp;modify `                    const data`  
-`const object`.`non-const member function` NON    
-`pointer/reference to a const object`.`non-const member function` NON  
+`                           const object`.`non-const member function` NON    
+`pointer/reference to a     const object`.`non-const member function` NON  
 `pointer/reference to a non const object`.`non-const member function` NON  
-`constant object`.`contant member function` OK  
-`constant object`.`non contant member function` NON  
+`                           const object`.`    const member function` OK  
+`                           const object`.`non const member function` NON  
 
 After compiling:  
 const variable cannot be left un-initialized at the time  
@@ -90,7 +90,7 @@ int main() {
 ## const member funciton != mutable
 * doest't change the object
 * doesn't call non-constant member functions  
-* we can't chqnge the return value
+* we can't change the return value
 * we can have a constant version and a non-constant version of the same function
 
 ```
