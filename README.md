@@ -157,7 +157,6 @@ Virtual function table :
 * предотвращает появление множественных объектов базового класса в иерархии наследования 
 
 # Object-oriented programmine
-http://www.cplusplus.com/reference
 
 # Inheritance
 * subclass = derived class = child class
@@ -191,8 +190,10 @@ public:
 ## incapsulation
 * данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
 
- # C++ feautures
- ## Orthodox canonical class form in C++98 
+# C++ feautures
+http://www.cplusplus.com/reference
+
+## Orthodox canonical class form in C++98 
 - Default constructor
 - Copy constructor
 - Destructor
