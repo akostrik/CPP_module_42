@@ -99,31 +99,25 @@ const char *func() {
 ```
 ## mutable member funciton != const
 
-## virtual (member) function and polymorphysme
+## virtual (member) function
 * a member function of a Parent, redefined by a Child 
 * must be defined in Parent, even though it is not used
 * cannot be static
-* when you refer to a Child object by a pointer to the Parent, you call a virtual function and execute its Child’s version 
-* is accessed through object pointers
-* a constructor and a destructor can not be virtual
-* a non-final class with virtual functions should have virtual destructor
-* a destructor must have a definition (?)
-* реализуют **polymorphisme** (один интерфейс, несколько реализаций): если в иерархии классов есть функции, имеющие одинаковое имя и параметры и отмеченные `virtual`, то объект и вызов функции из набора виртуальных будут сформированы при выполнении (**позднее связывание**) 
-* вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
+* when you refer a pointer to the Parent, you call a virtual function of the Parent and execute its Child’s version 
+* a constructor and a destructor can not be virtual, a destructor must have a definition
+* virtual destructor in a non-final class with virtual functions (?)
+* **polymorphisme** один интерфейс, несколько реализаций
+* если в иерархии классов есть `virtual` функции, имеющие одинаковое имя и параметры, то объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
+* вызов виртуальной функции через имя объекта разрешается статически
 * **polymorphic class** определяет или наследует виртуальную функцию
-* полиморфными могут быть функции-члены класса (но не класс)
-* 1-st scenario:  **Interface** (abstract non-instancable class) defines a functionality of a pure virtual (**abstract**) function without realisation, Child defines the realisation    
-```
-class IParent { virtual void f() = 0; }   class Child: public IParent { void f() {} }
-```
-* 2-nd scenario: Child override a virtual function  
-```
-class Parent  { virtual void f();     }   class Child: public Parent  { void f() {} }
-```
+* полиморфными могут быть функции-члены класса (но не класс) (?)
+
+1-st scenario:  **Interface** (abstract non-instancable class) defines a functionality of a pure virtual (**abstract**) function without realisation, Child defines the realisation    
+`class IParent { virtual void f() = 0; }   class Child: public IParent { void f() {} }`  
+* 2-nd scenario: Child override a virtual function   
+`class Parent  { virtual void f();     }   class Child: public Parent  { void f() {} }`  
 * 3-d scenario: Child (**hide**) not-`virtual` function   
-```
-class Parent  {         void f();     }   class Child: public Parent  { void f() {} }
-```
+` class Parent  {         void f();     }   class Child: public Parent  { void f() {} }`  
 
 ### vtable = virtual function table
 * ≈ hidden static data member of the class  
