@@ -313,10 +313,10 @@ catch (bad_cast) { ... }
 * does not check if the pointer type = type of the pointed data 
 * doesn’t have any return type
 
-### uintptr_t data type (06/ex02)
+### `uintptr_t` data type (06/ex02)
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
 * an optional type since C99 (?)
-* might be the same size as a void*, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit uintptr_t
+* might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
 
 # Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
