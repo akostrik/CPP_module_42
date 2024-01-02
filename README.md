@@ -49,6 +49,9 @@ const variable cannot be left un-initialized at the time
 `       int         const *с     ` can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
 `       int       * const  с     ` can't change the pointer, can&nbsp;&nbsp;&nbsp;change the value    
 `       int const * const  с     ` can't change the pointer, can't change the value  
+  
+`const std::string& s = "AB";` OK, const запрещает умирать временному объекту, который присваивается этой ссылке, он жив пока жива константная ссылка
+`      std::string& s = "AB";` NON, ссылка на адрес памяти указывает на тот же, на который и объект ей присвоенный, если объект временный, то он сразу умирает
 
 ## mutable data != const
 * we can modify a mutable class member through member functions even if the containing object is const  
