@@ -139,6 +139,10 @@ class Parent  {         void f();     }   class Child: public Parent  { void f()
 ## template function
 * allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
+## friend functon
+* не являются членами класса
+* имеют доступ к его private переменным и функциям
+
 # Inheritance specifiers
 
 ## public inheritance
@@ -184,8 +188,10 @@ public:
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 
 # Some C++ particularities
-http://www.cplusplus.com/reference/iomanip/   
-http://www.cplusplus.com/reference/string/string   
+http://www.cplusplus.com/reference
+
+## Объектно-ориентированное программирование
+* данные должны быть инкапсулированы, насколько возможно
 
 ## Orthodox canonical class form in C++98 
 - Default constructor
@@ -194,20 +200,20 @@ http://www.cplusplus.com/reference/string/string
 - Copy assignment operator
 
 ```
-class A final
+class A
 {
    public:
       A ();
       A (const A &a);
       ~A ();
-      A & operator = (const A &a);
+      A &operator = (const A &a);
 };
 ```
 
-## Reference vs pointer (01 / ex03)
-`HumanA` can have a reference or a pointer to the Weapon. Ideally, it should be implemented as a reference, since the Weapon exists from creation until destruction, and never changes (here `HumanA` has `Weapon& weaponREF` attribut).  
-`HumanB` must have a pointer to a Weapon since the field is not set at creation time, and the weapon can be NULL (here `HumanB` has `Weapon* weaponPTR` attribut).  
-In the both cases we can change the type of the weapon.   
+## Reference vs pointer (01/ex03)
+* `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
+* `HumanB`: a pointer to a Weapon, since the field is not set at creation time and the weapon can be NULL
+* in the both cases, we can change the type of the weapon
 
 ### Reference
 * is a dereferenced pointer  
@@ -226,7 +232,7 @@ In the both cases we can change the type of the weapon.
 * can point to a non-existing address  
 * if something should not always exist and can change, use a pointer  
 
-## File manipulation (01 / ex04)
+## File manipulation (01/ex04)
 
 ### C (forbidden by the subject)
 * FILE *fp  
@@ -245,17 +251,75 @@ In the both cases we can change the type of the weapon.
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Convertion (01 / ex04)
-### std::string to char* 
+## Convertion and cast
+### string to char* (01/ex04)
 ```
 std::string str;
 const char * c = str.c_str();
 char       * c = str.data();
 ```
-### char* to string
+### char* to string (01/ex04)
 - Using the “=” operator
 - Using the string constructor
 - Using the assign function
+
+### string to int (06/ex00)
+
+### string to double (06/ex00)
+* `double strtod (const char* str, NULL)`
+1) discards whitespace
+2) takes a floating point literals and interprets them as a numerical value
+3) returns
+   * the value as a double
+   * 0.0 if no valid conversion could be performed
+   * a value whose magnitude is no greater than the smallest normalized positive number (and sets errno to ERANGE), if the correct value would cause underflow  
+4) never throws exceptions
+
+### string to float (06/ex00)
+* `strtof(const char* str, NULL)`
+1) interpret its content as a floating-point number
+2) returns the value as a float
+
+### int to string (06/ex00)
+std::atoi(num)
+
+### Static Cast
+* a compile-time cast 
+```
+float a = 5.2;
+int b = static_cast<int>(a);
+```
+
+### Dynamic cast 
+1) TYPE& dynamic_cast<TYPE&> (object); to cast from references to base class objects to references to derived class objects
+2) TYPE* dynamic_cast<TYPE*> (object);
+
+* casts a datum from one pointer or reference type to another
+* casting to pointer to a type that is not a type of actual object -> result = NULL 
+* casting to reference to a type that is not a type of actual object -> bad_cast exception
+* we cannot verify the success by `if(reference types == 0)` (because there is no such thing as a 0-reference)
+* may be used to find the type of object (!)
+* there should be at least one virtual function in the Base class (in practice, this is not a limitation because base classes have a virtual destructor)
+* a runtime check to ensure the validity of the cast
+
+```
+employee &e;
+try { manager &m = dynamic_cast<manager&>(e); }
+catch (bad_cast) { ... }
+```
+
+### Const Cast
+
+### Reinterpret Cast
+* `data_type *var_name = reinterpret_cast <data_type *>(pointer_variable)`
+* converts a pointer into a pointer of another type
+* does not check if the pointer type = type of the pointed data 
+* doesn’t have any return type
+
+### `uintptr_t` data type (06/ex02)
+* an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
+* an optional type since C99 (?)
+* might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
 
 # Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
