@@ -188,8 +188,7 @@ public:
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 
 # Some C++ particularities
-http://www.cplusplus.com/reference/iomanip/   
-http://www.cplusplus.com/reference/string/string   
+http://www.cplusplus.com/reference
 
 ## Orthodox canonical class form in C++98 
 - Default constructor
@@ -198,13 +197,13 @@ http://www.cplusplus.com/reference/string/string
 - Copy assignment operator
 
 ```
-class A final
+class A
 {
    public:
       A ();
       A (const A &a);
       ~A ();
-      A & operator = (const A &a);
+      A &operator = (const A &a);
 };
 ```
 
