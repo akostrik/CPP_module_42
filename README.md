@@ -28,13 +28,14 @@
 
 ## const data != mutable
 * const variable cannot be left un-initialized at the time
-* any &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function can modify `const data` directly  
-* &nbsp;&nbsp;&nbsp;&nbsp;const member function can't modify passed by value &nbsp;&nbsp; `const data` 
-* &nbsp;&nbsp;&nbsp;&nbsp;const member function can't modify passed by reference `const data` 
-* non-const member function can't modify passed by value &nbsp;&nbsp; `const data`  
+* any&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function can modify `const data` directly  
+* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const member function can't modify passed by value&nbsp;&nbsp;&nbsp;&nbsp;`const data` 
+* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const member function can't modify passed by reference `const data` 
+* non-const member function can't modify passed by value&nbsp;&nbsp;&nbsp;&nbsp;`const data`  
 * non-const member function can't modify passed by reference `const data`  
-* constructor/destructor can modify `const data` 
-* any function can modity `(casted const away)const data` (not advised)  
+* constructor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; can&nbsp;&nbsp;&nbsp;modify `const data` 
+* destructor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; can&nbsp;&nbsp;&nbsp;modify `const data` 
+* any&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function can modity `(casted const away)const data` (not advised)  
 * `const object`.`non-const member function` NON    
 * `pointer/reference to a const object`.`non-const member function` NON
 * `pointer/reference to a non const object`.`non-const member function` NON  
