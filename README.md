@@ -114,9 +114,12 @@ const char *func() {
 * полиморфными могут быть функции-члены класса (но не класс) (?)
 
 3 scenarios:  
-`class IParent { virtual void f() = 0; }   class Child: public IParent { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
-`class Parent  { virtual void f();     }   class Child: public Parent  { void f() {} }`  Child override a virtual function   
-`class Parent  {         void f();     }   class Child: public Parent  { void f() {} }`  Child **hide** a non-virtual function   
+`class IParent { virtual void f() = 0; }   
+class Child: public IParent { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
+`class Parent  { virtual void f();     }   
+class Child: public Parent  { void f() {} }`  Child override a virtual function   
+`class Parent  {         void f();     }   
+class Child: public Parent  { void f() {} }`  Child **hide** a non-virtual function   
 
 ### vtable = virtual function table
 * ≈ hidden static data member of the class  
