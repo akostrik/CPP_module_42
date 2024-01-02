@@ -118,7 +118,7 @@ const char *func() {
 `class Par  { virtual void f()     } class Chld: public Par  { void f() {} }`  Child override a virtual function   
 `class Par  {         void f()     } class Chld: public Par  { void f() {} }`  Child **hide** a non-virtual function   
 
-### vtable = virtual function table
+Virtual function table :  
 * ≈ hidden static data member of the class  
 * every object of a polymorphic class is associated with (possibly multiple) vtable for its most-derived class  
 * stores pointers to virtual functions 
