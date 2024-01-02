@@ -257,6 +257,8 @@ class A
 * exceptions  
 
 ## Convertion and cast
+`std::string` не может быть статически инициализирован, в нём используется динамическая память  
+
 ### string to char* (01/ex04)
 ```
 std::string str;
