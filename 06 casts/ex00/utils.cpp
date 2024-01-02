@@ -17,7 +17,7 @@ void trim(std::string s) { // pointer str?
       s[i] = s[i + 1];
     s[i] = '\0';
   }
-  for (i = 0; s[i] != '\0'; i++) 
+  for (i = 0; s[i] != '\0'; i++)
     ;
   i--;
   for (; s[i] == ' '; i--)

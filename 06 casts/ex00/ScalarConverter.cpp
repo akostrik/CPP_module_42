@@ -62,7 +62,7 @@ std::ostream & operator <<(std::ostream &out, const ScalarConverter &obj) {
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 std::string	ScalarConverter::detectType(std::string s) {
   std::cout << "[" << s << "]" << std::endl;
-  if (isChar(s))
+  if(isChar(s))
     return ("char");
   if(isInt(s))
     return ("int");
