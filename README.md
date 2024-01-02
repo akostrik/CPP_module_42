@@ -190,7 +190,7 @@ public:
 # Some C++ particularities
 http://www.cplusplus.com/reference
 
-## объектно-ориентированное программирование
+## Объектно-ориентированное программирование
 * данные должны быть инкапсулированы, насколько возможно
 
 ## Orthodox canonical class form in C++98 
@@ -211,9 +211,9 @@ class A
 ```
 
 ## Reference vs pointer (01/ex03)
-`HumanA` has a reference or a pointer to the Weapon. A reference is betted, since the Weapon exists from creation until destruction and never changes.  
-`HumanB` has a pointer to a Weapon, since the field is not set at creation time and the weapon can be NULL
-In the both cases we can change the type of the weapon.   
+* `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
+* `HumanB`: a pointer to a Weapon, since the field is not set at creation time and the weapon can be NULL
+* in the both cases, we can change the type of the weapon
 
 ### Reference
 * is a dereferenced pointer  
