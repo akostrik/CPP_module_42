@@ -101,14 +101,14 @@ const char *func() {
 ## mutable member funciton != const
 
 ## virtual (member) function
-* a member function of a Parent, redefined by a Child 
-* must be defined in Parent, even though it is not used
+* a member function of a Parent, redefined by a Child (the same name and parametres) (one interface, several realisations) (**polymorphic functions**)
+* must be defined in Parent
 * cannot be static
-* when you refer a pointer to the Parent, you call a virtual function of the Parent and execute its Child’s version 
+* a pointer to the Parent's function calls the Parent's virtual function and executes its Child’s version 
 * a constructor and a destructor can not be virtual, a destructor must have a definition
-* virtual destructor in a non-final class with virtual functions (?)
-* **polymorphic functions**: one interface, several realisations; **polymorphic class** defines or inherits a virtual function 
-* если в иерархии классов есть `virtual` функции, имеющие одинаковое имя и параметры, то объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
+* a destructor of a non-final class with virtual functions is virtual (?)
+* **polymorphic class**: defines or inherits a virtual function 
+* объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
 * вызов виртуальной функции через имя объекта разрешается статически
 
 3 scenarios:  
