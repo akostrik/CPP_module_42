@@ -25,6 +25,7 @@
 
 ## interface = pure abstract class 
 * consists of only virtual member functions (only declarations)
+* non-instancable
 
 ## const data != mutable
 `any              function` can't           modify `                    const data`  
@@ -112,12 +113,13 @@ const char *func() {
 * **polymorphic class** определяет или наследует виртуальную функцию
 * полиморфными могут быть функции-члены класса (но не класс) (?)
 
-1-st scenario:  **Interface** (abstract non-instancable class) defines a functionality of a pure virtual (**abstract**) function without realisation, Child defines the realisation    
+3 scenarios:  
+**Interface** defines a functionality of an abstract function without realisation, Child defines the realisation    
 `class IParent { virtual void f() = 0; }   class Child: public IParent { void f() {} }`  
-* 2-nd scenario: Child override a virtual function   
+Child override a virtual function   
 `class Parent  { virtual void f();     }   class Child: public Parent  { void f() {} }`  
-* 3-d scenario: Child (**hide**) not-`virtual` function   
-` class Parent  {         void f();     }   class Child: public Parent  { void f() {} }`  
+Child (**hide**) not-`virtual` function   
+`class Parent  {         void f();     }   class Child: public Parent  { void f() {} }`  
 
 ### vtable = virtual function table
 * ≈ hidden static data member of the class  
