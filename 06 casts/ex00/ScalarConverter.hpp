@@ -4,15 +4,24 @@
 # include <string>
 # include <exception>
 # include <iostream>
+# include <limits>
+# include "utils.hpp"
 
 class ScalarConverter {
 
+private:
+  char           charVl;
+  int            intVal;
+  float          floatV;
+  double         doublV;
+
 public:
-                  ScalarConverter  (std::string name0, int grade0);
+                  ScalarConverter  ();
                   ScalarConverter  (const ScalarConverter &obj);
                   ~ScalarConverter ();
   ScalarConverter &operator =      (const ScalarConverter &obj);
 
+  std::string     detectType(std::string str);
   void            convert          (std::string str); // char int float double 
   // ’c’ 0 -42 0.0 -4.2 -inf +inf nan 0.0f -4.2f -inff +inff nanf
 
