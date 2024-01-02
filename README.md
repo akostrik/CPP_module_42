@@ -27,20 +27,24 @@
 * consists of only virtual member functions (only declarations)
 
 ## const data != mutable
-* we can't modify const data directly  
-* we can modity: casted const away const data (not advised)  
-* a const member function can't modify const data (even if it is passed by reference)
-* a non-const member function can't modify const data (even if it is passed by reference)  
-* a constructor/destructor can modify const data 
+* const variable cannot be left un-initialized at the time
+* no function can modify `const data` directly  
+* const member function can't modify (even passed by reference)`const data` 
+* non-const member function can't modify (even passed by reference)`const data`  
+* constructor/destructor can modify `const data` 
+* any function can modity `(casted const away)const data` (not advised)  
 * `const object`.`non-const member function` NON    
 * `pointer/reference to a const object`.`non-const member function` NON
 * `pointer/reference to a non const object`.`non-const member function` NON  
 * `constant object`.`contant member function` OK 
 * `constant object`.`non contant member function` NON 
-`const int C=3` we can't change the value after compiling  
-`const int *C` or `int const *C` we can change the pointer, we can't change the value 
-`int * const C` we can't change the pointer, we can change the value   
-`int const * const C` we can't change the pointer, we can change the value
+
+After compiling:  
+`const int                с = 3`                              we can't change the value 
+`const int               *с    ` 
+`      int         const *с    ` we can   change the pointer, we can't change the value 
+`      int       * const  с    ` we can't change the pointer, we can   change the value   
+`      int const * const  с    ` we can't change the pointer, we can   change the value
 
 ## mutable data != const
 * we can modify a mutable class member through member functions even if the containing object is const  
