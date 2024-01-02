@@ -10,10 +10,10 @@
 class ScalarConverter {
 
 private:
-  char           charVl;
-  int            intVal;
-  float          floatV;
-  double         doublV;
+  char            charVal;
+  int             intVal;
+  float           floatVal;
+  double          doubleVal;
 
 public:
                   ScalarConverter  ();

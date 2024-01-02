@@ -72,20 +72,13 @@ bool isDigit(char c) {
   return (c >= '0' && c <= '9');
 }
 
-bool isNotDisplayableChar(std::string s) {
-  if (s[0] == '\0')
-    return false ;
-  for (int i = 1; s[i] != '\0'; i++)
-    if (s[i] >= 32 || s[i] <= 126)
-      return false ;
-  return true ;
+bool isDisplayableChar(char c) {
+  return (c >= 32 && c <= 126);
 }
 
 bool isChar(std::string s) { // and not digit
   if (s[0] == '\0')
     return false ;
-  if(isNotDisplayableChar(s))
-    ; //throw exception; // If a conversion to char is not displayable, prints an informative message
   if(consistsOfSpacesOnly(s))
     return true;
   trim(s);
