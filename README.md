@@ -270,6 +270,8 @@ std::string str;
 const char * c = str.c_str();
 char       * c = str.data();
 ```
+`c_str() возвращает `const char*``
+
 ### char* to string (01/ex04)
 - Using the “=” operator
 - Using the string constructor
