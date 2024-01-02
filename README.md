@@ -381,6 +381,3 @@ Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.0000
 - memory leaks
 - double inclusion (avoid it by adding include guards)  
 - `public` without any reason
-  
-## ***
-07/ex01: тестируют const (!)
