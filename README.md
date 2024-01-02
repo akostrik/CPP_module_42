@@ -40,11 +40,11 @@
 * `constant object`.`non contant member function` NON 
 
 After compiling:  
-`const int                с = 3`                              we can't change the value  
+`const int                с = 3`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can't change the value  
 `const int               *с    `  
-`       int         const *с    ` we can   change the pointer, we can't change the value  
-`       int       * const  с    ` we can't change the pointer, we can   change the value    
-`       int const * const  с    ` we can't change the pointer, we can   change the value  
+`       int         const *с     ` can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
+`       int       * const  с     ` can't change the pointer, can&nbsp;&nbsp;&nbsp;change the value    
+`       int const * const  с     ` can't change the pointer, can&nbsp;&nbsp;&nbsp;change the value  
 
 ## mutable data != const
 * we can modify a mutable class member through member functions even if the containing object is const  
