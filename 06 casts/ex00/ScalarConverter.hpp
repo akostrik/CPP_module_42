@@ -10,20 +10,21 @@
 class ScalarConverter {
 
 private:
-  char            charVal;
-  int             intVal;
-  float           floatVal;
-  double          doubleVal;
+  char            charV;
+  int             intV;
+  float           floatV;
+  double          doubleV;
 
 public:
+/////////////////////////////////////////////////// OCCF
                   ScalarConverter  ();
                   ScalarConverter  (const ScalarConverter &obj);
                   ~ScalarConverter ();
   ScalarConverter &operator =      (const ScalarConverter &obj);
 
+/////////////////////////////////////////////////// MEMBER FUNCTIONS
   std::string     detectType(std::string str);
-  void            convert          (std::string str); // char int float double 
-  // ’c’ 0 -42 0.0 -4.2 -inf +inf nan 0.0f -4.2f -inff +inff nanf
+  void            convert          (std::string str);
 
   class ConvertionImpossible : public std::exception {
     public:
@@ -31,6 +32,7 @@ public:
   };
 };
 
+/////////////////////////////////////////////////// EXCEPTIONS
 std::ostream &operator <<(std::ostream &out, const ScalarConverter &obj);
 
 #endif

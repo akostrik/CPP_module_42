@@ -2,10 +2,10 @@
 
 /////////////////////////////////////////////////// OCCF and <<
 ScalarConverter::ScalarConverter() {
-  charVal   = '\0';
-  intVal    = 0;
-  floatVal  = 0;
-  doubleVal = 0;
+  charV   = '\0';
+  intV    = 0;
+  floatV  = 0;
+  doubleV = 0;
 };
 
 ScalarConverter::ScalarConverter(const ScalarConverter &obj) {
@@ -16,7 +16,7 @@ ScalarConverter::~ScalarConverter() {
 };
 
 ScalarConverter& ScalarConverter::operator = (ScalarConverter const &obj) {
-  this->intVal = obj.intVal;
+  this->intV = obj.intV;
   return *this;
 };
 
@@ -31,6 +31,9 @@ std::ostream & operator <<(std::ostream &out, const ScalarConverter &obj) {
   return (out);
 }
 
+/////////////////////////////////////////////////// GETTERS
+
+
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 std::string	ScalarConverter::detectType(std::string s) {
   if(isChar(s))
@@ -42,23 +45,22 @@ std::string	ScalarConverter::detectType(std::string s) {
   if(isDouble(s))
     return ("double");
   return "indefined";
-  // If a conversion does not make any sense or overflows, display a message to inform the user that the type conversion is impossible
 }
 
 // detect the type of the literal passed as parameter
 // convert it from string to its actual type
 // convert it explicitly to the three other types
+// If a conversion does not make any sense or overflows, display a message to inform the user that the type conversion is impossible
 void ScalarConverter::convert (std::string s) {
-  std::string type = this->detectType(s);
-  std::cout << "[" << s << "]" << std::endl;
-  std::cout << "type = " << type << std::endl;
+  std::string type = detectType(s);
+  std::cout << "[" << s << "], type = " << type << std::endl;
   if (type == "char") {
-    this->charVal   = this->s[0];
-    this->intVal    = atoi(s);
-    this->floatVal  = strtof(s, NULL);
-    this->doubleVal = strtod(s, NULL); 
+    this->charV   = s[0];
+    this->intV    = atoi(s.c_str());
+    this->floatV  = strtof(s.c_str(), NULL);
+    this->doubleV = strtod(s.c_str(), NULL); 
   }
-  // 	int Char = static_cast<int>(this->_charNum);
+  // int Char = static_cast<int>(this->_charNum);
 	// else if (std::isdigit(this->_charNum) && Char > 0)
   // 	this->_intNum = static_cast<int>(Char);
   // 	this->_floatNum = static_cast<float>(Char);
