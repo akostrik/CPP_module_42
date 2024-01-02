@@ -249,7 +249,7 @@ In the both cases we can change the type of the weapon.
 * exceptions  
 
 ## Convertion and cast
-### std::string to char* (01/ex04)
+### string to char* (01/ex04)
 ```
 std::string str;
 const char * c = str.c_str();
@@ -260,7 +260,10 @@ char       * c = str.data();
 - Using the string constructor
 - Using the assign function
 
-### string to double `double strtod (const char* str, NULL)`(06/ex00)
+### string to int (06/ex00)
+
+### string to double (06/ex00)
+* `double strtod (const char* str, NULL)`
 1) discards whitespace
 2) takes a floating point literals and interprets them as a numerical value
 3) returns
@@ -269,7 +272,8 @@ char       * c = str.data();
    * a value whose magnitude is no greater than the smallest normalized positive number (and sets errno to ERANGE), if the correct value would cause underflow  
 4) never throws exceptions
 
-### string to float `strtof(const char* str, NULL)` (06/ex00)
+### string to float (06/ex00)
+* `strtof(const char* str, NULL)`
 1) interpret its content as a floating-point number
 2) returns the value as a float
 
