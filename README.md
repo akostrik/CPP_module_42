@@ -27,20 +27,20 @@
 * consists of only virtual member functions (only declarations)
 
 ## const data != mutable
-* we can't modify it directly (a compile-time error)  
-* we can't modify it through a pointer/reference to non-const type (undefined behavior)  
-* we can't modify it by a (const nor a non-const) member function, even if it is passed by reference  
-* we can modity if by constructor/destructor   
-* we can modity if by casting the const away (not advised)  
-* we can't call a non-const method a const object   
-* we can't call a non-const method through a pointer/reference to a const object if the referred-to object is const   
-* we can't call a non-const method through a pointer/reference to a const object if the referred-to object is not const  
-`const int C=3` parameters which will not be changed fter compiling  
-`const int *C` a pointer to a constant int, we can change the pointer, we can not change the value of the variable 
-`int const *C` the same  
-`int * const C` a constant pointer to int, we can not change the pinter, we cn change the value of the variable   
-`int const * const C` a constant pointer to a constant int
-* a constant object can call directly only a contant methode of a class
+* we can't modify const data directly  
+* we can modity: casted const away const data (not advised)  
+* a const member function can't modify const data (even if it is passed by reference)
+* a non-const member function can't modify const data (even if it is passed by reference)  
+* a constructor/destructor can modify const data 
+* `const object`.`non-const member function` NON    
+* `pointer/reference to a const object`.`non-const member function` NON
+* `pointer/reference to a non const object`.`non-const member function` NON  
+* `constant object`.`contant member function` OK 
+* `constant object`.`non contant member function` NON 
+`const int C=3` we can't change the value after compiling  
+`const int *C` or `int const *C` we can change the pointer, we can't change the value 
+`int * const C` we can't change the pointer, we can change the value   
+`int const * const C` we can't change the pointer, we can change the value
 
 ## mutable data != const
 * we can modify a mutable class member through member functions even if the containing object is const  
