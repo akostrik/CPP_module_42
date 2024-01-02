@@ -285,6 +285,7 @@ char       * c = str.data();
 ### int to string (06/ex00)
 * `std::atoi(num)`
 * is unsafe, doesn't detect if the input is invalid
+* C++11 has introduced `std:stoi` which is safe, throws exception if input is invalid in some way
 
 ### Static Cast
 * a compile-time cast 
