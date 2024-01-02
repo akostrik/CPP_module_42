@@ -258,10 +258,11 @@ class A
 
 ## Convertion and cast
 `char *` когда делаешь всё вручную  
-`char *` = string.c_str()  
-`char *` = &string[0]  
+`char *` = string.c_str() (?)  
+`char *` = &string[0]  (?)
 `std::string` не может быть статически инициализирован, используется динамическая память   
-`std::string` string скорость не важна, понятность кода важна  
+`std::string` скорость не важна, понятность кода важна  
+`std::string` подобие динамического массива char'ов, подобие vector<char>  
 
 ### string to char* (01/ex04)
 ```
