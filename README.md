@@ -42,9 +42,9 @@
 After compiling:  
 `const int                с = 3`                              we can't change the value  
 `const int               *с    `  
-`      int         const *с    ` we can   change the pointer, we can't change the value  
-`      int       * const  с    ` we can't change the pointer, we can   change the value    
-`      int const * const  с    ` we can't change the pointer, we can   change the value  
+`       int         const *с    ` we can   change the pointer, we can't change the value  
+`       int       * const  с    ` we can't change the pointer, we can   change the value    
+`       int const * const  с    ` we can't change the pointer, we can   change the value  
 
 ## mutable data != const
 * we can modify a mutable class member through member functions even if the containing object is const  
