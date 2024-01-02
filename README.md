@@ -190,6 +190,9 @@ public:
 # Some C++ particularities
 http://www.cplusplus.com/reference
 
+## объектно-ориентированное программирование
+* данные должны быть инкапсулированы, насколько возможно
+
 ## Orthodox canonical class form in C++98 
 - Default constructor
 - Copy constructor
