@@ -187,11 +187,12 @@ public:
 ```
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 
+# Object-oriented programming
+## incapsulation
+* данные должны быть **инкапсулированы**, насколько возможно -> она скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений, поскольку изменения касаются лишь тех частей, которым эти изменения видны 
+
 # Some C++ particularities
 http://www.cplusplus.com/reference
-
-## Объектно-ориентированное программирование
-* данные должны быть инкапсулированы, насколько возможно
 
 ## Orthodox canonical class form in C++98 
 - Default constructor
