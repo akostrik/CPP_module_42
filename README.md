@@ -283,7 +283,8 @@ char       * c = str.data();
 2) returns the value as a float
 
 ### int to string (06/ex00)
-std::atoi(num)
+* `std::atoi(num)`
+* is unsafe, doesn't detect if the input is invalid
 
 ### Static Cast
 * a compile-time cast 
