@@ -115,7 +115,7 @@ const char *func() {
 
 3 scenarios:  
 `class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
-`class Par  { virtual void f()     } class Chld: public Par  { void f() {} }`  Child override a virtual function   
+`class Par  { virtual void f()     } class Chld: public Par  { void f() {} }`  Child **override** a virtual function   
 `class Par  {         void f()     } class Chld: public Par  { void f() {} }`  Child **hide** a non-virtual function   
 
 Virtual function table :  
