@@ -86,6 +86,8 @@ int main() {
   MyClass::f();
 }
 ```
+## const non-member function
+* doesn't exist
 
 ## const member funciton != mutable
 * doest't change the object
