@@ -107,11 +107,9 @@ const char *func() {
 * when you refer a pointer to the Parent, you call a virtual function of the Parent and execute its Child’s version 
 * a constructor and a destructor can not be virtual, a destructor must have a definition
 * virtual destructor in a non-final class with virtual functions (?)
-* **polymorphisme** один интерфейс, несколько реализаций
+* **polymorphic functions**: one interface, several realisations; **polymorphic class** defines or inherits a virtual function 
 * если в иерархии классов есть `virtual` функции, имеющие одинаковое имя и параметры, то объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
 * вызов виртуальной функции через имя объекта разрешается статически
-* **polymorphic class** определяет или наследует виртуальную функцию
-* полиморфными могут быть функции-члены класса (но не класс) (?)
 
 3 scenarios:  
 `class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
