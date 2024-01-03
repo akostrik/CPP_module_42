@@ -25,22 +25,33 @@
 
 ## interface = pure abstract class 
 * consists of only virtual member functions (only declarations)
+* non-instancable
 
 ## const data != mutable
-* we can't modify it directly (a compile-time error)  
-* we can't modify it through a pointer/reference to non-const type (undefined behavior)  
-* we can't modify it by a (const nor a non-const) member function, even if it is passed by reference  
-* we can modity if by constructor/destructor   
-* we can modity if by casting the const away (not advised)  
-* we can't call a non-const method a const object   
-* we can't call a non-const method through a pointer/reference to a const object if the referred-to object is const   
-* we can't call a non-const method through a pointer/reference to a const object if the referred-to object is not const  
-`const int C=3` parameters which will not be changed fter compiling  
-`const int *C` a pointer to a constant int, we can change the pointer, we can not change the value of the variable 
-`int const *C` the same  
-`int * const C` a constant pointer to int, we can not change the pinter, we cn change the value of the variable   
-`int const * const C` a constant pointer to a constant int
-* a constant object can call directly only a contant methode of a class
+`any              function` can't           modify `                    const data`  
+`any              function` can &nbsp;&nbsp;modity `casted const away   const data` (not advised)   
+`    const member function` can't           modify `passed by value     const data`  
+`    const member function` can't           modify `passed by reference const data`  
+`non-const member function` can't           modify `passed by value     const data`   
+`non-const member function` can't           modify `passed by reference const data`   
+`constructor              ` can &nbsp;&nbsp;modify `                    const data`  
+`destructor               ` can &nbsp;&nbsp;modify `                    const data`  
+`                           const object`.`non-const member function` NON    
+`pointer/reference to a     const object`.`non-const member function` NON  
+`pointer/reference to a non const object`.`non-const member function` NON  
+`                           const object`.`    const member function` OK  
+`                           const object`.`non const member function` NON  
+
+After compiling:  
+const variable cannot be left un-initialized at the time  
+`const int                с = 3` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can't change the value  
+`const int               *с    `  can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
+`       int         const *с     ` can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
+`       int       * const  с     ` can't change the pointer, can&nbsp;&nbsp;&nbsp;change the value    
+`       int const * const  с     ` can't change the pointer, can't change the value  
+  
+`const std::string& s = "AB";` OK, const запрещает умирать временному объекту, который присваивается этой ссылке, он жив пока жива константная ссылка  
+`      std::string& s = "AB";` NON, ссылка на адрес памяти указывает на тот же, на который и объект ей присвоенный, если объект временный, то он сразу умирает
 
 ## mutable data != const
 * we can modify a mutable class member through member functions even if the containing object is const  
@@ -78,47 +89,39 @@ int main() {
   MyClass::f();
 }
 ```
+## const non-member function
+* doesn't exist
 
-## const funciton != mutable
-* не изменяет объект
-* не вызывает неконстантные методы класса (поскольку они могут изменить объект)  
-* возвращенное функцией значение поменять нельзя  
-* можно иметь константную и неконстантную версии одной и той же функции  
+## const member funciton != mutable
+* doest't change the object
+* doesn't call non-constant member functions  
+* we can't change the return value
+* we can have a constant version and a non-constant version of the same function
 
 ```
 const char *func() {
-  return "текст";
+  return "text";
 }
 ```
-## mutable funciton != const
+## mutable member funciton != const
 
-## virtual (member) function and polymorphysme
-* a member function of a Parent, redefined by a Child 
-* must be defined in Parent, even though it is not used
+## virtual (member) function
+* a member function of a Parent, redefined by a Child (the same name and parametres) (one interface, several realisations) (**polymorphic functions**)
+* must be defined in Parent
 * cannot be static
-* when you refer to a Child object by a pointer to the Parent, you call a virtual function and execute its Child’s version 
-* is accessed through object pointers
-* a constructor and a destructor can not be virtual
-* a non-final class with virtual functions should have virtual destructor
-* a destructor must have a definition (?)
-* реализуют **polymorphisme** (один интерфейс, несколько реализаций): если в иерархии классов есть функции, имеющие одинаковое имя и параметры и отмеченные `virtual`, то объект и вызов функции из набора виртуальных будут сформированы при выполнении (**позднее связывание**) 
-* вызов виртуальной функции через имя объекта разрешается статически, динамическое связывание возможно только через указатель или ссылку
-* **polymorphic class** определяет или наследует виртуальную функцию
-* полиморфными могут быть функции-члены класса (но не класс)
-* 1-st scenario:  **Interface** (abstract non-instancable class) defines a functionality of a pure virtual (**abstract**) function without realisation, Child defines the realisation    
-```
-class IParent { virtual void f() = 0; }   class Child: public IParent { void f() {} }
-```
-* 2-nd scenario: Child override a virtual function  
-```
-class Parent  { virtual void f();     }   class Child: public Parent  { void f() {} }
-```
-* 3-d scenario: Child (**hide**) not-`virtual` function   
-```
-class Parent  {         void f();     }   class Child: public Parent  { void f() {} }
-```
+* a pointer to the Parent's function calls the Parent's virtual function and executes its Child’s version 
+* a constructor and a destructor can not be virtual, a destructor must have a definition
+* a destructor of a non-final class with virtual functions is virtual (?)
+* **polymorphic class**: defines or inherits a virtual function 
+* объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
+* вызов виртуальной функции через имя объекта разрешается статически
 
-### vtable = virtual function table
+3 scenarios:  
+`class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
+`class Par  { virtual void f()     } class Chld: public Par  { void f() {} }`  Child **override** a virtual function   
+`class Par  {         void f()     } class Chld: public Par  { void f() {} }`  Child **hide** a non-virtual function   
+
+Virtual function table :  
 * ≈ hidden static data member of the class  
 * every object of a polymorphic class is associated with (possibly multiple) vtable for its most-derived class  
 * stores pointers to virtual functions 
@@ -158,8 +161,7 @@ class Parent  {         void f();     }   class Child: public Parent  { void f()
 ## virtual inheritance
 * предотвращает появление множественных объектов базового класса в иерархии наследования 
 
-# Object-oriented programming. C++ particularities.
-http://www.cplusplus.com/reference
+# Object-oriented programmine
 
 # Inheritance
 * subclass = derived class = child class
@@ -192,6 +194,9 @@ public:
 
 ## incapsulation
 * данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
+
+# C++ feautures
+http://www.cplusplus.com/reference
 
 ## Orthodox canonical class form in C++98 
 - Default constructor
@@ -252,12 +257,22 @@ class A
 * exceptions  
 
 ## Convertion and cast
+`char *` когда делаешь всё вручную  
+`char *` = string.c_str() (?)  
+`char *` = &string[0]  (?)
+`std::string` не может быть статически инициализирован, используется динамическая память   
+`std::string` скорость не важна, понятность кода важна  
+`std::string` подобие динамического массива char'ов, подобие vector<char>  
+объект string != строковый литерал  
+
 ### string to char* (01/ex04)
 ```
 std::string str;
 const char * c = str.c_str();
 char       * c = str.data();
 ```
+`c_str() возвращает `const char*``
+
 ### char* to string (01/ex04)
 - Using the “=” operator
 - Using the string constructor
@@ -266,7 +281,7 @@ char       * c = str.data();
 ### string to int (06/ex00)
 
 ### string to double (06/ex00)
-* `double strtod (const char* str, NULL)`
+`double strtod (const char* str, NULL)`
 1) discards whitespace
 2) takes a floating point literals and interprets them as a numerical value
 3) returns
@@ -276,12 +291,14 @@ char       * c = str.data();
 4) never throws exceptions
 
 ### string to float (06/ex00)
-* `strtof(const char* str, NULL)`
+`strtof(const char* str, NULL)`
 1) interpret its content as a floating-point number
 2) returns the value as a float
 
 ### int to string (06/ex00)
-std::atoi(num)
+`std::atoi(num)`
+* is unsafe, doesn't detect if the input is invalid
+* C++11 has introduced `std:stoi` which is safe, throws exception if input is invalid in some way
 
 ### Static Cast
 * a compile-time cast 
@@ -381,6 +398,3 @@ Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.0000
 - memory leaks
 - double inclusion (avoid it by adding include guards)  
 - `public` without any reason
-  
-## ***
-07/ex01: тестируют const (!)
