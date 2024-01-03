@@ -264,7 +264,7 @@ string != строковый литерал
 |                      | `char`         | `char*`                                 | `std::string`     | `int`      | `float` | `double`
 |----------------------|----------------|-----------------------------------------|-------------------|------------|---------|---------
 | to `std::string`     |                | = / string constructor / s.data() c++11 |                   | atoi       |         |
-| to `char*`           |                |                                         | c_str();          |            |         |
+| to `char*`           |                |                                         | c_str()           |            |         |
 | to int               |                |                                         | atoi / stoi c++11 |            |         |
 | to float             |                |                                         | strtof            |            |         |
 | to double            |                |                                         | strtod            |            |         |
