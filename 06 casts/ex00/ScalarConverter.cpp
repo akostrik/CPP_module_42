@@ -2,7 +2,7 @@
 
 /////////////////////////////////////////////////// OCCF and <<
 ScalarConverter::ScalarConverter() {
-  charV   = '\0';
+  charV   = "";
   intV    = 0;
   floatV  = 0;
   doubleV = 0;
@@ -21,29 +21,51 @@ ScalarConverter& ScalarConverter::operator = (ScalarConverter const &obj) {
 };
 
 std::ostream & operator <<(std::ostream &out, const ScalarConverter &obj) {
-  if(isDisplayableChar(this->getCharVal()))
-    out << "char:   " << obj.getCharVal()   << std::endl;
+  if(isDisplayableCharAndNotSDigit(obj.getCharV()))
+    out << "char:   " << obj.getCharV()   << std::endl;
   else
     out << "char:   indisplayable char"   << std::endl;
-  out << "int:    " << obj.getIntVal()    << std::endl;
-  out << "float:  " << obj.getFloatVal()  << std::endl;
-  out << "double: " << obj.getDoubleVal() << std::endl;
+  out << "int:    " << obj.getIntV()    << std::endl;
+  out << "float:  " << obj.getFloatV()  << std::endl;
+  out << "double: " << obj.getDoubleV() << std::endl;
   return (out);
 }
 
 /////////////////////////////////////////////////// GETTERS
+std::string ScalarConverter::getCharV() const {
+  return this->charV;
+}
 
+int ScalarConverter::getIntV() const {
+  return this->intV;
+}
+
+float ScalarConverter::getFloatV() const {
+  return this->floatV;
+}
+
+double ScalarConverter::getDoubleV() const {
+  return this->doubleV;
+}
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 std::string	ScalarConverter::detectType(std::string s) {
-  if(isChar(s))
-    return ("char");
+
+  if (s[0] == '\0')
+    return "indefined";
+  if(isOnlySpaces(s))
+    return "char";
+  trim(&s);
+  if(isDisplayableCharAndNotSDigit(s))
+    return "char";
+  if(isIndisplayableChar(s))
+    ; // exception
   if(isInt(s))
-    return ("int");
+    return "int";
   if(isFloat(s))
-    return ("float");
+    return "float";
   if(isDouble(s))
-    return ("double");
+    return "double";
   return "indefined";
 }
 
