@@ -256,52 +256,29 @@ class A
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Convertion and cast
-`char *` когда делаешь всё вручную  
-`char *` = string.c_str() (?)  
-`char *` = &string[0]  (?)
-`std::string` не может быть статически инициализирован, используется динамическая память   
-`std::string` скорость не важна, понятность кода важна  
+## Convertion and cast (01/ex04, 06/ex00)
+`std::string` инициализирован динамически, не статически   
 `std::string` подобие динамического массива char'ов, подобие vector<char>  
-объект string != строковый литерал  
+string != строковый литерал  
 
-### string to char* (01/ex04)
-```
-std::string str;
-const char * c = str.c_str();
-char       * c = str.data();
-```
-`c_str() возвращает `const char*``
+|                      | `char`         | `char*`                                 | `std::string`     | `int`      | `float` | `double`
+|----------------------|----------------|-----------------------------------------|-------------------|------------|---------|---------
+| to `std::string`     |                | = / string constructor / s.data() c++11 |                   | atoi       |         |
+| to `char*`           |                |                                         | c_str()           |            |         |
+| to int               |                |                                         | atoi / stoi c++11 |            |         |
+| to float             |                |                                         | strtof            |            |         |
+| to double            |                |                                         | strtod            |            |         |
 
-### char* to string (01/ex04)
-- Using the “=” operator
-- Using the string constructor
-- Using the assign function
-
-### string to int (06/ex00)
-
-### string to double (06/ex00)
-`double strtod (const char* str, NULL)`
-1) discards whitespace
-2) takes a floating point literals and interprets them as a numerical value
-3) returns
-   * the value as a double
-   * 0.0 if no valid conversion could be performed
-   * a value whose magnitude is no greater than the smallest normalized positive number (and sets errno to ERANGE), if the correct value would cause underflow  
-4) never throws exceptions
-
-### string to float (06/ex00)
-`strtof(const char* str, NULL)`
-1) interpret its content as a floating-point number
-2) returns the value as a float
-
-### int to string (06/ex00)
-`std::atoi(num)`
-* is unsafe, doesn't detect if the input is invalid
-* C++11 has introduced `std:stoi` which is safe, throws exception if input is invalid in some way
-
+ 
 ### Static Cast
-* a compile-time cast 
+* a compile-time cast
+* для приведения к какому-либо типу от void*
+* для приведения одного типа к другому
+* если типы встроенные, то будут использованы встроенные в C++ правила приведения  
+* если типы определенны программистом, то будут использованы правила приведения, определенные программистом  
+* static_cast между указателями корректно: если один из указателей - это void*
+* static_cast между указателями корректно: если это приведение между объектами классов, где один класс является наследником другого  
+
 ```
 float a = 5.2;
 int b = static_cast<int>(a);
