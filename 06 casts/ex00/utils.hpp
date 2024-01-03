@@ -5,15 +5,16 @@
 # include <exception>
 # include <iostream>
 # include <limits>
+# include <stdlib.h>
+# include "ScalarConverter.hpp"
 
-bool isDisplayableCharAndNotSDigit(std::string s);
-bool isIndisplayableChar(std::string s);
-bool isInt(std::string s);
-bool isFloat(std::string s);
-bool isDouble(std::string s);
-bool isOnlySpaces(std::string s);
-void trim(std::string *s);
-void removePlusOrMinus(std::string *s);
-int strlen(std::string s);
+char  convertToChar(std::string s);
+int   convertToInt(std::string s);
+float convertToFloat(std::string s);
+bool  isDouble(std::string s);
+bool  isOnlySpaces(std::string s);
+void  trim(std::string *s);
+void  removePlusOrMinus(std::string *s);
+int   strlen(std::string s);
 
 #endif

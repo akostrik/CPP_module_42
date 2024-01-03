@@ -11,7 +11,7 @@
 class ScalarConverter {
 
 private:
-  std::string     charV;
+  char            charV;
   int             intV;
   float           floatV;
   double          doubleV;
@@ -24,22 +24,21 @@ public:
   ScalarConverter &operator =      (const ScalarConverter &obj);
 
 /////////////////////////////////////////////////// GETTERS
-  std::string     getCharV() const;
-  int             getIntV() const;
-  float           getFloatV() const;
-  double          getDoubleV() const;
+  char            getCharV         () const;
+  int             getIntV          () const;
+  float           getFloatV        () const;
+  double          getDoubleV       () const;
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
-  std::string     detectType(std::string str);
   void            convert          (std::string str);
 
-  class ConvertionImpossible : public std::exception {
+/////////////////////////////////////////////////// EXCEPTIONS
+  class ConvertionFailed : public std::exception {
     public:
       const char *what() const throw();
   };
 };
 
-/////////////////////////////////////////////////// EXCEPTIONS
 std::ostream &operator <<(std::ostream &out, const ScalarConverter &obj);
 
 #endif
