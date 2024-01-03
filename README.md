@@ -269,12 +269,12 @@ string != строковый литерал
 | to float             |                         |                            | strtof        |               |         |
 | to double            |                         |                            | strtod (1)    |               |         |
 
-(1) discards whitespace
-(1) returns the value as a double / 0.0 if no valid conversion / a value whose magnitude is no greater than the smallest normalized positive number (and sets errno to ERANGE), if the correct value would cause underflow  
-(1) never throws exceptions
-(2) doesn't detect if the input is invalid (std:stoi c++ 11 detect it)
-(3) and s.data() for c++ 11
-
+(1) discards whitespace  
+(1) returns the value as a double / 0.0 if no valid conversion / a value whose magnitude is no greater than the smallest normalized positive number (and sets errno to ERANGE), if the correct value would cause underflow   
+(1) never throws exceptions  
+(2) doesn't detect if the input is invalid (std:stoi c++ 11 detect it)  
+(3) and s.data() for c++ 11  
+  
 ### Static Cast
 * a compile-time cast
 * для приведения к какому-либо типу от void*
