@@ -267,10 +267,10 @@ class A
 
 |                      | `char`                  | `char*` | `std::string` | `int`       | `float` | `double`
 |----------------------|-------------------------|---------|---------------|-------------|---------|---------
-| to `std::string`     | `=`, string constructor |         |               | std::atoi() |         |
-| to `char*`           |        |         | `std::string str;` `const char * c = str.c_str();` `char       * c = str.data();|
-| to float             |        |         | strtof        |
-| to double            |        |         | strtod (*)    |
+| to `std::string`     | = or string constructor |         |               | std::atoi() |         |
+| to `char*`           |                         |         | `std::string str;` `const char * c = str.c_str();` `char       * c = str.data();|
+| to float             |                         |         | strtof        |
+| to double            |                         |         | strtod (*)    |
 
 (*) discards whitespace
 2) takes a floating point literals and interprets them as a numerical value
