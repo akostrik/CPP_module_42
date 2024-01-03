@@ -257,38 +257,24 @@ class A
 * exceptions  
 
 ## Convertion and cast (01/ex04, 06/ex00)
-`char *` когда делаешь всё вручную  
-`char *` = string.c_str() (?)  
-`char *` = &string[0]  (?)
 `std::string` инициализирован динамически, не статически   
-`std::string` скорость не важна, понятность кода важна  
 `std::string` подобие динамического массива char'ов, подобие vector<char>  
-объект string != строковый литерал  
+string != строковый литерал  
 
-|                      | `char`                  | `char*` | `std::string` | `int`       | `float` | `double`
-|----------------------|-------------------------|---------|---------------|-------------|---------|---------
-| to `std::string`     | = or string constructor |         |               | std::atoi() |         |
-| to `char*`           |                         |         | `std::string str;` `const char * c = str.c_str();` `char       * c = str.data();|
-| to float             |                         |         | strtof        |
-| to double            |                         |         | strtod (*)    |
+|                      | `char`                  | `char*`                            | `std::string` | `int`         | `float` | `double`
+|----------------------|-------------------------|------------------------------------|---------------|---------------|---------|---------
+| to `std::string`     |                         | = / string constructor / s.data(); |               | std::atoi (2) |         |
+| to `char*`           |                         |                                    | s.c_str();    |               |
+| to float             |                         |                                    | strtof        |               |
+| to double            |                         |                                    | strtod (1)    |               |
 
-(*) discards whitespace
-2) takes a floating point literals and interprets them as a numerical value
-3) returns
+(1) discards whitespace
+(1) returns
    * the value as a double
    * 0.0 if no valid conversion could be performed
    * a value whose magnitude is no greater than the smallest normalized positive number (and sets errno to ERANGE), if the correct value would cause underflow  
-4) never throws exceptions
-
-
-### int to string (06/ex00)
-
-* is unsafe, doesn't detect if the input is invalid
-* C++11 has introduced `std:stoi` which is safe, throws exception if input is invalid in some way
-
-## 
-`stoi ( const std::string& str, std::size_t* pos=nullptr, int base=10)`
-Interprets a signed integer value in the string str.
+(1) never throws exceptions
+(2) doesn't detect if the input is invalid, std:stoi (c++ 11) detect
 
 ### Static Cast
 * a compile-time cast
