@@ -261,17 +261,19 @@ class A
 `std::string` подобие динамического массива char'ов, подобие vector<char>  
 string != строковый литерал  
 
-|                      | `char`                  | `char*`                            | `std::string` | `int`         | `float` | `double`
-|----------------------|-------------------------|------------------------------------|---------------|---------------|---------|---------
-| to `std::string`     |                         | = / string constructor / s.data()  |               | std::atoi (2) |         |
-| to `char*`           |                         |                                    | s.c_str();    |               |
-| to float             |                         |                                    | strtof        |               |
-| to double            |                         |                                    | strtod (1)    |               |
+|                      | `char`                  | `char*`                    | `std::string` | `int`         | `float` | `double`
+|----------------------|-------------------------|----------------------------|---------------|---------------|---------|---------
+| to `std::string`     |                         | = / string constructor (3) |               | std::atoi (2) |         |
+| to `char*`           |                         |                            | s.c_str();    |               |         |
+| to int               |                         |                            |               |               |         |
+| to float             |                         |                            | strtof        |               |         |
+| to double            |                         |                            | strtod (1)    |               |         |
 
 (1) discards whitespace
 (1) returns the value as a double / 0.0 if no valid conversion / a value whose magnitude is no greater than the smallest normalized positive number (and sets errno to ERANGE), if the correct value would cause underflow  
 (1) never throws exceptions
 (2) doesn't detect if the input is invalid (std:stoi c++ 11 detect it)
+(3) and s.data() for c++ 11
 
 ### Static Cast
 * a compile-time cast
