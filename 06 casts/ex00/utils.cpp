@@ -52,50 +52,33 @@ bool isInCharLimits(int n) {
   return (n <= -127 && n <= 128);
 }
 
-bool isLessThan2147483647(std::string s) {
-  int i;
-
-  if (s[0] == '-')
+bool s1IsLessThenS2(std::string s1, std::string s2) {
+  if (s1[0] == '-' && s2[0] != '-')
     return true;
-  if (s[0] == '+') {
-    for (i = 0; ; i++)
-      s[i] = s[i + 1];
-    s[i] = '\0';
-  }
-  if (strlen(s) <= 9)
-    return true;
-  if (strlen(s) >= 11)
+  if (s1[0] != '-' && s2[0] == '-')
     return false;
-  std::cout << "[" << s << "] <= 2147483647     -> " << (s <= "2147483647") << std::endl;
-  std::cout << s << ".compare(2147483647) -> " << s.compare("2147483647") << std::endl;
-  std::cout << "strcmp(" << s.c_str() << ",2147483647)  -> " << strcmp(s.c_str(),"2147483647") << std::endl;
-  //return (s <= "2147483647");
-  //return (s.compare("2147483647") <= 0);
-  return (strcmp(s.c_str(), "2147483647") <= 0);
+  if (s1[0] != '-' && s2[0] != '-') {
+    if (strlen(s1) < strlen(s2))
+      return true;
+    if (strlen(s1) > strlen(s2))
+      return false;
+    return (strcmp(s1.c_str(), s2.c_str()) <= 0);
+  }
+  if (s1[0] == '-' && s2[0] == '-') {
+    if (strlen(s1) < strlen(s2))
+      return false;
+    if (strlen(s1) > strlen(s2))
+      return true;
+   return (strcmp(s1.c_str(), s2.c_str()) >= 0);
+  }
+  return true;
 }
 
-bool isGreaterThanMinus2147483648(std::string s) {
-  int i;
-
-  if (s[0] == '+' || isDigit(s[0]))
-    return true;
-  if (s[0] == '-') {
-    for (i = 0; ; i++)
-      s[i] = s[i + 1];
-    s[i] = '\0';
-  }
-  if (strlen(s) <= 9)
-    return true;
-  if (strlen(s) >= 11)
-    return false;
-  return (strcmp(s.c_str(), "2147483648") <= 0);
-}
-
-bool isInIntLimits(std::string s) {
+bool isInLimits(std::string s, std::string min, std::string max) {
   for (int i = 0; s[i] != '\0'; i++)
     if (s[i] == '.')
-      s[i] = '\0';
-  return (isLessThan2147483647(s) && isGreaterThanMinus2147483648(s));
+      s[i] = '\0'; /////////////
+  return (s1IsLessThenS2(s.c_str(), max) && s1IsLessThenS2(min, s.c_str()));
 }
 
 void trim(std::string *s) {
