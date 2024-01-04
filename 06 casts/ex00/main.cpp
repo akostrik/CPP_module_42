@@ -10,8 +10,7 @@ int main(int argc, char* argv[]) {
     return (std::cout << "give one argument\n", 0);
   try {
     c->convert(argv[1]);
-    std::cout << c << std::endl;
-    std::cout << c->getCharV() << std::endl;
+    std::cout << *c << std::endl;
   }
   catch (std::exception &e) {
     std::cout << e.what() << std::endl;
