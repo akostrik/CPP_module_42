@@ -2,12 +2,10 @@
 
 /////////////////////////////////////////////////// OCCF and <<
 ScalarConverter::ScalarConverter() {
-  charV          = ' ';
-  intV           = 3;
-  floatV         = 4;
-  doubleV        = 5;
-  specialFloatV  = "";
-  specialDoubleV = "";
+  charOk   = true;
+  intOk    = true;
+  floatOk  = true;
+  doubleOk = true;
 };
 
 ScalarConverter::ScalarConverter(const ScalarConverter &obj) {
@@ -23,13 +21,24 @@ ScalarConverter& ScalarConverter::operator = (ScalarConverter const &obj) {
 };
 
 std::ostream & operator <<(std::ostream &out, const ScalarConverter &obj) {
-  if (obj.getCharV() < 26 || obj.getCharV() > 127)
-    out << "char:      indispayable" << std::endl;
+  if (obj.charIsOk() && obj.getCharV() >= 26 && obj.getCharV() <= 127) 
+    out << "char:   " << std::fixed << std::right << std::setw(13) << "'" << obj.getCharV() << "'" << std::endl;
+  else if (obj.charIsOk() && (obj.getCharV() < 26 || obj.getCharV() > 127))
+    out << "char:   non displayable" << std::endl;
+  else if (!obj.charIsOk())
+    out << "char:        impossible" << std::endl;
+  if (obj.intIsOk()) 
+    out << "int:    " << std::fixed << std::right << std::setw(15) << obj.getIntV()    << std::endl;
   else
-    out << "char:   " << std::fixed << std::right << std::setw(15) << obj.getCharV()   << std::endl;
-  out << "int:    " << std::fixed << std::right << std::setw(15) << obj.getIntV()    << std::endl;
-  out << "float:  " << std::fixed << std::right << std::setprecision(2) << std::setw(15) << obj.getFloatV()  << "f" << std::endl;
-  out << "double: " << std::fixed << std::right << std::setprecision(2) << std::setw(15) << obj.getDoubleV() << std::endl;
+    out << "int:         impossible" << std::endl;
+  if (obj.floatIsOk()) 
+    out << "float:  " << std::fixed << std::right << std::setprecision(1) << std::setw(14) << obj.getFloatV()  << "f" << std::endl;
+  else
+    out << "float:       impossible" << std::endl;
+  if (obj.doubleIsOk()) 
+    out << "double: " << std::fixed << std::right << std::setprecision(1) << std::setw(15) << obj.getDoubleV() << std::endl;
+  else
+    out << "double:      impossible" << std::endl;
   return (out);
 }
 
@@ -50,44 +59,46 @@ double ScalarConverter::getDoubleV() const {
   return this->doubleV;
 }
 
-std::string ScalarConverter::getSpecialFloatV() const {
-  return this->specialFloatV;
+bool ScalarConverter::charIsOk() const {
+  return this->charOk;
 }
 
-std::string ScalarConverter::getSpecialDoubleV() const {
-  return this->specialDoubleV;
+bool ScalarConverter::intIsOk() const {
+  return this->intOk;
+}
+
+bool ScalarConverter::floatIsOk() const {
+  return this->floatOk;
+}
+
+bool ScalarConverter::doubleIsOk() const {
+  return this->doubleOk;
 }
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
-bool ScalarConverter::isSpace(std::string s) {
-  for (int i = 0; s[i] != '\0'; i++)
-    if (s[i] != ' ')
-        return false;
-  this->charV   = ' ';
-  this->intV    = 0; //
-  this->floatV  = 0;
-  this->doubleV = 0;
-  return true ;
-}
 
-bool ScalarConverter::isSpecialV(std::string s) {
-  trim(&s);
-  if(s == "+inf" || s == "-inf" || s == "nan") {
-    this->specialFloatV = s;
+bool ScalarConverter::isSpecial(std::string s) {
+  if(s == "nan" || s == "inf" || s == "-inf") {
+    this->doubleV =  std::strtod(s.c_str(), NULL);
+    this->floatV  = static_cast<float>(this->doubleV);
+    this->charOk    = false;
+    this->intOk     = false;
     return true;
   }
-  else if(s == "+inff" || s == "-inff" || s == "nanf") {
-    this->specialDoubleV = s;
+  else if(s == "nanf" || s == "inff" || s == "-inff") {
+    this->floatV  = std::strtof(s.c_str(), NULL);
+    this->doubleV = static_cast<double>(this->floatV);
+    this->charOk    = false;
+    this->intOk     = false;
     return true;
   }
   return false;
 }
 
 bool ScalarConverter::isChar(std::string s) {
-  trim(&s);
-  if(!isDigit(s[0]) && strlen(s) == 1) { // s[0] >= 0 && [0] <= 128 ?
+  if(strlen(s) == 1 && !isDigit(s[0])) {
     this->charV   = s[0]; // static_cast<char>(s[0]);
-    this->intV    = static_cast<int>(this->charV);
+    this->intV    = static_cast<int>(this->charV); // s[0];
     this->floatV  = static_cast<float>(this->charV);
     this->doubleV = static_cast<double>(this->charV);
     return true;
@@ -96,10 +107,12 @@ bool ScalarConverter::isChar(std::string s) {
 }
 
 bool ScalarConverter::isInt(std::string s) {
-  trim(&s);
-  if((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigits(&s[1]) && isInIntLImits(s)) {
+  if((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigits(&s[1]) && isInIntLimits(s)) {
     this->intV    = std::atoi(s.c_str());
-    this->charV   = static_cast<char>(this->intV);
+    if (isInCharLimits(this->intV))
+      this->charV   = static_cast<char>(this->intV);
+    else
+      this->charOk = false;
     this->floatV  = static_cast<float>(this->intV);
     this->doubleV = static_cast<double>(this->intV);
     return true;
@@ -107,29 +120,33 @@ bool ScalarConverter::isInt(std::string s) {
   return false;
 }
 
-bool ScalarConverter::isFloat(std::string s) {
-  trim(&s);
-  if (s[strlen(s) - 1] == 'f')
-    s[strlen(s) - 1] = '\0';
-  if((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigitsWithDecmalPoint(&s[1])) {
-    this->intV    = s[0]; // static_cast<int>(s.c_str());
-    this->charV   = atoi(s.c_str());
-    this->floatV  = this->intV; // csst implicit strtof(s.c_str(), NULL);`
-    this->doubleV = this->intV;
+bool ScalarConverter::isDouble(std::string s) {
+  if(((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigitsWithDecmalPoint(&s[1])) ) { // limits
+    this->doubleV =  std::strtod(s.c_str(), NULL);
+    if (isInIntLimits(s))
+      this->intV    = static_cast<int>(this->doubleV);
+    else
+      this->intOk = false;
+    if (this->intOk && isInCharLimits(this->intV))
+      this->charV = static_cast<char>(this->doubleV);
+    else 
+      this->charOk = false;
+    this->floatV  = static_cast<float>(this->doubleV); // limits
     return true;
-    // strtof(s.c_str(), NULL);`
-    // 1,175494351 E – 38
-    // 3,402823466 E + 38
   }
   return false;
 }
 
-bool ScalarConverter::isDouble(std::string s) {
-  trim(&s);
-  // strtod(s.c_str(), NULL)
-  // removeF(&s);
-  // limits
-  // return isOnlyDigits(s);
+bool ScalarConverter::isFloat(std::string s) {
+  if (s[strlen(s) - 1] == 'f')
+    s[strlen(s) - 1] = '\0';
+  if((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigitsWithDecmalPoint(&s[1])) { // limits
+    this->floatV  = std::strtof(s.c_str(), NULL);
+    this->intV    = static_cast<int>(this->floatV);
+    this->charV   = static_cast<char>(this->floatV);
+    this->doubleV = static_cast<double>(this->floatV);
+    return true;
+  }
   return false;
 }
 
@@ -140,8 +157,12 @@ bool ScalarConverter::isDouble(std::string s) {
 // static_cast to convert values
 // Accept the use of implicit casts for promotion casts only
 void ScalarConverter::convert (std::string s) {
-  if (strlen(s) == 0)
-    return ;
-  if(isSpace(s) || isSpecialV(s) || isChar(s) || isInt(s) || isFloat(s) || isDouble(s))
-    std::cout << "converted" << std::endl;
+  trim(&s);
+  std::cout << "trimmed: [" << s << "]" << std::endl;
+  if (strlen(s) == 0 || !(isSpecial(s) || isChar(s) || isInt(s) || isDouble(s) || isFloat(s))) {
+    this->charOk   = false;
+    this->intOk    = false;
+    this->floatOk  = false;
+    this->doubleOk = false;
+  }
 }

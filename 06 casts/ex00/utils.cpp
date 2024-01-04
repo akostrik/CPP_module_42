@@ -32,6 +32,26 @@ int strlen(std::string s) {
   return i;
 }
 
+int strcmp(std::string s1, std::string s2) {
+  int i;
+
+  for (i = 0; s1[i] != '\0' && s2[i] != '\0'; i++) {
+    if(s1[i] > s2[i])
+      return 1;
+    if(s1[i] < s2[i])
+      return -1;
+  }
+  if(s1[i] > s2[i])
+    return 1;
+  if(s1[i] < s2[i])
+    return -1;
+  return 0;
+}
+
+bool isInCharLimits(int n) {
+  return (n <= -127 && n <= 128);
+}
+
 bool isLessThan2147483647(std::string s) {
   int i;
 
@@ -46,10 +66,12 @@ bool isLessThan2147483647(std::string s) {
     return true;
   if (strlen(s) >= 11)
     return false;
-  if (s > "2147483647")
-  //if (s[0] - '0' > 2 || s[1] - '0' > 1 || s[2] - '0' > 4 || s[3] - '0' > 7 || s[4] - '0' > 4 || s[5] - '0' > 8 || s[6] - '0' > 3 || s[7] - '0' > 6 || s[8] - '0' > 4 || s[9] - '0' > 7)
-    return false;
-  return true;
+  std::cout << "[" << s << "] <= 2147483647     -> " << (s <= "2147483647") << std::endl;
+  std::cout << s << ".compare(2147483647) -> " << s.compare("2147483647") << std::endl;
+  std::cout << "strcmp(" << s.c_str() << ",2147483647)  -> " << strcmp(s.c_str(),"2147483647") << std::endl;
+  //return (s <= "2147483647");
+  //return (s.compare("2147483647") <= 0);
+  return (strcmp(s.c_str(), "2147483647") <= 0);
 }
 
 bool isGreaterThanMinus2147483648(std::string s) {
@@ -66,19 +88,21 @@ bool isGreaterThanMinus2147483648(std::string s) {
     return true;
   if (strlen(s) >= 11)
     return false;
-  if (s > "2147483648")
-  // if (s[0] - '0' > 2 || s[1] - '0' > 1 || s[2] - '0' > 4 || s[3] - '0' > 7 || s[4] - '0' > 4 || s[5] - '0' > 8 || s[6] - '0' > 3 || s[7] - '0' > 6 || s[8] - '0' > 4 || s[9] - '0' > 8)
-    return false;
-  return true;
+  return (strcmp(s.c_str(), "2147483648") <= 0);
 }
 
-bool isInIntLImits(std::string s) {
+bool isInIntLimits(std::string s) {
+  for (int i = 0; s[i] != '\0'; i++)
+    if (s[i] == '.')
+      s[i] = '\0';
   return (isLessThan2147483647(s) && isGreaterThanMinus2147483648(s));
 }
 
 void trim(std::string *s) {
   int i;
 
+  if (strlen(*s) == 0)
+    return ;
   while((*s)[0] == ' ') {
     for (i = 0; (*s)[i] != '\0'; i++)
       (*s)[i] = (*s)[i + 1];
@@ -86,6 +110,29 @@ void trim(std::string *s) {
   }
   for (i = strlen(*s) - 1; (*s)[i] == ' '; i--)
     (*s)[i] = '\0';
+  if (strlen(*s) == 0)
+    (*s)[0] = ' ';
+  if ((*s)[0] == '+') {
+    for (i = 0; (*s)[i] != '\0'; i++)
+      (*s)[i] = (*s)[i + 1];
+    (*s)[i] = '\0';
+  }
+  while((*s)[0] == '0') {
+    for (i = 0; (*s)[i] != '\0'; i++)
+      (*s)[i] = (*s)[i + 1];
+    (*s)[i] = '\0';
+  }
+  if (strlen(*s) == 0)
+    (*s)[0] = '0';
+  if ((*s)[0] == '-' && (*s)[1] != '\0') {
+    while((*s)[1] == '0') {
+      for (i = 1; (*s)[i] != '\0'; i++)
+        (*s)[i] = (*s)[i + 1];
+      (*s)[i] = '\0';
+    }
+    if ((*s)[1] == '-')
+      (*s)[1] = '0';
+  }
 }
 
 // -340282346638528859811704183484516925440.0000000000000000 Float lowest
