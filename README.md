@@ -292,7 +292,7 @@ string != строковый литерал
 |                      | `char`         | `char*`                     | `std::string` | `int`    | `float`  | `double`
 |----------------------|----------------|-----------------------------|---------------|----------|----------|---------
 | to `char*`           | x              | x                           | c_str()       |          |          |
-| to `std::string`     |                | = or string constructor (2) | x             | (4)      | (4)      | (4)
+| to `std::string`     |                | =  or string constructor (2) | x             | (4)      | (4)      | (4)
 | to int               |                |                             | atoi (1)      | x        |          |
 | to float             |                |                             | strtof        | implicit | x        | implicit
 | to double            |                |                             | strtod (3)    | implicit | implicit | x
