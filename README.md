@@ -54,7 +54,9 @@ const variable cannot be left un-initialized at the time
 `      std::string& s = "AB";` NON, ссылка на адрес памяти указывает на тот же, на который и объект ей присвоенный, если объект временный, то он сразу умирает
 
 ## mutable data != const
-* we can modify a mutable class member through member functions even if the containing object is const  
+* we can modify a mutable class member through member functions even if the containing object is const
+
+## volatile
 
 ## virtual data
 
@@ -256,7 +258,7 @@ class A
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Convertion and cast (01/ex04, 06/ex00)
+## Convertions and casts (01/ex04, 06/ex00)
 `std::string` инициализирован динамически, не статически   
 `std::string` подобие динамического массива char'ов, подобие vector<char>  
 string != строковый литерал  
@@ -274,14 +276,33 @@ string != строковый литерал
 (2) s.data() c++11  
 (3) если переполнение возвращает HUGE_VAL, в случае потери значимости —HUGE_VAL, если преобразо­вание невозможно 0  
 
+### С-style: `(int)`, `(float)` etc
+* выполняет преобразование арифметических типов: `(int)double_value` вычисляет целую часть, `(char)long_value` отбрасывает значащие разряды
+* отбрасывает спецификаторы `const` и `volatile`
+* преобразовывает `int` в указатель и обратно
+* преобразовывает указатели вверх и вниз по иерархии наследования
+* преобразовывает указатели как reinterpret_cast, ориентируясь на битовое представление
+* по очереди пробует :
+    + const_cast
+    + static_cast
+    + static_cast и затем const_cast
+    + reinterpret_cast
+    + reinterpret_cast и затем const_cast
+
+### Const Cast
+* самое простое приведение типов
+* убирает `const` и `volatile`
+* если приведение типов не удалось, ошибка на этапе компиляции
+
 ### Static Cast
 * для приведения одного типа к другому
 * static_cast<встроенные типы>: встроенные в C++ правила приведения  
 * static_cast<типы определенны программистом>: правила приведения, определенные программистом  
 * static_cast<pointer> корректно если один из указателей - это void*
 * static_cast<pointer> корректно если это приведение между объектами классов, где один класс является наследником другого  
-* a compile-time cast
-* нет никакой проверки по диапазону, так что
+* нет проверки по диапазону
+* a compile-time cast, если приведение не удалось, ошибка на этапе компиляции
+* кроме если это приведение между указателями на объекты классов вниз по иерархии и оно не удалось, результат операции undefined
 
 ```
 float a = 5.2;
@@ -299,6 +320,9 @@ int b = static_cast<int>(a);
 * may be used to find the type of object (!)
 * there should be at least one virtual function in the Base class (in practice, this is not a limitation because base classes have a virtual destructor)
 * a runtime check to ensure the validity of the cast
+* безопасное приведение по иерархии наследования, в том числе и для виртуального наследования
+* dynamic_cast<derv_class *>(base_class_ptr_expr): используется RTTI (Runtime Type Information), чтобы привести один указатель на объект класса к другому указателю на объект класса. Классы должны быть полиморфными, то есть в базовом классе должна быть хотя бы одна виртуальная функция. Если эти условие не соблюдено, ошибка возникнет на этапе компиляции. Если приведение невозможно, то об этом станет ясно только на этапе выполнения программы и будет возвращен NULL.
+* dynamic_cast<derv_class &>(base_class_ref_expr) почти как с указателями, но в случае ошибки во время исполнения исключение bad_cast
 
 ```
 employee &e;
@@ -306,13 +330,22 @@ try { manager &m = dynamic_cast<manager&>(e); }
 catch (bad_cast) { ... }
 ```
 
-### Const Cast
-
 ### Reinterpret Cast
+* нужны веские причины
+* результат может быть некорректным
+* никаких проверок не делается
 * `data_type *var_name = reinterpret_cast <data_type *>(pointer_variable)`
 * converts a pointer into a pointer of another type
 * does not check if the pointer type = type of the pointed data 
 * doesn’t have any return type
+* не может быть приведено одно значение к другому значению
+* обычно используется, чтобы привести указатель к указателю, указатель к целому, целое к указателю
+* умеет работать со ссылками
+* при приведении указателей на функции
+
+reinterpret_cast<whatever *>(some *)
+reinterpret_cast<integer_expression>(some *)
+reinterpret_cast<whatever *>(integer_expression)
 
 ### `uintptr_t` data type (06/ex02)
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
