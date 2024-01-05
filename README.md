@@ -261,14 +261,18 @@ class A
 `std::string` подобие динамического массива char'ов, подобие vector<char>  
 string != строковый литерал  
 
-|                      | `char`         | `char*`                                 | `std::string`     | `int`      | `float` | `double`
-|----------------------|----------------|-----------------------------------------|-------------------|------------|---------|---------
-| to `char*`           | x              |                                         | c_str()           |            |         |
-| to `std::string`     |                | = / string constructor / s.data() c++11 | x                 | atoi       |         |
-| to int               |                |                                         | atoi / stoi c++11 | x          |         |
-| to float             |                |                                         | strtof            | implicit   | x       |
-| to double            |                |                                         | strtod            | implicit   |         | x
- 
+|                      | `char`         | `char*`                     | `std::string` | `int`    | `float`  | `double`
+|----------------------|----------------|-----------------------------|---------------|----------|----------|---------
+| to `char*`           | x              | x                           | c_str()       |          |          |
+| to `std::string`     |                | = or string constructor (2) | x             |          |          |
+| to int               |                |                             | atoi (1)      | x        |          |
+| to float             |                |                             | strtof        | implicit | x        | implicit
+| to double            |                |                             | strtod        | implicit | implicit | x
+  
+(1) если число превышает INT_MIN/INT_MAX, возвращает INT_MIN/INT_MAX  
+(1) stoi c++11
+(2) s.data() c++11  
+
 ### Static Cast
 * для приведения одного типа к другому
 * static_cast<встроенные типы>: встроенные в C++ правила приведения  
