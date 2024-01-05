@@ -1,25 +1,20 @@
 #include "utils.hpp"
 
-// bool isDigit(char c) {
-//   return (c >= '0' && c <= '9');
-// }
-
-bool isDigitsWithDecmalPoint(std::string s) {
-  if ((s)[s.size() - 1] == '.') // ?
-    return false;
+bool isDigitsWithPoint(std::string s) {
   for (int i = 0; s[i] != '\0'; i++)
     if(s[i] == '.') {
       s[i] = '0';
       break ;
     }
-  for (int i = 1; s[i] != '\0'; i++)
+  for (int i = 0; s[i] != '\0'; i++) {
     if (!std::isdigit(s[i]))
       return false;
+  }
   return true;
 }
 
 bool isDigits(std::string s) {
-  for (int i = 1; s[i] != '\0'; i++)
+  for (int i = 0; s[i] != '\0'; i++)
     if (!std::isdigit(s[i]))
       return false;
   return true;
@@ -39,6 +34,13 @@ int strcmp(std::string s1, std::string s2) {
   if(s1[i] < s2[i])
     return -1;
   return 0;
+}
+
+int strlen(std::string s) {
+  int i;
+
+  for (i = 1; s[i] != '\0'; i++) ;
+  return i;
 }
 
 static int pos_point(std::string s) {
@@ -104,10 +106,12 @@ void trim(std::string *s) {
       (*s)[i] = (*s)[i + 1];
     (*s)[i] = '\0';
   }
-  for (i = (*s).size() - 1; (*s)[i] == ' ' || (*s)[i] == '\0'; i--) // spaces end
+  for (i = strlen(*s) - 1; (*s)[i] == ' ' || (*s)[i] == '\0'; i--) // spaces end
     (*s)[i] = '\0';
-  if ((*s).size() == 0)
+  if (strlen(*s) == 0)
     (*s)[0] = ' ';
+  if (strlen(*s) == 2 && ((*s)[0] == '+' || (*s)[0] == '-') &&  !std::isdigit((*s)[1]))
+    return ;
   if ((*s)[0] == '+') { // remove +
     for (i = 0; (*s)[i] != '\0'; i++)
       (*s)[i] = (*s)[i + 1];
@@ -145,3 +149,32 @@ void trim(std::string *s) {
   }
 }
 
+bool isSpecialDouble(std::string s) {
+  return (s == "nan" || s == "inf" || s == "-inf");
+}
+
+bool isSpecialFloat(std::string s) {
+  return (s == "nanf" || s == "inff" || s == "-inff");
+}
+
+bool isChar(std::string s) {
+  if (strlen(s) != 1)
+    return false;
+  return !std::isdigit(s[0]);
+}
+
+bool isInt(std::string s) {
+  return ((s[0] == '-' && isDigits(&s[1])         ) || isDigits(s)             ) && inLimits(s, "-2147483648", "2147483647");
+}
+
+bool isFloat(std::string s) {
+  if (s[strlen(s) - 1] != 'f')
+    return false;
+  s[strlen(s) - 1] = '\0';
+  return ((s[0] == '-' && isDigitsWithPoint(&s[1])) || isDigitsWithPoint(&s[1])) && inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0");;
+}
+
+bool isDouble(std::string s) {
+  std::cout << "isDigitsWithPoint(" << &s[1] << ") = " << isDigitsWithPoint(&s[1]) << std::endl;
+  return ((s[0] == '-' && isDigitsWithPoint(&s[1])) || isDigitsWithPoint(&s[1])) && inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0");
+}
