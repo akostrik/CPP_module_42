@@ -309,7 +309,7 @@ string != строковый литерал
     + reinterpret_cast
     + reinterpret_cast и затем const_cast
 
-### Const Cast
+### `const_cast<>()`
 * самое простое приведение типов
 * убирает `const` и `volatile`
 * если приведение типов не удалось, ошибка на этапе компиляции
@@ -362,7 +362,7 @@ float a = 5.2;
 int b = static_cast<int>(a);
 ```
 
-### `dynamic_cast` 
+### `dynamic_cast<>()`` 
 1) TYPE& dynamic_cast<TYPE&> (object); to cast from references to base class objects to references to derived class objects
 2) TYPE* dynamic_cast<TYPE*> (object);
 
@@ -384,7 +384,7 @@ try { manager &m = dynamic_cast<manager&>(e); }
 catch (bad_cast) { ... }
 ```
 
-### `reinterpret_cast`
+### `reinterpret_cast<>()``
 * нужны веские причины
 * результат может быть некорректным
 * никаких проверок не делается
