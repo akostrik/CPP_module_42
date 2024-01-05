@@ -342,7 +342,7 @@ float a = 5.2;
 int b = static_cast<int>(a);
 ```
 
-### Dynamic cast 
+### `dynamic_cast` 
 1) TYPE& dynamic_cast<TYPE&> (object); to cast from references to base class objects to references to derived class objects
 2) TYPE* dynamic_cast<TYPE*> (object);
 
@@ -364,7 +364,7 @@ try { manager &m = dynamic_cast<manager&>(e); }
 catch (bad_cast) { ... }
 ```
 
-### Reinterpret Cast
+### `reinterpret_cast`
 * нужны веские причины
 * результат может быть некорректным
 * никаких проверок не делается
@@ -385,6 +385,15 @@ reinterpret_cast<whatever *>(integer_expression)
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
 * an optional type since C99 (?)
 * might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
+
+## Limits
+`std::numeric_limits<T>::infinity()` the largest representable value (if T supports infinity, std::numeric_limits<T>::has_infinity = true)  
+`std::numeric_limits<T>::max()` the largest finite value  
+`std::numeric_limits<T>::min()` the smallest positive normal value. Floating-point formats often have an interval where the exponent cannot get any smaller, but the significand (fraction portion of the number) is allowed to get smaller until it reaches zero. This comes at the expense of precision but has some desirable mathematical-computing properties. min() is the point where this precision loss starts  
+`std::numeric_limits<T>::denorm_min()` the smallest positive value = std::numeric_limits<T>::min() if the type doesn't have subnormal values  
+`std::numeric_limits<T>::lowest()` the least finite value  
+`-std::numeric_limits<T>::infinity()` is the least value, negative infinity (if std::numeric_limits<T>::has_infinity == true and std::numeric_limits<T>::is_signed == true)  
+`std::numeric_limits<T>::digits10` the greatest number of decimal digits such that converting any decimal number with that many digits to T and then converting back to the same number of decimal digits will yield the original number  
 
 # Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
