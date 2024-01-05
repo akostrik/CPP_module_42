@@ -2,10 +2,6 @@
 
 /////////////////////////////////////////////////// OCCF and <<
 ScalarConverter::ScalarConverter() {
-  charOk   = true;
-  intOk    = true;
-  floatOk  = true;
-  doubleOk = true;
 };
 
 ScalarConverter::ScalarConverter(const ScalarConverter &obj) {
@@ -16,139 +12,12 @@ ScalarConverter::~ScalarConverter() {
 };
 
 ScalarConverter& ScalarConverter::operator = (ScalarConverter const &obj) {
-  this->intV = obj.intV; // etc
+  (void)obj;
   return *this;
 };
 
-std::ostream & operator <<(std::ostream &out, const ScalarConverter &obj) {
-  if (obj.charIsOk() && obj.getCharV() >= 26 && obj.getCharV() <= 127) 
-    out << "char:   " << std::fixed << std::right << std::setw(13) << "'" << obj.getCharV() << "'" << std::endl;
-  else if (obj.charIsOk() && (obj.getCharV() < 26 || obj.getCharV() > 127))
-    out << "char:   non displayable" << std::endl;
-  else if (!obj.charIsOk())
-    out << "char:        impossible" << std::endl;
-  if (obj.intIsOk()) 
-    out << "int:    " << std::fixed << std::right << std::setw(15) << obj.getIntV()    << std::endl;
-  else
-    out << "int:         impossible" << std::endl;
-  if (obj.floatIsOk()) 
-    out << "float:  " << std::fixed << std::right << std::setprecision(1) << std::setw(14) << obj.getFloatV()  << "f" << std::endl;
-  else
-    out << "float:       impossible" << std::endl;
-  if (obj.doubleIsOk()) 
-    out << "double: " << std::fixed << std::right << std::setprecision(1) << std::setw(15) << obj.getDoubleV() << std::endl;
-  else
-    out << "double:      impossible" << std::endl;
-  return (out);
-}
-
-/////////////////////////////////////////////////// GETTERS
-char ScalarConverter::getCharV() const {
-  return this->charV;
-}
-
-int ScalarConverter::getIntV() const {
-  return this->intV;
-}
-
-float ScalarConverter::getFloatV() const {
-  return this->floatV;
-}
-
-double ScalarConverter::getDoubleV() const {
-  return this->doubleV;
-}
-
-bool ScalarConverter::charIsOk() const {
-  return this->charOk;
-}
-
-bool ScalarConverter::intIsOk() const {
-  return this->intOk;
-}
-
-bool ScalarConverter::floatIsOk() const {
-  return this->floatOk;
-}
-
-bool ScalarConverter::doubleIsOk() const {
-  return this->doubleOk;
-}
-
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 
-bool ScalarConverter::isSpecial(std::string s) {
-  if(s == "nan" || s == "inf" || s == "-inf") {
-    this->doubleV =  std::strtod(s.c_str(), NULL);
-    this->floatV  = static_cast<float>(this->doubleV);
-    this->charOk    = false;
-    this->intOk     = false;
-    return true;
-  }
-  else if(s == "nanf" || s == "inff" || s == "-inff") {
-    this->floatV  = std::strtof(s.c_str(), NULL);
-    this->doubleV = static_cast<double>(this->floatV);
-    this->charOk    = false;
-    this->intOk     = false;
-    return true;
-  }
-  return false;
-}
-
-bool ScalarConverter::isChar(std::string s) {
-  if(strlen(s) == 1 && !isDigit(s[0])) {
-    this->charV   = s[0]; // static_cast<char>(s[0]);
-    this->intV    = static_cast<int>(this->charV); // s[0];
-    this->floatV  = static_cast<float>(this->charV);
-    this->doubleV = static_cast<double>(this->charV);
-    return true;
-  }
-  return false;
-}
-
-bool ScalarConverter::isInt(std::string s) {
-  if((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigits(&s[1]) && inLimits(s, "-2147483648", "2147483647")) {
-    this->intV    = std::atoi(s.c_str());
-    if (inLimits(s, "-128", "127"))
-      this->charV   = static_cast<char>(this->intV);
-    else
-      this->charOk = false;
-    this->floatV  = static_cast<float>(this->intV);
-    this->doubleV = static_cast<double>(this->intV);
-    return true;
-  }
-  return false;
-}
-
-bool ScalarConverter::isDouble(std::string s) {
-  if(((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigitsWithDecmalPoint(&s[1])) ) { // limits
-    this->doubleV =  std::strtod(s.c_str(), NULL);
-    if (inLimits(s, "-2147483648", "2147483647"))
-      this->intV    = static_cast<int>(this->doubleV);
-    else
-      this->intOk = false;
-    if (this->intOk && inLimits(s, "-128", "127"))
-      this->charV = static_cast<char>(this->doubleV);
-    else 
-      this->charOk = false;
-    this->floatV  = static_cast<float>(this->doubleV); // limits
-    return true;
-  }
-  return false;
-}
-
-bool ScalarConverter::isFloat(std::string s) {
-  if (s[strlen(s) - 1] == 'f')
-    s[strlen(s) - 1] = '\0';
-  if((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigitsWithDecmalPoint(&s[1])) { // limits
-    this->floatV  = std::strtof(s.c_str(), NULL);
-    this->intV    = static_cast<int>(this->floatV);
-    this->charV   = static_cast<char>(this->floatV);
-    this->doubleV = static_cast<double>(this->floatV);
-    return true;
-  }
-  return false;
-}
 
 // detect the type of the literal passed as parameter
 // convert it from string to its actual type
@@ -159,10 +28,76 @@ bool ScalarConverter::isFloat(std::string s) {
 void ScalarConverter::convert (std::string s) {
   trim(&s);
   std::cout << "trimmed: [" << s << "]" << std::endl;
-  if (strlen(s) == 0 || !(/*isSpecial(s) || isChar(s) || */ isInt(s) /*|| isDouble(s) || isFloat(s)*/)) {
-    this->charOk   = false;
-    this->intOk    = false;
-    this->floatOk  = false;
-    this->doubleOk = false;
+  if (strlen(s) == 0) {
+    std::cout << "char:   impossible" << std::endl;
+    std::cout << "int:    impossible" << std::endl;
+    std::cout << "float:  impossible" << std::endl;
+    std::cout << "double: impossible" << std::endl;
+  }
+  else if(s == "nan" || s == "inf" || s == "-inf") {
+    double d =  std::strtod(s.c_str(), NULL);
+    std::cout << "char:   impossible" << std::endl;
+    std::cout << "int:    impossible" << std::endl;
+    std::cout << "float:  " << static_cast<float>(d) << std::endl;
+    std::cout << "double: " << d << std::endl;
+  }
+  else if(s == "nanf" || s == "inff" || s == "-inff") {
+    float f = std::strtof(s.c_str(), NULL);
+    std::cout << "char:   impossible" << std::endl;
+    std::cout << "int:    impossible" << std::endl;
+    std::cout << "float:  " << f << std::endl;
+    std::cout << "double: " << static_cast<double>(f) << std::endl;
+  }
+  else if(strlen(s) == 1 && !isDigit(s[0])) {
+    char c = s[0]; // static_cast<char>(s[0]);
+    std::cout << "char:   " << c << std::endl;
+    std::cout << "int:    " << static_cast<int>(c) << std::endl;
+    std::cout << "float:  " << static_cast<float>(c) << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << std::endl;
+  }
+  else if((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigits(&s[1]) && inLimits(s, "-2147483648", "2147483647")) {
+    int i = std::atoi(s.c_str());
+    std::cout << "int:    " << i << std::endl;
+    if (inLimits(s, "-128", "127")) 
+      std::cout << "char:   " << static_cast<char>(i)<< std::endl;
+    else
+      std::cout << "char:   impossible" << std::endl;
+    std::cout << "float:  " << static_cast<float>(i) << std::endl;
+    std::cout << "double: " << static_cast<double>(i) << std::endl;
+  } // limits
+  else if((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && (s[strlen(s) - 1] == 'f' && (s[strlen(s) - 1] = '\0')) && isDigitsWithDecmalPoint(&s[1]) && inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0")) {
+    float f = std::strtof(s.c_str(), NULL);
+    if (inLimits(s, "-128", "127")) // intOk && 
+      std::cout << "char:   " << static_cast<char>(f) << std::endl;
+    else 
+    std::cout << "char:   impossible" << std::endl;
+    if (inLimits(s, "-2147483648", "2147483647"))
+      std::cout << "int:    " << static_cast<int>(f) << std::endl;
+    else
+      std::cout << "int:   impossible" << std::endl;
+    std::cout << "float:  " << f << std::endl;
+    std::cout << "double: " << static_cast<double>(f) << std::endl;
+  }
+  else if(((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigitsWithDecmalPoint(&s[1])) && inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0")) {
+    double d =  std::strtod(s.c_str(), NULL);
+    if (inLimits(s, "-128", "127")) // intOk && 
+      std::cout << "char:   " << static_cast<char>(d) << std::endl;
+    else 
+      std::cout << "char:   impossible" << std::endl;
+    if (inLimits(s, "-2147483648", "2147483647"))
+      std::cout << "int:    " << static_cast<int>(d) << std::endl;
+    else
+      std::cout << "int:    impossible" << std::endl;
+    if (inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0"))
+      std::cout << "float:  " << static_cast<float>(d) << std::endl;
+    else
+      std::cout << "float:  impossible" << std::endl;
+    std::cout << "double: " << d << std::endl;
+  }
+  else {
+    std::cout << "char:   impossible" << std::endl;
+    std::cout << "int:    impossible" << std::endl;
+    std::cout << "float:  impossible" << std::endl;
+    std::cout << "double: impossible" << std::endl;
   }
 }

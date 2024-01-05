@@ -14,43 +14,25 @@
 
 class ScalarConverter {
 
-private:
-  char            charV;
-  int             intV;
-  float           floatV;
-  double          doubleV;
-  bool            charOk;
-  bool            intOk;
-  bool            floatOk;
-  bool            doubleOk;
-
-// static methods
-public:
 /////////////////////////////////////////////////// OCCF
-                  ScalarConverter  ();
-                  ScalarConverter  (const ScalarConverter &obj);
-                  ~ScalarConverter ();
-  ScalarConverter &operator =      (const ScalarConverter &obj);
+private:
+                         ScalarConverter  ();
+                         ScalarConverter  (const ScalarConverter &obj);
+ ScalarConverter         &operator =      (const ScalarConverter &obj);
 
-/////////////////////////////////////////////////// GETTERS
-  char            getCharV         () const;
-  int             getIntV          () const;
-  float           getFloatV        () const;
-  double          getDoubleV       () const;
-  bool            charIsOk         () const;
-  bool            intIsOk          () const;
-  bool            floatIsOk        () const;
-  bool            doubleIsOk       () const;
+public:
+                         ~ScalarConverter ();
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
-  void            convert          (std::string s);
-  bool            isSpecial        (std::string s);
-  bool            isChar           (std::string s);
-  bool            isInt            (std::string s);
-  bool            isFloat          (std::string s);
-  bool            isDouble         (std::string s);
-};
+public:
+  static void            convert          (std::string s);
 
-std::ostream &operator <<(std::ostream &out, const ScalarConverter &obj);
+// private:
+//   static bool            isSpecial        (std::string s);
+//   static bool            isChar           (std::string s);
+//   static bool            isInt            (std::string s);
+//   static bool            isFloat          (std::string s);
+//   static bool            isDouble         (std::string s);
+};
 
 #endif

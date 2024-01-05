@@ -4,13 +4,11 @@
 #include "ScalarConverter.hpp"
 
 int main(int argc, char* argv[]) {
-  ScalarConverter *c = new ScalarConverter();
 
   if (argc == 1)
     return (std::cout << "give one argument\n", 0);
   try {
-    c->convert(argv[1]);
-    std::cout << *c << std::endl;
+    ScalarConverter::convert(argv[1]);
   }
   catch (std::exception &e) {
     std::cout << e.what() << std::endl;

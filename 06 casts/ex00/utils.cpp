@@ -65,65 +65,63 @@ bool lessOrEqual(std::string s1, std::string s2) {
   int p1 = pos_point(s1);
   int p2 = pos_point(s2);
 
-  std::cout << std::endl << "f lessOrEqual(" << s1 << ", " << s2 << ")" << std::endl;
-  // std::cout << "p1 = " << p1 << std::endl;
-  // std::cout << "p2 = " << p2 << std::endl;
+  //std::cout << std::endl << "f lessOrEqual(" << s1 << ", " << s2 << ")" << std::endl;
   s1[p1] = '\0';
   s2[p2] = '\0';
   if (strcmp(s1.c_str(), s2.c_str()) == 0) {
-    std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (0)" << std::endl;
+    //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (0)" << std::endl;
     return true;
   }
   else if (s1[0] == '-' && s2[0] != '-') {
-    std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (1)" << std::endl;
+    //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (1)" << std::endl;
     return true;
   }
   else if (s1[0] != '-' && s2[0] == '-') {
-    std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns false (2)" << std::endl;
+    //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns false (2)" << std::endl;
     return false;
   }
   else if (s1[0] != '-' && s2[0] != '-') {
     if (strlen(s1) < strlen(s2)) {
-      std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (3)" << std::endl;
+      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (3)" << std::endl;
       return true;
     }
     if (strlen(s1) > strlen(s2)) {
-      std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns false (4)" << std::endl;
+      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns false (4)" << std::endl;
       return false;
     }
     if (strcmp(s1.c_str(), s2.c_str()) < 0) {
-      std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (5)" << std::endl;
+      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (5)" << std::endl;
       return true;
     }
     if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 == strlen(s1) && p2 == strlen(s2)) {
-      std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (6)" << std::endl;
+      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (6)" << std::endl;
       return true;
     }
     if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 <  strlen(s1) && p2 == strlen(s2)) {
-      std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns false (7)" << std::endl;
+      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns false (7)" << std::endl;
       return false;
     }
     if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 == strlen(s1) && p2 <  strlen(s2)) {
-      std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (8)" << std::endl;
+      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (8)" << std::endl;
       return true;
     }
     if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 <  strlen(s1) && p2 <  strlen(s2)) {
-      std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns ... (9)" << std::endl;
+      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns ... (9)" << std::endl;
       return lessOrEqual(&s1[p1 + 1], &s2[p2 + 1]);
     }
   }
   else if (s1[0] == '-' && s2[0] == '-') {
     bool t = !lessOrEqual(&s1[1], &s2[1]);
-    std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns " << t << " (10)" << std::endl;
+    //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns " << t << " (10)" << std::endl;
     return (t);
   }
-  std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns fqlse (11)" << std::endl;
+  //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns fqlse (11)" << std::endl;
   return false;
 }
 
+// 2147483647.99 is in limits [-2147483648, 2147483647] // is it ok?
+// -2147483648.99 is in limits [-2147483648, 2147483647]
 bool inLimits(std::string s, std::string min, std::string max) {
-  //std::cout << "inLimits: " << s.c_str() << " <= " << max << ":  " << lessOrEqual(s.c_str(), max) << std::endl;
-  //std::cout << "inLimits: " << min << " <= " << s.c_str() << ": " << lessOrEqual(min, s.c_str()) << std::endl;
   return (lessOrEqual(s.c_str(), max) && lessOrEqual(min, s.c_str()));
 }
 
@@ -180,5 +178,3 @@ void trim(std::string *s) {
   }
 }
 
-// -340282346638528859811704183484516925440.0000000000000000 Float lowest
-//  340282346638528859811704183484516925440.0000000000000000 Float max
