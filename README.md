@@ -309,11 +309,10 @@ https://en.cppreference.com/w/cpp/language/static_cast
 
 * static_cast<reference to complete class D>(lvalue of its non-virtual base B) or static_cast<pointer to complete class D>(prvalue pointer to its non-virtual base B) -> downcast
     + if B is ambiguous / inaccessible / virtual base / a base of a virtual base of D -> this downcast is ill-formed
-    + no runtime checks to ensure that the object's runtime type is actually D, what should be guaranteed by other means
-the result refers to the enclosing object of type D
+    + no runtime checks to ensure that the object's runtime type is actually D, what should be guaranteed by other means the result refers to the enclosing object of type D
 
 * If there is an implicit conversion sequence from expression to target-type
-*
+
 * if overload resolution for a direct initialization of an object or reference of type target-type from expression would find at least one viable function -> static_cast<target-type ﻿>(expression ﻿) returns the imaginary variable Temp initialized as if by target-type Temp(expression ﻿);, which may involve implicit conversions, a call to the constructor of target-type or a call to a user-defined conversion operator.
 
 * static_cast<void (possibly cv-qualified)>() discards the value of expression after evaluating it
@@ -323,10 +322,11 @@ the result refers to the enclosing object of type D
 * If conversion of expression to target-type involves lvalue-to-rvalue, array-to-pointer, or function-to-pointer conversion, it can be performed explicitly by static_cast
 
 * A value of integer or enumeration type can be converted to any complete enumeration type.
-If the underlying type is not fixed, the behavior is undefined if the value of expression is out of range (the range is all values possible for the smallest bit-field large enough to hold all enumerators of the target enumeration).
-If the underlying type is fixed, the result is the same as converting the original value first to the underlying type of the enumeration and then to the enumeration type.
- A value of a floating-point type can also be converted to any complete enumeration type.
-The result is the same as converting the original value first to the underlying type of the enumeration, and then to the enumeration type.
+    + If the underlying type is not fixed, the behavior is undefined if the value of expression is out of range (the range is all values possible for the smallest bit-field large enough to hold all enumerators of the target enumeration).
+    + If the underlying type is fixed, the result is the same as converting the original value first to the underlying type of the enumeration and then to the enumeration type.
+
+* A value of a floating-point type can also be converted to any complete enumeration type.
+    + he result is the same as converting the original value first to the underlying type of the enumeration, and then to the enumeration type.
 
 * A pointer to member of some complete class D can be upcast to a pointer to member of its unambiguous, accessible base class B. This static_cast makes no checks to ensure the member actually exists in the runtime type of the pointed-to object: if B does not contain the original member and is not a base class of the class containing the original member, the behavior is undefined.
 
