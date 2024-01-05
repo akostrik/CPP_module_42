@@ -289,13 +289,13 @@ class A
 `std::string` подобие динамического массива char'ов, подобие vector<char>  
 string != строковый литерал  
 
-|                      | `char`         | `char*`                     | `std::string` | `int`    | `float`  | `double`
-|----------------------|----------------|-----------------------------|---------------|----------|----------|---------
-| to `char*`           | x              | x                           | c_str()       |          |          |
-| to `std::string`     |                | = or string constructor (2) | x             |          |          |
-| to int               |                |                             | atoi (1)      | x        |          |
-| to float             |                |                             | strtof        | implicit | x        | implicit
-| to double            |                |                             | strtod (3)    | implicit | implicit | x
+|                      | `char`         | `char*`                     | `std::string` | `int`          | `float`        | `double`
+|----------------------|----------------|-----------------------------|---------------|----------------|----------------|---------
+| to `char*`           | x              | x                           | c_str()       |                |                |
+| to `std::string`     |                | = or string constructor (2) | x             | std::to_string | std::to_string | std::to_string
+| to int               |                |                             | atoi (1)      | x              |                |
+| to float             |                |                             | strtof        | implicit       | x              | implicit
+| to double            |                |                             | strtod (3)    | implicit       | implicit       | x
   
 (1) если переполнение возвращает INT_MIN/INT_MAX  
 (1) stoi c++11  
@@ -303,8 +303,9 @@ string != строковый литерал
 (3) если переполнение возвращает HUGE_VAL, в случае потери значимости —HUGE_VAL, если преобразо­вание невозможно 0  
 
 ### С-style: `(int)`, `(float)` etc
-* выполняет преобразование арифметических типов: `(int)double_value` вычисляет целую часть, `(char)long_value` отбрасывает значащие разряды
-* отбрасывает спецификаторы `const` и `volatile`
+* `(int)double_value` вычисляет целую часть
+* `(char)long_value` отбрасывает значащие разряды
+* отбрасывает `const` и `volatile`
 * преобразовывает `int` в указатель и обратно
 * преобразовывает указатели вверх и вниз по иерархии наследования
 * преобразовывает указатели как reinterpret_cast, ориентируясь на битовое представление
