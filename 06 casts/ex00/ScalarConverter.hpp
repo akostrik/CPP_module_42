@@ -14,7 +14,6 @@
 
 class ScalarConverter {
 
-/////////////////////////////////////////////////// OCCF
 private:
                          ScalarConverter  ();
                          ScalarConverter  (const ScalarConverter &obj);
@@ -22,17 +21,8 @@ private:
 
 public:
                          ~ScalarConverter ();
-
-/////////////////////////////////////////////////// MEMBER FUNCTIONS
-public:
   static void            convert          (std::string s);
 
-// private:
-//   static bool            isSpecial        (std::string s);
-//   static bool            isChar           (std::string s);
-//   static bool            isInt            (std::string s);
-//   static bool            isFloat          (std::string s);
-//   static bool            isDouble         (std::string s);
 };
 
 #endif

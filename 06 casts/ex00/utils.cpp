@@ -1,11 +1,11 @@
 #include "utils.hpp"
 
-bool isDigit(char c) {
-  return (c >= '0' && c <= '9');
-}
+// bool isDigit(char c) {
+//   return (c >= '0' && c <= '9');
+// }
 
 bool isDigitsWithDecmalPoint(std::string s) {
-  if ((s)[strlen(s) - 1] == '.') // ?
+  if ((s)[s.size() - 1] == '.') // ?
     return false;
   for (int i = 0; s[i] != '\0'; i++)
     if(s[i] == '.') {
@@ -13,23 +13,16 @@ bool isDigitsWithDecmalPoint(std::string s) {
       break ;
     }
   for (int i = 1; s[i] != '\0'; i++)
-    if (!isDigit(s[i]))
+    if (!std::isdigit(s[i]))
       return false;
   return true;
 }
 
 bool isDigits(std::string s) {
   for (int i = 1; s[i] != '\0'; i++)
-    if (!isDigit(s[i]))
+    if (!std::isdigit(s[i]))
       return false;
   return true;
-}
-
-int strlen(std::string s) {
-  int i;
-
-  for (i = 0; s[i] != '\0'; i++) ;
-  return i;
 }
 
 int strcmp(std::string s1, std::string s2) {
@@ -48,11 +41,7 @@ int strcmp(std::string s1, std::string s2) {
   return 0;
 }
 
-bool isInCharLimits(int n) {
-  return (n <= -127 && n <= 128);
-}
-
-int pos_point(std::string s) {
+static int pos_point(std::string s) {
   int i;
 
   for (i = 0; s[i] != '\0'; i++)
@@ -62,60 +51,38 @@ int pos_point(std::string s) {
 }
 
 bool lessOrEqual(std::string s1, std::string s2) {
-  int p1 = pos_point(s1);
-  int p2 = pos_point(s2);
+  std::basic_string<char>::size_type p1 = pos_point(s1);
+  std::basic_string<char>::size_type p2 = pos_point(s2);
 
-  //std::cout << std::endl << "f lessOrEqual(" << s1 << ", " << s2 << ")" << std::endl;
   s1[p1] = '\0';
   s2[p2] = '\0';
   if (strcmp(s1.c_str(), s2.c_str()) == 0) {
-    //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (0)" << std::endl;
     return true;
   }
-  else if (s1[0] == '-' && s2[0] != '-') {
-    //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (1)" << std::endl;
+  else if (s1[0] == '-' && s2[0] != '-') 
     return true;
-  }
-  else if (s1[0] != '-' && s2[0] == '-') {
-    //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns false (2)" << std::endl;
+  else if (s1[0] != '-' && s2[0] == '-') 
     return false;
-  }
   else if (s1[0] != '-' && s2[0] != '-') {
-    if (strlen(s1) < strlen(s2)) {
-      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (3)" << std::endl;
+    if (s1.size() < s2.size())
       return true;
-    }
-    if (strlen(s1) > strlen(s2)) {
-      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns false (4)" << std::endl;
+    if (s1.size() > s2.size())
       return false;
-    }
-    if (strcmp(s1.c_str(), s2.c_str()) < 0) {
-      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (5)" << std::endl;
+    if (strcmp(s1.c_str(), s2.c_str()) < 0)
       return true;
-    }
-    if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 == strlen(s1) && p2 == strlen(s2)) {
-      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (6)" << std::endl;
+    if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 == s1.size() && p2 == s2.size())
       return true;
-    }
-    if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 <  strlen(s1) && p2 == strlen(s2)) {
-      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns false (7)" << std::endl;
+    if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 <  s1.size() && p2 == s2.size())
       return false;
-    }
-    if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 == strlen(s1) && p2 <  strlen(s2)) {
-      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns true (8)" << std::endl;
+    if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 == s1.size() && p2 <  s2.size())
       return true;
-    }
-    if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 <  strlen(s1) && p2 <  strlen(s2)) {
-      //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns ... (9)" << std::endl;
+    if (strcmp(s1.c_str(), s2.c_str()) == 0 && p1 <  s1.size() && p2 <  s2.size())
       return lessOrEqual(&s1[p1 + 1], &s2[p2 + 1]);
-    }
   }
   else if (s1[0] == '-' && s2[0] == '-') {
     bool t = !lessOrEqual(&s1[1], &s2[1]);
-    //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns " << t << " (10)" << std::endl;
     return (t);
   }
-  //std::cout << "LessOrEqual(" << s1 << ", " << s2 << ") returns fqlse (11)" << std::endl;
   return false;
 }
 
@@ -130,16 +97,16 @@ bool inLimits(std::string s, std::string min, std::string max) {
 void trim(std::string *s) {
   int i;
 
-  if (strlen(*s) == 0)
+  if ((*s).size() == 0)
     return ;
   while((*s)[0] == ' ') { // spaces beginning
     for (i = 0; (*s)[i] != '\0'; i++)
       (*s)[i] = (*s)[i + 1];
     (*s)[i] = '\0';
   }
-  for (i = strlen(*s) - 1; (*s)[i] == ' '; i--) // spaces end
+  for (i = (*s).size() - 1; (*s)[i] == ' '; i--) // spaces end
     (*s)[i] = '\0';
-  if (strlen(*s) == 0)
+  if ((*s).size() == 0)
     (*s)[0] = ' ';
   if ((*s)[0] == '+') {
     for (i = 0; (*s)[i] != '\0'; i++)
@@ -151,7 +118,7 @@ void trim(std::string *s) {
       (*s)[i] = (*s)[i + 1];
     (*s)[i] = '\0';
   }
-  if (strlen(*s) == 0)
+  if ((*s).size() == 0)
     (*s)[0] = '0';
   if ((*s)[0] == '-' && (*s)[1] != '\0') { // zeros beginning after -
     while((*s)[1] == '0') {
@@ -165,7 +132,7 @@ void trim(std::string *s) {
   for (i = 0; (*s)[i] != '\0'; i++) { // zeros end
     if ((*s)[i] == '.') {
       int p = i;
-      for (i = strlen(*s) - 1; i > p; i--) {
+      for (i = (*s).size() - 1; i > p; i--) {
         if ((*s)[i] == '0')
           (*s)[i] = '\0';
         else
