@@ -284,7 +284,7 @@ class A
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Convertions and casts (01/ex04, 06/ex00)
+## Convertions and casts (01/ex04, 06/ex00) (only before C++11 information)
 `std::string` инициализирован динамически, не статически   
 `std::string` подобие динамического массива char'ов, подобие vector<char>  
 string != строковый литерал  
@@ -316,12 +316,12 @@ string != строковый литерал
     + reinterpret_cast
     + reinterpret_cast и затем const_cast
 
-### `const_cast<>()`
+### `const_cast<target-type ﻿>(expr) ﻿`
 * самое простое приведение типов
 * убирает `const` и `volatile`
 * если приведение типов не удалось, ошибка на этапе компиляции
 
-### `static_cast<target-type ﻿>(expression ﻿)` (only before C++11 information)		
+### `static_cast<target-type ﻿>(expr ﻿)` 		
 https://en.cppreference.com/w/cpp/language/static_cast  
 * для приведения одного типа к другому
 * static_cast<встроенные типы>: встроенные в C++ правила приведения  
@@ -369,7 +369,7 @@ float a = 5.2;
 int b = static_cast<int>(a);
 ```
 
-### `dynamic_cast<>()`` 
+### `dynamic_cast<target-type ﻿>(expr) ﻿` 
 1) TYPE& dynamic_cast<TYPE&> (object); to cast from references to base class objects to references to derived class objects
 2) TYPE* dynamic_cast<TYPE*> (object);
 
@@ -391,7 +391,7 @@ try { manager &m = dynamic_cast<manager&>(e); }
 catch (bad_cast) { ... }
 ```
 
-### `reinterpret_cast<>()``
+### `reinterpret_cast<target-type ﻿>(expr ﻿)`
 * нужны веские причины
 * результат может быть некорректным
 * никаких проверок не делается
