@@ -36,8 +36,6 @@
 * содержит только статические методы, свойства, и поля
 * не может быть наследован
 
-Источник: https://uchet-jkh.ru/i/cto-takoe-staticeskii-klass
-
 ## abstract class
 * contains (or inherits without redefinition) at least one pure virtual (abstract) function
 * all the abstract methods of the parent must be implemented in the child
