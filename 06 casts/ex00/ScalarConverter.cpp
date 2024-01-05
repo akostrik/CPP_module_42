@@ -107,9 +107,9 @@ bool ScalarConverter::isChar(std::string s) {
 }
 
 bool ScalarConverter::isInt(std::string s) {
-  if((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigits(&s[1]) && isInLimits(s, "-2147483648", "2147483647")) {
+  if((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigits(&s[1]) && inLimits(s, "-2147483648", "2147483647")) {
     this->intV    = std::atoi(s.c_str());
-    if (isInLimits(s, "-128", "127"))
+    if (inLimits(s, "-128", "127"))
       this->charV   = static_cast<char>(this->intV);
     else
       this->charOk = false;
@@ -123,11 +123,11 @@ bool ScalarConverter::isInt(std::string s) {
 bool ScalarConverter::isDouble(std::string s) {
   if(((s[0] == '+' || s[0] == '-' || isDigit(s[0])) && isDigitsWithDecmalPoint(&s[1])) ) { // limits
     this->doubleV =  std::strtod(s.c_str(), NULL);
-    if (isInLimits(s, "-2147483648", "2147483647"))
+    if (inLimits(s, "-2147483648", "2147483647"))
       this->intV    = static_cast<int>(this->doubleV);
     else
       this->intOk = false;
-    if (this->intOk && isInLimits(s, "-128", "127"))
+    if (this->intOk && inLimits(s, "-128", "127"))
       this->charV = static_cast<char>(this->doubleV);
     else 
       this->charOk = false;
@@ -159,7 +159,7 @@ bool ScalarConverter::isFloat(std::string s) {
 void ScalarConverter::convert (std::string s) {
   trim(&s);
   std::cout << "trimmed: [" << s << "]" << std::endl;
-  if (strlen(s) == 0 || !(isSpecial(s) || isChar(s) || isInt(s) || isDouble(s) || isFloat(s))) {
+  if (strlen(s) == 0 || !(/*isSpecial(s) || isChar(s) || */ isInt(s) /*|| isDouble(s) || isFloat(s)*/)) {
     this->charOk   = false;
     this->intOk    = false;
     this->floatOk  = false;

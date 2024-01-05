@@ -15,7 +15,7 @@ int  strcmp(std::string s1, std::string s2);
 bool isDigit(char c);
 bool isDigits(std::string s);
 bool isDigitsWithDecmalPoint(std::string s);
-bool isInLimits(std::string s, std::string min, std::string max);
+bool inLimits(std::string s, std::string min, std::string max);
 // bool isInIntLimits(std::string s);
 // bool isInCharLimits(int n);
 
