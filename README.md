@@ -14,6 +14,19 @@
 * belongs to the class, is not associated with a particular object  
 * is called using the class name or through an object
 * static class = a private and unimplemented default constructor (formally C++ does not have static classes)
+* выделение памяти происходит только один раз и существуют эти элементы до завершения программы
+* хранятся в сегментах памяти .data и .bss (в heap и не на stack), что позволяет хранить значение переменной на протяжении всей жизни программы
+
+### static variable in a function or static object of a class
+* инициализируется один раз, затем сохраняют значение
+* хранит значение между вызовами функции 
+
+### static vraiable member of a class
+* не инициализируются с помощью конструктора
+* определение вне класса с помощью оператора разрешения области видимости (::)
+* `static A a;` объявляем объект, а не определяем его
+* член класса будет один для всех экземпляров класса
+* если создали три объекта класса, то конструктор статического члена класса будет вызван один раз
 
 ## abstract class
 * contains (or inherits without redefinition) at least one pure virtual (abstract) function
@@ -71,12 +84,15 @@ const variable cannot be left un-initialized at the time
 * can't be called from other places
 
 ## static member function
-* does not have a receiver object
-* is basically a normal function that's nested inside of the scope of the class
 * is not associated with a particular object, belongs to the class rather than objects of the class  
+* basically a normal function that's nested inside of the scope of the class
 * can be called using the class name or through an object  
-* can directly access only static variables and functions  
-* doesn't have `*this` pointer  
+* can access only static variables and functions  
+* doesn't have `*this`
+* можное использовать без создания объекта класса
+* доступ с использованием имени класса и оператора разрешения области видимости (::)
+* внутри функции обращаться можно только к статическим членам данных, другим статическим функциям-членам и любым другим функциям извне класса
+* имеет область видимости класса, в котором находится
 
 Example:
 ```
@@ -147,6 +163,8 @@ Virtual function table :
 ## friend functon
 * не являются членами класса
 * имеют доступ к его private переменным и функциям
+
+## inline
 
 # Inheritance specifiers
 
