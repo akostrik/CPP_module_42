@@ -104,11 +104,11 @@ void trim(std::string *s) {
       (*s)[i] = (*s)[i + 1];
     (*s)[i] = '\0';
   }
-  for (i = (*s).size() - 1; (*s)[i] == ' '; i--) // spaces end
+  for (i = (*s).size() - 1; (*s)[i] == ' ' || (*s)[i] == '\0'; i--) // spaces end
     (*s)[i] = '\0';
   if ((*s).size() == 0)
     (*s)[0] = ' ';
-  if ((*s)[0] == '+') {
+  if ((*s)[0] == '+') { // remove +
     for (i = 0; (*s)[i] != '\0'; i++)
       (*s)[i] = (*s)[i + 1];
     (*s)[i] = '\0';
