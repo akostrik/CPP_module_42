@@ -166,7 +166,7 @@ Virtual function table :
 * не являются членами класса
 * имеют доступ к его private переменным и функциям
 
-## inline
+## inline (c++ 17)
 
 # Inheritance specifiers
 
