@@ -270,7 +270,7 @@ string != строковый литерал
 | to double            |                |                             | strtod (3)    | implicit | implicit | x
   
 (1) если число превышает INT_MIN/INT_MAX, возвращает INT_MIN/INT_MAX  
-(1) stoi c++11
+(1) stoi c++11  
 (2) s.data() c++11  
 (3) в случае переполнения возвращает HUGE_VAL, в случае потери значимости —HUGE_VAL, если никакое преобразо­вание невозможно 0  
 
