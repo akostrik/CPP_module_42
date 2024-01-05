@@ -30,6 +30,14 @@
 * член класса будет один для всех экземпляров класса
 * если создали три объекта класса, то конструктор статического члена класса будет вызван один раз
 
+## static class
+* не может создан в виде объекта
+* для группирования связанных по смыслу методов, свойств и полей
+* содержит только статические методы, свойства, и поля
+* не может быть наследован
+
+Источник: https://uchet-jkh.ru/i/cto-takoe-staticeskii-klass
+
 ## abstract class
 * contains (or inherits without redefinition) at least one pure virtual (abstract) function
 * all the abstract methods of the parent must be implemented in the child
