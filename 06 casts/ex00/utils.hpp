@@ -4,8 +4,11 @@
 # include <string>
 # include <exception>
 # include <iostream>
+# include <sstream>
 # include <limits>
 # include <stdlib.h>
+# include <stdio.h>
+# include <float.h>
 
 void trim(std::string *s);
 int  strcmp(std::string s1, std::string s2);

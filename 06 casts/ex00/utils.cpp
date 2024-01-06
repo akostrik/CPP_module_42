@@ -163,17 +163,29 @@ bool isChar(std::string s) {
   return !std::isdigit(s[0]);
 }
 
-bool isInt(std::string s) {
-  return ((s[0] == '-' && isDigits(&s[1])         ) || isDigits(s)             ) && inLimits(s, "-2147483648", "2147483647");
+template <typename T> std::string toString(T val) {
+    std::ostringstream oss;
+    oss<< val;
+    return oss.str();
 }
 
+bool isInt(std::string s) {
+  std::string intMax = toString(std::numeric_limits<int>::max()); // INT_MAX 2147483647
+  std::string intMin = toString(std::numeric_limits<int>::min());
+  //std::numeric_limits<T>::lowest()
+  return ((s[0] == '-' && isDigits(&s[1])         ) || isDigits(s)             ) && inLimits(s, intMin, intMax);
+}
+
+// 4 bites
 bool isFloat(std::string s) {
+  printf("FLT_MAX = %g\n", FLT_MAX); //
   if (s[strlen(s) - 1] != 'f')
     return false;
   s[strlen(s) - 1] = '\0';
   return ((s[0] == '-' && isDigitsWithPoint(&s[1])) || isDigitsWithPoint(&s[1])) && inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0");;
 }
 
+// 8 bites
 bool isDouble(std::string s) {
   std::cout << "isDigitsWithPoint(" << &s[1] << ") = " << isDigitsWithPoint(&s[1]) << std::endl;
   return ((s[0] == '-' && isDigitsWithPoint(&s[1])) || isDigitsWithPoint(&s[1])) && inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0");

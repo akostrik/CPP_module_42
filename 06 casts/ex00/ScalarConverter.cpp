@@ -48,9 +48,9 @@ void ScalarConverter::convert (std::string s) {
     std::cout << std::fixed << std::setprecision(1) << "float:  " << static_cast<float>(c) << "f" << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(c) << std::endl;
   }
-  std:: cout << "s[0] == '-' : " << (s[0] == '-') << std::endl;
-  std:: cout << "isDigits(" << &s[1] << ") : " << isDigits(&s[1]) << std::endl;
-  if(isInt(s)) {
+  //std:: cout << "s[0] == '-' : " << (s[0] == '-') << std::endl;
+  //std:: cout << "isDigits(" << &s[1] << ") : " << isDigits(&s[1]) << std::endl;
+  else if(isInt(s)) {
     std:: cout << "INT" << std::endl;
     int i = std::atoi(s.c_str());
     if (inLimits(s, "32", "127"))
@@ -77,7 +77,7 @@ void ScalarConverter::convert (std::string s) {
     std::cout << std::fixed << std::setprecision(1) << "float:  " << f << "f" << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(f) << std::endl;
   }
-  else if(isDouble(s)) { // limits  
+  else if(isDouble(s)) { // limits
     std:: cout << "DOUBLE" << std::endl;
     double d =  std::strtod(s.c_str(), NULL);
     if (inLimits(s, "-128", "127")) // intOk && 
