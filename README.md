@@ -83,6 +83,9 @@ const variable cannot be left un-initialized at the time
 
 ## template class
 
+## extern
+сделать глобальную переменную внешней (которую можно использовать в любом файле программы)
+
 # Function specifiers
 
 ## private / public / protected function
@@ -435,11 +438,10 @@ reinterpret_cast<whatever *>(integer_expression)
 ## Limits
 `std::numeric_limits<T>::infinity()` the largest representable value (if T supports infinity, std::numeric_limits<T>::has_infinity = true)  
 `std::numeric_limits<T>::max()` the largest finite value  
-`std::numeric_limits<T>::min()` the smallest positive normal value. Floating-point formats often have an interval where the exponent cannot get any smaller, but the significand (fraction portion of the number) is allowed to get smaller until it reaches zero. This comes at the expense of precision but has some desirable mathematical-computing properties. min() is the point where this precision loss starts  
+`std::numeric_limits<T>::min()` the smallest positive normal value. Floating-point formats have an interval where the exponent cannot get any smaller, but the significand is allowed to get smaller until it reaches zero, this comes at the expense of precision, min() is the point where this precision loss starts  
 `std::numeric_limits<T>::denorm_min()` the smallest positive value = std::numeric_limits<T>::min() if the type doesn't have subnormal values  
-`std::numeric_limits<T>::lowest()` the least finite value  
 `-std::numeric_limits<T>::infinity()` is the least value, negative infinity (if std::numeric_limits<T>::has_infinity == true and std::numeric_limits<T>::is_signed == true)  
-`std::numeric_limits<T>::digits10` the greatest number of decimal digits such that converting any decimal number with that many digits to T and then converting back to the same number of decimal digits will yield the original number  
+// `std::numeric_limits<T>::lowest()` the least finite value  (c++11)
 
 # Floating-point numbers vs Fixed-point numbers (02)
 * **Accuracy** to how close a measurement is to the true value  
