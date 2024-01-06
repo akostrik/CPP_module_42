@@ -57,7 +57,7 @@ void ScalarConverter::convert (std::string s) {
     else
       std::cout << "char:   impossible" << std::endl;
     std::cout << "int:    " << i << std::endl;
-    std::cout << std::fixed << std::setprecision(1) << "float:  " << static_cast<float>(i) << "f" <<std::endl;
+    std::cout << std::fixed << std::setprecision(1) << "float:  " << i << "f" <<std::endl;
     std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(i) << std::endl;
   }
   else if(isFloat(s)) { // .567f
