@@ -301,7 +301,8 @@ class A
 (1) stoi c++11  
 (2) s.data() c++11  
 (3) если переполнение возвращает HUGE_VAL, в случае потери значимости —HUGE_VAL, если преобразо­вание невозможно 0  
-(4) std::to_string c++11
+(4) std::to_string c++11  
+(4) `sprintft`  
 
 ### С-style: `(int)`, `(float)` etc
 * `(int)double_value` вычисляет целую часть
