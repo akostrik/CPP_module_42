@@ -1,6 +1,6 @@
 #include "utils.hpp"
 
-bool isDigitsWithPoint(std::string s) {
+bool digitsAndPoint(std::string s) {
   for (int i = 0; s[i] != '\0'; i++)
     if(s[i] == '.') {
       s[i] = '0';
@@ -172,21 +172,24 @@ template <typename T> std::string toString(T val) {
 bool isInt(std::string s) {
   std::string intMax = toString(std::numeric_limits<int>::max()); // INT_MAX 2147483647
   std::string intMin = toString(std::numeric_limits<int>::min());
-  //std::numeric_limits<T>::lowest()
   return ((s[0] == '-' && isDigits(&s[1])         ) || isDigits(s)             ) && inLimits(s, intMin, intMax);
 }
 
 // 4 bites
 bool isFloat(std::string s) {
-  printf("FLT_MAX = %g\n", FLT_MAX); //
+  std::string fltMax = toString(std::numeric_limits<float>::max()); // FLT_MAX 340282346638528859811704183484516925440.0
+  std::string fltMin = toString(std::numeric_limits<float>::min()); // -340282346638528859811704183484516925440.0
+  std::cout << "fltMax = " << fltMax << std::endl; //
+  std::cout << "fltMin = " << fltMin << std::endl; //
   if (s[strlen(s) - 1] != 'f')
     return false;
   s[strlen(s) - 1] = '\0';
-  return ((s[0] == '-' && isDigitsWithPoint(&s[1])) || isDigitsWithPoint(&s[1])) && inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0");;
+  std::cout << "inLimits(s, fltMin, fltMax): " << inLimits(s, fltMin, fltMax) << std::endl;
+  return ((s[0] == '-' && digitsAndPoint(&s[1])) || digitsAndPoint(&s[0])) && inLimits(s, fltMin, fltMax);
 }
 
 // 8 bites
 bool isDouble(std::string s) {
-  std::cout << "isDigitsWithPoint(" << &s[1] << ") = " << isDigitsWithPoint(&s[1]) << std::endl;
-  return ((s[0] == '-' && isDigitsWithPoint(&s[1])) || isDigitsWithPoint(&s[1])) && inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0");
+  std::cout << "digitsAndPoint(" << &s[1] << ") = " << digitsAndPoint(&s[1]) << std::endl;
+  return ((s[0] == '-' && digitsAndPoint(&s[1])) || digitsAndPoint(&s[0])) && inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0");
 }

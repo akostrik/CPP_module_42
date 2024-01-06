@@ -41,7 +41,7 @@ void ScalarConverter::convert (std::string s) {
   else if(isChar(s)) {
     char c = s[0];
     if (std::isprint(s[0]))
-      std::cout << "char:   " << c << std::endl;
+      std::cout << "char:   '" << c << "'" << std::endl;
     else 
       std::cout << "char:   non dispayable" << std::endl;
     std::cout << "int:    " << static_cast<int>(c) << std::endl;
@@ -53,9 +53,9 @@ void ScalarConverter::convert (std::string s) {
   else if(isInt(s)) {
     std:: cout << "INT" << std::endl;
     int i = std::atoi(s.c_str());
-    if (inLimits(s, "32", "127"))
-      std::cout << "char:   " << static_cast<char>(i)<< std::endl;
-    else if (inLimits(s, "-128", "127")) 
+    if (std::isprint(static_cast<char>(i)))
+      std::cout << "char:   '" << static_cast<char>(i) << "'" << std::endl;
+    else if (static_cast<char>(i) >= -128 && static_cast<char>(i) <= 127)
       std::cout << "char:   non dispalyable" << std::endl;
     else
       std::cout << "char:   impossible" << std::endl;
@@ -66,10 +66,13 @@ void ScalarConverter::convert (std::string s) {
   else if(isFloat(s)) { // .567f
     std:: cout << "FLOAT" << std::endl;
     float f = std::strtof(s.c_str(), NULL);
-    if (inLimits(s, "-128", "127")) // intOk && 
-      std::cout << "char:   " << static_cast<char>(f) << std::endl;
+    //if (f >= 32 && f <= 126)
+    if (std::isprint(static_cast<char>(f))) // 127.99999 ?
+      std::cout << "char:   '" << static_cast<char>(f) << "'" << std::endl;
+    else if (static_cast<char>(f) >= -128 && static_cast<char>(f) <= 127)
+      std::cout << "char:   non dispalyable" << std::endl;
     else 
-    std::cout << "char:   impossible" << std::endl;
+      std::cout << "char:   impossible" << std::endl;
     if (inLimits(s, "-2147483648", "2147483647"))
       std::cout << "int:    " << static_cast<int>(f) << std::endl;
     else
@@ -80,8 +83,10 @@ void ScalarConverter::convert (std::string s) {
   else if(isDouble(s)) { // limits
     std:: cout << "DOUBLE" << std::endl;
     double d =  std::strtod(s.c_str(), NULL);
-    if (inLimits(s, "-128", "127")) // intOk && 
-      std::cout << "char:   " << static_cast<char>(d) << std::endl;
+    if (std::isprint(static_cast<char>(d)))
+      std::cout << "char:   '" << static_cast<char>(d) << "'" << std::endl;
+    else if (static_cast<char>(d) >= -128 && static_cast<char>(d) <= 127)
+      std::cout << "char:   non dispalyable" << std::endl;
     else 
       std::cout << "char:   impossible" << std::endl;
     if (inLimits(s, "-2147483648", "2147483647"))
