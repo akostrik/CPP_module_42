@@ -432,7 +432,7 @@ reinterpret_cast<whatever *>(integer_expression)
 * an optional type since C99 (?)
 * might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
 
-## Limits
+## Limits (c++11 ?)
 `std::numeric_limits<T>::infinity()` the largest representable value (if T supports infinity, std::numeric_limits<T>::has_infinity = true)  
 `std::numeric_limits<T>::max()` the largest finite value  
 `std::numeric_limits<T>::min()` the smallest positive normal value. Floating-point formats often have an interval where the exponent cannot get any smaller, but the significand (fraction portion of the number) is allowed to get smaller until it reaches zero. This comes at the expense of precision but has some desirable mathematical-computing properties. min() is the point where this precision loss starts  
