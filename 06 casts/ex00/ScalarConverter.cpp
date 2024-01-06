@@ -14,7 +14,6 @@ ScalarConverter& ScalarConverter::operator = (ScalarConverter const &obj) {
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 
-
 // detect the type of the literal passed as parameter
 // convert it from string to its actual type
 // convert it explicitly to the three other types
@@ -48,14 +47,12 @@ void ScalarConverter::convert (std::string s) {
     std::cout << std::fixed << std::setprecision(1) << "float:  " << static_cast<float>(c) << "f" << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(c) << std::endl;
   }
-  //std:: cout << "s[0] == '-' : " << (s[0] == '-') << std::endl;
-  //std:: cout << "isDigits(" << &s[1] << ") : " << isDigits(&s[1]) << std::endl;
   else if(isInt(s)) {
     std:: cout << "INT" << std::endl;
     int i = std::atoi(s.c_str());
-    if (std::isprint(static_cast<char>(i)))
+    if (i >= 32 && i <= 126)
       std::cout << "char:   '" << static_cast<char>(i) << "'" << std::endl;
-    else if (static_cast<char>(i) >= -128 && static_cast<char>(i) <= 127)
+    else if (i >= -128 && i <= 127)
       std::cout << "char:   non dispalyable" << std::endl;
     else
       std::cout << "char:   impossible" << std::endl;
@@ -66,10 +63,9 @@ void ScalarConverter::convert (std::string s) {
   else if(isFloat(s)) { // .567f
     std:: cout << "FLOAT" << std::endl;
     float f = std::strtof(s.c_str(), NULL);
-    //if (f >= 32 && f <= 126)
-    if (std::isprint(static_cast<char>(f))) // 127.99999 ?
+    if (f >= 32 && f <= 126) // 31 127 ?
       std::cout << "char:   '" << static_cast<char>(f) << "'" << std::endl;
-    else if (static_cast<char>(f) >= -128 && static_cast<char>(f) <= 127)
+    else if (f >= -128 && f <= 127)
       std::cout << "char:   non dispalyable" << std::endl;
     else 
       std::cout << "char:   impossible" << std::endl;
@@ -83,9 +79,9 @@ void ScalarConverter::convert (std::string s) {
   else if(isDouble(s)) { // limits
     std:: cout << "DOUBLE" << std::endl;
     double d =  std::strtod(s.c_str(), NULL);
-    if (std::isprint(static_cast<char>(d)))
+    if (d >= 32 && d <= 126)
       std::cout << "char:   '" << static_cast<char>(d) << "'" << std::endl;
-    else if (static_cast<char>(d) >= -128 && static_cast<char>(d) <= 127)
+    else if (d >= -128 && d <= 127)
       std::cout << "char:   non dispalyable" << std::endl;
     else 
       std::cout << "char:   impossible" << std::endl;
