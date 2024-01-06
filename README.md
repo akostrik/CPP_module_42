@@ -83,6 +83,9 @@ const variable cannot be left un-initialized at the time
 
 ## template class
 
+## extern
+сделать глобальную переменную внешней (которую можно использовать в любом файле программы)
+
 # Function specifiers
 
 ## private / public / protected function
