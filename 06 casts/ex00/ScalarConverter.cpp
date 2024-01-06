@@ -1,7 +1,7 @@
 #include "ScalarConverter.hpp"
 
+
 /////////////////////////////////////////////////// OCCF and <<
-// ScalarConverter::~ScalarConverter() {}; ?
 
 ScalarConverter::ScalarConverter() {};
 
@@ -14,12 +14,6 @@ ScalarConverter& ScalarConverter::operator = (ScalarConverter const &obj) {
 
 /////////////////////////////////////////////////// MEMBER FUNCTIONS
 
-// detect the type of the literal passed as parameter
-// convert it from string to its actual type
-// convert it explicitly to the three other types
-// if a conversion does not make any sense or overflows, display a message
-// static_cast to convert values
-// Accept the use of implicit casts for promotion casts only
 void ScalarConverter::convert (std::string s) {
   trim(&s);
   std::cout << "trimmed: [" << s << "]" << std::endl;
@@ -29,15 +23,17 @@ void ScalarConverter::convert (std::string s) {
     std::cout << "int:    impossible" << std::endl;
     std::cout << "float:  " << static_cast<float>(d) << std::endl;
     std::cout << "double: " << d << std::endl;
+    return ;
   }
-  else if(isSpecialFloat(s)) {
+  if(isSpecialFloat(s)) {
     float f = std::strtof(s.c_str(), NULL); // std::atof(literal.c_str());
     std::cout << "char:   impossible" << std::endl;
     std::cout << "int:    impossible" << std::endl;
     std::cout << "float:  " << f << "f" << std::endl;
     std::cout << "double: " << static_cast<double>(f) << std::endl;
+    return ;
   }
-  else if(isChar(s)) {
+  if(isChar(s)) {
     char c = s[0];
     if (std::isprint(s[0]))
       std::cout << "char:   '" << c << "'" << std::endl;
@@ -46,8 +42,9 @@ void ScalarConverter::convert (std::string s) {
     std::cout << "int:    " << static_cast<int>(c) << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "float:  " << static_cast<float>(c) << "f" << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(c) << std::endl;
+    return ;
   }
-  else if(isInt(s)) {
+  if(isInt(s)) {
     std:: cout << "INT" << std::endl;
     int i = std::atoi(s.c_str());
     if (i >= 32 && i <= 126)
@@ -59,8 +56,9 @@ void ScalarConverter::convert (std::string s) {
     std::cout << "int:    " << i << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "float:  " << i << "f" <<std::endl;
     std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(i) << std::endl;
+    return ;
   }
-  else if(isFloat(s)) { // .567f
+  if(isFloat(s)) {
     std:: cout << "FLOAT" << std::endl;
     float f = std::strtof(s.c_str(), NULL);
     if (f >= 32 && f <= 126) // 31 127 ?
@@ -69,14 +67,15 @@ void ScalarConverter::convert (std::string s) {
       std::cout << "char:   non dispalyable" << std::endl;
     else 
       std::cout << "char:   impossible" << std::endl;
-    if (inLimits(s, "-2147483648", "2147483647"))
+    if (inLimits(s, toString(std::numeric_limits<int>::min()), toString(std::numeric_limits<int>::max())))
       std::cout << "int:    " << static_cast<int>(f) << std::endl;
     else
       std::cout << "int:   impossible" << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "float:  " << f << "f" << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(f) << std::endl;
+    return ;
   }
-  else if(isDouble(s)) { // limits
+  if(isDouble(s)) {
     std:: cout << "DOUBLE" << std::endl;
     double d =  std::strtod(s.c_str(), NULL);
     if (d >= 32 && d <= 126)
@@ -85,20 +84,19 @@ void ScalarConverter::convert (std::string s) {
       std::cout << "char:   non dispalyable" << std::endl;
     else 
       std::cout << "char:   impossible" << std::endl;
-    if (inLimits(s, "-2147483648", "2147483647"))
+    if (inLimits(s, toString(std::numeric_limits<int>::min()), toString(std::numeric_limits<int>::max())))
       std::cout << "int:    " << static_cast<int>(d) << std::endl;
     else
       std::cout << "int:    impossible" << std::endl;
-    if (inLimits(s, "-340282346638528859811704183484516925440.0", "340282346638528859811704183484516925440.0"))
+    if (inLimits(s, toString(-std::numeric_limits<float>::max()), toString(std::numeric_limits<float>::max())))
       std::cout << std::fixed << std::setprecision(1) << "float:  " << static_cast<float>(d) << "f" << std::endl;
     else
       std::cout << "float:  impossible" << std::endl;
     std::cout << std::fixed << std::setprecision(1) << "double: " << d << std::endl;
+    return ;
   }
-  else {
-    std::cout << "char:   impossible" << std::endl;
-    std::cout << "int:    impossible" << std::endl;
-    std::cout << "float:  impossible" << std::endl;
-    std::cout << "double: impossible" << std::endl;
-  }
+  std::cout << "char:   impossible" << std::endl;
+  std::cout << "int:    impossible" << std::endl;
+  std::cout << "float:  impossible" << std::endl;
+  std::cout << "double: impossible" << std::endl;
 }

@@ -1,5 +1,14 @@
-// the type conversion must be solved using one specific type of casting
-// non displayable characters shouldn’t be used as inputs
+// -340282346638528859811704183484516925440.0
+// 340282346638528859811704183484516925440.0
+
+// to verify:
+// -340282346638528859811704183484516925440.00001
+// 2147483647f
+// 2147483647f
+// 340282346638528859811704183484516925440.0
+// .567f
+
+// accept the use of implicit casts for promotion casts only
 
 #include "ScalarConverter.hpp"
 

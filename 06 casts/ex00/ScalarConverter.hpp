@@ -15,9 +15,9 @@
 class ScalarConverter {
 
 private:
-                         ScalarConverter  ();
-                         ScalarConverter  (const ScalarConverter &obj);
- ScalarConverter         &operator =      (const ScalarConverter &obj);
+                          ScalarConverter  ();
+                          ScalarConverter  (const ScalarConverter &obj);
+  ScalarConverter         &operator =      (const ScalarConverter &obj);
 
 public:
                          ~ScalarConverter ();

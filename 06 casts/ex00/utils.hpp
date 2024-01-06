@@ -6,6 +6,7 @@
 # include <iostream>
 # include <sstream>
 # include <limits>
+# include <limits.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <float.h>
@@ -22,5 +23,6 @@ bool isChar(std::string s);
 bool isInt(std::string s);
 bool isFloat(std::string s);
 bool isDouble(std::string s);
+template <typename T> std::string toString(T val);
 
 #endif
