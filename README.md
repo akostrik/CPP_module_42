@@ -458,16 +458,21 @@ boost::lexical_cast<int>(str)
 * **Precision** how much information you have about a quantity, how uniquely you have it pinned down
 
 ## Floating-point
-[IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html  
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
 https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold  
 https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
   
+**The IEEE Standard for Floating-Point Arithmetic (IEEE 754)** = a technical standard for floating-point arithmetic established (1985)  
+
+[IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
+
+**Subnormal values** are the subset of denormalized numbers that fill the underflow gap around zero in floating-point arithmetic. Any non-zero number with magnitude smaller than the smallest positive normal number is subnormal, while denormal can also refer to numbers outside that range. In IEEE binary floating point formats, subnormals are represented by having a zero exponent field with a non-zero significand field.
+
 - s sign bit
-- e exponent giving its order of magnitude (= порядок = показатель степени)
-- m mantissa specifying the actual digits of the number ∊ [1;10)
+- e exponent (= порядок = показатель степени)
+- m mantissa = the actual digits of the number ∊ [1;10)
 
 binary    	                                 | f                                          | decimal                                 | pr                                     |
 ---------------------------------------------|--------------------------------------------|-----------------------------------------|----------------------------------------|
