@@ -58,6 +58,10 @@ bool lessOrEqual(std::string s1, std::string s2) {
 
   s1[p1] = '\0';
   s2[p2] = '\0';
+  // if (s1[strlen(s1) - 1] == 'f')
+  //   s1[strlen(s1) - 1] = '\0';
+  // if (s2[strlen(s2) - 1] == 'f')
+  //   s2[strlen(s2) - 1] = '\0';
   if (strcmp(s1.c_str(), s2.c_str()) == 0) {
     return true;
   }
@@ -177,8 +181,11 @@ bool isInt(std::string s) {
   return ((s[0] == '-' && digits(&s[1])             ) || digits(s)                 ) && inLimits(s, toString(std::numeric_limits<int>::min()), toString(std::numeric_limits<int>::max()));
 }
 
-// make
 bool isFloat(std::string s) {
+  // char  *endPtr;
+  // strtof(s.c_str(), &endPtr);
+  // return (endPtr != s.c_str());
+
   if (s[strlen(s) - 1] != 'f')
     return false;
   s[strlen(s) - 1] = '\0';
