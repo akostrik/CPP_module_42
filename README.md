@@ -301,11 +301,12 @@ class A
 | to `char*`           | x              | x                                    | c_str(), (5)    |              |              |
 | to `std::string`     | sprintf, (5)   | =, string constructor, (2), (4), (5) | x               | sprintf, (5) | sprintf, (5) | sprintf, (5)
 | to int               |                |                                      | atoi*, (1), (5) | x            |              |
-| to float             |                |                                      | strtof, (5)     | implicit     | x            | implicit
+| to float             |                |                                      | strtof**, (5)   | implicit     | x            | implicit
 | to double            |                |                                      | strtod**, (5)   | implicit     | implicit     | x
   
 (*) если переполнение возвращает INT_MIN/INT_MAX  
-(**) если переполнение возвращает HUGE_VAL, в случае потери значимости —HUGE_VAL, если преобразо­вание невозможно 0  
+(**) умеют сообщать в вызывающий код о неправильном формате входных данных и устойчивы к переполнению, при котором сообщают о нём через стандартную переменную errno, если переполнение возвращает HUGE_VAL, в случае потери значимости -HUGE_VAL, если преобразо­вание невозможно 0 
+
 (1) stoi c++11  
 (2) s.data() c++11  
 (4) std::to_string c++11  
