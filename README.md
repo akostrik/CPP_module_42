@@ -166,7 +166,7 @@ Virtual function table :
 * `override` keyword is a C++11 extension
 
 ## final function
-* proihibite `virtual` functions in the inherited classes 
+* prohibites `virtual` functions in the inherited classes 
 
 ## template function
 * allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
