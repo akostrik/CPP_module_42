@@ -39,7 +39,7 @@ int strcmp(std::string s1, std::string s2) {
 int strlen(std::string s) {
   int i;
 
-  for (i = 1; s[i] != '\0'; i++) ;
+  for (i = 0; s[i] != '\0'; i++) ;
   return i;
 }
 
@@ -66,7 +66,7 @@ bool lessOrEqual(std::string s1, std::string s2) {
   else if (s1[0] != '-' && s2[0] == '-') 
     return false;
   else if (s1[0] != '-' && s2[0] != '-') {
-    if (s1.size() < s2.size())
+    if (s1.size() < s2.size()) // strlen ?
       return true;
     if (s1.size() > s2.size())
       return false;
@@ -99,7 +99,7 @@ bool inLimits(std::string s, std::string min, std::string max) {
 void trim(std::string *s) {
   int i;
 
-  if ((*s).size() == 0)
+  if (strlen(*s) == 0)
     return ;
   while((*s)[0] == ' ') { // spaces beginning
     for (i = 0; (*s)[i] != '\0'; i++)
@@ -117,13 +117,17 @@ void trim(std::string *s) {
       (*s)[i] = (*s)[i + 1];
     (*s)[i] = '\0';
   }
+  std::cout << "1) " << *s << std::endl;
   while((*s)[0] == '0') { // zeros beginning
     for (i = 0; (*s)[i] != '\0'; i++)
       (*s)[i] = (*s)[i + 1];
     (*s)[i] = '\0';
   }
-  if ((*s).size() == 0)
+  std::cout << "2) [" << *s << "]" << std::endl;
+  std::cout << "2) streln = " << strlen(*s) << std::endl;
+  if (strlen(*s) == 0)
     (*s)[0] = '0';
+  std::cout << "3) " << *s << std::endl;
   if ((*s)[0] == '-' && (*s)[1] != '\0') { // zeros beginning after -
     while((*s)[1] == '0') {
       for (i = 1; (*s)[i] != '\0'; i++)
@@ -136,7 +140,7 @@ void trim(std::string *s) {
   for (i = 0; (*s)[i] != '\0'; i++) { // zeros end
     if ((*s)[i] == '.') {
       int p = i;
-      for (i = (*s).size() - 1; i > p; i--) {
+      for (i = strlen(*s) - 1; i > p; i--) {
         if ((*s)[i] == '0')
           (*s)[i] = '\0';
         else
@@ -147,6 +151,8 @@ void trim(std::string *s) {
       break ;
     }
   }
+  if (strlen(*s) == 0)
+    (*s)[0] = '0';
 }
 
 bool isSpecialDouble(std::string s) {
