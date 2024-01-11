@@ -464,7 +464,7 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold  
 https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
   
-**The IEEE Standard for Floating-Point Arithmetic (IEEE 754)** = a technical standard for floating-point arithmetic established (1985)  
+**The IEEE Standard for Floating-Point Arithmetic (IEEE 754)** = a standard for floating-point arithmetic (1985)  
 
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
 
@@ -476,10 +476,10 @@ https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html
 
 binary    	                                 | f                                          | decimal                                 | pr                                     |
 ---------------------------------------------|--------------------------------------------|-----------------------------------------|---|
-s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s}$* 1.(m)*$2^e$                    |                                 |
-s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s}$* 1.(m)*$2^e$                    |                                 | Денормализованные числа: мантисса начинается с 0, порядок минимально возможный, находятся ближе к 0, чем наименьшее представимое нормализованное число
-0&nbsp;00000000&nbsp;00000000000000000000000 | (1+m/ $2^{23}$)* $2^{e−127}$              | ~11111111~ ~00000000~            | 
-0&nbsp;00000000&nbsp;00000000000000000000000 | (0+m/ $2^{23}$)* $2^{1−127}$              | 00000000                         | 
+s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s}$ * 1.(m)*$2^e$                   |                                 |
+s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s}$ * 1.(m)*$2^e$                   |                                 | Денормализованные числа: мантисса начинается с 0, порядок минимально возможный, находятся ближе к 0, чем наименьшее представимое нормализованное число
+0&nbsp;00000000&nbsp;00000000000000000000000 | (1+m/ $2^{23}$)* $2^{e−127}$               | ~11111111~ ~00000000~           | 
+0&nbsp;00000000&nbsp;00000000000000000000000 | (0+m/ $2^{23}$)* $2^{1−127}$               | 00000000                        | 
 0&nbsp;00000000&nbsp;00000000000000000000000 | $2^{-126}×2^{−23}$                         |  0.0                            | денормализованное число
 0&nbsp;00000000&nbsp;00000000000000000000001 |                                            |  1.401298464e-45                | smallest 
 0&nbsp;00000000&nbsp;00000000000000000000000 | $2^{-126}$                                 |                                 | min positive
