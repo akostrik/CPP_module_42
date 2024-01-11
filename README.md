@@ -293,8 +293,7 @@ class A
 
 ## Types, convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
 `std::string` инициализирован динамически, не статически   
-`std::string` = `'basic_string<char>`
-`std::string` подобие динамического массива char'ов, подобие vector<char>  
+`std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>  
 `std::string` != строковый литерал  
 
 |                      | `char`         | `char*`                              | `std::string`   | `int`        | `float`      | `double`
