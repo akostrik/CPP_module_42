@@ -117,17 +117,13 @@ void trim(std::string *s) {
       (*s)[i] = (*s)[i + 1];
     (*s)[i] = '\0';
   }
-  std::cout << "1) " << *s << std::endl;
   while((*s)[0] == '0') { // zeros beginning
     for (i = 0; (*s)[i] != '\0'; i++)
       (*s)[i] = (*s)[i + 1];
     (*s)[i] = '\0';
   }
-  std::cout << "2) [" << *s << "]" << std::endl;
-  std::cout << "2) streln = " << strlen(*s) << std::endl;
   if (strlen(*s) == 0)
     (*s)[0] = '0';
-  std::cout << "3) " << *s << std::endl;
   if ((*s)[0] == '-' && (*s)[1] != '\0') { // zeros beginning after -
     while((*s)[1] == '0') {
       for (i = 1; (*s)[i] != '\0'; i++)
@@ -153,6 +149,8 @@ void trim(std::string *s) {
   }
   if (strlen(*s) == 0)
     (*s)[0] = '0';
+  if (strlen(*s) == 1 && (*s)[0] == '-')
+    (*s)[1] = '0';
 }
 
 bool isSpecialDouble(std::string s) {
