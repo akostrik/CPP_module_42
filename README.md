@@ -192,7 +192,11 @@ Virtual function table :
 ## virtual inheritance
 * предотвращает появление множественных объектов базового класса в иерархии наследования 
 
-# Object-oriented programmine
+# Other specifiers
+
+## explicit
+
+# Object-oriented programming
 
 # Inheritance
 * subclass = derived class = child class
