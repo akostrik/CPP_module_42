@@ -192,7 +192,11 @@ Virtual function table :
 ## virtual inheritance
 * предотвращает появление множественных объектов базового класса в иерархии наследования 
 
-# Object-oriented programmine
+# Other specifiers
+
+## explicit
+
+# Object-oriented programming
 
 # Inheritance
 * subclass = derived class = child class
@@ -287,9 +291,9 @@ class A
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Convertions and casts (01/ex04, 06/ex00) (only before C++11 information)
+## Types, convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
 `std::string` инициализирован динамически, не статически   
-`std::string` подобие динамического массива char'ов, подобие vector<char>  
+`std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>  
 `std::string` != строковый литерал  
 
 |                      | `char`         | `char*`                              | `std::string`   | `int`        | `float`      | `double`
@@ -430,6 +434,12 @@ reinterpret_cast<whatever *>(some *)
 reinterpret_cast<integer_expression>(some *)
 reinterpret_cast<whatever *>(integer_expression)
 
+### lexical_cast
+```
+#include <boost/lexical_cast.hpp>
+boost::lexical_cast<int>(str)
+```
+
 ### `uintptr_t` data type (06/ex02)
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
 * an optional type since C99 (?)
@@ -459,26 +469,26 @@ https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html
 - e exponent giving its order of magnitude (= порядок = показатель степени)
 - m mantissa specifying the actual digits of the number ∊ [1;10)
 
-Decimal	                         | e                            | m   | float                                            
----------------------------------|------------------------------|-----|--------------------------------------------------
-${(-1)}^{s}$ * 1.(mantissa bits) * $2^e$ |                      |     | s eeeeeeee mmmmmmmmmmmmmmmmmmmmmmm 
-(1+m/ $2^{23}$ )* $2^{e−127}$    | ~11111111~ ~00000000~        |     |
-(0+m/ $2^{23}$ )* $2^{1−127}$    | 00000000                     |     |
-Largest $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) = 340282346638528859811704183484516925440 |  |  | 0 11111110 11111111111111111111111   
-1234.4321                        |                              |     | 0 10001001 00110100100110111010100
-1234.43212890625                 |                              |     | 0 10001001 00110100100110111010100
-316014.6250                      |                              |     | 0 10010001 00110100100110111010100
-3.14                             | ∊ [ $2^1$ ; $2^2$ ) => $2^7$ | $\frac{3,14 -2 }{4 - 2} *2^{23}$ | 0 10000000 10010001111010111000011
-0                                |                              |     | 0 00000000 00000000000000000000000
-1.0                              |                              |     | 0 01111111 00000000000000000000000
-0.5                              |                              |     | 0 01111110 00000000000000000000000
-3                                |                              |     | 0 10000000 10000000000000000000000
-1.175494351e-38 smallest without losing precision |             |     | 0 00000001 00000000000000000000000
-1.401298464e-45 smallest  	      |                              |     | 0 00000000 00000000000000000000001
-1.1929093e-7 the smallest x : 1+x > 1 |                         |     | 0 01101000 00000000001011001110001
-+inf                             |                              |     | 0 11111111 00000000000000000000000
--inf                             |                              |     | 1 11111111 00000000000000000000000
-+NaN                             |                              | ~0~ | 0 11111111 10000000000000000000000
+binary    	                                 | f                                          | decimal                                 | pr                                     |
+---------------------------------------------|--------------------------------------------|-----------------------------------------|----------------------------------------|
+s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmmmmm...m     | $(-1)^{s}$ * 1.(mmm) * $2^e$               |                                         |                                        |
+0&nbsp;00000000&nbsp;00000000000000000000000 | (1+m/ $2^{23}$ )* $2^{e−127}$              | ~11111111~ ~00000000~                   |                                        |
+0&nbsp;00000000&nbsp;00000000000000000000000 | (0+m/ $2^{23}$ )* $2^{1−127}$              | 00000000                                |                                        |
+0&nbsp;00000000&nbsp;00000000000000000000000 | $2^{-126}×2^{−23}$                         |  0.0                                    |                                        |
+0&nbsp;00000000&nbsp;00000000000000000000001 |                                            |  1.401298464e-45                        | smallest                               |
+0&nbsp;00000000&nbsp;00000000000000000000000 | $2^{-126}$                                 |                                         | min positive                           |
+0&nbsp;01111110&nbsp;00000000000000000000000 |                                            | 0.5                                     |                                        |
+0&nbsp;01111111&nbsp;00000000000000000000000 |                                            | 1.0                                     | 
+0&nbsp;10000000&nbsp;10000000000000000000000 |                                            | 3.0                                     |
+0&nbsp;10000000&nbsp;10010001111010111000011 | $\frac{3,14 -2 }{4 - 2} *2^{23}$           |                                         | 3.14 ∊ [ $2^1$ ; $2^2$ ), $2^7$ 
+0&nbsp;10001001&nbsp;00110100100110111010100 |                                            | 1234.4321                               |    
+0&nbsp;00000001&nbsp;00000000000000000000000 |                                            | 1.175494351e-38                         | the smallest without losing precision 
+0&nbsp;01101000&nbsp;00000000001011001110001 |                                            | 1.1929093e-7                            | the smallest x : 1+x > 1
+0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0$ × (1 × $2^{-23}$) × $2^{-126}$    |                                         | the smallest positive denormal number
+0&nbsp;11111110&nbsp;11111111111111111111111 | $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) | 340282346638528859811704183484516925440 | maximum normal number     
+0&nbsp;11111111&nbsp;00000000000000000000000 |                                            |                                         | +inf 
+1&nbsp;11111111&nbsp;00000000000000000000000 |                                            |                                         | -inf
+0&nbsp;11111111&nbsp;10000000000000000000000 |                                            |                                         | +NaN 
 
 ## Fixed-point
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
