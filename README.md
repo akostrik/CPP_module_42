@@ -434,6 +434,12 @@ reinterpret_cast<whatever *>(some *)
 reinterpret_cast<integer_expression>(some *)
 reinterpret_cast<whatever *>(integer_expression)
 
+### lexical_cast
+```
+#include <boost/lexical_cast.hpp>
+boost::lexical_cast<int>(str)
+```
+
 ### `uintptr_t` data type (06/ex02)
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
 * an optional type since C99 (?)
