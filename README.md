@@ -296,27 +296,27 @@ class A
 `std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>  
 `std::string` != строковый литерал  
 
-|                      | `char`         | `char*`                              | `std::string`   | `int`        | `float`      | `double`
-|----------------------|----------------|--------------------------------------|-----------------|--------------|--------------|---------
-| to `char*`           | x              | x                                    | c_str(), (5)    |              |              |
-| to `std::string`     | sprintf, (5)   | =, string constructor, (2), (4), (5) | x               | sprintf, (5) | sprintf, (5) | sprintf, (5)
-| to int               |                |                                      | atoi*, (1), (5) | x            |              |
-| to float             |                |                                      | strtof**, (5)   | implicit**** | x            | implicit
-| to double            |                |                                      | strtod**, (5)   | implicit     | implicit***  | x
+|                      | `char`      | `char*`                          | `std::string`          | `int`       | `float`     | `double`
+|----------------------|-------------|----------------------------------|------------------------|-------------|-------------|---------
+| to `char*`           | ---         | ---                              | c_str() (5) sscanf     |             |             |
+| to `std::string`     | sprintf (5) | = string_constructor (2) (4) (5) | ---                    | sprintf (5) | sprintf (5) | sprintf (5)
+| to `int`             | sscanf      | sscanf                           | atoi sscanf (1) (5)    | ---         |             |
+| to `float`           | sscanf      | sscanf                           | strtof sscanf atof (5) | implicit    | ---         | implicit
+| to `double`          | sscanf      | sscanf                           | strtod sscanf (5)      | implicit    | implicit    | ---
   
-(*) если переполнение возвращает INT_MIN/INT_MAX  
-(*\*) сообщает о неправильном формате входных данных, сообщает о переполнении о нём через errno, о потери значимости  
-(*\**) converting back from double to float results in exactly the same float value  
-(****) `int` bigger than 16777216 may lose some precision, `float` can stores big numbers but cannot store big `int` precisely  
+atoi если переполнение возвращает INT_MIN/INT_MAX  
+atof неопределенное поведение при переполнении  
+sscanf неопределенное поведение при переполнении  
+strtof сообщает о неправильном формате входных данных, сообщает о переполнении о нём через errno, о потери значимости  
+strtod сообщает о неправильном формате входных данных, сообщает о переполнении о нём через errno, о потери значимости
+implicit converting flost->double: such that back from double to float results in exactly the same float value  
+implicit converting int -> float: `int` bigger than 16777216 may lose some precision, `float` can stores big numbers but cannot store big `int` precisely  
 
 (1) stoi c++11  
 (2) s.data() c++11  
 (4) std::to_string c++11  
-stod
-strtod 
-istringstream(s) >> d
-atof неопределенное поведение при переполнении
-sscanf неопределенное поведение при переполнении
+(6) stod c++11 
+istringstream(s) >> d  
 (5)
 ```
 template <typename T> std::string toString(T val) {
