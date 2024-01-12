@@ -317,13 +317,9 @@ class A
 * atoi при переполнении возвращает INT_MIN/INT_MAX  
 * atof при переполнении неопределенное поведение   
 * sscanf при переполнении неопределенное поведение  
-* strtof сообщает о переполнении через errno, о потери значимости, о неправильном формате входных данных  
-* strtod сообщает о переполнении через errno, о потери значимости, о неправильном формате входных данных
+* strtof сообщает о переполнении, о потери значимости, о неправильном формате входных данных  
+* strtod сообщает о переполнении, о потери значимости, о неправильном формате входных данных
 * istringstream (?)
-* stoi c++11  
-* s.data() c++11  
-* std::to_string c++11  
-* stod c++11 
 * С-style `(int)` `(float)` etc
     + `(int)double_value` вычисляет целую часть
     + `(char)long_value` отбрасывает значащие разряды
@@ -337,10 +333,6 @@ class A
         - static_cast и затем const_cast
         - reinterpret_cast
         - reinterpret_cast и затем const_cast
-* float->double: such that back from double to float results in exactly the same value  
-* int -> float:
-    + `int` bigger than 16777216 may lose precision
-    + `float` stores big numbers but doesn't store big `int` precisely  
 * myToStr
 ```
 template <typename T> std::string myToStr(T val) {
@@ -360,6 +352,14 @@ template<typename T> T myFromStr(const std::string& s) {
 
 int i = myFromStr<int>(myToStr(5));
 ```
+* float->double: such that back from double to float results in exactly the same value  
+* int -> float:
+    + `int` bigger than 16777216 may lose precision
+    + `float` stores big numbers but doesn't store big `int` precisely  
+* stoi c++11  
+* s.data() c++11  
+* std::to_string c++11  
+* stod c++11 
 
 
 ### `const_cast<target-type ﻿>(expr) ﻿`
