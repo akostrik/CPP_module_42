@@ -498,12 +498,12 @@ s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s}$ * 1.(m)* $2^e$        
 0&nbsp;10000001&nbsp;11000000000000000000000 | $1.75*2^2$                                 | 7.0                             |
 0&nbsp;10000010&nbsp;00000000000000000000000 | $1.0*2^3$                                  | 8.0                             |
 0&nbsp;10000000&nbsp;10010001111010111000011 | $1.5700000524520874*2^1$                   | 3.14                            | $\frac{3,14 - 2 }{4 - 2} *2^{23}$, 3.14 ∊ [ $2^1$ ; $2^2$ ), $2^7$ 
-0&nbsp;10000010&nbsp;00000000000000000000000 | $1.0*2^3$                                  | 16777215.0                      | the largest integer that can be represented in 24 bits
 0&nbsp;11111110&nbsp;11111111111111111111111 | $2^{254−127}$ *(1+ ($2^{23}$−1)/ $2^{23}$) | 340282346638528859811704183484516925440 | maximum normal number     
 0&nbsp;11111111&nbsp;00000000000000000000000 |                                            |                                 | +inf 
 1&nbsp;11111111&nbsp;00000000000000000000000 |                                            |                                 | -inf
 0&nbsp;11111111&nbsp;10000000000000000000000 |                                            |                                 | +NaN 
 
+The largest integer that can be represented in 24 bits is 16777215  
 
 ## Fixed-point
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
