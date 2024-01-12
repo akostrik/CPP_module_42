@@ -296,6 +296,14 @@ class A
 `std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>  
 `std::string` != строковый литерал  
 
+### Limits
+`std::numeric_limits<T>::infinity()` the largest representable value (if T supports infinity, std::numeric_limits<T>::has_infinity = true)  
+`std::numeric_limits<T>::max()` the largest finite value  
+`std::numeric_limits<T>::min()` the smallest positive normal value. Floating-point formats have an interval where the exponent cannot get any smaller, but the significand is allowed to get smaller until it reaches zero, this comes at the expense of precision, min() is the point where this precision loss starts  
+`std::numeric_limits<T>::denorm_min()` the smallest positive value = std::numeric_limits<T>::min() if the type doesn't have subnormal values  
+`-std::numeric_limits<T>::infinity()` is the least value, negative infinity (if std::numeric_limits<T>::has_infinity == true and std::numeric_limits<T>::is_signed == true)  
+`std::numeric_limits<T>::lowest()` the least finite value  (c++11)
+
 ## Convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
 
 |                      | `char`      | `char*`                          | `std::string`          | `int`       | `float`     | `double`
@@ -453,14 +461,6 @@ boost::lexical_cast<int>(str)
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
 * an optional type since C99 (?)
 * might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
-
-## Limits
-`std::numeric_limits<T>::infinity()` the largest representable value (if T supports infinity, std::numeric_limits<T>::has_infinity = true)  
-`std::numeric_limits<T>::max()` the largest finite value  
-`std::numeric_limits<T>::min()` the smallest positive normal value. Floating-point formats have an interval where the exponent cannot get any smaller, but the significand is allowed to get smaller until it reaches zero, this comes at the expense of precision, min() is the point where this precision loss starts  
-`std::numeric_limits<T>::denorm_min()` the smallest positive value = std::numeric_limits<T>::min() if the type doesn't have subnormal values  
-`-std::numeric_limits<T>::infinity()` is the least value, negative infinity (if std::numeric_limits<T>::has_infinity == true and std::numeric_limits<T>::is_signed == true)  
-// `std::numeric_limits<T>::lowest()` the least finite value  (c++11)
 
 # Floating-point numbers vs Fixed-point numbers (02, 06)
 * **Accuracy** to how close a measurement is to the true value  
