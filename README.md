@@ -306,28 +306,27 @@ class A
 
 ## Convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
 
-|                      | `char`      | `char*`                          | `std::string`          | `int`       | `float`     | `double`
-|----------------------|-------------|----------------------------------|------------------------|-------------|-------------|---------
-| to `char*`           | ---         | ---                              | c_str() (5) sscanf     |             |             |
-| to `std::string`     | sprintf (5) | = string_constructor (2) (4) (5) | ---                    | sprintf (5) | sprintf (5) | sprintf (5)
-| to `int`             | sscanf      | sscanf                           | atoi sscanf (1) (5)    | ---         |             |
-| to `float`           | sscanf      | sscanf                           | strtof sscanf atof (5) | implicit    | ---         | implicit
-| to `double`          | sscanf      | sscanf                           | strtod sscanf (5)      | implicit    | implicit    | ---
+|                      | `char`      | `char*`                          | `std::string`            | `int`       | `float`     | `double`
+|----------------------|-------------|----------------------------------|--------------------------|-------------|-------------|---------
+| to `char*`           | ---         | ---                              | c_str() (1) sscanf       |             |             |
+| to `std::string`     | sprintf (1) | = string_constructor _s.data()_ _std::to_string_ (1)        | ---         | sprintf (1) | sprintf (1)
+| to `int`             | sscanf      | sscanf                           | atoi sscanf _stoi_ (1)   | ---         |             |
+| to `float`           | sscanf      | sscanf                           | strtof sscanf atof (1)   | implicit    | ---         | implicit
+| to `double`          | sscanf      | sscanf                           | strtod sscanf _stod_ (1) | implicit    | implicit    | ---
   
-atoi если переполнение возвращает INT_MIN/INT_MAX  
-atof неопределенное поведение при переполнении  
-sscanf неопределенное поведение при переполнении  
-strtof о переполнении через errno, о потери значимости, о неправильном формате входных данных  
-strtod о переполнении через errno, о потери значимости, о неправильном формате входных данных
-implicit converting flost->double: such that back from double to float results in exactly the same float value  
-implicit converting int -> float: `int` bigger than 16777216 may lose some precision, `float` can stores big numbers but cannot store big `int` precisely  
-
-(1) stoi c++11  
-(2) s.data() c++11  
-(4) std::to_string c++11  
-(6) stod c++11 
-istringstream(s) >> d  
-(5)
+* atoi при переполнении возвращает INT_MIN/INT_MAX  
+* atof при переполнении неопределенное поведение   
+* sscanf при переполнении неопределенное поведение  
+* strtof сообщает о переполнении через errno, о потери значимости, о неправильном формате входных данных  
+* strtod сообщает о переполнении через errno, о потери значимости, о неправильном формате входных данных
+* implicit converting flost->double: such that back from double to float results in exactly the same value  
+* implicit converting int -> float: `int` bigger than 16777216 may lose precision, `float` can stores big numbers but cannot store big `int` precisely  
+* istringstream (?)
+* stoi c++11  
+* s.data() c++11  
+* std::to_string c++11  
+* stod c++11 
+* (1)
 ```
 template <typename T> std::string toString(T val) {
   std::ostringstream oss;
