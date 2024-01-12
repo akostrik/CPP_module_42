@@ -477,14 +477,13 @@ https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html
 
 binary    	                                 | formula                                          | decimal                                                                                                        
 ---------------------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------
-s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−127}  $ |                                                                                                                
-s&nbsp;eeeeeeee&nbsp;1mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−127}  $ | нормализованные: 1 ≤ мантисса < 10 
-s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−127}  $ | денормализованные: мантисса с 0, порядок минимальный, они ближе к 0, чем наименьшее представимое нормализованное
+s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−127}  $ | normalized, 1 ≤ мантисса < 10 
+s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−127}  $ | denormalized, мантисса с 0, порядок минимальный, они ближе к 0, чем наименьшее нормализованное
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (1+m/ 2^{23})         * 2^{e−127}  $ | ~11111111~ ~00000000~                                                                                           
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (0+m/ 2^{23})         * 2^{1−127}  $ | 00000000                                                                                                        
-0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (2^{−23})             * 2^{1-127}  $ | 0.0                                                                                                             (denormalized)
-0&nbsp;00000000&nbsp;00000000000000000000001 | $(-1)^0   * (2^{-23})             * 2^{1-127}  $ | 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45  smallest positive denormalized
-0&nbsp;00000001&nbsp;11111111111111111111101 |                                                  | 1.175494351e-38 (?)                                                                                             smallest normalized (without losing precision) 
+0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (2^{−23})             * 2^{1-127}  $ | 0.0 (denormalized)
+0&nbsp;00000000&nbsp;00000000000000000000001 | $(-1)^0   * (2^{-23})             * 2^{1-127}  $ | 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45 min denormalized
+0&nbsp;00000001&nbsp;11111111111111111111101 |                                                  | 1.175494351e-38 (?) min normalized (without losing precision) 
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{1-127}  $ | min positive
 0&nbsp;01111101&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{125-127}$ | 0.25                                                                                                            
 0&nbsp;01111110&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{126-127}$ | 0.5                                                                                                             
@@ -502,7 +501,8 @@ s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                
 1&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | -inf
 0&nbsp;11111111&nbsp;10000000000000000000000 |                                                  | +NaN 
 
-The largest integer that can be represented in 24 bits is 16777215  
+16777215  the largest integer that can be represented in 24 bits is 
+6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
 
 ## Fixed-point
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
