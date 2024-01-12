@@ -305,19 +305,24 @@ class A
 | to double            |                |                                      | strtod**, (5)   | implicit     | implicit***  | x
   
 (*) если переполнение возвращает INT_MIN/INT_MAX  
-(*\*) умеют сообщать в вызывающий код о неправильном формате входных данных и устойчивы к переполнению, при котором сообщают о нём через стандартную переменную errno, если переполнение возвращает HUGE_VAL, в случае потери значимости -HUGE_VAL, если преобразо­вание невозможно 0 
-(*\**) such that converting back from double to float results in exactly the same float value
-(****) `int` bigger than 16777216 will probably lose some precision, `float` can store much bigger numbers but cannot store big `int` precisely.  
+(*\*) сообщает о неправильном формате входных данных, сообщает о переполнении о нём через errno, о потери значимости  
+(*\**) converting back from double to float results in exactly the same float value  
+(****) `int` bigger than 16777216 may lose some precision, `float` can stores big numbers but cannot store big `int` precisely  
 
 (1) stoi c++11  
 (2) s.data() c++11  
 (4) std::to_string c++11  
+stod
+strtod 
+istringstream(s) >> d
+atof неопределенное поведение при переполнении
+sscanf неопределенное поведение при переполнении
 (5)
 ```
 template <typename T> std::string toString(T val) {
-    std::ostringstream oss;
-    oss<< val;
-    return oss.str();
+  std::ostringstream oss;
+  oss<< val;
+  return oss.str();
 }
 
 template<typename T> T fromString(const std::string& s) {
@@ -327,8 +332,7 @@ template<typename T> T fromString(const std::string& s) {
   return res;
 }
 
-std::string s = toString(5);
-int i = fromString<int>(s);
+int i = fromString<int>(toString(5));
 ```
 
 ### С-style: `(int)`, `(float)` etc
