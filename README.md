@@ -291,10 +291,12 @@ class A
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Types, convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
+## Types
 `std::string` инициализирован динамически, не статически   
 `std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>  
 `std::string` != строковый литерал  
+
+## Convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
 
 |                      | `char`      | `char*`                          | `std::string`          | `int`       | `float`     | `double`
 |----------------------|-------------|----------------------------------|------------------------|-------------|-------------|---------
