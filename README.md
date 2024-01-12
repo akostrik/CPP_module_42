@@ -470,24 +470,28 @@ https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html
 
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
 
-**Subnormal values** are the subset of denormalized numbers that fill the underflow gap around zero in floating-point arithmetic. Any non-zero number with magnitude smaller than the smallest positive normal number is subnormal, while denormal can also refer to numbers outside that range. In IEEE binary floating point formats, subnormals are represented by having a zero exponent field with a non-zero significand field.
 
 Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
+  
+Float can store much bigger numbers than 20150813, but it cannot store big integers precisely.  
+  
+**Subnormal values** denormalized numbers that fill the underflow gap around zero in floating-point arithmetic. Any non-zero number with magnitude smaller than the smallest positive normal number is subnormal, while denormal can also refer to numbers outside that range. , subnormals are represented by having a zero exponent field with a non-zero significand field.
 
+**IEEE binary floating point format:** 
 - s sign bit
 - e exponent (= порядок = показатель степени)
 - m mantissa = the actual digits of the number ∊ [1;10)
 
 binary    	                                 | formula                                          | decimal                                                                                                        
 ---------------------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------
-s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−127}  $ | normalized, 1 ≤ мантисса < 10 
-s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−127}  $ | denormalized, мантисса с 0, порядок минимальный, они ближе к 0, чем наименьшее нормализованное
-0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (1+m/ 2^{23})         * 2^{e−127}  $ | ~11111111~ ~00000000~                                                                                           
-0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (0+m/ 2^{23})         * 2^{1−127}  $ | 00000000                                                                                                        
-0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (2^{−23})             * 2^{1-127}  $ | 0.0 (denormalized)
-0&nbsp;00000000&nbsp;00000000000000000000001 | $(-1)^0   * (2^{-23})             * 2^{1-127}  $ | 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45 min denormalized
-0&nbsp;00000001&nbsp;11111111111111111111101 |                                                  | 1.175494351e-38 (?) min normalized (without losing precision) 
-0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{1-127}  $ | min positive
+s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−127}  $ | normal, 1 ≤ мантисса < 10, mormal = without losing precision
+0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^{s} * (1+m/ 2^{23})         * 2^{e−127}  $ | normal, e != 11111111, e != 00000000                                                                                           
+0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^{s} * (0+m/ 2^{23})         * 2^{1−127}  $ | subnormal, e = 00000000, m != 00000000000000000000000
+s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−127}  $ | subnormal, мантисса с 0, порядок минимальный, они ближе к 0, чем наименьшее нормализованное
+0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (2^{−23})             * 2^{1-127}  $ | 0.0 (subnormal)
+0&nbsp;00000000&nbsp;00000000000000000000001 | $(-1)^0   * (2^{-23})             * 2^{1-127}  $ | 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45 min subnormal
+0&nbsp;00000001&nbsp;11111111111111111111101 |                                                  | 1.175494351e-38 (?) min normal 
+0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{1-127}  $ | min
 0&nbsp;01111101&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{125-127}$ | 0.25                                                                                                            
 0&nbsp;01111110&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{126-127}$ | 0.5                                                                                                             
 0&nbsp;01111111&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{127-127}$ | 1.0                                                                                                             
@@ -500,7 +504,7 @@ s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                
 0&nbsp;10000010&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{130-127}$ | 8.0                                                                                                            
 0&nbsp;10000000&nbsp;10010001111010111000011 | $(-1)^0   * 1.5700000524520874    * 2^{128-127}$ | 3.14  
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * \frac{3,14-2}{4-2}    * 2^{150-127}$ | 3.14, 3.14 ∊ [ $2^1$ ; $2^2$ ), $2^7$ 
-0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$ | 340282346638528859811704183484516925440 FLT_MAX maximum normal 
+0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$ | 340282346638528859811704183484516925440 FLT_MAX max normal 
 0&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | +inf 
 1&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | -inf
 0&nbsp;11111111&nbsp;10000000000000000000000 |                                                  | +NaN 
