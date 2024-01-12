@@ -302,10 +302,11 @@ class A
 | to `std::string`     | sprintf, (5)   | =, string constructor, (2), (4), (5) | x               | sprintf, (5) | sprintf, (5) | sprintf, (5)
 | to int               |                |                                      | atoi*, (1), (5) | x            |              |
 | to float             |                |                                      | strtof**, (5)   | implicit     | x            | implicit
-| to double            |                |                                      | strtod**, (5)   | implicit     | implicit     | x
+| to double            |                |                                      | strtod**, (5)   | implicit     | implicit***  | x
   
 (*) если переполнение возвращает INT_MIN/INT_MAX  
-(**) умеют сообщать в вызывающий код о неправильном формате входных данных и устойчивы к переполнению, при котором сообщают о нём через стандартную переменную errno, если переполнение возвращает HUGE_VAL, в случае потери значимости -HUGE_VAL, если преобразо­вание невозможно 0 
+(*\*) умеют сообщать в вызывающий код о неправильном формате входных данных и устойчивы к переполнению, при котором сообщают о нём через стандартную переменную errno, если переполнение возвращает HUGE_VAL, в случае потери значимости -HUGE_VAL, если преобразо­вание невозможно 0 
+(***) is done such that converting back from double to float results in exactly the same float value
 
 (1) stoi c++11  
 (2) s.data() c++11  
@@ -471,6 +472,8 @@ https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html
 
 **Subnormal values** are the subset of denormalized numbers that fill the underflow gap around zero in floating-point arithmetic. Any non-zero number with magnitude smaller than the smallest positive normal number is subnormal, while denormal can also refer to numbers outside that range. In IEEE binary floating point formats, subnormals are represented by having a zero exponent field with a non-zero significand field.
 
+Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
+
 - s sign bit
 - e exponent (= порядок = показатель степени)
 - m mantissa = the actual digits of the number ∊ [1;10)
@@ -495,7 +498,8 @@ s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                
 0&nbsp;10000001&nbsp;10000000000000000000000 | $(-1)^0   * 1.5                   * 2^{129-127}$ | 6.0                                                                                                            
 0&nbsp;10000001&nbsp;11000000000000000000000 | $(-1)^0   * 1.75                  * 2^{129-127}$ | 7.0                                                                                                            
 0&nbsp;10000010&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{130-127}$ | 8.0                                                                                                            
-0&nbsp;10000000&nbsp;10010001111010111000011 | $(-1)^0   * 1.5700000524520874    * 2^{128-127}$ | 3.14                                                                                                            $\frac{3,14 - 2 }{4 - 2} *2^{23}$, 3.14 ∊ [ $2^1$ ; $2^2$ ), $2^7$ 
+0&nbsp;10000000&nbsp;10010001111010111000011 | $(-1)^0   * 1.5700000524520874    * 2^{128-127}$ | 3.14  
+0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * \frac{3,14-2}{4-2}    * 2^{150-127}$ | 3.14, 3.14 ∊ [ $2^1$ ; $2^2$ ), $2^7$ 
 0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$ | 340282346638528859811704183484516925440 FLT_MAX maximum normal 
 0&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | +inf 
 1&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | -inf
