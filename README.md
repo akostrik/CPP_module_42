@@ -326,6 +326,20 @@ class A
 * s.data() c++11  
 * std::to_string c++11  
 * stod c++11 
+* С-style `(int)` `(float)` etc
+    + `(int)double_value` вычисляет целую часть
+    + `(char)long_value` отбрасывает значащие разряды
+    + отбрасывает `const` и `volatile`
+    + преобразовывает `int` в указатель и обратно
+    + преобразовывает указатели вверх и вниз по иерархии наследования
+    + преобразовывает указатели как reinterpret_cast, ориентируясь на битовое представление
+    + по очереди пробует :
+    - const_cast
+    - static_cast
+    - static_cast и затем const_cast
+    - reinterpret_cast
+    - reinterpret_cast и затем const_cast
+
 * (1)
 ```
 template <typename T> std::string toString(T val) {
@@ -344,19 +358,6 @@ template<typename T> T fromString(const std::string& s) {
 int i = fromString<int>(toString(5));
 ```
 
-### С-style: `(int)`, `(float)` etc
-* `(int)double_value` вычисляет целую часть
-* `(char)long_value` отбрасывает значащие разряды
-* отбрасывает `const` и `volatile`
-* преобразовывает `int` в указатель и обратно
-* преобразовывает указатели вверх и вниз по иерархии наследования
-* преобразовывает указатели как reinterpret_cast, ориентируясь на битовое представление
-* по очереди пробует :
-    + const_cast
-    + static_cast
-    + static_cast и затем const_cast
-    + reinterpret_cast
-    + reinterpret_cast и затем const_cast
 
 ### `const_cast<target-type ﻿>(expr) ﻿`
 * самое простое приведение типов
