@@ -307,8 +307,8 @@ class A
 atoi если переполнение возвращает INT_MIN/INT_MAX  
 atof неопределенное поведение при переполнении  
 sscanf неопределенное поведение при переполнении  
-strtof сообщает о неправильном формате входных данных, сообщает о переполнении о нём через errno, о потери значимости  
-strtod сообщает о неправильном формате входных данных, сообщает о переполнении о нём через errno, о потери значимости
+strtof о переполнении через errno, о потери значимости, о неправильном формате входных данных  
+strtod о переполнении через errno, о потери значимости, о неправильном формате входных данных
 implicit converting flost->double: such that back from double to float results in exactly the same float value  
 implicit converting int -> float: `int` bigger than 16777216 may lose some precision, `float` can stores big numbers but cannot store big `int` precisely  
 
