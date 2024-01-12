@@ -134,7 +134,7 @@ const char *func() {
 ```
 ## mutable member funciton != const
 
-## virtual (member) function
+## virtual member function
 * a member function of a Parent, redefined by a Child (the same name and parametres) (one interface, several realisations) (**polymorphic functions**)
 * must be defined in Parent
 * cannot be static
@@ -320,6 +320,7 @@ class A
 * strtof сообщает о переполнении, о потери значимости, о неправильном формате входных данных
     + strtof("2147483647") = 2147483648.0   
 * strtod сообщает о переполнении, о потери значимости, о неправильном формате входных данных
+    + strtof("2147483647") = 2147483647.0   
 * istringstream (?)
 * С-style `(int)` `(float)` etc
     + `(int)double_value` вычисляет целую часть
