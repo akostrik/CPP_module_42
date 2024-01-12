@@ -301,12 +301,13 @@ class A
 | to `char*`           | x              | x                                    | c_str(), (5)    |              |              |
 | to `std::string`     | sprintf, (5)   | =, string constructor, (2), (4), (5) | x               | sprintf, (5) | sprintf, (5) | sprintf, (5)
 | to int               |                |                                      | atoi*, (1), (5) | x            |              |
-| to float             |                |                                      | strtof**, (5)   | implicit     | x            | implicit
+| to float             |                |                                      | strtof**, (5)   | implicit**** | x            | implicit
 | to double            |                |                                      | strtod**, (5)   | implicit     | implicit***  | x
   
 (*) если переполнение возвращает INT_MIN/INT_MAX  
 (*\*) умеют сообщать в вызывающий код о неправильном формате входных данных и устойчивы к переполнению, при котором сообщают о нём через стандартную переменную errno, если переполнение возвращает HUGE_VAL, в случае потери значимости -HUGE_VAL, если преобразо­вание невозможно 0 
-(***) is done such that converting back from double to float results in exactly the same float value
+(*\**) such that converting back from double to float results in exactly the same float value
+(****) `int` bigger than 16777216 will probably lose some precision, `float` can store much bigger numbers but cannot store big `int` precisely.  
 
 (1) stoi c++11  
 (2) s.data() c++11  
@@ -455,7 +456,7 @@ boost::lexical_cast<int>(str)
 `-std::numeric_limits<T>::infinity()` is the least value, negative infinity (if std::numeric_limits<T>::has_infinity == true and std::numeric_limits<T>::is_signed == true)  
 // `std::numeric_limits<T>::lowest()` the least finite value  (c++11)
 
-# Floating-point numbers vs Fixed-point numbers (02)
+# Floating-point numbers vs Fixed-point numbers (02, 06)
 * **Accuracy** to how close a measurement is to the true value  
 * **Precision** how much information you have about a quantity, how uniquely you have it pinned down
 
@@ -469,11 +470,8 @@ https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html
 **The IEEE Standard for Floating-Point Arithmetic (IEEE 754)** = a standard for floating-point arithmetic (1985)  
 
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
-
-
-Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
   
-Float can store much bigger numbers than 20150813, but it cannot store big integers precisely.  
+Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
   
 **Subnormal values** denormalized numbers that fill the underflow gap around zero in floating-point arithmetic. Any non-zero number with magnitude smaller than the smallest positive normal number is subnormal, while denormal can also refer to numbers outside that range. , subnormals are represented by having a zero exponent field with a non-zero significand field.
 
