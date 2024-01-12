@@ -306,21 +306,19 @@ class A
 
 ## Convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
 
-|                      | `char`      | `char*`                          | `std::string`            | `int`       | `float`     | `double`
-|----------------------|-------------|----------------------------------|--------------------------|-------------|-------------|---------
-| to `char*`           | ---         | ---                              | c_str() (1) sscanf       |             |             |
-| to `std::string`     | sprintf (1) | = string_constructor _s.data()_ _std::to_string_ (1)        | ---         | sprintf (1) | sprintf (1)
-| to `int`             | sscanf      | sscanf                           | atoi sscanf _stoi_ (1)   | ---         |             |
-| to `float`           | sscanf      | sscanf                           | strtof sscanf atof (1)   | implicit    | ---         | implicit
-| to `double`          | sscanf      | sscanf                           | strtod sscanf _stod_ (1) | implicit    | implicit    | ---
+|                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
+|-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
+| to `char*`      | ---            | ---                                                     | c_str() sscanf myFromStr      |                |                |
+| to `std::string`| sprintf myToStr| = string_constructor _s.data()_ _std::to_string_ myToStr| ---                           | sprintf myToStr| sprintf myToStr| sprintf myToStr
+| to `int`        | sscanf         | sscanf                                                  | atoi sscanf _stoi_ myFromStr  | ---            |                |
+| to `float`      | sscanf         | sscanf                                                  | strtof sscanf atof myFromStr  | implicit       | ---            | implicit
+| to `double`     | sscanf         | sscanf                                                  | strtod sscanf _stod_ myFromStr| implicit       | implicit       | ---
   
 * atoi при переполнении возвращает INT_MIN/INT_MAX  
 * atof при переполнении неопределенное поведение   
 * sscanf при переполнении неопределенное поведение  
 * strtof сообщает о переполнении через errno, о потери значимости, о неправильном формате входных данных  
 * strtod сообщает о переполнении через errno, о потери значимости, о неправильном формате входных данных
-* implicit converting flost->double: such that back from double to float results in exactly the same value  
-* implicit converting int -> float: `int` bigger than 16777216 may lose precision, `float` can stores big numbers but cannot store big `int` precisely  
 * istringstream (?)
 * stoi c++11  
 * s.data() c++11  
@@ -334,28 +332,33 @@ class A
     + преобразовывает указатели вверх и вниз по иерархии наследования
     + преобразовывает указатели как reinterpret_cast, ориентируясь на битовое представление
     + по очереди пробует :
-    - const_cast
-    - static_cast
-    - static_cast и затем const_cast
-    - reinterpret_cast
-    - reinterpret_cast и затем const_cast
-
-* (1)
+        - const_cast
+        - static_cast
+        - static_cast и затем const_cast
+        - reinterpret_cast
+        - reinterpret_cast и затем const_cast
+* float->double: such that back from double to float results in exactly the same value  
+* int -> float:
+    + `int` bigger than 16777216 may lose precision
+    + `float` stores big numbers but doesn't store big `int` precisely  
+* myToStr
 ```
-template <typename T> std::string toString(T val) {
+template <typename T> std::string myToStr(T val) {
   std::ostringstream oss;
   oss<< val;
   return oss.str();
 }
-
-template<typename T> T fromString(const std::string& s) {
+```
+* myFromStr
+```
+template<typename T> T myFromStr(const std::string& s) {
   std::istringstream iss(s);
   T res;
   iss >> res;
   return res;
 }
 
-int i = fromString<int>(toString(5));
+int i = myFromStr<int>(myToStr(5));
 ```
 
 
