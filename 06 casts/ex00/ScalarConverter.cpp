@@ -62,18 +62,22 @@ void ScalarConverter::convert (std::string s) {
     std:: cout << "FLOAT" << std::endl;
     // if (s[strlen(s) - 1] == 'f') // without if ?
     s[strlen(s) - 1] = '\0';
-    std::cout << "s = " << s << std::endl;
-    std::cout << "s.c_str() = [" << s.c_str() << "]" << std::endl;
-    std::cout << std::fixed << "strtof = [" << std::strtof("2147483647", NULL) << "]" << std::endl;
-    float f = std::strtof(s.c_str(), NULL); // distinguer le cas ou la chaîne de caractères contient "0.0" du cas ou aucune valeur flottante ne peut être décodée.
-    std::cout << std::fixed << "f = " << f << std::endl;
+    std::cout << "s         = [" << s.c_str() << "]" << std::endl;
+    //std::cout << std::fixed << "strtof    = [" << std::strtof(s.c_str(), NULL) << "]" << std::endl;
+    std::cout << std::fixed << "atof      = [" << std::atof(s.c_str()) << "]" << std::endl;
+    double d = std::atof(s.c_str()); // strtof doesn't work
+    std::cout << std::fixed << "d =          " << d << std::endl;
+    float f = d;
+    std::cout << std::fixed << "f =          " << f << std::endl;
+    f = std::atof(s.c_str());
+    std::cout << std::fixed << "f =          " << f << std::endl;
     if (f >= 32 && f <= 126) // 31 127 ?
       std::cout << "char:   '" << static_cast<char>(f) << "'" << std::endl;
     else if (f >= -128 && f <= 127)
       std::cout << "char:   non dispalyable" << std::endl;
     else 
       std::cout << "char:   impossible" << std::endl;
-    std::cout << "inLimits(" << s << ", " << std::numeric_limits<int>::min() << ", " << toString(std::numeric_limits<int>::max()) << ") = " << inLimits(s, toString(std::numeric_limits<int>::min()), toString(std::numeric_limits<int>::max())) << std::endl;
+    //std::cout << "inLimits(" << s << ", " << std::numeric_limits<int>::min() << ", " << toString(std::numeric_limits<int>::max()) << ") = " << inLimits(s, toString(std::numeric_limits<int>::min()), toString(std::numeric_limits<int>::max())) << std::endl;
     if (inLimits(s, toString(std::numeric_limits<int>::min()), toString(std::numeric_limits<int>::max())))
       std::cout << "int:    " << static_cast<int>(f) << std::endl;
     else
