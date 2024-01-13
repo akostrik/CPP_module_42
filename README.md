@@ -199,9 +199,24 @@ Virtual function table :
 
 ## explicit
 
-# Object-oriented programming
+# Object Oriented Programming (OOP) 
 
-# Inheritance
+## Automatic initialisation, constructors, destructors
+Orthodox canonical class form in C++98: default constructor, copy constructor, destructor, copy assignment operator
+```
+class A
+{
+   public:
+      A ();
+      A (const A &a);
+      ~A ();
+      A &operator = (const A &a);
+};
+```
+
+## Overloading (different functions can have the same name provided they are distinguished by their parameter types. 
+
+## Inheritance
 * subclass = derived class = child class
 * super class = base class = parent class
 * a constructor is not inherited
@@ -230,28 +245,11 @@ public:
 ```
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 
-## incapsulation
+## Incapsulation
 * данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
 
 # C++ feautures
 http://www.cplusplus.com/reference
-
-## Orthodox canonical class form in C++98 
-- Default constructor
-- Copy constructor
-- Destructor
-- Copy assignment operator
-
-```
-class A
-{
-   public:
-      A ();
-      A (const A &a);
-      ~A ();
-      A &operator = (const A &a);
-};
-```
 
 ## Reference vs pointer (01/ex03)
 * `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
@@ -296,15 +294,13 @@ class A
 
 ## Templates
 Allows functions and classes to operate with generic types.  
-This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
-A templated class or function is the equivalent of (before "compiling") copying and pasting the templated block of code where it is used, and then replacing the template parameter with the actual one.  
+A templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
+Class templates / variable templates  
 ```
 template<typename T> T max(T &a, T &b) {
   return a > b ? a : b;
 }
 ```
-* Class templates
-* Variable templates
 
 ## Types
 `std::string` инициализирован динамически, не статически   
