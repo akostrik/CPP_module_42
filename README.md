@@ -141,7 +141,6 @@ Limits:
     + strtof("2147483647") = 2147483648.0   
 * strtod сообщает о переполнении, о потери значимости, о неправильном формате входных данных
     + strtof("2147483647") = 2147483647.0   
-* istringstream (?)
 * С-style `(int)` `(float)` etc
     + `(int)double_value` вычисляет целую часть
     + `(char)long_value` отбрасывает значащие разряды
@@ -155,6 +154,13 @@ Limits:
         - static_cast и затем const_cast
         - reinterpret_cast
         - reinterpret_cast и затем const_cast
+* istringstream 
+```
+  std::istringstream iss(s);
+  float f;
+  iss >> f;
+```
+Превращает 2147483647 в 2147483648
 * myToStr
 ```
 template <typename T> std::string myToStr(T val) {
