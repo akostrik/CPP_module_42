@@ -513,12 +513,13 @@ IEEE: _denormal_ = _subnormal_ (there are no denormalized binary numbers outside
 Any non-zero number with magnitude smaller than the smallest positive normal number.  
 If normalized, would have exponents below the smallest representable exponent.+  
 Fill the underflow gap around zero.  
+e минимальное  
   
 binary    	                                 | formula                                          | decimal 
 ---------------------------------------------|--------------------------------------------------|---------------------
 s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * (0+m/ 2^{23})         * 2^{1−  127}$ | 
-s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 0.(m)                 * 2^{e−  127}$ | порядок минимальный
-0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (2^{...})             * 2^{...}    $ | 0.0
+s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 0.(m)                 * 2^{e−  127}$ | 
+0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * 0.0                   * 2^{1  -127}$ | 0.0
 0&nbsp;00000000&nbsp;00000000000000000000001 | $(-1)^0   * (2^{-23})             * 2^{1  -127}$ | 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45 min
   
 **Reserved in IEEE 754**  
