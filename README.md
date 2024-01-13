@@ -291,6 +291,16 @@ class A
 * extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
 * exceptions  
 
+## Templates
+Allows functions and classes to operate with generic types.  
+This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
+A templated class or function is the equivalent of (before "compiling") copying and pasting the templated block of code where it is used, and then replacing the template parameter with the actual one.  
+```
+template<typename T> T max(T &a, T &b) {
+  return a > b ? a : b;
+}
+```
+
 ## Types
 `std::string` инициализирован динамически, не статически   
 `std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>  
