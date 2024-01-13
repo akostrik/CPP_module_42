@@ -452,34 +452,29 @@ in any of the parameters of a function declaration: that declaration becomes an 
 * **Precision** how much information you have about a quantity
 
 ## Floating-point approximation
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html  
+https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
+  
 * Represents subsets of real numbers using an int with a fixed precision (significand), scaled by an integer exponent of 2
 * Similar to concept to scientific notation   
 * Represent extremely small values as well as extremely large
 * Using 32 bits, it's not possible to store every digit in such numbers
+* Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
 
-  
-https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
-https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html  
-https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
-https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold  
-  
 ### IEEE 754 formats (1985)  
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
-  
-Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
-  
-**Normal = normilized IEEE floating point numbers**:    
-e != 11111111  
-e != 00000000  
-m [0,1)   
-A real numbers may be approximated by multiple floating point representations. One representation is defined as normal.  
-No leading zeros in the mantissa. Rather, leading zeros are removed by adjusting the exponent. For example, 0.0123 would be written as $1.23 × 10^{−2}$.  
-An invisible 1 (not stored) is placed in front  
-If the exponent reaches -127 (00000000), the leading 1 is no longer used to enable gradual underflow  
-невозможно записать ноль  
-doesn't store big numbers precisely  
-doesn't store `int` bigger than 16777216 precisely  
-6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
+    
+**Normal = normilized floating point numbers**:    
+* A real numbers may be approximated by multiple floating point representations. One representation is defined as normal.  
+* e != 11111111, e != 00000000  
+* m [0,1), no leading zeros in the mantissa. Rather, leading zeros are removed by adjusting the exponent. For example, 0.0123 would be written as $1.23 × 10^{−2}$.  
+* An invisible 1 (not stored) is placed in front  
+* If the exponent reaches -127 (00000000), the leading 1 is no longer used to enable gradual underflow  
+* невозможно записать ноль  
+* doesn't store big numbers precisely  
+* doesn't store `int` bigger than 16777216 precisely  
+* a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
 
 binary    	                                 | formula                                         | decimal 
 ---------------------------------------------|-------------------------------------------------|----------------------
@@ -505,20 +500,20 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(1+m/ 2^{23})         * 2^{e  �
 0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$ | 340282346638528859811704183484516925440 FLT_MAX max
 
 **Denormalized = denormal floating point numbers**:     
-e = 00000000  
-m начинается с 0, a leading 0        
-m != 00000000000000000000000  
-m [0,1) ?  
-Some old documents: _denormal_ = _subnormal_.  
-Casual discussions often: _denormal_ = _subnormal_.  
-IEEE: _denormal_ = _subnormal_ (there are no denormalized binary numbers outside the subnormal range)  
+* e = 00000000  
+* m начинается с 0, a leading 0        
+* m != 00000000000000000000000  
+* m [0,1) ?  
+* Some old documents: _denormal_ = _subnormal_.  
+* Casual discussions often: _denormal_ = _subnormal_.  
+* IEEE: ${denormals} = {subnormals}$ (there are no denormalized binary numbers outside the subnormal range)  
 
 **Subnormal floating point numbers**:    
-A sybdet of demormilised numbers.  
-Any non-zero number with magnitude smaller than the smallest positive normal number.  
-If normalized, would have exponents below the smallest representable exponent.+  
-Fill the underflow gap around zero.  
-e минимальное  
+* A sybset of demormilised numbers
+* Any non-zero number with magnitude smaller than the smallest positive normal number
+* Fill the underflow gap around zero
+* If normalized, would have exponents below the smallest representable exponent
+* e минимальное  
   
 binary    	                                 | formula                                         | decimal |
 ---------------------------------------------|-------------------------------------------------|---------|
