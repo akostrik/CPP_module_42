@@ -13,7 +13,8 @@ class A
 };
 ```
 
-## Overloading (different functions can have the same name provided they are distinguished by their parameter types. 
+## Overloading
+Different functions can have the same name provided they are distinguished by their parameter types. 
 
 ## Inheritance
 * subclass = derived class = child class
