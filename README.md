@@ -1,204 +1,3 @@
-# Data specifiers
-
-## public data != private, != protected
-* members are accessible from outside the class  
-## private data != public, != protected
-* members cannot be accessed or viewed from outside the class  
-## protected datta != public, != private
-* members cannot be accessed from outside the class, however, they can be accessed in inherited classes
-
-## final class
-* inheritance is prohibited
-
-## static data
-* belongs to the class, is not associated with a particular object  
-* is called using the class name or through an object
-* static class = a private and unimplemented default constructor (formally C++ does not have static classes)
-* выделение памяти происходит только один раз и существуют эти элементы до завершения программы
-* хранятся в сегментах памяти .data и .bss (в heap и не на stack), что позволяет хранить значение переменной на протяжении всей жизни программы
-* медленнее, чем нестатические переменные (т.к. переход в другой сегмент памяти и проверка инициализации переменной)
-* если используете многопоточность, то должны быть осторожными
-  
-### static data (variable or object) in a function 
-* инициализируется один раз, затем сохраняют значение
-* хранит значение между вызовами функции 
-
-### static variable member of a class
-* не инициализируются с помощью конструктора
-* определение вне класса с помощью оператора разрешения области видимости (::)
-* `static A a;` объявляем объект, а не определяем его
-* член класса будет один для всех экземпляров класса
-* если создали три объекта класса, то конструктор статического члена класса будет вызван один раз
-
-## static class
-* не может создан в виде объекта
-* для группирования связанных по смыслу методов, свойств и полей
-* содержит только статические методы, свойства, и поля
-* не может быть наследован
-
-## abstract class
-* contains (or inherits without redefinition) at least one pure virtual (abstract) function
-* all the abstract methods of the parent must be implemented in the child
-* may provide implementations of some methods
-* cannot be instantiated  
-* another way to prevent a class from being instantiated: make all the constructors `protected`
-* C++ has no keyword `abstract`
-
-## interface = pure abstract class 
-* consists of only virtual member functions (only declarations)
-* non-instancable
-
-## const data != mutable
-`any              function` can't           modify `                    const data`  
-`any              function` can &nbsp;&nbsp;modity `casted const away   const data` (not advised)   
-`    const member function` can't           modify `passed by value     const data`  
-`    const member function` can't           modify `passed by reference const data`  
-`non-const member function` can't           modify `passed by value     const data`   
-`non-const member function` can't           modify `passed by reference const data`   
-`constructor              ` can &nbsp;&nbsp;modify `                    const data`  
-`destructor               ` can &nbsp;&nbsp;modify `                    const data`  
-`                           const object`.`non-const member function` NON    
-`pointer/reference to a     const object`.`non-const member function` NON  
-`pointer/reference to a non const object`.`non-const member function` NON  
-`                           const object`.`    const member function` OK  
-`                           const object`.`non const member function` NON  
-
-After compiling:  
-const variable cannot be left un-initialized at the time  
-`const int                с = 3` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can't change the value  
-`const int               *с    `  can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
-`       int         const *с     ` can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
-`       int       * const  с     ` can't change the pointer, can&nbsp;&nbsp;&nbsp;change the value    
-`       int const * const  с     ` can't change the pointer, can't change the value  
-  
-`const std::string& s = "AB";` OK, const запрещает умирать временному объекту, который присваивается этой ссылке, он жив пока жива константная ссылка  
-`      std::string& s = "AB";` NON, ссылка на адрес памяти указывает на тот же, на который и объект ей присвоенный, если объект временный, то он сразу умирает
-
-## mutable data != const
-* we can modify a mutable class member through member functions even if the containing object is const
-
-## volatile
-
-## virtual data
-
-## template class
-
-## extern
-сделать глобальную переменную внешней (которую можно использовать в любом файле программы)
-
-## auto (c++20)
-in any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
-
-# Function specifiers
-
-## private / public / protected function
-* see private / public / protected data modifiers
-
-## static (not member) function 
-* can't be called from other places
-
-## static member function
-* is not associated with a particular object, belongs to the class rather than objects of the class  
-* basically a normal function that's nested inside of the scope of the class
-* can be called using the class name or through an object  
-* can access only static variables and functions  
-* doesn't have `*this`
-* можное использовать без создания объекта класса
-* доступ с использованием имени класса и оператора разрешения области видимости (::)
-* внутри функции обращаться можно только к статическим членам данных, другим статическим функциям-членам и любым другим функциям извне класса
-* имеет область видимости класса, в котором находится
-
-Example:
-```
-class MyClass {
- public:
-  static void f();
-};
-
-void MyClass::f() {} // do not write 'static'
-
-int main() {
-  MyClass::f();
-}
-```
-## const non-member function
-* doesn't exist
-
-## const member funciton != mutable
-* doest't change the object
-* doesn't call non-constant member functions  
-* we can't change the return value
-* we can have a constant version and a non-constant version of the same function
-
-```
-const char *func() {
-  return "text";
-}
-```
-## mutable member funciton != const
-
-## virtual member function
-* a member function of a Parent, redefined by a Child (the same name and parametres) (one interface, several realisations) (**polymorphic functions**)
-* must be defined in Parent
-* cannot be static
-* a pointer to the Parent's function calls the Parent's virtual function and executes its Child’s version 
-* a constructor and a destructor can not be virtual, a destructor must have a definition
-* a destructor of a non-final class with virtual functions is virtual (?)
-* **polymorphic class**: defines or inherits a virtual function 
-* объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
-* вызов виртуальной функции через имя объекта разрешается статически
-
-3 scenarios:  
-`class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
-`class Par  { virtual void f()     } class Chld: public Par  { void f() {} }`  Child **override** a virtual function   
-`class Par  {         void f()     } class Chld: public Par  { void f() {} }`  Child **hide** a non-virtual function   
-
-Virtual function table :  
-* ≈ hidden static data member of the class  
-* every object of a polymorphic class is associated with (possibly multiple) vtable for its most-derived class  
-* stores pointers to virtual functions 
-* when a virtual function is called, the program finds the associated function by vtable   
-* if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A
-
-## abstract function = pure virtual
-* cf. virtual function   
-* C++ has no keyword `abstract`  
-
-## override function
-* explicit indication that the function is redefined
-* `override` keyword is a C++11 extension
-
-## final function
-* prohibites `virtual` functions in the inherited classes 
-
-## template function
-* allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
-
-## friend functon
-* не являются членами класса
-* имеют доступ к его private переменным и функциям
-
-## inline (c++ 17)
-
-# Inheritance specifiers
-
-## public inheritance
-* public data are inherited as public
-* protected data are inherited as protected 
-
-## protected inheritance
-* all inherited data become protected
-
-## private inheritance
-* all inherited data become private
-
-## virtual inheritance
-* предотвращает появление множественных объектов базового класса в иерархии наследования 
-
-# Other specifiers
-
-## explicit
-
 # Object Oriented Programming (OOP) 
 
 ## Automatic initialisation, constructors, destructors
@@ -458,6 +257,199 @@ boost::lexical_cast<int>(str)
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
 * an optional type since C99 (?)
 * might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
+
+## Data specifiers
+
+### public, private, protected
+* public members are accessible from outside the class  
+* privat: members cannot be accessed or viewed from outside the class  
+* protected: members cannot be accessed from outside the class, however, they can be accessed in inherited classes
+
+### final class
+* inheritance is prohibited
+
+### static data
+* belongs to the class, is not associated with a particular object  
+* is called using the class name or through an object
+* static class = a private and unimplemented default constructor (formally C++ does not have static classes)
+* выделение памяти происходит только один раз и существуют эти элементы до завершения программы
+* хранятся в сегментах памяти .data и .bss (в heap и не на stack), что позволяет хранить значение переменной на протяжении всей жизни программы
+* медленнее, чем нестатические переменные (т.к. переход в другой сегмент памяти и проверка инициализации переменной)
+* если используете многопоточность, то должны быть осторожными
+  
+#### static data (variable or object) in a function 
+* инициализируется один раз, затем сохраняют значение
+* хранит значение между вызовами функции 
+
+#### static variable member of a class
+* не инициализируются с помощью конструктора
+* определение вне класса с помощью оператора разрешения области видимости (::)
+* `static A a;` объявляем объект, а не определяем его
+* член класса будет один для всех экземпляров класса
+* если создали три объекта класса, то конструктор статического члена класса будет вызван один раз
+
+### static class
+* не может создан в виде объекта
+* для группирования связанных по смыслу методов, свойств и полей
+* содержит только статические методы, свойства, и поля
+* не может быть наследован
+
+### abstract class
+* contains (or inherits without redefinition) at least one pure virtual (abstract) function
+* all the abstract methods of the parent must be implemented in the child
+* may provide implementations of some methods
+* cannot be instantiated  
+* another way to prevent a class from being instantiated: make all the constructors `protected`
+* C++ has no keyword `abstract`
+
+### interface = pure abstract class 
+* consists of only virtual member functions (only declarations)
+* non-instancable
+
+### const data != mutable
+`any              function` can't           modify `                    const data`  
+`any              function` can &nbsp;&nbsp;modity `casted const away   const data` (not advised)   
+`    const member function` can't           modify `passed by value     const data`  
+`    const member function` can't           modify `passed by reference const data`  
+`non-const member function` can't           modify `passed by value     const data`   
+`non-const member function` can't           modify `passed by reference const data`   
+`constructor              ` can &nbsp;&nbsp;modify `                    const data`  
+`destructor               ` can &nbsp;&nbsp;modify `                    const data`  
+`                           const object`.`non-const member function` NON    
+`pointer/reference to a     const object`.`non-const member function` NON  
+`pointer/reference to a non const object`.`non-const member function` NON  
+`                           const object`.`    const member function` OK  
+`                           const object`.`non const member function` NON  
+
+After compiling:  
+const variable cannot be left un-initialized at the time  
+`const int                с = 3` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can't change the value  
+`const int               *с    `  can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
+`       int         const *с     ` can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
+`       int       * const  с     ` can't change the pointer, can&nbsp;&nbsp;&nbsp;change the value    
+`       int const * const  с     ` can't change the pointer, can't change the value  
+  
+`const std::string& s = "AB";` OK, const запрещает умирать временному объекту, который присваивается этой ссылке, он жив пока жива константная ссылка  
+`      std::string& s = "AB";` NON, ссылка на адрес памяти указывает на тот же, на который и объект ей присвоенный, если объект временный, то он сразу умирает
+
+## mutable data != const
+* we can modify a mutable class member through member functions even if the containing object is const
+
+### volatile data
+
+### virtual data
+
+### template class
+
+### extern
+сделать глобальную переменную внешней (которую можно использовать в любом файле программы)
+
+### auto (c++20)
+in any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
+
+## Function specifiers
+
+### private public protected function
+* see private / public / protected data modifiers
+
+### static not member function 
+* can't be called from other places
+
+### static member function
+* is not associated with a particular object, belongs to the class rather than objects of the class  
+* basically a normal function that's nested inside of the scope of the class
+* can be called using the class name or through an object  
+* can access only static variables and functions  
+* doesn't have `*this`
+* можное использовать без создания объекта класса
+* доступ с использованием имени класса и оператора разрешения области видимости (::)
+* внутри функции обращаться можно только к статическим членам данных, другим статическим функциям-членам и любым другим функциям извне класса
+* имеет область видимости класса, в котором находится
+
+Example:
+```
+class MyClass {
+ public:
+  static void f();
+};
+
+void MyClass::f() {} // do not write 'static'
+
+int main() {
+  MyClass::f();
+}
+```
+### const not member function
+* doesn't exist
+
+### const / mutable member funciton != mutable
+* doest't change the object
+* doesn't call non-constant member functions  
+* we can't change the return value
+* we can have a constant version and a non-constant version of the same function
+* mutable = const
+```
+const char *func() {
+  return "text";
+}
+```
+
+### virtual member function
+* a member function of a Parent, redefined by a Child (the same name and parametres) (one interface, several realisations) (**polymorphic functions**)
+* must be defined in Parent
+* cannot be static
+* a pointer to the Parent's function calls the Parent's virtual function and executes its Child’s version 
+* a constructor and a destructor can not be virtual, a destructor must have a definition
+* a destructor of a non-final class with virtual functions is virtual (?)
+* **polymorphic class**: defines or inherits a virtual function 
+* объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
+* вызов виртуальной функции через имя объекта разрешается статически
+
+3 scenarios:  
+`class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
+`class Par  { virtual void f()     } class Chld: public Par  { void f() {} }`  Child **override** a virtual function   
+`class Par  {         void f()     } class Chld: public Par  { void f() {} }`  Child **hide** a non-virtual function   
+
+Virtual function table :  
+* ≈ hidden static data member of the class  
+* every object of a polymorphic class is associated with (possibly multiple) vtable for its most-derived class  
+* stores pointers to virtual functions 
+* when a virtual function is called, the program finds the associated function by vtable   
+* if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A
+
+### abstract function = pure virtual
+* cf. virtual function   
+* C++ has no keyword `abstract`  
+
+### override function
+* explicit indication that the function is redefined
+* `override` keyword is a C++11 extension
+
+### final function
+* prohibites `virtual` functions in the inherited classes 
+
+### template function
+* allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
+
+### friend functon
+* не являются членами класса
+* имеют доступ к его private переменным и функциям
+
+### inline (c++ 17)
+
+## Inheritance specifiers
+
+### public / private / ptotected inheritance
+* public: public data are inherited as public, protected data are inherited as protected 
+* private: all inherited data become private
+* protected: all inherited data become protected
+
+### virtual inheritance
+* предотвращает появление множественных объектов базового класса в иерархии наследования 
+
+## Other specifiers
+
+### explicit
 
 # Floating-point approximation to real numbers
 * **Accuracy** how close a measurement is to the true value  
