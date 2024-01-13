@@ -449,11 +449,9 @@ boost::lexical_cast<int>(str)
 * an optional type since C99 (?)
 * might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
 
-# Representations of approximation to real numbers (02, 06)
+# Floating-point approximation to real numbers
 * **Accuracy** how close a measurement is to the true value  
 * **Precision** how much information you have about a quantity
-
-## Floating-point arithmetic
 Represents subsets of real numbers using an integer with a fixed precision (significand), scaled by an integer exponent of a fixed base. Similar in concept to scientific notation.   
   
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
@@ -461,20 +459,24 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
 https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold  
   
-### IEEE 754 standard formats (1985)  
+## IEEE 754 formats (1985)  
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
   
 Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
   
-
 16777215 the largest integer that can be represented in 24 bits   
 6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
 
 denormilized мантисса [0,1)  
 
-**Normal floating point numbers:**  
-e != 11111111, e != 00000000
-without losing precision  
+### Normal = normilized floating point numbers  
+A real numbers may be approximated by multiple floating point representations. One representation is defined as normal.  
+No leading zeros in the mantissa. Rather, leading zeros are removed by adjusting the exponent. For example, 0.0123 would be written as $1.23 × 10^{−2}$.  
+мантисса [0,1)   
+Неявная единица не указывается.  
+невозможно записать ноль  
+e != 11111111  
+e != 00000000  
 
 binary    	                                 | formula                                          | decimal 
 ---------------------------------------------|--------------------------------------------------|----------------------
@@ -482,7 +484,7 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                
 s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * (1+m/ 2^{23})         * 2^{e−  127}$ | 
 0&nbsp;00000001&nbsp;11111111111111111111101 | $(-1)^0   * 1.9999996423721313    * 2^{124-127}$ | 2.35098828126e-38 min ?
 1&nbsp;01111111&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{127-127}$ | -1
-0&nbsp;01111100&nbsp;01000000000000000000000 | $(-1)^0   * 1.25                  * 2^{1  -127}$ | 0.15625 +
+0&nbsp;01111100&nbsp;01000000000000000000000 | $(-1)^0   * 1.25                  * 2^{1  -127}$ | 0.15625
 0&nbsp;01111101&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{125-127}$ | 0.25 
 0&nbsp;01111110&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{126-127}$ | 0.5
 0&nbsp;01111111&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{127-127}$ | 1.0
@@ -497,31 +499,28 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * (1+m/ 2^{23})        
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * \frac{3,14-2}{4-2}    * 2^{150-127}$ | 3.14, 3.14 ∊ [ $2^1$ ; $2^2$ ), $2^7$ 
 0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$ | 340282346638528859811704183484516925440 FLT_MAX max
 
-**Denormalized = numbers**  
-
-мантисса начинается с 0, а не с 1 (нет неявной единицы)  
-
-
-**Normalized = subnormal numbers:**  
-
-мантисса [1,10)  
-они ближе к 0, чем наименьшее нормализованное  
+### Denormalized = denormal floating point numbers   
 e = 00000000  
+мантисса начинается с 0, a significand with a leading 0        
 m != 00000000000000000000000  
-Fill the underflow gap around zero. 
-Any non-zero number with magnitude smaller than the smallest positive normal number is subnormal.  
-Denormal can also refer to numbers outside that range.  
-Are represented by having a zero exponent field with a non-zero significand field.
+In some old documents: _denormal_ = _subnormal_.  
+In casual discussions often: _denormal_ = _subnormal_.  
+IEEE: _denormal_ = _subnormal_ (there are no denormalized binary numbers outside the subnormal range)  
+
+#### Subnormal floating point numbers  
+Any non-zero number with magnitude smaller than the smallest positive normal number.  
+If normalized, would have exponents below the smallest representable exponent.+  
+Fill the underflow gap around zero.  
   
 binary    	                                 | formula                                          | decimal 
----------------------------------------------|--------------------------------------------------|----------------------
+---------------------------------------------|--------------------------------------------------|---------------------
 s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * (0+m/ 2^{23})         * 2^{1−  127}$ | 
-s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−  127}$ | порядок минимальный
+s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 0.(m)                 * 2^{e−  127}$ | порядок минимальный
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (2^{...})             * 2^{...}    $ | 0.0
 0&nbsp;00000000&nbsp;00000000000000000000001 | $(-1)^0   * (2^{-23})             * 2^{1  -127}$ | 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45 min
   
 **Reserved in IEEE 754**  
-Получающихся в результате операций деления на ноль или при превышении числового диапазона.  
+Получающихся в результате деления на ноль или при превышении числового диапазона.  
 NaN (Not a Number)  
 +/-INF  
 e = 11111111  
@@ -534,21 +533,28 @@ binary    	                                 | formula                           
 
 ### The Microsoft Binary Format (MBF) 
 
-### Minifloat
+## Minifloat
+...  
 
-### bfloat16
+## bfloat16
+...  
 
-### TensorFloat-32
+## TensorFloat-32
+...  
 
-### IBM floating-point architecture
+## IBM floating-point architecture
+...  
 
-### PMBus Linear-11
+## PMBus Linear-11
+...  
 
-### G.711 8-bit floats
+## G.711 8-bit floats
+...  
 
-### Arbitrary precision
+## Arbitrary precision
+...  
 
-## Fixed-point representation 
+# Fixed-point approximation to real numbers
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
 Fixed point arithmetic is much faster than the floating-point one.  
 Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents  
@@ -556,20 +562,21 @@ Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.0000
   
 https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
 
-## Logarithmic number systems
+# Logarithmic approximation to real numbers
 Represent a real number by the logarithm of its absolute value and a sign bit. 
 
-## Tapered floating-point representation
+# Tapered floating-point approximation to real numbers
 Does not appear to be used in practice.
 
-## Rational arithmetic
+# Rational representation to real numbers
 Represent numbers as fractions with integral numerator and denominator, and can therefore represent any rational number exactly. 
 
-## Interval arithmetic 
+# Interval approximation to real numbers
 Allows one to represent numbers as intervals and obtain guaranteed bounds on results. It is generally based on other arithmetics, in particular floating point.
 
-## Computer algebra systems such as Mathematica, Maxima, Maple
-Handles irrational numbers like pi or sqrt{3} in a completely "formal" way, without dealing with a specific encoding. Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation.
+# Without encoding representation of real numbers
+Handles irrational numbers like pi or sqrt{3} in a formal way, without dealing with an encoding. Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation.  
+Computer algebra systems such as Mathematica, Maxima, Maple.
 
 # School Requirements
 * a header should include all the dependencies it needs
