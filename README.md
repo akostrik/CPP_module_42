@@ -448,13 +448,15 @@ in any of the parameters of a function declaration: that declaration becomes an 
 ## explicit
 
 # Approximation to real numbers
-* Floating-point values represent extremely small values as well as extremely large
 * **Accuracy** how close a measurement is to the true value  
 * **Precision** how much information you have about a quantity
 
 ## Floating-point approximation
+* Represents subsets of real numbers using an int with a fixed precision (significand), scaled by an integer exponent of 2
+* Similar to concept to scientific notation   
+* Represent extremely small values as well as extremely large
+* Using 32 bits, it's not possible to store every digit in such numbers
 
-Represents subsets of real numbers using an integer with a fixed precision (significand), scaled by an integer exponent of a fixed base. Similar in concept to scientific notation.   
   
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html  
@@ -522,20 +524,20 @@ binary    	                                 | formula                           
 ---------------------------------------------|-------------------------------------------------|---------|
 s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $(0+m/ 2^{23})         * 2^{1  -127} * (-1)^{s}$|         |
 s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $0.(m)                 * 2^{1  -127} * (-1)^{s}$|         |
-0&nbsp;00000000&nbsp;00000000000000000000000 | $0.0                   * 2^{1  -127}           $| 0.0     |
 0&nbsp;00000000&nbsp;00000000000000000000001 | $(2^{-23})             * 2^{1  -127}           $| 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E&#8209 min&nbsp;representable |
 0&nbsp;00000000&nbsp;11111111111111111111111 | $0.9999998807907104    * 2^{1  -127}           $| min |
 0&nbsp;00000000&nbsp;11111111111111111111111 | $0.9999998807907104    * 2^{1  -127}           $| 1.17549421069e-38 |
   
-**Reserved in IEEE 754**  
+**Specail values (reserved in IEEE 754)**  
 e = 11111111  
 Получающихся в результате деления на ноль или при превышении числового диапазона.  
   
-binary    	                                 | formula                                          | decimal 
----------------------------------------------|--------------------------------------------------|----------------------
-0&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | +inf 
-1&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | -inf
-0&nbsp;11111111&nbsp;10000000000000000000000 |                                                  | +NaN Not a Number
+binary    	                                 | formula                                         | decimal 
+---------------------------------------------|-------------------------------------------------|----------------------
+0&nbsp;00000000&nbsp;00000000000000000000000 | $0.0                   * 2^{1  -127}           $| 0.0     
+0&nbsp;11111111&nbsp;00000000000000000000000 |                                                 | +inf 
+1&nbsp;11111111&nbsp;00000000000000000000000 |                                                 | -inf
+0&nbsp;11111111&nbsp;10000000000000000000000 |                                                 | +NaN Not a Number
 
 ### The Microsoft Binary Format (MBF) 
 
