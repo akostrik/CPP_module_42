@@ -53,9 +53,9 @@ http://www.cplusplus.com/reference
 ## Reference vs pointer (01/ex03)
 * `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
 * `HumanB`: a pointer to a Weapon, since the field is not set at creation time and the weapon can be NULL
-* in the both cases, we can change the type of the weapon
+* in the both cases, we can change the type of the weapon  
 
-### Reference
+Reference$ :  
 * is a dereferenced pointer  
 * is an aliase for an existing variable !=  new variable  
 * is a constant pointer, always points to the same variable, we can't change it (?)  
@@ -68,20 +68,21 @@ http://www.cplusplus.com/reference
 //             &sREF       переменная типа ссылка на string
 //                     s   переменная, на которую объявляется ссылка
 ```
-### Pointer
+  
+Pointer:  
 * can point to a non-existing address  
 * if something should not always exist and can change, use a pointer  
 
-## File manipulation (01/ex04)
+## File manipulations (01/ex04)
 
-### C (forbidden by the subject)
+C file manipulations:  
 * FILE *fp  
 * fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc  
 * modes : r, w, a  
 * `int my_int = 32; printf("%s", my_int)` fails  
 * hard-coded maximum buffer sizes  
 
-### C++ 
+C++ file manipulations:  
 * fstream f  
 * f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof  
 * modes : ios::in, ios::out, ios::bin , ...  
@@ -106,7 +107,7 @@ template<typename T> T max(T &a, T &b) {
 `std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>  
 `std::string` != строковый литерал  
 
-### Limits
+Limits:  
 `std::numeric_limits<T>::infinity()` the largest representable value (if T supports infinity, std::numeric_limits<T>::has_infinity = true)  
 `std::numeric_limits<T>::max()` the largest finite value  
 `std::numeric_limits<T>::min()` the smallest positive normal value. Floating-point formats have an interval where the exponent cannot get any smaller, but the significand is allowed to get smaller until it reaches zero, this comes at the expense of precision, min() is the point where this precision loss starts  
