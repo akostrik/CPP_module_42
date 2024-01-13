@@ -531,7 +531,7 @@ binary    	                                 | formula                           
 1&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | -inf
 0&nbsp;11111111&nbsp;10000000000000000000000 |                                                  | +NaN 
 
-### The Microsoft Binary Format (MBF) 
+## The Microsoft Binary Format (MBF) 
 
 ## Minifloat
 ...  
