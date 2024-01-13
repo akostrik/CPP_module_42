@@ -177,10 +177,6 @@ int i = myFromStr<int>(myToStr(5));
 * float->double: such that back from double to float results in exactly the same value  
 * int -> float:
     + `int` bigger than 16777216 may lose precision
-* stoi c++11  
-* s.data() c++11  
-* std::to_string c++11  
-* stod c++11 
 * `const_cast<target-type ﻿>(expr) ﻿`
     + самое простое приведение типов
     + убирает `const` и `volatile`
@@ -258,6 +254,10 @@ catch (bad_cast) { ... }
 ```
 #include <boost/lexical_cast.hpp>
 boost::lexical_cast<int>(str)
+* stoi c++11  
+* s.data() c++11  
+* std::to_string c++11  
+* stod c++11 
 ```
 
 ## Specifiers
