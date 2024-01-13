@@ -470,15 +470,18 @@ Every time a floating point operation is done, some precision is lost. You can r
 16777215 the largest integer that can be represented in 24 bits   
 6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
 
+denormilized мантисса [0,1)  
+
 **Normal floating point numbers:**  
-мантисса [0,1)  
+e != 11111111, e != 00000000
 without losing precision  
 
 binary    	                                 | formula                                          | decimal 
 ---------------------------------------------|--------------------------------------------------|----------------------
-s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−  127}$ | 1 ≤ мантисса < 10, mormal = 
-0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^{s} * (1+m/ 2^{23})         * 2^{e−  127}$ | e != 11111111, e != 00000000                                                                                           
-0&nbsp;00000001&nbsp;11111111111111111111101 | $(-1)^0   * 1.9999996423721313    * 2^{124-127}$ | 2.35098828126e-38 min +?
+s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−  127}$ |  
+s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * (1+m/ 2^{23})         * 2^{e−  127}$ | 
+0&nbsp;00000001&nbsp;11111111111111111111101 | $(-1)^0   * 1.9999996423721313    * 2^{124-127}$ | 2.35098828126e-38 min ?
+1&nbsp;01111111&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{127-127}$ | -1
 0&nbsp;01111100&nbsp;01000000000000000000000 | $(-1)^0   * 1.25                  * 2^{1  -127}$ | 0.15625 +
 0&nbsp;01111101&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{125-127}$ | 0.25 
 0&nbsp;01111110&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{126-127}$ | 0.5
@@ -494,9 +497,17 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * \frac{3,14-2}{4-2}    * 2^{150-127}$ | 3.14, 3.14 ∊ [ $2^1$ ; $2^2$ ), $2^7$ 
 0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$ | 340282346638528859811704183484516925440 FLT_MAX max
 
-**Normalized = subnormal floating point numbers:**  
+**Denormalized = numbers**  
+
+мантисса начинается с 0, а не с 1 (нет неявной единицы)  
+
+
+**Normalized = subnormal numbers:**  
+
 мантисса [1,10)  
 они ближе к 0, чем наименьшее нормализованное  
+e = 00000000  
+m != 00000000000000000000000  
 Fill the underflow gap around zero. 
 Any non-zero number with magnitude smaller than the smallest positive normal number is subnormal.  
 Denormal can also refer to numbers outside that range.  
@@ -504,18 +515,22 @@ Are represented by having a zero exponent field with a non-zero significand fiel
   
 binary    	                                 | formula                                          | decimal 
 ---------------------------------------------|--------------------------------------------------|----------------------
-s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * (0+m/ 2^{23})         * 2^{1−  127}$ | e = 00000000, m != 00000000000000000000000
-s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−  127}$ | мантисса с 0, порядок минимальный, 
+s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * (0+m/ 2^{23})         * 2^{1−  127}$ | 
+s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−  127}$ | порядок минимальный
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (2^{...})             * 2^{...}    $ | 0.0
 0&nbsp;00000000&nbsp;00000000000000000000001 | $(-1)^0   * (2^{-23})             * 2^{1  -127}$ | 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45 min
   
-
+**Reserved in IEEE 754**  
+Получающихся в результате операций деления на ноль или при превышении числового диапазона.  
+NaN (Not a Number)  
++/-INF  
+e = 11111111  
+  
 binary    	                                 | formula                                          | decimal 
 ---------------------------------------------|--------------------------------------------------|----------------------
 0&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | +inf 
 1&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | -inf
 0&nbsp;11111111&nbsp;10000000000000000000000 |                                                  | +NaN 
-
 
 ### The Microsoft Binary Format (MBF) 
 
