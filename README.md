@@ -467,7 +467,7 @@ Every time a floating point operation is done, some precision is lost. You can r
 A real numbers may be approximated by multiple floating point representations. One representation is defined as normal.  
 No leading zeros in the mantissa. Rather, leading zeros are removed by adjusting the exponent. For example, 0.0123 would be written as $1.23 × 10^{−2}$.  
 мантисса [0,1)   
-An invisible leading bit (not stored) with value 1.0 is placed in front  
+An invisible 1 (not stored) is placed in front  
 If the exponent reaches -127 (00000000), the leading 1 is no longer used to enable gradual underflow  
 невозможно записать ноль  
 e != 11111111  
