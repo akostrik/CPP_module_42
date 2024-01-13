@@ -263,26 +263,26 @@ boost::lexical_cast<int>(str)
 
 ## Specifiers
 
-## public / private / protected data
+### public / private / protected data
 * public members are accessible from outside the class  
 * privat: members cannot be accessed or viewed from outside the class  
 * protected: members cannot be accessed from outside the class, however, they can be accessed in inherited classes
 
-## private public protected function
+### private public protected function
 * see private / public / protected data modifiers
 
-## public / private / ptotected inheritance
+### public / private / ptotected inheritance
 * public: public data are inherited as public, protected data are inherited as protected 
 * private: all inherited data become private
 * protected: all inherited data become protected
 
-## final class
+### final class
 * inheritance is prohibited
 
-## final function
+### final function
 * prohibites `virtual` functions in the inherited classes 
 
-## static data
+### static data
 * belongs to the class, is not associated with a particular object  
 * is called using the class name or through an object
 * static class = a private and unimplemented default constructor (formally C++ does not have static classes)
@@ -291,27 +291,27 @@ boost::lexical_cast<int>(str)
 * медленнее, чем нестатические переменные (т.к. переход в другой сегмент памяти и проверка инициализации переменной)
 * если используете многопоточность, то должны быть осторожными
   
-### static data (variable or object) in a function 
+static data (variable, object) in a function:   
 * инициализируется один раз, затем сохраняют значение
 * хранит значение между вызовами функции 
 
-### static variable member of a class
+static variable member of a class:  
 * не инициализируются с помощью конструктора
 * определение вне класса с помощью оператора разрешения области видимости (::)
 * `static A a;` объявляем объект, а не определяем его
 * член класса будет один для всех экземпляров класса
 * если создали три объекта класса, то конструктор статического члена класса будет вызван один раз
 
-## static class
+### static class
 * не может создан в виде объекта
 * для группирования связанных по смыслу методов, свойств и полей
 * содержит только статические методы, свойства, и поля
 * не может быть наследован
 
-## static not member function 
+### static not member function 
 * can't be called from other places
 
-## static member function
+### static member function
 * is not associated with a particular object, belongs to the class rather than objects of the class  
 * basically a normal function that's nested inside of the scope of the class
 * can be called using the class name or through an object  
@@ -335,7 +335,7 @@ int main() {
   MyClass::f();
 }
 ```
-## abstract class
+### abstract class
 * contains (or inherits without redefinition) at least one pure virtual (abstract) function
 * all the abstract methods of the parent must be implemented in the child
 * may provide implementations of some methods
@@ -343,19 +343,18 @@ int main() {
 * another way to prevent a class from being instantiated: make all the constructors `protected`
 * C++ has no keyword `abstract`
 
-## abstract function = pure virtual
-* cf. virtual function   
+### abstract function = pure virtual
 * C++ has no keyword `abstract`  
 
-## override function
+### override function
 * explicit indication that the function is redefined
 * `override` keyword is a C++11 extension
 
-## interface = pure abstract class 
+### interface = pure abstract class 
 * consists of only virtual member functions (only declarations)
 * non-instancable
 
-## const / mutable data
+### const / mutable data
 `any              function` can't           modify `                    const data`  
 `any              function` can &nbsp;&nbsp;modity `casted const away   const data` (not advised)   
 `    const member function` can't           modify `passed by value     const data`  
@@ -383,10 +382,10 @@ const variable cannot be left un-initialized at the time
 
 * mutable: * we can modify a mutable class member through member functions even if the containing object is const
 
-## const not member function
+### const not member function
 * doesn't exist
 
-## const / mutable member funciton
+### const / mutable member funciton
 * doest't change the object
 * doesn't call non-constant member functions  
 * we can't change the return value
@@ -398,11 +397,11 @@ const char *func() {
 }
 ```
 
-## volatile data
+### volatile data
 
-## virtual data
+### virtual data
 
-## virtual member function
+### virtual member function
 * a member function of a Parent, redefined by a Child (the same name and parametres) (one interface, several realisations) (**polymorphic functions**)
 * must be defined in Parent
 * cannot be static
@@ -425,27 +424,27 @@ Virtual function table :
 * when a virtual function is called, the program finds the associated function by vtable   
 * if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A
 
-## virtual inheritance
+### virtual inheritance
 * предотвращает появление множественных объектов базового класса в иерархии наследования 
 
-## template class
+### template class
 
-## template function
+### template function
 * allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
-## extern data
+### extern data
 сделать глобальную переменную внешней (которую можно использовать в любом файле программы)
 
-## auto (c++20)
-in any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
+### auto (c++20)
+In any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
 
-## friend functon
+### friend functon
 * не являются членами класса
 * имеют доступ к его private переменным и функциям
 
-## inline (c++ 17)
+### inline (c++ 17)
 
-## explicit
+### explicit
 
 # Approximation to real numbers
 * **Accuracy** how close a measurement is to the true value  
