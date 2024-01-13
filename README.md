@@ -86,6 +86,9 @@ const variable cannot be left un-initialized at the time
 ## extern
 сделать глобальную переменную внешней (которую можно использовать в любом файле программы)
 
+## auto (c++20)
+in any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
+
 # Function specifiers
 
 ## private / public / protected function
