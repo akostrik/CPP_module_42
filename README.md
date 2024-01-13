@@ -360,7 +360,6 @@ int i = myFromStr<int>(myToStr(5));
 * float->double: such that back from double to float results in exactly the same value  
 * int -> float:
     + `int` bigger than 16777216 may lose precision
-    + `float` stores big numbers but doesn't store big `int` precisely  
 * stoi c++11  
 * s.data() c++11  
 * std::to_string c++11  
@@ -464,11 +463,6 @@ https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type
   
 Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
   
-16777215 the largest integer that can be represented in 24 bits   
-6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
-
-denormilized мантисса [0,1)  
-
 ### Normal = normilized floating point numbers  
 A real numbers may be approximated by multiple floating point representations. One representation is defined as normal.  
 No leading zeros in the mantissa. Rather, leading zeros are removed by adjusting the exponent. For example, 0.0123 would be written as $1.23 × 10^{−2}$.  
@@ -478,6 +472,9 @@ If the exponent reaches -127 (00000000), the leading 1 is no longer used to enab
 невозможно записать ноль  
 e != 11111111  
 e != 00000000  
+`int` bigger than 16777216 may lose precision, but doesn't store big numbers precisely  
+16777215 the largest integer that can be represented in 24 bits   
+6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
 
 binary    	                                 | formula                                          | decimal 
 ---------------------------------------------|--------------------------------------------------|----------------------
@@ -503,7 +500,8 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * (1+m/ 2^{23})        
 
 ### Denormalized = denormal floating point numbers   
 e = 00000000  
-мантисса начинается с 0, a significand with a leading 0        
+m начинается с 0, a significand with a leading 0        
+m [0,1) ?  
 m != 00000000000000000000000  
 In some old documents: _denormal_ = _subnormal_.  
 In casual discussions often: _denormal_ = _subnormal_.  
