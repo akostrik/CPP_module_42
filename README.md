@@ -449,40 +449,36 @@ boost::lexical_cast<int>(str)
 * an optional type since C99 (?)
 * might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
 
-# Floating-point numbers vs Fixed-point numbers (02, 06)
-* **Accuracy** to how close a measurement is to the true value  
-* **Precision** how much information you have about a quantity, how uniquely you have it pinned down
+# Representations of approximation to real numbers (02, 06)
+* **Accuracy** how close a measurement is to the true value  
+* **Precision** how much information you have about a quantity
 
-## Floating-point
+## Floating-point arithmetic
+Represents subsets of real numbers using an integer with a fixed precision (significand), scaled by an integer exponent of a fixed base. Similar in concept to scientific notation.   
+  
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html  
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
 https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold  
-https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
   
-**Floating-point arithmetic** represents subsets of real numbers using an integer with a fixed precision, called the significand, scaled by an integer exponent of a fixed base. Floating-point representation is similar in concept to scientific notation.   
-
 ### IEEE 754 standard formats (1985)  
-
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
   
 Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
   
-**Subnormal values** denormalized numbers that fill the underflow gap around zero in floating-point arithmetic. Any non-zero number with magnitude smaller than the smallest positive normal number is subnormal, while denormal can also refer to numbers outside that range. , subnormals are represented by having a zero exponent field with a non-zero significand field.
+
+16777215 the largest integer that can be represented in 24 bits   
+6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
 
 **Normal floating point numbers:**  
-мантиссы  [0,1)
+мантисса [0,1)  
+without losing precision  
 
-
-binary    	                                 | formula                                          | decimal                                                                                                        
----------------------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------
-s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−  127}$ | normal, 1 ≤ мантисса < 10, mormal = without losing precision
-0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^{s} * (1+m/ 2^{23})         * 2^{e−  127}$ | normal, e != 11111111, e != 00000000                                                                                           
-s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * (0+m/ 2^{23})         * 2^{1−  127}$ | subnormal, e = 00000000, m != 00000000000000000000000
-s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−  127}$ | subnormal, мантисса с 0, порядок минимальный, они ближе к 0, чем наименьшее нормализованное
-0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (2^{...})             * 2^{...}    $ | 0.0 (subnormal)
-0&nbsp;00000000&nbsp;00000000000000000000001 | $(-1)^0   * (2^{-23})             * 2^{1  -127}$ | 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45 min subnormal
-0&nbsp;00000001&nbsp;11111111111111111111101 | $(-1)^0   * 1.9999996423721313    * 2^{124-127}$ | 2.35098828126e-38 min normal +?
+binary    	                                 | formula                                          | decimal 
+---------------------------------------------|--------------------------------------------------|----------------------
+s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−  127}$ | 1 ≤ мантисса < 10, mormal = 
+0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^{s} * (1+m/ 2^{23})         * 2^{e−  127}$ | e != 11111111, e != 00000000                                                                                           
+0&nbsp;00000001&nbsp;11111111111111111111101 | $(-1)^0   * 1.9999996423721313    * 2^{124-127}$ | 2.35098828126e-38 min +?
 0&nbsp;01111100&nbsp;01000000000000000000000 | $(-1)^0   * 1.25                  * 2^{1  -127}$ | 0.15625 +
 0&nbsp;01111101&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{125-127}$ | 0.25 
 0&nbsp;01111110&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{126-127}$ | 0.5
@@ -496,13 +492,30 @@ s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                
 0&nbsp;10000010&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{130-127}$ | 8.0
 0&nbsp;10000000&nbsp;10010001111010111000011 | $(-1)^0   * 1.5700000524520874    * 2^{128-127}$ | 3.14  
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * \frac{3,14-2}{4-2}    * 2^{150-127}$ | 3.14, 3.14 ∊ [ $2^1$ ; $2^2$ ), $2^7$ 
-0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$ | 340282346638528859811704183484516925440 FLT_MAX max normal 
+0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$ | 340282346638528859811704183484516925440 FLT_MAX max
+
+**Normalized = subnormal floating point numbers:**  
+мантисса [1,10)  
+они ближе к 0, чем наименьшее нормализованное  
+Fill the underflow gap around zero. 
+Any non-zero number with magnitude smaller than the smallest positive normal number is subnormal.  
+Denormal can also refer to numbers outside that range.  
+Are represented by having a zero exponent field with a non-zero significand field.
+  
+binary    	                                 | formula                                          | decimal 
+---------------------------------------------|--------------------------------------------------|----------------------
+s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * (0+m/ 2^{23})         * 2^{1−  127}$ | e = 00000000, m != 00000000000000000000000
+s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−  127}$ | мантисса с 0, порядок минимальный, 
+0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * (2^{...})             * 2^{...}    $ | 0.0
+0&nbsp;00000000&nbsp;00000000000000000000001 | $(-1)^0   * (2^{-23})             * 2^{1  -127}$ | 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45 min
+  
+
+binary    	                                 | formula                                          | decimal 
+---------------------------------------------|--------------------------------------------------|----------------------
 0&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | +inf 
 1&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | -inf
 0&nbsp;11111111&nbsp;10000000000000000000000 |                                                  | +NaN 
 
-16777215 the largest integer that can be represented in 24 bits   
-6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
 
 ### The Microsoft Binary Format (MBF) 
 
@@ -524,7 +537,9 @@ s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
 Fixed point arithmetic is much faster than the floating-point one.  
 Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents  
-Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
+Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8)  
+  
+https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
 
 ## Logarithmic number systems
 Represent a real number by the logarithm of its absolute value and a sign bit. 
