@@ -473,7 +473,8 @@ denormilized мантисса [0,1)
 A real numbers may be approximated by multiple floating point representations. One representation is defined as normal.  
 No leading zeros in the mantissa. Rather, leading zeros are removed by adjusting the exponent. For example, 0.0123 would be written as $1.23 × 10^{−2}$.  
 мантисса [0,1)   
-Неявная единица не указывается.  
+An invisible leading bit (not stored) with value 1.0 is placed in front  
+If the exponent reaches -127 (00000000), the leading 1 is no longer used to enable gradual underflow  
 невозможно записать ноль  
 e != 11111111  
 e != 00000000  
@@ -482,6 +483,7 @@ binary    	                                 | formula                           
 ---------------------------------------------|--------------------------------------------------|----------------------
 s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                 * 2^{e−  127}$ |  
 s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(-1)^{s} * (1+m/ 2^{23})         * 2^{e−  127}$ | 
+0&nbsp;00000001&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{121-127}$ | 1.17549435E-38 FLT_MIN 
 0&nbsp;00000001&nbsp;11111111111111111111101 | $(-1)^0   * 1.9999996423721313    * 2^{124-127}$ | 2.35098828126e-38 min ?
 1&nbsp;01111111&nbsp;00000000000000000000000 | $(-1)^0   * 1.0                   * 2^{127-127}$ | -1
 0&nbsp;01111100&nbsp;01000000000000000000000 | $(-1)^0   * 1.25                  * 2^{1  -127}$ | 0.15625
@@ -577,6 +579,11 @@ Allows one to represent numbers as intervals and obtain guaranteed bounds on res
 # Without encoding representation of real numbers
 Handles irrational numbers like pi or sqrt{3} in a formal way, without dealing with an encoding. Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation.  
 Computer algebra systems such as Mathematica, Maxima, Maple.
+
+# Double
+-179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000 min  
+  
+179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000 max  
 
 # School Requirements
 * a header should include all the dependencies it needs
