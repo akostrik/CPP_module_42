@@ -447,9 +447,12 @@ in any of the parameters of a function declaration: that declaration becomes an 
 
 ## explicit
 
-# Floating-point approximation to real numbers
+# Approximation to real numbers
 * **Accuracy** how close a measurement is to the true value  
 * **Precision** how much information you have about a quantity
+
+## Floating-point approximation
+
 Represents subsets of real numbers using an integer with a fixed precision (significand), scaled by an integer exponent of a fixed base. Similar in concept to scientific notation.   
   
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
@@ -457,12 +460,12 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
 https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold  
   
-## IEEE 754 formats (1985)  
+### IEEE 754 formats (1985)  
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
   
 Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
   
-### Normal = normilized floating point numbers  
+**Normal = normilized IEEE floating point numbers**:    
 e != 11111111  
 e != 00000000  
 m [0,1)   
@@ -497,7 +500,7 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(1+m/ 2^{23})         * 2^{e  �
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * \frac{3,14-2}{4-2}    * 2^{150-127}$ | 3.14, 3.14 ∊ [ $2^1$ ; $2^2$ ), $2^7$ 
 0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$ | 340282346638528859811704183484516925440 FLT_MAX max
 
-### Denormalized = denormal floating point numbers   
+**Denormalized = denormal floating point numbers**:     
 e = 00000000  
 m начинается с 0, a leading 0        
 m != 00000000000000000000000  
@@ -506,7 +509,8 @@ Some old documents: _denormal_ = _subnormal_.
 Casual discussions often: _denormal_ = _subnormal_.  
 IEEE: _denormal_ = _subnormal_ (there are no denormalized binary numbers outside the subnormal range)  
 
-#### Subnormal floating point numbers  
+**Subnormal floating point numbers**:    
+A sybdet of demormilised numbers.  
 Any non-zero number with magnitude smaller than the smallest positive normal number.  
 If normalized, would have exponents below the smallest representable exponent.+  
 Fill the underflow gap around zero.  
@@ -531,30 +535,30 @@ binary    	                                 | formula                           
 1&nbsp;11111111&nbsp;00000000000000000000000 |                                                  | -inf
 0&nbsp;11111111&nbsp;10000000000000000000000 |                                                  | +NaN Not a Number
 
-## The Microsoft Binary Format (MBF) 
+### The Microsoft Binary Format (MBF) 
 
-## Minifloat
+### Minifloat
 ...  
 
-## bfloat16
+### bfloat16
 ...  
 
-## TensorFloat-32
+### TensorFloat-32
 ...  
 
-## IBM floating-point architecture
+### IBM floating-point architecture
 ...  
 
-## PMBus Linear-11
+### PMBus Linear-11
 ...  
 
-## G.711 8-bit floats
+### G.711 8-bit floats
 ...  
 
-## Arbitrary precision
+### Arbitrary precision
 ...  
 
-# Fixed-point approximation to real numbers
+## Fixed-point 
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
 Fixed point arithmetic is much faster than the floating-point one.  
 Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents  
@@ -562,23 +566,23 @@ Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.0000
   
 https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
 
-# Logarithmic approximation to real numbers
+## Logarithmic 
 Represent a real number by the logarithm of its absolute value and a sign bit. 
 
-# Tapered floating-point approximation to real numbers
+## Tapered floating-point
 Does not appear to be used in practice.
 
-# Rational representation to real numbers
-Represent numbers as fractions with integral numerator and denominator, and can therefore represent any rational number exactly. 
-
-# Interval approximation to real numbers
+## Interval 
 Allows one to represent numbers as intervals and obtain guaranteed bounds on results. It is generally based on other arithmetics, in particular floating point.
 
-# Without encoding representation of real numbers
+## Rational representation to real numbers
+Represent numbers as fractions with integral numerator and denominator, and can therefore represent any rational number exactly. 
+
+## Without encoding representation of real numbers
 Handles irrational numbers like pi or sqrt{3} in a formal way, without dealing with an encoding. Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation.  
 Computer algebra systems such as Mathematica, Maxima, Maple.
 
-# Double
+## Double
 -179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000 min  
   
 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000 max  
@@ -586,7 +590,7 @@ Computer algebra systems such as Mathematica, Maxima, Maple.
 # School Requirements
 * a header should include all the dependencies it needs
 
-## Are forbidden:
+Are Forbidden:  
 - external libraries or features from versions other than C++98
 - boost libraries
 - *printf(), *alloc(), free()
