@@ -475,15 +475,14 @@ https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type
 Every time a floating point operation is done, some precision is lost. You can reduce the error by replacing floating point arithmetic with int as much as possible.  
   
 ### Normal = normilized floating point numbers  
+e != 11111111  
+e != 00000000  
+m [0,1)   
 A real numbers may be approximated by multiple floating point representations. One representation is defined as normal.  
 No leading zeros in the mantissa. Rather, leading zeros are removed by adjusting the exponent. For example, 0.0123 would be written as $1.23 × 10^{−2}$.  
-мантисса [0,1)   
 An invisible 1 (not stored) is placed in front  
 If the exponent reaches -127 (00000000), the leading 1 is no longer used to enable gradual underflow  
 невозможно записать ноль  
-e != 11111111  
-e != 00000000  
-16777215 the largest integer that can be represented in 24 bits   
 doesn't store big numbers precisely  
 doesn't store `int` bigger than 16777216 precisely  
 6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
@@ -506,17 +505,17 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(1+m/ 2^{23})         * 2^{e  �
 0&nbsp;10000001&nbsp;10000000000000000000000 | $1.5                   * 2^{129-127}           $| 6.0 
 0&nbsp;10000001&nbsp;11000000000000000000000 | $1.75                  * 2^{129-127}           $| 7.0 
 0&nbsp;10000000&nbsp;10010001111010111000011 | $1.5700000524520874    * 2^{128-127}           $| 3.14  
-0&nbsp;01111111&nbsp;11111111111111111111111 | $1.9999998807907104    * 2^{127-127}           $| 1.99999988079
+0&nbsp;10010110&nbsp;11111111111111111111111 | $1.9999998807907104    * 2^{150-127}           $| 16777215 the largest int represented in 24 bits   
 0&nbsp;00000000&nbsp;00000000000000000000000 | $(-1)^0   * \frac{3,14-2}{4-2}    * 2^{150-127}$ | 3.14, 3.14 ∊ [ $2^1$ ; $2^2$ ), $2^7$ 
 0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$ | 340282346638528859811704183484516925440 FLT_MAX max
 
 ### Denormalized = denormal floating point numbers   
 e = 00000000  
 m начинается с 0, a leading 0        
-m [0,1) ?  
 m != 00000000000000000000000  
-In some old documents: _denormal_ = _subnormal_.  
-In casual discussions often: _denormal_ = _subnormal_.  
+m [0,1) ?  
+Some old documents: _denormal_ = _subnormal_.  
+Casual discussions often: _denormal_ = _subnormal_.  
 IEEE: _denormal_ = _subnormal_ (there are no denormalized binary numbers outside the subnormal range)  
 
 #### Subnormal floating point numbers  
@@ -527,12 +526,13 @@ e минимальное
   
 binary    	                                 | formula                                         | decimal 
 ---------------------------------------------|-------------------------------------------------|---------------------
-s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $(0+m/ 2^{23})         * 2^{1−  127} * (-1)^{s}$| 
-s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $0.(m)                 * 2^{e−  127} * (-1)^{s}$| 
+s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $(0+m/ 2^{23})         * 2^{1  -127} * (-1)^{s}$| 
+s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $0.(m)                 * 2^{1  -127} * (-1)^{s}$| 
 0&nbsp;00000000&nbsp;00000000000000000000000 | $0.0                   * 2^{1  -127}           $| 0.0
-0&nbsp;00000000&nbsp;00000000000000000000001 | $1.1920928955078125e-07* 2^{1  -127}           $| 1.40129846432e-45
-0&nbsp;00000000&nbsp;11111111111111111111111 | $0.9999998807907104    * 2^{1  -127}           $| 1.17549421069e-38
 0&nbsp;00000000&nbsp;00000000000000000000001 | $(2^{-23})             * 2^{1  -127}           $| 1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45 min
+0&nbsp;00000000&nbsp;00000000000000000000001 | $1.1920928955078125e-07* 2^{1  -127}           $| 
+1.40129846432481707092372958328991613128026194187651577175706828388979108268586060148663818836212158203125E-45 min
+0&nbsp;00000000&nbsp;11111111111111111111111 | $0.9999998807907104    * 2^{1  -127}           $| 1.17549421069e-38
   
 **Reserved in IEEE 754**  
 Получающихся в результате деления на ноль или при превышении числового диапазона.  
