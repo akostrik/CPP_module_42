@@ -472,8 +472,9 @@ If the exponent reaches -127 (00000000), the leading 1 is no longer used to enab
 невозможно записать ноль  
 e != 11111111  
 e != 00000000  
-`int` bigger than 16777216 may lose precision, but doesn't store big numbers precisely  
 16777215 the largest integer that can be represented in 24 bits   
+doesn't store big numbers precisely  
+doesn't store `int` bigger than 16777216 precisely  
 6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
 
 binary    	                                 | formula                                          | decimal 
