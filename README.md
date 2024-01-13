@@ -448,6 +448,7 @@ in any of the parameters of a function declaration: that declaration becomes an 
 ## explicit
 
 # Approximation to real numbers
+* Floating-point values represent extremely small values as well as extremely large
 * **Accuracy** how close a measurement is to the true value  
 * **Precision** how much information you have about a quantity
 
