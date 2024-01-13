@@ -49,14 +49,14 @@ public:
 * данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
 
 # C++ feautures
-http://www.cplusplus.com/reference
+http://www.cplusplus.com  
 
 ## Reference vs pointer (01/ex03)
 * `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
 * `HumanB`: a pointer to a Weapon, since the field is not set at creation time and the weapon can be NULL
 * in the both cases, we can change the type of the weapon  
 
-Reference$ :  
+Reference:  
 * is a dereferenced pointer  
 * is an aliase for an existing variable !=  new variable  
 * is a constant pointer, always points to the same variable, we can't change it (?)  
@@ -65,7 +65,6 @@ Reference$ :
 * if something should always exist and never change, use a references  
 ```
    std::string &sREF = s;
-// std::string             тип, на который объявляется ссылка
 //             &sREF       переменная типа ссылка на string
 //                     s   переменная, на которую объявляется ссылка
 ```
@@ -90,7 +89,7 @@ C++ file manipulations:
 * Fstream closes the files when they leave scope  
 * how input and output type is defined by the variable type  
 * dynamically sizing receiving strings based on the actual input  
-* extensibility for user-defined types (i.e. you can teach streams how to handle your own classes)  
+* extensibility for user-defined types (you can teach streams how to handle your own classes)  
 * exceptions  
 
 ## Templates
@@ -265,10 +264,10 @@ boost::lexical_cast<int>(str)
 
 ### public / private / protected data
 * public members are accessible from outside the class  
-* privat: members cannot be accessed or viewed from outside the class  
+* private: members cannot be accessed or viewed from outside the class  
 * protected: members cannot be accessed from outside the class, however, they can be accessed in inherited classes
 
-### private public protected function
+### public / private / protected function
 * see private / public / protected data modifiers
 
 ### public / private / ptotected inheritance
@@ -282,30 +281,26 @@ boost::lexical_cast<int>(str)
 ### final function
 * prohibites `virtual` functions in the inherited classes 
 
-### static data
-* belongs to the class, is not associated with a particular object  
-* is called using the class name or through an object
-* static class = a private and unimplemented default constructor (formally C++ does not have static classes)
+### static variable in a function
+* инициализируется один раз, сохраняет значение между вызовами функции 
 * выделение памяти происходит только один раз и существуют эти элементы до завершения программы
-* хранятся в сегментах памяти .data и .bss (в heap и не на stack), что позволяет хранить значение переменной на протяжении всей жизни программы
+* хранятся в сегментах памяти .data и .bss (не в heap и не на stack), что позволяет хранить значение переменной на протяжении всей жизни программы
 * медленнее, чем нестатические переменные (т.к. переход в другой сегмент памяти и проверка инициализации переменной)
-* если используете многопоточность, то должны быть осторожными
-  
-static data (variable, object) in a function:   
-* инициализируется один раз, затем сохраняют значение
-* хранит значение между вызовами функции 
+* осторожно использовать многопоточность
 
-static variable member of a class:  
+## static variable member of a class  
+* belongs to the class, is not associated with a particular object, переменная одна для всех экземпляров класса
 * не инициализируются с помощью конструктора
-* определение вне класса с помощью оператора разрешения области видимости (::)
-* `static A a;` объявляем объект, а не определяем его
-* член класса будет один для всех экземпляров класса
 * если создали три объекта класса, то конструктор статического члена класса будет вызван один раз
+* определяем объект: вне класса с помощью оператора разрешения области видимости `::`
+* объявляем объект: `static A a;`
+* is called using the class name or through an object
 
 ### static class
+* static class = a private and unimplemented default constructor (formally C++ does not have static classes)
 * не может создан в виде объекта
 * для группирования связанных по смыслу методов, свойств и полей
-* содержит только статические методы, свойства, и поля
+* содержит только статические методы, свойства, поля
 * не может быть наследован
 
 ### static not member function 
@@ -346,13 +341,13 @@ int main() {
 ### abstract function = pure virtual
 * C++ has no keyword `abstract`  
 
-### override function
-* explicit indication that the function is redefined
-* `override` keyword is a C++11 extension
-
 ### interface = pure abstract class 
 * consists of only virtual member functions (only declarations)
 * non-instancable
+
+### override function
+* explicit indication that the function is redefined
+* `override` keyword is a C++11 extension
 
 ### const / mutable data
 `any              function` can't           modify `                    const data`  
@@ -450,7 +445,7 @@ In any of the parameters of a function declaration: that declaration becomes an 
 * **Accuracy** how close a measurement is to the true value  
 * **Precision** how much information you have about a quantity
 
-## Single-precision floating-point  approximation (FP32, float32)
+## Single-precision floating-point approximation (FP32, float32)
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html  
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
@@ -562,12 +557,12 @@ binary    	                                 | formula                           
 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000 max  
 
 ## Fixed-point 
+https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
+  
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
 Fixed point arithmetic is much faster than the floating-point one.  
-Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents  
-Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8)  
-  
-https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
+Example: Dollar amounts are often stored with exactly two fractional digits, representing the cents  
+Example: $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8)  
 
 ## Logarithmic 
 Represent a real number by the logarithm of its absolute value and a sign bit. 
