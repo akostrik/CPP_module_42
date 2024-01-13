@@ -460,7 +460,9 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 https://stackoverflow.com/questions/60224493/whats-the-largest-number-float-type-can-hold  
 https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
   
-**The IEEE Standard for Floating-Point Arithmetic (IEEE 754)** = a standard for floating-point arithmetic (1985)  
+**Floating-point arithmetic** represents subsets of real numbers using an integer with a fixed precision, called the significand, scaled by an integer exponent of a fixed base. Floating-point representation is similar in concept to scientific notation.   
+
+### IEEE 754 standard formats (1985)  
 
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
   
@@ -502,11 +504,42 @@ s&nbsp;eeeeeeee&nbsp;0mmmmmmmmmmm...m        | $(-1)^{s} * 1.(m)                
 16777215 the largest integer that can be represented in 24 bits   
 6 digits: a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
 
-## Fixed-point
+### The Microsoft Binary Format (MBF) 
+
+### Minifloat
+
+### bfloat16
+
+### TensorFloat-32
+
+### IBM floating-point architecture
+
+### PMBus Linear-11
+
+### G.711 8-bit floats
+
+### Arbitrary precision
+
+## Fixed-point representation 
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
-Fixed point arithmetic is much faster.  
+Fixed point arithmetic is much faster than the floating-point one.  
 Example : Dollar amounts are often stored with exactly two fractional digits, representing the cents  
 Example : $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8) 
+
+## Logarithmic number systems
+Represent a real number by the logarithm of its absolute value and a sign bit. 
+
+## Tapered floating-point representation
+Does not appear to be used in practice.
+
+## Rational arithmetic
+Represent numbers as fractions with integral numerator and denominator, and can therefore represent any rational number exactly. 
+
+## Interval arithmetic 
+Allows one to represent numbers as intervals and obtain guaranteed bounds on results. It is generally based on other arithmetics, in particular floating point.
+
+## Computer algebra systems such as Mathematica, Maxima, Maple
+Handles irrational numbers like pi or sqrt{3} in a completely "formal" way, without dealing with a specific encoding. Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation.
 
 # School Requirements
 * a header should include all the dependencies it needs
