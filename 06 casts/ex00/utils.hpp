@@ -14,8 +14,8 @@
 void trim(std::string *s);
 int  strcmp(std::string s1, std::string s2);
 int  strlen(std::string s);
-bool digits(std::string s);
-bool digitsAndMayBePoint(std::string s);
+bool isDigits(std::string s);
+bool isDigitsAndMayBePoint(std::string s);
 bool inLimits(std::string s, std::string min, std::string max);
 bool isSpecialDouble(std::string s);
 bool isSpecialFloat(std::string s);

@@ -1,6 +1,12 @@
-#ifndef SCLARCONVERTER_HPP
-# define SCLARCONVERTER_HPP
+#ifndef SCALARCONVERTER_HPP
+# define SCALARCONVERTER_HPP
 
+# include <iostream>
+# include <string>
+# include <cstdlib>
+# include <cerrno>
+# include <climits>
+# include <cfloat>
 # include <string>
 # include <exception>
 # include <iostream>
@@ -10,19 +16,14 @@
 # include <iomanip>
 # include <math.h>
 # include <bitset>
-# include "utils.hpp"
+// too mach headers
+
+// no constructors
 
 class ScalarConverter {
-
-private:
-                          ScalarConverter  ();
-                          ScalarConverter  (const ScalarConverter &obj);
-  ScalarConverter         &operator =      (const ScalarConverter &obj);
-
-public:
-                         ~ScalarConverter ();
-  static void            convert          (std::string s);
-
+  public:
+    static void convert(std::string str);
+    static bool fInTheEnd(std::string s);
 };
 
 #endif

@@ -1,6 +1,10 @@
+// s.back() != 'f' 
+// s.find( '.' ) == 0
+// s.compare( "nan" ) == 0 
+
 #include "utils.hpp"
 
-bool digitsAndMayBePoint(std::string s) {
+bool isDigitsAndMayBePoint(std::string s) {
   for (int i = 0; s[i] != '\0'; i++)
     if(s[i] == '.') {
       s[i] = '0';
@@ -13,7 +17,7 @@ bool digitsAndMayBePoint(std::string s) {
   return true;
 }
 
-bool digits(std::string s) {
+bool isDigits(std::string s) {
   for (int i = 0; s[i] != '\0'; i++)
     if (!std::isdigit(s[i]))
       return false;
@@ -112,6 +116,8 @@ void trim(std::string *s) {
   }
   for (i = strlen(*s) - 1; (*s)[i] == ' ' || (*s)[i] == '\0'; i--) // spaces end
     (*s)[i] = '\0';
+  if (isChar(*s))
+    return ;
   if (strlen(*s) == 0)
     (*s)[0] = ' ';
   if (strlen(*s) == 2 && ((*s)[0] == '+' || (*s)[0] == '-') &&  !std::isdigit((*s)[1]))
@@ -121,24 +127,9 @@ void trim(std::string *s) {
       (*s)[i] = (*s)[i + 1];
     (*s)[i] = '\0';
   }
-  while((*s)[0] == '0') { // zeros beginning
-    for (i = 0; (*s)[i] != '\0'; i++)
-      (*s)[i] = (*s)[i + 1];
-    (*s)[i] = '\0';
-  }
-  if (strlen(*s) == 0)
-    (*s)[0] = '0';
-  if ((*s)[0] == '-' && (*s)[1] != '\0') { // zeros beginning after -
-    while((*s)[1] == '0') {
-      for (i = 1; (*s)[i] != '\0'; i++)
-        (*s)[i] = (*s)[i + 1];
-      (*s)[i] = '\0';
-    }
-    if ((*s)[1] == '-')
-      (*s)[1] = '0';
-  }
+
   for (i = 0; (*s)[i] != '\0'; i++) { // zeros end
-    if ((*s)[i] == '.') {
+    if ((*s)[i] == '.') { // c++ func
       int p = i;
       for (i = strlen(*s) - 1; i > p; i--) {
         if ((*s)[i] == '0')
@@ -155,6 +146,56 @@ void trim(std::string *s) {
     (*s)[0] = '0';
   if (strlen(*s) == 1 && (*s)[0] == '-')
     (*s)[1] = '0';
+
+  if (strlen(*s) >= 3 && (*s)[strlen(*s) - 1] == 'f') { // zeros end if float // не проверено
+    for (i = 0; (*s)[i] != '\0'; i++) {
+      if ((*s)[i] == '.') { // c++ func
+        int p = i;
+        for (i = strlen(*s) - 2; i > p; i--) {
+          if ((*s)[i] == '0') {
+            (*s)[i] = 'f';
+            (*s)[i + 1] = '\0';
+          }
+          else
+            break ;
+        }
+        if (i == p) {
+          (*s)[i + 1] = '0';
+          (*s)[i + 2] = 'f';
+        }
+        break ;
+      }
+    }
+    if (strlen(*s) == 0)
+      (*s)[0] = '0';
+    if (strlen(*s) == 1 && (*s)[0] == '-')
+      (*s)[1] = '0';
+  }
+
+  while((*s)[0] == '0') { // zeros beginning
+    for (i = 0; (*s)[i] != '\0'; i++)
+      (*s)[i] = (*s)[i + 1];
+    (*s)[i] = '\0';
+  }
+  if (strlen(*s) == 0)
+    (*s)[0] = '0';
+  if (strlen(*s) == 1 && (*s)[0] == 'f') {
+    (*s)[0] = '0';
+    (*s)[1] = 'f';
+  }
+  if ((*s)[0] == '-' && (*s)[1] != '\0') { // zeros beginning after -
+    while((*s)[1] == '0') {
+      for (i = 1; (*s)[i] != '\0'; i++)
+        (*s)[i] = (*s)[i + 1];
+      (*s)[i] = '\0';
+    }
+    if ((*s)[1] == '-')
+      (*s)[1] = '0';
+    if (strlen(*s) == 2 && (*s)[0] == '-' && (*s)[1] == 'f') {
+      (*s)[1] = '0';
+      (*s)[2] = 'f';
+    }
+  }
 }
 
 bool isSpecialDouble(std::string s) {
@@ -178,7 +219,7 @@ template <typename T> std::string toString(T val) {
 }
 
 bool isInt(std::string s) {
-  return ((s[0] == '-' && digits(&s[1])             ) || digits(s)                 ) && inLimits(s, toString(std::numeric_limits<int>::min()), toString(std::numeric_limits<int>::max()));
+  return ((s[0] == '-' && isDigits(&s[1])             ) || isDigits(s)                 ) && inLimits(s, toString(std::numeric_limits<int>::min()), toString(std::numeric_limits<int>::max()));
 }
 
 bool isFloat(std::string s) {
@@ -191,7 +232,7 @@ bool isFloat(std::string s) {
   s[strlen(s) - 1] = '\0';
   // std::cout << std::fixed << "fltMax = " << fltMax << std::endl;
   // std::cout << std::fixed << "fltMin = " << fltMin << std::endl;
-  return ((s[0] == '-' && digitsAndMayBePoint(&s[1])) || digitsAndMayBePoint(&s[0])) && inLimits(s, toString(-std::numeric_limits<int>::max()), toString(std::numeric_limits<float>::max()));
+  return ((s[0] == '-' && isDigitsAndMayBePoint(&s[1])) || isDigitsAndMayBePoint(&s[0])) && inLimits(s, toString(-std::numeric_limits<int>::max()), toString(std::numeric_limits<float>::max()));
 }
 
 bool isDouble(std::string s) {
@@ -199,5 +240,5 @@ bool isDouble(std::string s) {
   std::string dblMin = toString(-std::numeric_limits<double>::max());
   // std::cout << std::fixed << "dblMax = " << dblMax << std::endl;
   // std::cout << std::fixed << "dblMin = " << dblMin << std::endl;
-  return ((s[0] == '-' && digitsAndMayBePoint(&s[1])) || digitsAndMayBePoint(&s[0])) && inLimits(s, toString(-std::numeric_limits<double>::max()), toString(std::numeric_limits<double>::max()));
+  return ((s[0] == '-' && isDigitsAndMayBePoint(&s[1])) || isDigitsAndMayBePoint(&s[0])) && inLimits(s, toString(-std::numeric_limits<double>::max()), toString(std::numeric_limits<double>::max()));
 }

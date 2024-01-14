@@ -7,7 +7,9 @@
 // 2147483647f
 // 340282346638528859811704183484516925440.0
 // .567f
-
+// 100000000000
+// 0f
+// -000.0f
 // accept the use of implicit casts for promotion casts only
 
 #include "ScalarConverter.hpp"
