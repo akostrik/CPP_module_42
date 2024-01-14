@@ -90,15 +90,10 @@ Limits:
   
 * atoi при переполнении возвращает INT_MIN/INT_MAX  
 * atof при переполнении неопределенное поведение   
-    + double x = atof("2147483647"): 2147483647.0   
-    + float x = atof("2147483647"): 2147483648.0   
 * sscanf при переполнении неопределенное поведение  
-    + `float f; sscanf ("2147483647","%f",&f);` f = 2147483648.0
 * strtof сообщает о переполнении, о потери значимости, о неправильном формате входных данных
-    + strtof("2147483647") = 2147483648.0   
 * strtod сообщает о переполнении, о потери значимости, о неправильном формате входных данных
-    + strtof("2147483647") = 2147483647.0   
-* С-style `(int)` `(float)` etc
+* С-style cast: `(int)`, `(float)` etc
     + `(int)double_value` вычисляет целую часть
     + `(char)long_value` отбрасывает значащие разряды
     + отбрасывает `const` и `volatile`
@@ -117,23 +112,22 @@ Limits:
   float f;
   iss >> f;
 ```
-Превращает 2147483647 в 2147483648
-* myToStr
-```
-template <typename T> std::string myToStr(T val) {
-  std::ostringstream oss;
-  oss << val;
-  return oss.str();
-}
-```
-* myFromStr
+* from `std::string`
 ```
 template<typename T> T myFromStr(const std::string& s) {
   std::istringstream iss(s);
-  T res;
-  iss >> res;
-  return res;
+  T v;
+  iss >> v;
+  return v;
 }
+* to `std::string`
+```
+template <typename T> std::string myToStr(T v) {
+  std::ostringstream oss;
+  oss << v;
+  return oss.str();
+}
+```
 
 int i = myFromStr<int>(myToStr(5));
 ```
