@@ -288,25 +288,25 @@ boost::lexical_cast<int>(str)
 * prohibites `virtual` functions in the inherited classes 
 
 ### static variable in a function
-* инициализируется один раз, сохраняет значение между вызовами функции 
-* выделение памяти происходит только один раз и существуют эти элементы до завершения программы
-* хранятся в сегментах памяти .data и .bss (не в heap и не на stack), что позволяет хранить значение переменной на протяжении всей жизни программы
+* инициализируется один раз, выделение памяти один раз, переменная сохраняет значение между вызовами функции на протяжении всей жизни программы
+* хранятся в сегментах памяти .data и .bss (не в heap и не на stack)
 * медленнее, чем нестатические переменные (т.к. переход в другой сегмент памяти и проверка инициализации переменной)
-* осторожно использовать многопоточность
+* осторожно использовать с многопоточностью
 
-## static variable member of a class  
-* belongs to the class, is not associated with a particular object, переменная одна для всех экземпляров класса
+## static member of a class  
+* belongs to the class, is not associated with a particular object, is the same for all the class instances
+* если создали три объекта класса, то конструктор вызывается один раз
 * не инициализируются с помощью конструктора
-* если создали три объекта класса, то конструктор статического члена класса будет вызван один раз
 * определяем объект: вне класса с помощью оператора разрешения области видимости `::`
 * объявляем объект: `static A a;`
 * is called using the class name or through an object
 
 ### static class
-* static class = a private and unimplemented default constructor (formally C++ does not have static classes)
-* не может создан в виде объекта
+* static class $\overset{\mathrm{def}}{=}$; a private and unimplemented default constructor
+* formally C++ does not have static classes
+* can't be instanciated
 * для группирования связанных по смыслу методов, свойств и полей
-* содержит только статические методы, свойства, поля
+* только статические методы, свойства, поля
 * не может быть наследован
 
 ### static not member function 
