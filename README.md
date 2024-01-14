@@ -13,19 +13,19 @@ class A
 };
 ```
 
-## Overloading
-Different functions can have the same name provided they are distinguished by their parameter types. 
-
 ## Inheritance
-* subclass = derived class = child class
 * super class = base class = parent class
+* subclass = derived class = child class
 * a constructor is not inherited
 * a destructor is not inherited
 * a destructor must be defined even if it is declared pure-virtual
-* a virtual method that is not pure should be defined
-* когда дочерний класс инициализирует свой объект, конструкторы вызываются один за другим иерархически, начиная с базового класса и заканчивая последним производным классом, destructors are called in the inverse order
-* operator = is inherited, but hidden by the implicitely declared one (явно или неявно определенный оператор закрывает одноименный из базового класса)
-* how to use the opetaor = of the parent class in the child class:
+* когда дочерний класс инициализирует свой объект, конструкторы вызываются один за другим иерархически, destructors are called in the inverse order
+* operator = is inherited, but hidden by the implicitely declared one
+
+## Overloading
+* different functions can have the same name provided they are distinguished by their parameter types 
+* a child can have a function with the same name, this function becomes an independant funciton of the child
+* to use the operator = of the Parent in the Child:
 ```
 class Parent {
 public:
@@ -38,12 +38,10 @@ class Child : public Parent {
 public:
   Child& operator=(const Child &obj) {
     Parent::operator=(obj);
-    // если тут копирование всех нестатических членов-данных, добавленных в Child, то оператор присваивания можно не определять компилятор сам его добавит неявно
     return *this;
   }
 }
 ```
-* a child can have a function with the same name, this function becomes an independant funciton of the child
 
 ## Incapsulation
 * данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
