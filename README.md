@@ -149,8 +149,8 @@ int i = myFromStr<int>(myToStr(5));
     + для приведения одного типа к другому
     + static_cast<встроенные типы>: встроенные в C++ правила приведения
     + static_cast<типы определенны программистом>: правила приведения, определенные программистом
-    + static_cast<pointer> корректно если один из указателей - это void*
-    + static_cast<pointer> корректно если это приведение между объектами классов, где один класс является наследником другого
+    + static_cast<pointer> корректно если один из указателей void*
+    + static_cast<pointer> корректно если приведение между объектами классов, где один класс является наследником другого
     + нет проверки по диапазону
     + a compile-time cast, если не удалось, ошибка компиляции
     + кроме если это приведение между указателями на объекты классов вниз по иерархии и оно не удалось, результат операции undefined
@@ -164,7 +164,7 @@ int i = myFromStr<int>(myToStr(5));
     + static_cast<void (possibly cv-qualified)>() discards the value of expression after evaluating it
     + if a standard conversion sequence from target-type to the type of expression exists, that does not include lvalue-to-rvalue, array-to-pointer, function-to-pointer, null pointer, null member pointer, or boolean conversion, then static_cast can perform the inverse of that implicit conversion
     + if conversion of expression to target-type involves lvalue-to-rvalue, array-to-pointer, or function-to-pointer conversion, it can be performed explicitly by static_cast
-    + a value of integer or enumeration type can be converted to any complete enumeration type.
+    + a value of integer or enumeration type can be converted to any complete enumeration type
         - if the underlying type is not fixed, the behavior is undefined if the value of expression is out of range (the range is all values possible for the smallest bit-field large enough to hold all enumerators of the target enumeration).
         - If the underlying type is fixed, the result is the same as converting the original value first to the underlying type of the enumeration and then to the enumeration type.
     + a value of a floating-point type can also be converted to any complete enumeration type.
@@ -219,6 +219,15 @@ boost::lexical_cast<int>(str)
 * std::to_string c++11  
 * stod c++11 
 ```
+##  Value 
+A value is the representation of some entity that can be manipulated by a program.  
+The "value of a variable" is given by the corresponding mapping in the environment.  
+R-value = contents, refers to an object that persists beyond a single expression  
+L-value = location, a temporary value that does not persist beyond the expression that uses it.    
+Despite its name, this terminology is used to categorize expressions, not values.  
+  
+The notions in an expression of r-value, l-value, and r-value/l-value are analogous to the parameter modes of input parameter (has a value), output parameter (can be assigned), and input/output parameter (has a value and can be assigned).  
+
 ## Reference vs pointer (01/ex03)
 * `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
 * `HumanB`: a pointer to a Weapon, since the field is not set at creation time and the weapon can be NULL
