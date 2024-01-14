@@ -220,9 +220,14 @@ boost::lexical_cast<int>(str)
     + Boolean conversions
 
 ### User-defined conversion sequences
+Consists of :
+* a standard conversion sequence
+* a user-defined conversion
+* a second standard conversion sequence
 
 ### Ellipsis conversion sequences
-  
+Occurs when the compiler matches an argument in a function call with a corresponding ellipsis parameter
+
 ##  Value 
 * is the representation of some entity that can be manipulated by a program  
 * this terminology is used to categorize expressions (and not values)  
