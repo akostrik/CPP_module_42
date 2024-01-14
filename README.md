@@ -480,16 +480,18 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 
 ### IEEE 754 formats (1985)  
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
+* `std::numeric_limits<T>::infinity()` the largest representable value  
+* `std::numeric_limits<T>::max()` the largest finite value  
+* `std::numeric_limits<T>::min()` the smallest positive normal value (there precision loss starts)  
+* `std::numeric_limits<T>::denorm_min()` the smallest positive value, if the type has subnormal values  
+* `std::numeric_limits<T>::lowest()` the least finite value (c++11)
     
 **Normal = normilized floating point numbers**:    
-* A real number may be approximated by multiple floating point representations. One of the representations is defined as _normal_.  
+* a real number may be approximated by multiple floating point representations, one of the representations is defined as _normal_
 * e != 11111111, e != 00000000  
-* m [0,1), no leading zeros in the mantissa. Rather, leading zeros are removed by adjusting the exponent. For example, 0.0123 would be written as $1.23 × 10^{−2}$.  
-* An invisible 1 (not stored) is placed in front  
-* If the exponent reaches -127 (00000000), the leading 1 is no longer used to enable gradual underflow  
-* невозможно записать ноль  
-* doesn't store big numbers precisely, doesn't store `int` bigger than 16777216 precisely  
-* a float with 6 decimal digits can be rounded into a floating-point representation and back without loss of precision  
+* m [0,1), no leading zeros in the mantissa, for example, 0.0123 would be written as $1.23 × 10^{−2}$
+* an invisible 1 (not stored) is placed in front  
+* экспонента хранится без знака => она смещена на 127, поэтому в таблице везде -127
 * n ∈ [0 ; $2^{24}$] точно (полностью влезают в мантиссу)
 * n ∈ [ $2^{24}$ + 1 ; $2^{25}$] округляются до кратного 2
 * n ∈ [ $2^{25}$ + 1 ; $2^{26}$] округляются до кратного 4
@@ -497,7 +499,6 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 * n ∈ [ $2^{126}$ + 1 ; $2^{127}$] округляются до кратного $2^{103}$
 * n ∈ [ $2^{127}$ + 1 ; $2^{128}$] округляются до кратного $2^{104}$
 * n ∈ [ $2^{128}$ + 1 ; ...] превращаются в бесконечность
-* экспонента хранится без знака => она смещена на 127, поэтому в таблице везде -127
   
 binary    	                                 | formula                                         | decimal 
 ---------------------------------------------|-------------------------------------------------|----------------------
