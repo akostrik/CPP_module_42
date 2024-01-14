@@ -16,6 +16,7 @@
 # include <iomanip>
 # include <math.h>
 # include <bitset>
+# include <stdio.h>
 // too mach headers ?
 
 // no constructors
@@ -29,6 +30,8 @@ class ScalarConverter {
     static bool isChar(std::string s);
     static bool isDisplayableChar(std::string s);
     static bool isNonDisplayableChar(std::string s);
+    static bool isDisplayableChar(double d);
+    static bool isNonDisplayableChar(double d);
 };
 
 #endif
