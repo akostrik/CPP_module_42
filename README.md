@@ -306,7 +306,7 @@ Provides four components called algorithms, containers, functions, and iterators
 
 ### static class
 * ≈ a class with only static methods and members
-* formally C++ does not have static classes (there is no non-member functions in the Java-like kind of languages like C#, so they have static classes)
+* formally C++ does not have static classes (Java-like languages like C# have no non-member functions, so they have static classes)
 * In C++, the namespace is more powerful, because:
     + static methods have access to the classes private symbols
     + private static methods are still visible (if inaccessible) to everyone, which breaches somewhat the encapsulation
