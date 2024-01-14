@@ -106,32 +106,22 @@ Limits:
         - static_cast и затем const_cast
         - reinterpret_cast
         - reinterpret_cast и затем const_cast
-* istringstream 
+* to, from `std::string``
 ```
-  std::istringstream iss(s);
-  float f;
-  iss >> f;
-```
-* from `std::string`
-```
-template<typename T> T myFromStr(const std::string& s) {
+template<typename T> T fromStr(const std::string& s) {
   std::istringstream iss(s);
   T v;
   iss >> v;
   return v;
 }
-* to `std::string`
-```
-template <typename T> std::string myToStr(T v) {
+template <typename T> std::string toStr(T v) {
   std::ostringstream oss;
   oss << v;
   return oss.str();
 }
+int i = fromStr<int>(toStr(5));
 ```
-
-int i = myFromStr<int>(myToStr(5));
-```
-* float->double: such that back from double to float results in exactly the same value  
+* float->double: such that back from double to float result in exactly the same value  
 * int -> float:
     + `int` bigger than 16777216 may lose precision
 * `const_cast<target-type ﻿>(expr) ﻿`
