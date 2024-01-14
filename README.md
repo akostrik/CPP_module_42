@@ -136,13 +136,11 @@ int i = fromStr<int>(toStr(5));
     + static_cast<pointer> корректно если один из указателей void*
     + static_cast<pointer> корректно если приведение между объектами классов, где один класс является наследником другого
     + нет проверки по диапазону
-    + a compile-time cast, если не удалось, ошибка компиляции
-    + кроме если это приведение между указателями на объекты классов вниз по иерархии и оно не удалось, результат операции undefined
+    + a compile-time cast
     + снимается ограничение на видимость базового класса при преобразованиях между указателями/ссылками на классы потомки и базовые классы
     + снимается ограничение на видимость базового класса при преобразованиях между указателями на члены классов
-    + static_cast<reference to complete class D>(lvalue of its non-virtual base B) or static_cast<pointer to complete class D>(prvalue pointer to its non-virtual base B) -> downcast
-        - if B is ambiguous / inaccessible / virtual base / a base of a virtual base of D -> this downcast is ill-formed
-        - no runtime checks to ensure that the object's runtime type is actually D, what should be guaranteed by other means the result refers to the enclosing object of type D
+    + static_cast<ref to complete class D>(lvalue of its non-virtual base B) -> downcast
+    + static_cast<ptr to complete class D>(prvalue pointer to its non-virtual base B) -> downcast
     + if there is an implicit conversion sequence from expression to target-type
     + if overload resolution for a direct initialization of an object or reference of type target-type from expression would find at least one viable function -> static_cast<target-type ﻿>(expression ﻿) returns the imaginary variable Temp initialized as if by target-type Temp(expression ﻿);, which may involve implicit conversions, a call to the constructor of target-type or a call to a user-defined conversion operator.
     + static_cast<void (possibly cv-qualified)>() discards the value of expression after evaluating it
@@ -203,6 +201,28 @@ boost::lexical_cast<int>(str)
 * std::to_string c++11  
 * stod c++11 
 ```
+## Implicit conversion sequence 
+* to convert an argument in a function call to the type of the corresponding parameter in a function declaration
+
+### Standard conversion sequences
+1) Exact match includes the conversions:
+    + Identity conversions
+    + Lvalue-to-rvalue conversions
+    + Array-to-pointer conversions
+    + Qualification conversions
+2) Promotion
+    + integral and floating point promotions
+3) Conversion includes the conversions:
+    + Integral and floating-point conversions
+    + Floating-integral conversions
+    + Pointer conversions
+    + Pointer-to-member conversions
+    + Boolean conversions
+
+### User-defined conversion sequences
+
+### Ellipsis conversion sequences
+  
 ##  Value 
 * is the representation of some entity that can be manipulated by a program  
 * this terminology is used to categorize expressions (and not values)  
