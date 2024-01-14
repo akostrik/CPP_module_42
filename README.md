@@ -478,7 +478,7 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 [IEEE-754 Floating Point Converter](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
     
 **Normal = normilized floating point numbers**:    
-* A real numbers may be approximated by multiple floating point representations. One representation is defined as normal.  
+* A real number may be approximated by multiple floating point representations. One of the representations is defined as _normal_.  
 * e != 11111111, e != 00000000  
 * m [0,1), no leading zeros in the mantissa. Rather, leading zeros are removed by adjusting the exponent. For example, 0.0123 would be written as $1.23 × 10^{−2}$.  
 * An invisible 1 (not stored) is placed in front  
