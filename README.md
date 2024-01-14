@@ -62,17 +62,15 @@ template<typename T> T max(T &a, T &b) {
 ```
 
 ## Types
-`std::string` инициализирован динамически, не статически   
-`std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>  
+`std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>, инициализирован динамически, не статически   
 `std::string` != строковый литерал  
 
 Limits:  
-`std::numeric_limits<T>::infinity()` the largest representable value (if T supports infinity, std::numeric_limits<T>::has_infinity = true)  
+`std::numeric_limits<T>::infinity()` the largest representable value
 `std::numeric_limits<T>::max()` the largest finite value  
-`std::numeric_limits<T>::min()` the smallest positive normal value. Floating-point formats have an interval where the exponent cannot get any smaller, but the significand is allowed to get smaller until it reaches zero, this comes at the expense of precision, min() is the point where this precision loss starts  
-`std::numeric_limits<T>::denorm_min()` the smallest positive value = std::numeric_limits<T>::min() if the type doesn't have subnormal values  
-`-std::numeric_limits<T>::infinity()` is the least value, negative infinity (if std::numeric_limits<T>::has_infinity == true and std::numeric_limits<T>::is_signed == true)  
-`std::numeric_limits<T>::lowest()` the least finite value  (c++11)
+`std::numeric_limits<T>::min()` the smallest positive normal value (precision loss starts)  
+`std::numeric_limits<T>::denorm_min()` the smallest positive value, if the type has subnormal values  
+`std::numeric_limits<T>::lowest()` the least finite value (c++11)
 
 `uintptr_t` data type (06/ex02):  
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
