@@ -306,7 +306,7 @@ Provides four components called algorithms, containers, functions, and iterators
 
 ### static class
 * ≈ a class with only static methods and members
-* formally C++ does not have static classes (there is no non-member functions in the Java-like kind of languages like C#, so they have staic classes)
+* formally C++ does not have static classes (there is no non-member functions in the Java-like kind of languages like C#, so they have static classes)
 * In C++, the namespace is more powerful, because:
     + static methods have access to the classes private symbols
     + private static methods are still visible (if inaccessible) to everyone, which breaches somewhat the encapsulation
@@ -318,8 +318,7 @@ Conclusion: Do not copy/paste that Java/C#'s pattern in C++. In Java/C#, the pat
 * can't be instanciated
 * can't be inherited
 * для группирования связанных по смыслу методов, свойств и полей
-* in the Java-like kind of languages (e.g. C#) that are 
-* 
+
 ### static not member function 
 * can't be called from other places
 
