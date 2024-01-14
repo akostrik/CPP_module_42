@@ -128,7 +128,7 @@ Limits:
 | to `char*`      | ---            | ---                                                     | c_str() sscanf myFromStr      |                |                |
 | to `std::string`| sprintf myToStr| = string_constructor _s.data()_ _std::to_string_ myToStr| ---                           | sprintf myToStr| sprintf myToStr| sprintf myToStr
 | to `int`        | sscanf         | sscanf                                                  | atoi sscanf _stoi_ myFromStr  | ---            |                |
-| to `float`      | sscanf         | sscanf                                                  | strtof sscanf atof myFromStr  | implicit       | ---            | implicit
+| to `float`      | sscanf         | sscanf                                                  | strtof sscanf atof _stof_ myFromStr  | implicit       | ---            | implicit
 | to `double`     | sscanf         | sscanf                                                  | strtod sscanf _stod_ myFromStr| implicit       | implicit       | ---
   
 * atoi при переполнении возвращает INT_MIN/INT_MAX  
@@ -265,6 +265,8 @@ boost::lexical_cast<int>(str)
 * std::to_string c++11  
 * stod c++11 
 ```
+## Standard Template Library (STL)
+Provides four components called algorithms, containers, functions, and iterators.  
 
 ## Specifiers
 
