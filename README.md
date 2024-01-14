@@ -60,8 +60,8 @@ http://www.cplusplus.com
 * != строковый литерал  
 
 ### `uintptr_t` data type (06/ex02)  
-* an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
-* an optional type since C99 (?)
+* an unsigned int type
+* any `void*` can be converted to `uintptr_t`, then converted back to `void*`, the result will compare equal to the original pointer
 * might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
 
 ### Limits  
