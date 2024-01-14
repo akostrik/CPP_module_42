@@ -199,20 +199,17 @@ try { manager &m = dynamic_cast<manager&>(e); }
 catch (bad_cast) { ... }
 ```
 * `reinterpret_cast<target-type ﻿>(expr ﻿)`
-    + нужны веские причины
-    + результат может быть некорректным
-    + никаких проверок не делается
-    + `data_type *var_name = reinterpret_cast <data_type *>(pointer_variable)`
     + converts a pointer into a pointer of another type
-    + does not check if the pointer type = type of the pointed data 
+    + does not check if the pointer type = type of the pointed data, никаких проверок нет, результат может быть некорректным
     + doesn’t have any return type
     + не может быть приведено одно значение к другому значению
-    + привести указатель к указателю, указатель к целому, целое к указателю
+    + указатель к указателю, указатель к целому, целое к указателю
     + умеет работать со ссылками
-    + при приведении указателей на функции
+    + приведении указателей на функции
     + reinterpret_cast<whatever *>(some *)
     + reinterpret_cast<integer_expression>(some *)
     + reinterpret_cast<whatever *>(integer_expression)
+    + Ex `T *v = reinterpret_cast <T *>(ptr)`
 * lexical_cast
 ```
 #include <boost/lexical_cast.hpp>
