@@ -2,15 +2,15 @@
 http://www.cplusplus.com  
 
 ## Automatic initialisation, constructors, destructors - OOP feature
-Orthodox canonical class form in C++98: default constructor, copy constructor, destructor, copy assignment operator
+Orthodox canonical class form in C++98: 
 ```
 class A
 {
    public:
-      A ();
-      A (const A &a);
-      ~A ();
-      A &operator = (const A &a);
+      A ();                         // default constructor
+      A (const A &obj);             // copy constructor
+      ~A ();                        // destructor
+      A &operator = (const A &obj); // copy assignment operator
 };
 ```
 
