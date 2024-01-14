@@ -305,12 +305,11 @@ Provides four components called algorithms, containers, functions, and iterators
 * is called using the class name or through an object
 
 ### static class
-* static class $\overset{\mathrm{def}}{=}$ a private and unimplemented default constructor
 * formally C++ does not have static classes
+* ≈ a class with only static methods and members
 * can't be instanciated
+* can't be inherited
 * для группирования связанных по смыслу методов, свойств и полей
-* только статические методы, свойства, поля
-* не может быть наследован
 
 ### static not member function 
 * can't be called from other places
