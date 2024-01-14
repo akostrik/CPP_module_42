@@ -66,7 +66,7 @@ template<typename T> T max(T &a, T &b) {
 `std::string` != строковый литерал  
 
 Limits:  
-`std::numeric_limits<T>::infinity()` the largest representable value
+`std::numeric_limits<T>::infinity()` the largest representable value  
 `std::numeric_limits<T>::max()` the largest finite value  
 `std::numeric_limits<T>::min()` the smallest positive normal value (precision loss starts)  
 `std::numeric_limits<T>::denorm_min()` the smallest positive value, if the type has subnormal values  
