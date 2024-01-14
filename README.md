@@ -305,7 +305,7 @@ Provides four components called algorithms, containers, functions, and iterators
 * is called using the class name or through an object
 
 ### static class
-* static class unable to have non-member functions
+* static class $\overset{\mathrm{def}}{=}$ unable to have non-member functions
 * formally C++ does not have static classes
 * ≈ a class with only static methods and members
 * can't be instanciated
