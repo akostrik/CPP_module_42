@@ -51,47 +51,6 @@ public:
 # C++ feautures
 http://www.cplusplus.com  
 
-## Reference vs pointer (01/ex03)
-* `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
-* `HumanB`: a pointer to a Weapon, since the field is not set at creation time and the weapon can be NULL
-* in the both cases, we can change the type of the weapon  
-
-Reference:  
-* is a dereferenced pointer  
-* is an aliase for an existing variable !=  new variable  
-* is a constant pointer, always points to the same variable, we can't change it (?)  
-* doesn't occupy memory  
-* can't point to nothing  
-* if something should always exist and never change, use a references  
-```
-   std::string &sREF = s;
-//             &sREF       переменная типа ссылка на string
-//                     s   переменная, на которую объявляется ссылка
-```
-  
-Pointer:  
-* can point to a non-existing address  
-* if something should not always exist and can change, use a pointer  
-
-## File manipulations (01/ex04)
-
-C file manipulations:  
-* FILE *fp  
-* fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc  
-* modes : r, w, a  
-* `int my_int = 32; printf("%s", my_int)` fails  
-* hard-coded maximum buffer sizes  
-
-C++ file manipulations:  
-* fstream f  
-* f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof  
-* modes : ios::in, ios::out, ios::bin , ...  
-* Fstream closes the files when they leave scope  
-* how input and output type is defined by the variable type  
-* dynamically sizing receiving strings based on the actual input  
-* extensibility for user-defined types (you can teach streams how to handle your own classes)  
-* exceptions  
-
 ## Templates
 Allows functions and classes to operate with generic types.  
 A templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
@@ -265,9 +224,52 @@ boost::lexical_cast<int>(str)
 * std::to_string c++11  
 * stod c++11 
 ```
-### Standard Template Library (STL)
+## Reference vs pointer (01/ex03)
+* `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
+* `HumanB`: a pointer to a Weapon, since the field is not set at creation time and the weapon can be NULL
+* in the both cases, we can change the type of the weapon  
 
+Reference:  
+* is a dereferenced pointer  
+* is an aliase for an existing variable !=  new variable  
+* is a constant pointer, always points to the same variable, we can't change it (?)  
+* doesn't occupy memory  
+* can't point to nothing  
+* if something should always exist and never change, use a references  
+```
+   std::string &sREF = s;
+//             &sREF       переменная типа ссылка на string
+//                     s   переменная, на которую объявляется ссылка
+```
+  
+Pointer:  
+* can point to a non-existing address  
+* if something should not always exist and can change, use a pointer  
+
+## File manipulations (01/ex04)
+
+C file manipulations:  
+* FILE *fp  
+* fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc  
+* modes : r, w, a  
+* `int my_int = 32; printf("%s", my_int)` fails  
+* hard-coded maximum buffer sizes  
+
+C++ file manipulations:  
+* fstream f  
+* f.open, f.close, f>>, f<<, f.seekg, f.seekp, f.tellg, f.tellp, f.read, f.write, f.eof  
+* modes : ios::in, ios::out, ios::bin , ...  
+* Fstream closes the files when they leave scope  
+* how input and output type is defined by the variable type  
+* dynamically sizing receiving strings based on the actual input  
+* extensibility for user-defined types (you can teach streams how to handle your own classes)  
+* exceptions  
+
+## Standard Template Library (STL)
 Provides four components called algorithms, containers, functions, and iterators.  
+
+## Namespace
+Anonymous namespaces make private things really private.  
 
 ## Specifiers
 
