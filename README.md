@@ -1,8 +1,7 @@
 # C++ feautures
 http://www.cplusplus.com  
 
-## Automatic initialisation, constructors, destructors
-Object Oriented Programming (OOP)   
+## Automatic initialisation, constructors, destructors - OOP feature
 Orthodox canonical class form in C++98: default constructor, copy constructor, destructor, copy assignment operator
 ```
 class A
@@ -15,8 +14,7 @@ class A
 };
 ```
 
-## Inheritance
-Object Oriented Programming (OOP)  
+## Inheritance - OOP feature
 * super class = base class = parent class
 * subclass = derived class = child class
 * a constructor is not inherited
@@ -25,8 +23,7 @@ Object Oriented Programming (OOP)
 * когда дочерний класс инициализирует свой объект, конструкторы вызываются один за другим иерархически, destructors are called in the inverse order
 * operator = is inherited, but hidden by the implicitely declared one
 
-## Overloading
-Object Oriented Programming (OOP)  
+## Overloading - OOP feature
 * different functions can have the same name provided they are distinguished by their parameter types 
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 * to use the operator = of the Parent in the Child:
@@ -47,8 +44,7 @@ public:
 }
 ```
 
-## Incapsulation
-Object Oriented Programming (OOP)  
+## Incapsulation - OOP feature
 * данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
 
 ## Types
