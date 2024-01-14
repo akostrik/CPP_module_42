@@ -51,16 +51,6 @@ public:
 # C++ feautures
 http://www.cplusplus.com  
 
-## Templates
-Allows functions and classes to operate with generic types.  
-A templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
-Class templates / variable templates  
-```
-template<typename T> T max(T &a, T &b) {
-  return a > b ? a : b;
-}
-```
-
 ## Types
 `std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>, инициализирован динамически, не статически   
 `std::string` != строковый литерал  
@@ -227,6 +217,16 @@ Consists of :
 
 ### Ellipsis conversion sequences
 Occurs when the compiler matches an argument in a function call with a corresponding ellipsis parameter
+
+## Templates
+Allows functions and classes to operate with generic types.  
+A templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
+Class templates / variable templates  
+```
+template<typename T> T max(T &a, T &b) {
+  return a > b ? a : b;
+}
+```
 
 ##  Value 
 * is the representation of some entity that can be manipulated by a program  
