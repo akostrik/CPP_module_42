@@ -1,6 +1,8 @@
-# Object Oriented Programming (OOP) 
+# C++ feautures
+http://www.cplusplus.com  
 
 ## Automatic initialisation, constructors, destructors
+Object Oriented Programming (OOP) 
 Orthodox canonical class form in C++98: default constructor, copy constructor, destructor, copy assignment operator
 ```
 class A
@@ -14,6 +16,7 @@ class A
 ```
 
 ## Inheritance
+Object Oriented Programming (OOP) 
 * super class = base class = parent class
 * subclass = derived class = child class
 * a constructor is not inherited
@@ -23,6 +26,7 @@ class A
 * operator = is inherited, but hidden by the implicitely declared one
 
 ## Overloading
+Object Oriented Programming (OOP) 
 * different functions can have the same name provided they are distinguished by their parameter types 
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 * to use the operator = of the Parent in the Child:
@@ -44,10 +48,8 @@ public:
 ```
 
 ## Incapsulation
+Object Oriented Programming (OOP) 
 * данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
-
-# C++ feautures
-http://www.cplusplus.com  
 
 ## Types
 ### `std::string` 
