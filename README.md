@@ -314,7 +314,6 @@ Provides four components called algorithms, containers, functions, and iterators
     + static methods cannot be overloaded by the class user without modifying the library header
     + there is nothing that can be done by a static method that can't be done better than a (possibly friend) non-member function in the same namespace
     + namespaces have their own semantics (they can be combined, they can be anonymous, etc.)
-Conclusion: Do not copy/paste that Java/C#'s pattern in C++. In Java/C#, the pattern is mandatory. But in C++, it is bad style.
 * can't be instanciated
 * can't be inherited
 * для группирования связанных по смыслу методов, свойств и полей
