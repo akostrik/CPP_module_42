@@ -113,23 +113,21 @@ int i = fromStr<int>(toStr(5));
     + убирает `const` и `volatile`
 * `static_cast<target-type ﻿>(expr ﻿)` 		
     + https://en.cppreference.com/w/cpp/language/static_cast  
+    + a compile-time cast
     + static_cast<встроенные типы>: встроенные в C++ правила приведения
     + static_cast<типы определенны программистом>: правила приведения, определенные программистом
-    + static_cast<pointer> корректно если один из указателей void*
-    + static_cast<pointer> корректно если приведение между объектами классов, где один класс наследник другого
-    + a compile-time cast
-    + снимается ограничение на видимость базового класса при преобразованиях между указателями/ссылками на классы потомки и базовые классы
-    + снимается ограничение на видимость базового класса при преобразованиях между указателями на члены классов
+    + static_cast<ptr> один из указателей void*
+    + static_cast<ptr> приведение между объектами классов, где один класс наследник другого
     + static_cast<ref to complete class D>(lvalue of its non-virtual base B) -> downcast
     + static_cast<ptr to complete class D>(prvalue pointer to its non-virtual base B) -> downcast
-    + if overload resolution for a direct initialization of an object or reference of type target-type from expression would find at least one viable function -> static_cast<target-type ﻿>(expression ﻿) returns the imaginary variable Temp initialized as if by target-type Temp(expression ﻿);, which may involve implicit conversions, a call to the constructor of target-type or a call to a user-defined conversion operator
-    + static_cast<void (possibly cv-qualified)>() discards the value of expression after evaluating it
-    + = inverse of that implicit conversion, if a standard conversion sequence from target-type to the type of expression exists and does not include lvalue-to-rvalue, array-to-pointer, function-to-pointer, null pointer, null member pointer, boolean conversion 
+    + static_cast<void>() discards the value of expression after evaluating it
+    + is inverse of the implicit conversion (if a standard conversion sequence from target-type to the type of expression exists)
     + perform explicitly conversions involving lvalue-to-rvalue, array-to-pointer, function-to-pointer conversion 
-    + a value of int or enumeration type can be converted to any complete enumeration type
+    + a value of int can be converted to any complete enumeration type
+    + a value of enumeration type can be converted to any complete enumeration type
     + a value of a float can be converted to any complete enumeration type
-    + a pointer to member of some complete class D can be upcast to a pointer to member of its unambiguous, accessible base class B
-    + a prvalue of void* (possibly cv-qualified) can be converted to pointer to any object type T
+    + a pointer to member of some complete class D can be upcast to a pointer to member of its base class B
+    + a prvalue of void* can be converted to pointer to any object type T
     + a conversion of void* and back preserves the original value
     + the result is a prvalue (as with all cast expressions)
 ```
