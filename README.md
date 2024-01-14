@@ -302,7 +302,7 @@ boost::lexical_cast<int>(str)
 * is called using the class name or through an object
 
 ### static class
-* static class $\overset{\mathrm{def}}{=}$; a private and unimplemented default constructor
+* static class $\overset{\mathrm{def}}{=}$ a private and unimplemented default constructor
 * formally C++ does not have static classes
 * can't be instanciated
 * для группирования связанных по смыслу методов, свойств и полей
