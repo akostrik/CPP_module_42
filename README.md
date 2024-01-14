@@ -319,6 +319,7 @@ Anonymous namespaces make private things really private.
 * can't be instanciated
 * can't be inherited
 * для группирования связанных по смыслу методов, свойств и полей
+* the compiler stopping you from writing any instance members/methods
 
 ### static not member function 
 * can't be called from other places
