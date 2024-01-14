@@ -626,21 +626,3 @@ Represent numbers as fractions with integral numerator and denominator, and can 
 ## Without encoding representation of real numbers
 Handles irrational numbers like pi or sqrt{3} in a formal way, without dealing with an encoding. Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation.  
 Computer algebra systems such as Mathematica, Maxima, Maple.
-
-# School Requirements
-* a header should include all the dependencies it needs
-
-Are Forbidden:  
-- external libraries or features from versions other than C++98
-- boost libraries
-- *printf(), *alloc(), free()
-- namespace
-- `friend` keywords
-- reading the string character by character (we should use functions std::string) 
-- C file manipulation functions
-- containers (vector/list/map/and so forth)
-- algorithms (anything that requires to include the <algorithm> header)
-- a function implementation put in a header file (except for function templates)
-- memory leaks
-- double inclusion (avoid it by adding include guards)  
-- `public` without any reason
