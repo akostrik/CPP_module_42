@@ -220,15 +220,17 @@ boost::lexical_cast<int>(str)
 * stod c++11 
 ```
 ##  Value 
-A value is the representation of some entity that can be manipulated by a program. Despite its name, this terminology is used to categorize expressions, not values.  
-*R-value* 
+* is the representation of some entity that can be manipulated by a program  
+* this terminology is used to categorize expressions (and not values)  
+
+**R-value**: 
 * r = right side of the assignment operator
 * content
 * refers to an object that persists beyond a single expression
 * can be l-values or non-l-values
 * Ex: выражение 4 + 9, во время исполнения программа генерирует значение 13, но поскольку в программе не указано где содержатся эти 13, выражения является не l-значением
   
-*L-value*
+**L-value**:
 * l = left side of the assignment operator
 * something that could be assigned to
 * a variable or a de-referenced reference
@@ -238,8 +240,6 @@ A value is the representation of some entity that can be manipulated by a progra
 * имеют адрес хранения, программно доступный исполняемой программе (например, используя &)
 * Ex: объявляется переменная x, которой присваивается значение 13
    
-The notions in an expression of r-value, l-value, and r-value/l-value are analogous to the parameter modes of input parameter (has a value), output parameter (can be assigned), and input/output parameter (has a value and can be assigned).  
-
 ## Reference vs pointer (01/ex03)
 * `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
 * `HumanB`: a pointer to a Weapon, since the field is not set at creation time and the weapon can be NULL
