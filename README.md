@@ -52,21 +52,24 @@ public:
 http://www.cplusplus.com  
 
 ## Types
-`std::string` = `'basic_string<char>` ≈ динамический массив char'ов ≈ vector<char>, инициализирован динамически, не статически   
-`std::string` != строковый литерал  
+### `std::string` 
+* = `'basic_string<char>`
+* ≈ динамический массив char'ов
+* ≈ vector<char>
+* инициализирован динамически, не статически
+* != строковый литерал  
 
-Limits:  
-`std::numeric_limits<T>::infinity()` the largest representable value  
-`std::numeric_limits<T>::max()` the largest finite value  
-`std::numeric_limits<T>::min()` the smallest positive normal value (precision loss starts)  
-`std::numeric_limits<T>::denorm_min()` the smallest positive value, if the type has subnormal values  
-`std::numeric_limits<T>::lowest()` the least finite value (c++11)
-
-`uintptr_t` data type (06/ex02):  
+### `uintptr_t` data type (06/ex02)  
 * an unsigned int type: any pointer to void can be converted to `uintptr_t`, then converted back to pointer to void, the result will compare equal to the original pointer
 * an optional type since C99 (?)
 * might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
 
+### Limits  
+`std::numeric_limits<T>::infinity()` the largest representable value  
+`std::numeric_limits<T>::max()` the largest finite value  
+`std::numeric_limits<T>::min()` the smallest positive normal value (there precision loss starts)  
+`std::numeric_limits<T>::denorm_min()` the smallest positive value, if the type has subnormal values  
+`std::numeric_limits<T>::lowest()` the least finite value (c++11)
 
 ## Convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
 
@@ -117,36 +120,29 @@ int i = fromStr<int>(toStr(5));
 * `const_cast<target-type ﻿>(expr) ﻿`
     + самое простое приведение типов
     + убирает `const` и `volatile`
-    + если не удалось, ошибка компиляции
 * `static_cast<target-type ﻿>(expr ﻿)` 		
     + https://en.cppreference.com/w/cpp/language/static_cast  
     + для приведения одного типа к другому
     + static_cast<встроенные типы>: встроенные в C++ правила приведения
     + static_cast<типы определенны программистом>: правила приведения, определенные программистом
     + static_cast<pointer> корректно если один из указателей void*
-    + static_cast<pointer> корректно если приведение между объектами классов, где один класс является наследником другого
+    + static_cast<pointer> корректно если приведение между объектами классов, где один класс наследник другого
     + нет проверки по диапазону
     + a compile-time cast
     + снимается ограничение на видимость базового класса при преобразованиях между указателями/ссылками на классы потомки и базовые классы
     + снимается ограничение на видимость базового класса при преобразованиях между указателями на члены классов
     + static_cast<ref to complete class D>(lvalue of its non-virtual base B) -> downcast
     + static_cast<ptr to complete class D>(prvalue pointer to its non-virtual base B) -> downcast
-    + if there is an implicit conversion sequence from expression to target-type
     + if overload resolution for a direct initialization of an object or reference of type target-type from expression would find at least one viable function -> static_cast<target-type ﻿>(expression ﻿) returns the imaginary variable Temp initialized as if by target-type Temp(expression ﻿);, which may involve implicit conversions, a call to the constructor of target-type or a call to a user-defined conversion operator.
     + static_cast<void (possibly cv-qualified)>() discards the value of expression after evaluating it
-    + if a standard conversion sequence from target-type to the type of expression exists, that does not include lvalue-to-rvalue, array-to-pointer, function-to-pointer, null pointer, null member pointer, or boolean conversion, then static_cast can perform the inverse of that implicit conversion
+    + = inverse of that implicit conversion if a standard conversion sequence from target-type to the type of expression exists and does not include lvalue-to-rvalue, array-to-pointer, function-to-pointer, null pointer, null member pointer, boolean conversion 
     + if conversion of expression to target-type involves lvalue-to-rvalue, array-to-pointer, or function-to-pointer conversion, it can be performed explicitly by static_cast
     + a value of integer or enumeration type can be converted to any complete enumeration type
-        - if the underlying type is not fixed, the behavior is undefined if the value of expression is out of range (the range is all values possible for the smallest bit-field large enough to hold all enumerators of the target enumeration).
-        - If the underlying type is fixed, the result is the same as converting the original value first to the underlying type of the enumeration and then to the enumeration type.
-    + a value of a floating-point type can also be converted to any complete enumeration type.
-        - the result is the same as converting the original value first to the underlying type of the enumeration, and then to the enumeration type.
+    + a value of a floating-point type can also be converted to any complete enumeration type
     + a pointer to member of some complete class D can be upcast to a pointer to member of its unambiguous, accessible base class B. This static_cast makes no checks to ensure the member actually exists in the runtime type of the pointed-to object: if B does not contain the original member and is not a base class of the class containing the original member, the behavior is undefined.
-    + a prvalue of type pointer to void (possibly cv-qualified) can be converted to pointer to any object type T. Conversion of any pointer to pointer to void and back to pointer to the original (or more cv-qualified) type preserves its original value.
-        - if the original pointer value represents an address of a byte in memory that does not satisfy the alignment requirement of T, then the resulting pointer value is unspecified.
-        - if the original pointer value points to an object a, and there is an object b of type similar to T that is pointer-interconvertible with a, the result is a pointer to b.
-        - otherwise the pointer value is unchanged.
-    + as with all cast expressions, the result is a prvalue
+    + a prvalue of void* (possibly cv-qualified) can be converted to pointer to any object type T
+    + conversion of any pointer to void* and back preserves its original value
+    + the result is a prvalue (as with all cast expressions)
 ```
 float a = 5.2;
 int b = static_cast<int>(a);
