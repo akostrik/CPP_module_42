@@ -78,8 +78,10 @@ https://en.cppreference.com/w/cpp/language
   
 * С-style cast: `(int)`, `(float)` etc
     + отбрасывает `const` и `volatile`
-    + преобразовывает `int` в указатель и обратно
+    + int -> ptr
+    + ptr -> int
     + преобразовывает указатели вверх и вниз по иерархии наследования
+    + casts through inheritance hierarchies 
     + преобразовывает указатели как reinterpret_cast, ориентируясь на битовое представление
     + по очереди пробует :
         - const_cast
@@ -87,33 +89,33 @@ https://en.cppreference.com/w/cpp/language
         - static_cast и затем const_cast
         - reinterpret_cast
         - reinterpret_cast и затем const_cast
-   + T(something) syntax is equivalent to (T)something and should be avoided
-   + can cast through inheritance hierarchies 
+   + T(x) syntax is equivalent to (T)x 
+   + should be avoided
 * `const_cast<target-type ﻿>(expr) ﻿`
     + самое простое приведение типов
-    + utility: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
+    + usage: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
 * `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
-    + a compile-time cast
-    + static_cast<встроенные типы>: встроенные в C++ правила приведения
-    + static_cast<типы определенны программистом>: правила приведения, определенные программистом
-    + static_cast<ptr> один из указателей void*
-    + static_cast<ptr> приведение между объектами классов, где один класс наследник другого
-    + static_cast<ref to complete class D>(lvalue of its non-virtual base B) -> downcast
-    + static_cast<ptr to complete class D>(prvalue pointer to its non-virtual base B) -> downcast
-    + static_cast<void>() discards the value of expression after evaluating it
+    + ... -> встроенный тип : встроенные в C++ правила приведения
+    + ... -Ю тип определенный программистом : правила приведения, определенные программистом
+    + ptr -> ptr один из указателей void*
+    + ptr -> ptr приведение между объектами классов, где один класс наследник другого
+    + Parent -> &Child : downcast
+    + *Parent -> *Child : downcast
+    + expr -> void : discards the value of expression after evaluating it
     + is inverse of the implicit conversion (if a standard conversion sequence from target-type to the type of expression exists)
-    + perform explicitly conversions involving lvalue-to-rvalue, array-to-pointer, function-to-pointer conversion 
-    + a value of int can be converted to any complete enumeration type
-    + a value of enumeration type can be converted to any complete enumeration type
-    + a value of a float can be converted to any complete enumeration type
-    + a pointer to member of some complete class D can be upcast to a pointer to member of its base class B
-    + a prvalue of void* can be converted to pointer to any object type T
-    + a conversion of void* and back preserves the original value
-    + like implicit conversions between types
-    + can call explicit conversion functions (or implicit ones)
-    + utility: ordinary type conversions
+    + explicitly performs involving lvalue-to-rvalue, array-to-pointer, function-to-pointer conversion 
+    + int -> any complete enumeration type
+    + enumeration type -> any complete enumeration type
+    + float -> any complete enumeration type
+    + * member Child -> upcast * member Parent
+    + void* -> *T (any object type T)
+    + void* -> *T -> void\* : preserves the original value
+    + can call explicit or implicit conversion functions
+    + a compile-time cast
+    + ≈ implicit conversions between types
+    + usage: ordinary type conversions
 * `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
-    + casts from one pointer / reference type to another
+    + casts from a pointer / reference type to another
     + dynamic_cast<Child&> (ref Parent)
     + T* dynamic_cast<T*> (obj);
     + dynamic_cast<Child &>(ref Parent) почти как с указателями
@@ -124,11 +126,11 @@ https://en.cppreference.com/w/cpp/language
     + cast a pointer / reference to any polymorphic type to any other class type
     + doesn't work if there are multiple objects of the same type in the inheritance hierarchy ('dreaded diamond') and you aren't using virtual inheritance
     + can only go through public inheritance, fails to travel through protected or private inheritance
-    + utility: converting pointers/references within an inheritance hierarchy
-    + utility: cast sideways or even up another chain, seeks out the desired object and returns it if possible
-    + utility: to handle polymorphism
-    + utility: to find the type of object (!)
-    + utility: safe downcast:
+    + usage: converting pointers/references within an inheritance hierarchy
+    + usage: cast sideways or even up another chain, seeks out the desired object and returns it if possible
+    + usage: to handle polymorphism
+    + usage: to find the type of object (!)
+    + usage: safe downcast:
 ```
 Parent &p;
 try { Child &m = dynamic_cast<Child&>(p); }
@@ -144,7 +146,7 @@ catch (bad_cast) { ... }
     + Ex `T *v = reinterpret_cast <T *>(ptr)`
     + turns one type directly into another
     + normally if you cast the result back to the original type, you will get the exact same value (except if the intermediate type is smaller than the original one)
-    + utility: weird conversions, bit manipulations (ex turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
+    + usage: weird conversions, bit manipulations (ex turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
 * `std::bit_cast` (c++20)
 * `literal_cast`
 * stringstream
@@ -459,6 +461,9 @@ In any of the parameters of a function declaration: that declaration becomes an 
 ### inline (c++ 17)
 
 ### explicit
+
+### terminlogy 
+**Incomplete class** : a class until the end of its definition
 
 # Approximation to real numbers
 **Accuracy** how close a measurement is to the true value  
