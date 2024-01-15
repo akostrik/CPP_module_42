@@ -1,7 +1,7 @@
 # C++ feautures
 http://www.cplusplus.com  
 
-## Automatic initialisation, constructors, destructors - OOP feature
+## Automatic initialisation (OOP feature)
 Orthodox canonical class form in C++98: 
 ```
 class A
@@ -14,7 +14,7 @@ class A
 };
 ```
 
-## Inheritance - OOP feature
+## Inheritance (feature)
 * super class = base class = parent class
 * subclass = derived class = child class
 * a constructor is not inherited
@@ -23,7 +23,7 @@ class A
 * когда дочерний класс инициализирует свой объект, конструкторы вызываются один за другим иерархически, destructors are called in the inverse order
 * operator = is inherited, but hidden by the implicitely declared one
 
-## Overloading - OOP feature
+## Overloading (OOP feature)
 * different functions can have the same name provided they are distinguished by their parameter types 
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 * to use the operator = of the Parent in the Child:
@@ -44,23 +44,23 @@ public:
 }
 ```
 
-## Incapsulation - OOP feature
+## Incapsulation (OOP feature)
 * данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
 
 ## Types
 ### `std::string` 
 * = `'basic_string<char>`
-* ≈ динамический массив char'ов
+* ≈ массив char'ов
 * ≈ vector<char>
 * инициализирован динамически, не статически
 * != строковый литерал  
 
 ### `uintptr_t` data type (06/ex02)  
-* `unsigned int
-* is capable of storing a data pointer
+* `unsigned int`
+* stores a data pointer
 * `void*` can be converted to `uintptr_t`, then back to `void*`, the result will compare equal to the original pointer
-* if typically means that it's the same size as a pointer (may be the same size / larger / smaller: for ex on a hypothetical platform where `void*` is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`)
-* to perform integer-specific operations on a pointer, to do something unusual with a pointer - like for example invert all bits: you cast it to `uintptr_t`, manipulate it as an int, then cast back
+* typically is the same size as a pointer (may be larger or smaller, for ex on a hypothetical platform where `void*` is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`)
+* its utilility: integer-specific operations on a pointer, to do something unusual with a pointer, for ex to invert all bits, you cast a pointer to `uintptr_t`, manipulate it as an int, then cast back
 
 ### `intptr_t` data type
 ...
