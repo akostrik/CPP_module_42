@@ -111,6 +111,7 @@ https://en.cppreference.com/w/cpp/language
     + a conversion of void* and back preserves the original value
     + like implicit conversions between types
     + can call explicit conversion functions (or implicit ones)
+    + utility: ordinary type conversions
 * `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
     + casts from one pointer / reference type to another
     + dynamic_cast<Child&> (ref Parent)
@@ -123,6 +124,7 @@ https://en.cppreference.com/w/cpp/language
     + cast a pointer / reference to any polymorphic type to any other class type
     + doesn't work if there are multiple objects of the same type in the inheritance hierarchy ('dreaded diamond') and you aren't using virtual inheritance
     + can only go through public inheritance, fails to travel through protected or private inheritance
+    + utility: converting pointers/references within an inheritance hierarchy
     + utility: cast sideways or even up another chain, seeks out the desired object and returns it if possible
     + utility: to handle polymorphism
     + utility: to find the type of object (!)
