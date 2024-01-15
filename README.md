@@ -88,11 +88,10 @@ public:
         - reinterpret_cast
         - reinterpret_cast и затем const_cast
    + T(something) syntax is equivalent to (T)something and should be avoided
-   + can cast through inheritance hierarchies, it is unnecessary when casting upwards, but when casting downwards it can be used as long as it doesn't cast through virtual inheritance
+   + can cast through inheritance hierarchies 
 * `const_cast<target-type ﻿>(expr) ﻿`
     + самое простое приведение типов
-    + убирает `const` и `volatile`
-    + its utility: to remove or add const to a variable
+    + its utility: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
 * `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
     + https://en.cppreference.com/w/cpp/language/static_cast  
     + a compile-time cast
@@ -113,16 +112,16 @@ public:
     + a conversion of void* and back preserves the original value
     + like implicit conversions between types
     + can call explicit conversion functions (or implicit ones)
-** `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
+* `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
     + casts from one pointer / reference type to another
-    + T& dynamic_cast<T&> (obj); to cast from references to base class objects to references to derived class objects
+    + dynamic_cast<Child&> (ref Parent)
     + T* dynamic_cast<T*> (obj);
-    + there should be at least one virtual function in the base class (in practice, the base class has a virtual destructor)
-    + a runtime check to ensure the validity of the cast
-    + безопасное приведение по иерархии наследования, в том числе и для виртуального наследования
-    + dynamic_cast<derv_class *>(base_class_ptr_expr): используется RTTI (Runtime Type Information), чтобы привести один указатель на объект класса к другому указателю на объект класса. Классы должны быть полиморфными, то есть в базовом классе должна быть хотя бы одна виртуальная функция. Если эти условие не соблюдено, ошибка возникнет на этапе компиляции. Если приведение невозможно, то об этом станет ясно только на этапе выполнения программы и будет возвращен NULL.
-    + dynamic_cast<derv_class &>(base_class_ref_expr) почти как с указателями, но в случае ошибки во время исполнения исключение bad_cast
-    + may be used to find the type of object (!)
+    + dynamic_cast<Child &>(ref Parent) почти как с указателями
+    + приведение по иерархии наследования
+    + dynamic_cast<Child *>(Parent): привести один указатель на объект класса к другому указателю на объект класса. Классы должны быть полиморфными, то есть в базовом классе должна быть хотя бы одна виртуальная функция
+    + there should be at least one virtual function in the base class (the base class has a virtual destructor)
+    + utlity : to handle polymorphism
+    + utility: to find the type of object (!)
     + safe downcast:
 ```
 employee &e;
