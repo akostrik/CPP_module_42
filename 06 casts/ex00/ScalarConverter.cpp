@@ -1,34 +1,20 @@
 #include "ScalarConverter.hpp"
 
-bool ScalarConverter::fInTheEnd(std::string s) {
-  int len;
+////////////////////////////////////////////////////// OCCF
+ScalarConverter::ScalarConverter() {};
 
-  for (len = 0; s[len] != '\0'; len++) ;
-  return (s[len - 1] == 'f');
-}
+ScalarConverter::ScalarConverter(const ScalarConverter &obj) { 
+  *this = obj; 
+};
 
-bool ScalarConverter::thereIsPoint(std::string s) {
-  for (int i = 0; s[i] != '\0'; i++) 
-    if (s[i] == '.')
-      return true;
-  return false;
-}
+ScalarConverter& ScalarConverter::operator = (ScalarConverter const &obj) {
+  (void)obj;
+  return *this;
+};
 
-bool ScalarConverter::isInteger(std::string s) { // can be more than INT_MAX, but still an integer number
-  int i;
+ScalarConverter::~ScalarConverter() {};
 
-  if (!ScalarConverter::thereIsPoint(s))
-    return true;
-  for (i = 0; s[i] != '\0'; i++) ;
-  i--;
-  if (s[i] == 'f')
-    i--;
-  for (     ; s[i] != '.' ; i--)
-    if (s[i] != '0')
-      return false;
-  return true;
-}
-
+////////////////////////////////////////////////////// MEMBER FUNCTION
 void ScalarConverter::convert(std::string s) {
   if (s == "+inf" || s == "+inff") {
     std::cout << "char:   impossible" << std::endl;
@@ -135,3 +121,34 @@ void ScalarConverter::convert(std::string s) {
   std::cout << "double: impossible" << std::endl;
   std::cout << "(type: non detected)" << std::endl;
 }
+
+////////////////////////////////////////////////////// UTILS
+bool ScalarConverter::fInTheEnd(std::string s) {
+  int len;
+
+  for (len = 0; s[len] != '\0'; len++) ;
+  return (s[len - 1] == 'f');
+}
+
+bool ScalarConverter::thereIsPoint(std::string s) {
+  for (int i = 0; s[i] != '\0'; i++) 
+    if (s[i] == '.')
+      return true;
+  return false;
+}
+
+bool ScalarConverter::isInteger(std::string s) { // can be more than INT_MAX, but still an integer number
+  int i;
+
+  if (!ScalarConverter::thereIsPoint(s))
+    return true;
+  for (i = 0; s[i] != '\0'; i++) ;
+  i--;
+  if (s[i] == 'f')
+    i--;
+  for (     ; s[i] != '.' ; i--)
+    if (s[i] != '0')
+      return false;
+  return true;
+}
+

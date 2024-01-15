@@ -5,8 +5,8 @@
 # include <cfloat>   // FLT_MAX
 # include <climits>  // CHAR_MAX INT_MAX
 # include <iostream> // cout
-# include <cerrno>
 # include <iomanip>  // setprecision
+# include <cerrno>
 
 class ScalarConverter {
   private:
