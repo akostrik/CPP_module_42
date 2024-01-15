@@ -5,20 +5,20 @@
 #include "C.hpp"
 
 Base *generate(void) {
-  int secret_num;
+  int randV;
 
   srand(time(NULL));
-  secret_num = rand() % 3;
+  randV = rand() % 3;
 
-  if (secret_num == 0) {
+  if (randV == 0) {
     std::cout << "Class A was created" << std::endl;
     return (new A());
   }
-  if (secret_num == 1) {
+  if (randV == 1) {
     std::cout << "Class B was created" << std::endl;
     return (new B());
   }
-  if (secret_num == 2) {
+  if (randV == 2) {
     std::cout << "Class C was created" << std::endl;
     return (new C());
   }
@@ -39,6 +39,7 @@ void identify(Base *p) {
 }
 
 // uses a try and catch block to check if the cast failed
+// Using a pointer inside this function is forbidden
 void identify(Base &p) {
   if (dynamic_cast<A*>(&p))
     std::cout << "Reference: It is a class A" << std::endl;
@@ -51,6 +52,7 @@ void identify(Base &p) {
 }
 
 int main() {
+ 
   Base *base = generate();
 
   if (base == NULL) {
