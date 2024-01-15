@@ -71,9 +71,9 @@ public:
 |-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
 | to `char*`      | ---            | ---                                                     | c_str() sscanf myFromStr      |                |                |
 | to `std::string`| sprintf myToStr| = string_constructor _s.data()_ _std::to_string_ myToStr| ---                           | sprintf myToStr| sprintf myToStr| sprintf myToStr
-| to `int`        | sscanf         | sscanf                                                  | atoi sscanf _stoi_ myFromStr  | ---            |                |
-| to `float`      | sscanf         | sscanf                                                  | strtof sscanf atof _stof_ myFromStr  | implicit       | ---            | implicit
-| to `double`     | sscanf         | sscanf                                                  | strtod sscanf _stod_ myFromStr| implicit       | implicit       | ---
+| to `int`        |          |                                                   | atoi sscanf _stoi_ myFromStr  | ---            |                |
+| to `float`      |          |                                                   | strtof sscanf atof _stof_ myFromStr  | implicit       | ---            | implicit
+| to `double`     |          |                                                   | strtod sscanf _stod_ myFromStr| implicit       | implicit       | ---
   
 * С-style cast: `(int)`, `(float)` etc
     + отбрасывает `const` и `volatile`
