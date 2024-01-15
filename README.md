@@ -58,7 +58,7 @@ public:
 ### `uintptr_t` data type (06/ex02)  
 * unsigned int
 * `void*` can be converted to `uintptr_t`, then back to `void*`, the result will compare equal to the original pointer
-* might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
+* the same size as a `void*` / larger / smaller: for ex on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
 
 ## Convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
 
