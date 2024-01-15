@@ -71,10 +71,10 @@ https://en.cppreference.com/w/cpp/language
 |                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
 |-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
 | to `char*`      | ---            | ---                                                     | c_str() sscanf myFromStr      |                |                |
-| to `std::string`| sprintf myToStr| = string_constructor _s.data()_ _std::to_string_ myToStr| ---                           | sprintf myToStr| sprintf myToStr| sprintf myToStr
-| to `int`        |          |                                                   | atoi sscanf _stoi_ myFromStr  | ---            |                |
-| to `float`      |          |                                                   | strtof sscanf atof _stof_ myFromStr  | implicit       | ---            | implicit
-| to `double`     |          |                                                   | strtod sscanf _stod_ myFromStr| implicit       | implicit       | ---
+| to `std::string`| sprintf myToStr| = string_constructor (s.data(), std::to_string) myFunc| ---                           | sprintf myFunc| sprintf myFunc| sprintf myFunc
+| to `int`        |          |                                                   | atoi sscanf (stoi) myFunc  | ---            |                |
+| to `float`      |          |                                                   | strtof sscanf atof (stof) myFunc  | implicit       | ---            | implicit
+| to `double`     |          |                                                   | strtod sscanf (stod) myFunc| implicit       | implicit       | ---
   
 * С-style cast: `(int)`, `(float)` etc
     + отбрасывает `const` и `volatile`
