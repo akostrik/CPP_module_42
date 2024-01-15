@@ -75,7 +75,6 @@ public:
 | to `float`      | sscanf         | sscanf                                                  | strtof sscanf atof _stof_ myFromStr  | implicit       | ---            | implicit
 | to `double`     | sscanf         | sscanf                                                  | strtod sscanf _stod_ myFromStr| implicit       | implicit       | ---
   
-* float->double: such that back from double to float result in exactly the same value  
 * С-style cast: `(int)`, `(float)` etc
     + отбрасывает `const` и `volatile`
     + преобразовывает `int` в указатель и обратно
