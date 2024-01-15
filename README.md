@@ -111,12 +111,10 @@ https://en.cppreference.com/w/cpp/language
     + float       -> enumeration
     + void*       -> *T -> void\* -> the original value
 * `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
-    + usage: cast within an inheritance hierarchy
-    + usage: cast sideways or even up another chain, seeks out the desired object and returns it if possible
+    + usage: cast within an inheritance hierarchy, cast sideways or even up another chain, seeks out the desired object and returns it if possible
     + usage: to handle polymorphism
-    + usage: to find the type of object (!)
+    + usage: to find the type of object
     + Parent should have a virtual function (Parent always has a virtual destructor)
-    + ptr / ref                       -> ptr / ref
     + ptr / ref                       -> ptr / ref within an inheritance hierarchy
     + ptr / ref to a polymorphic type -> ptr / ref to any type
     + Parent                          -> Child*
