@@ -56,9 +56,14 @@ public:
 * != строковый литерал  
 
 ### `uintptr_t` data type (06/ex02)  
-* unsigned int
+* `unsigned int
+* is capable of storing a data pointer
 * `void*` can be converted to `uintptr_t`, then back to `void*`, the result will compare equal to the original pointer
-* the same size as a `void*` / larger / smaller: for ex on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
+* if typically means that it's the same size as a pointer (may be the same size / larger / smaller: for ex on a hypothetical platform where `void*` is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`)
+* to perform integer-specific operations on a pointer, to do something unusual with a pointer - like for example invert all bits: you cast it to `uintptr_t`, manipulate it as an int, then cast back
+
+### `intptr_t` data type
+...
 
 ## Convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
 
