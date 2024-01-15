@@ -91,7 +91,7 @@ public:
    + can cast through inheritance hierarchies 
 * `const_cast<target-type ﻿>(expr) ﻿`
     + самое простое приведение типов
-    + its utility: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
+    + utility: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
 * `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
     + https://en.cppreference.com/w/cpp/language/static_cast  
     + a compile-time cast
@@ -118,14 +118,19 @@ public:
     + T* dynamic_cast<T*> (obj);
     + dynamic_cast<Child &>(ref Parent) почти как с указателями
     + приведение по иерархии наследования
+    + (a polymorphic type has at least one virtual function, declared or inherited) !!
     + dynamic_cast<Child *>(Parent): привести один указатель на объект класса к другому указателю на объект класса. Классы должны быть полиморфными, то есть в базовом классе должна быть хотя бы одна виртуальная функция
     + there should be at least one virtual function in the base class (the base class has a virtual destructor)
-    + utlity : to handle polymorphism
+    + cast a pointer / reference to any polymorphic type to any other class type
+    + doesn't work if there are multiple objects of the same type in the inheritance hierarchy ('dreaded diamond') and you aren't using virtual inheritance
+    + can only go through public inheritance, fails to travel through protected or private inheritance
+    + utility: cast sideways or even up another chain, seeks out the desired object and returns it if possible
+    + utility: to handle polymorphism
     + utility: to find the type of object (!)
-    + safe downcast:
+    + utility: safe downcast:
 ```
-employee &e;
-try { manager &m = dynamic_cast<manager&>(e); }
+Parent &p;
+try { Child &m = dynamic_cast<Child&>(p); }
 catch (bad_cast) { ... }
 ```
 * `reinterpret_cast<target-type ﻿>(expr ﻿)` (06/ex01)
@@ -133,12 +138,12 @@ catch (bad_cast) { ... }
     + doesn’t have any return type
     + не может быть приведено одно значение к другому значению
     + указатель к указателю, указатель к целому, целое к указателю
-    + ссылки
-    + указатели на функции
+    + ссылки ок
+    + указатели на функции ок
     + Ex `T *v = reinterpret_cast <T *>(ptr)`
-* to, from `std::string``
+* my functions
 ```
-template<typename T> T fromStr(const std::string& s) {
+template <typename T> T fromStr(const std::string& s) {
   std::istringstream iss(s);
   T v;
   iss >> v;
