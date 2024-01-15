@@ -141,6 +141,11 @@ catch (bad_cast) { ... }
     + ссылки ок
     + указатели на функции ок
     + Ex `T *v = reinterpret_cast <T *>(ptr)`
+    + turns one type directly into another
+    + normally if you cast the result back to the original type, you will get the exact same value (except if the intermediate type is smaller than the original one)
+    + utiliry: weird conversions and bit manipulations (turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
+* `std::bit_cast`
+* `literal_cast`
 * my functions
 ```
 template <typename T> T fromStr(const std::string& s) {
