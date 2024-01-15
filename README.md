@@ -142,7 +142,7 @@ catch (bad_cast) { ... }
     + Ex `T *v = reinterpret_cast <T *>(ptr)`
     + turns one type directly into another
     + normally if you cast the result back to the original type, you will get the exact same value (except if the intermediate type is smaller than the original one)
-    + utiliry: weird conversions and bit manipulations (turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
+    + utility: weird conversions, bit manipulations (ex turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
 * `std::bit_cast` (c++20)
 * `literal_cast`
 * my functions
@@ -160,28 +160,28 @@ template <typename T> std::string toStr(T v) {
 }
 int i = fromStr<int>(toStr(5));
 ```
-* stoi c++11  
-* s.data() c++11  
-* std::to_string c++11  
-* stod c++11 
+* stoi (c++11)  
+* s.data() (c++11)  
+* std::to_string (c++11)  
+* stod (c++11) 
 
 ## Implicit conversion sequence 
 * to convert an argument in a function call to the type of the corresponding parameter in a function declaration
 
 ### Standard conversion sequences
 1) Exact match includes the conversions:
-    + Identity conversions
-    + Lvalue-to-rvalue conversions
-    + Array-to-pointer conversions
-    + Qualification conversions
+    + identity conversions
+    + lvalue-to-rvalue conversions
+    + array-to-pointer conversions
+    + qualification conversions
 2) Promotion
     + integral and floating point promotions
 3) Conversion includes the conversions:
-    + Integral and floating-point conversions
-    + Floating-integral conversions
-    + Pointer conversions
-    + Pointer-to-member conversions
-    + Boolean conversions
+    + int and float conversions
+    + float-int conversions
+    + pointer conversions
+    + pointer-to-member conversions
+    + boolean conversions
 
 ### User-defined conversion sequences
 Consists of :
