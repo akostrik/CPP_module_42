@@ -292,17 +292,18 @@ Anonymous namespaces make private things really private.
 ### static class
 * ≈ a class with only static methods and members
 * formally C++ does not have static classes (Java-like languages like C# have no non-member functions, so they have static classes)
-* In C++, the namespace is more powerful, because:
+* In C++, the namespace is more powerful thamn static class, because:
     + static methods have access to the classes private symbols
     + private static methods are still visible (if inaccessible) to everyone, which breaches somewhat the encapsulation
     + static methods cannot be forward-declared
     + static methods cannot be overloaded by the class user without modifying the library header
     + there is nothing that can be done by a static method that can't be done better than a (possibly friend) non-member function in the same namespace
-    + namespaces have their own semantics (they can be combined, they can be anonymous, etc.)
+    + namespaces have their own semantics (can be combined, can be anonymous, ...)
 * can't be instanciated
 * can't be inherited
-* для группирования связанных по смыслу методов, свойств и полей
-* the compiler stopping you from writing any instance members/methods
+* should have constructors / destructors au a usual class ?
+* usage: to group methods ... для группирования связанных по смыслу методов, свойств и полей
+* usage: prevent writing instance members/methods
 
 ### static not member function 
 * can't be called from other places
