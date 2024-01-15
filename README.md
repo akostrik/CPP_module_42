@@ -66,7 +66,7 @@ public:
 ...
 
 ## Convertions, casts (01/ex04, 06) (only before C++11 information)
-https://en.cppreference.com/w/cpp/language/static_cast  
+https://en.cppreference.com/w/cpp/language  
 
 |                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
 |-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
@@ -459,8 +459,8 @@ In any of the parameters of a function declaration: that declaration becomes an 
 ### explicit
 
 # Approximation to real numbers
-* **Accuracy** how close a measurement is to the true value  
-* **Precision** how much information you have about a quantity
+**Accuracy** how close a measurement is to the true value  
+**Precision** how much information you have about a quantity  
 
 ## Single-precision floating-point approximation (FP32, float32)
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
