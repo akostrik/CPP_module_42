@@ -18,14 +18,18 @@
 # include <bitset>
 # include <stdio.h>
 // too mach headers ?
-
 // no constructors
+// private constructor!
 
 class ScalarConverter {
   public:
     static void convert(std::string str);
+
+  public:
+  // utils:
     static bool fInTheEnd(std::string s);
     static int  strlen(std::string s);
+    static bool thereIsPoint(std::string s);
     static bool isSingleDigitNumber(std::string s);
     static bool isChar(std::string s);
     static bool isDisplayableChar(std::string s);

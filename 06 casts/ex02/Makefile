@@ -1,5 +1,5 @@
-SRCS    = main.cpp ScalarConverter.cpp
-HEADERS =          ScalarConverter.hpp
+SRCS    = main.cpp Base.cpp
+HEADERS =          Base.hpp
 OBJS    = $(SRCS:.cpp=.o)
 OBJS   := $(addprefix ./objs/, $(OBJS))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror

@@ -11,6 +11,13 @@ bool ScalarConverter::fInTheEnd(std::string s) {
   return (s[len - 1] == 'f');
 } 
 
+bool ScalarConverter::thereIsPoint(std::string s) {
+  for (int i = 0; s[i] != '\0'; i++) 
+    if (s[i] == '.')
+      return true;
+  return false;
+} 
+
 int ScalarConverter::strlen(std::string s) {
   int len;
 
@@ -106,7 +113,7 @@ void ScalarConverter::convert(std::string s) {
     std::cout << "(type: non detected)" << std::endl;
     return ;
   }
-  if (d >= INT_MIN && d <= INT_MAX && !ScalarConverter::fInTheEnd(s)) {
+  if (d >= INT_MIN && d <= INT_MAX && !ScalarConverter::fInTheEnd(s) && !thereIsPoint(s)) {
     int i = std::atoi(s.c_str());
     if (ScalarConverter::isDisplayableChar(d))
       std::cout << "char:   '" << static_cast<char>(i) << "'" << std::endl;
@@ -148,6 +155,8 @@ void ScalarConverter::convert(std::string s) {
       std::cout << "int:    " << static_cast<int>(d) << std::endl;
     else
       std::cout << "int:    impossible" << std::endl;
+    std::cout << std::fixed << std::setprecision(1) << "d       " << d << std::endl;
+    std::cout << std::fixed << std::setprecision(1) << "FLT_MAX " << FLT_MAX << std::endl;
     if (d >= -FLT_MAX && d <= FLT_MAX)
       std::cout << std::fixed << std::setprecision(1) << "float:  " << static_cast<float>(d) << "f" << std::endl;
     else

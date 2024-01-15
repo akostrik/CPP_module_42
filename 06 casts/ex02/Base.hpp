@@ -1,5 +1,5 @@
-#ifndef SERIALIZER_HPP
-# define SERIALIZER_HPP
+#ifndef BASE_HPP
+# define BASE_HPP
 
 # include <iostream>
 # include <string>
@@ -18,16 +18,10 @@
 # include <bitset>
 # include <stdint.h>
 
-struct Data {
-  std::string name;
-  int         age;
-};
-
-// private constructor!
-class Serializer {
+// private constructor ?
+class Base {
   public:
-    static uintptr_t serialize  (Data* ptr);
-    static Data*     deserialize(uintptr_t raw);
+    virtual ~Base();
 };
 
 #endif
