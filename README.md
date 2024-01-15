@@ -60,7 +60,7 @@ public:
 * stores a data pointer
 * `void*` can be converted to `uintptr_t`, then back to `void*`, the result will compare equal to the original pointer
 * typically is the same size as a pointer (may be larger or smaller, for ex on a hypothetical platform where `void*` is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`)
-* its utilility: integer-specific operations on a pointer, to do something unusual with a pointer, for ex to invert all bits, you cast a pointer to `uintptr_t`, manipulate it as an int, then cast back
+* utilility: integer-specific operations on a pointer, to do something unusual with a pointer, for ex to invert all bits, you cast a pointer to `uintptr_t`, manipulate it as an int, then cast back
 
 ### `intptr_t` data type
 ...
@@ -70,11 +70,11 @@ https://en.cppreference.com/w/cpp/language
 
 |                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
 |-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
-| to `char*`      | ---            | ---                                                     | c_str() sscanf myFromStr      |                |                |
-| to `std::string`| sprintf myToStr| = string_constructor _s.data()_ _std::to_string_ myToStr| ---                           | sprintf myToStr| sprintf myToStr| sprintf myToStr
-| to `int`        |          |                                                   | atoi sscanf _stoi_ myFromStr  | ---            |                |
-| to `float`      |          |                                                   | strtof sscanf atof _stof_ myFromStr  | implicit       | ---            | implicit
-| to `double`     |          |                                                   | strtod sscanf _stod_ myFromStr| implicit       | implicit       | ---
+| to `char*`      | ---            | ---                                                     | c_str() sscanf myFunc      |                |                |
+| to `std::string`| sprintf myFunc| = string_constructor (s.data(), std::to_string) myFunc| ---                           | sprintf myFunc| sprintf myFunc| sprintf myFunc
+| to `int`        |          |                                                   | atoi sscanf (stoi) myFunc  | ---            |                |
+| to `float`      |          |                                                   | strtof sscanf atof (stof) myFunc  | implicit       | ---            | implicit
+| to `double`     |          |                                                   | strtod sscanf (stod) myFunc| implicit       | implicit       | ---
   
 * С-style cast: `(int)`, `(float)` etc
     + отбрасывает `const` и `volatile`
@@ -111,6 +111,7 @@ https://en.cppreference.com/w/cpp/language
     + a conversion of void* and back preserves the original value
     + like implicit conversions between types
     + can call explicit conversion functions (or implicit ones)
+    + utility: ordinary type conversions
 * `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
     + casts from one pointer / reference type to another
     + dynamic_cast<Child&> (ref Parent)
@@ -123,6 +124,7 @@ https://en.cppreference.com/w/cpp/language
     + cast a pointer / reference to any polymorphic type to any other class type
     + doesn't work if there are multiple objects of the same type in the inheritance hierarchy ('dreaded diamond') and you aren't using virtual inheritance
     + can only go through public inheritance, fails to travel through protected or private inheritance
+    + utility: converting pointers/references within an inheritance hierarchy
     + utility: cast sideways or even up another chain, seeks out the desired object and returns it if possible
     + utility: to handle polymorphism
     + utility: to find the type of object (!)
@@ -142,7 +144,7 @@ catch (bad_cast) { ... }
     + Ex `T *v = reinterpret_cast <T *>(ptr)`
     + turns one type directly into another
     + normally if you cast the result back to the original type, you will get the exact same value (except if the intermediate type is smaller than the original one)
-    + utiliry: weird conversions and bit manipulations (turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
+    + utility: weird conversions, bit manipulations (ex turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
 * `std::bit_cast` (c++20)
 * `literal_cast`
 * my functions
@@ -160,28 +162,28 @@ template <typename T> std::string toStr(T v) {
 }
 int i = fromStr<int>(toStr(5));
 ```
-* stoi c++11  
-* s.data() c++11  
-* std::to_string c++11  
-* stod c++11 
+* stoi (c++11)  
+* s.data() (c++11)  
+* std::to_string (c++11)  
+* stod (c++11) 
 
 ## Implicit conversion sequence 
 * to convert an argument in a function call to the type of the corresponding parameter in a function declaration
 
 ### Standard conversion sequences
 1) Exact match includes the conversions:
-    + Identity conversions
-    + Lvalue-to-rvalue conversions
-    + Array-to-pointer conversions
-    + Qualification conversions
+    + identity conversions
+    + lvalue-to-rvalue conversions
+    + array-to-pointer conversions
+    + qualification conversions
 2) Promotion
     + integral and floating point promotions
 3) Conversion includes the conversions:
-    + Integral and floating-point conversions
-    + Floating-integral conversions
-    + Pointer conversions
-    + Pointer-to-member conversions
-    + Boolean conversions
+    + int and float conversions
+    + float-int conversions
+    + pointer conversions
+    + pointer-to-member conversions
+    + boolean conversions
 
 ### User-defined conversion sequences
 Consists of :
@@ -541,7 +543,7 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(1+m/ 2^{23})         * 2^{e  �
 * IEEE: ${denormals} = {subnormals}$ (there are no denormalized binary numbers outside the subnormal range)  
 
 **Subnormal floating point numbers**:    
-* A sybset of demormilised numbers
+* A subset of demormilised numbers
 * Any non-zero number with magnitude smaller than the smallest positive normal number
 * Fill the underflow gap around zero
 * If normalized, would have exponents below the smallest representable exponent
