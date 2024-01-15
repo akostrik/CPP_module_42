@@ -95,46 +95,40 @@ https://en.cppreference.com/w/cpp/language
     + самое простое приведение типов
     + usage: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
 * `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
-    + ≈ implicit conversions between types
+    + usage: ordinary type conversions
+    + ≈ implicit type conversions 
     + compile-time
-    + inverse of the implicit conversion (if a standard conversion sequence exists)
     + explicitly performs involving lvalue-to-rvalue, array-to-pointer, function-to-pointer conversion 
     + can call explicit or implicit conversion functions
-    + ... -> встроенный тип : встроенные в C++ правила приведения
-    + ... -> тип определенный программистом : правила приведения, определенные программистом
-    + Parent      -> &Child
-    + *Parent     -> *Child
-    + *Child      -> *Parent
+    + Parent      -> Child&
+    + Parent*     -> Child*
+    + Child*      -> Parent*
     + expr        -> void : discards the value of expression after evaluating it
-    + int         -> any complete enumeration type
-    + enumeration -> any complete enumeration type
-    + float       -> any complete enumeration type
     + void*       -> *T (any object type T)
-    + void*       -> *T -> void\* : preserves the original value
     + ptr         -> ptr один из указателей void*
-    + usage: ordinary type conversions
+    + int         -> enumeration
+    + enumeration -> enumeration
+    + float       -> enumeration
+    + void*       -> *T -> void\* -> the original value
 * `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
-    + cast within an inheritance hierarchy
-    + there should be at least one virtual function in the base class (the base class has a virtual destructor)
-    + doesn't work if there are multiple objects of the same type in the inheritance hierarchy ('dreaded diamond') and you aren't using virtual inheritance
+    + usage: cast within an inheritance hierarchy
+    + usage: cast sideways or even up another chain, seeks out the desired object and returns it if possible
+    + usage: to handle polymorphism
+    + usage: to find the type of object (!)
+    + Parent should have a virtual function (Parent always has a virtual destructor)
     + ptr / ref                       -> ptr / ref
     + ptr / ref                       -> ptr / ref within an inheritance hierarchy
     + ptr / ref to a polymorphic type -> ptr / ref to any type
-    + Parent                          -> Child *
-    + ref Parent                      -> Child&
-    + usage: to handle polymorphism
-    + usage: cast sideways or even up another chain, seeks out the desired object and returns it if possible
-    + usage: to find the type of object (!)
-    + &Parent -> &Child (safe downcast): `Parent &p; try { Child &m = dynamic_cast<Child&>(p); } catch (bad_cast) { }`
+    + Parent                          -> Child*
+    + Parent&                         -> Child& `Parent &p; try { Child &m = dynamic_cast<Child&>(p); } catch (bad_cast) { }` (safe downcast)
 * `reinterpret_cast<target-type ﻿>(expr ﻿)` (06/ex01)
-    + не может быть приведено одно значение к другому значению
-    + prt / ref -> prt / ref
-    + prt / ref -> int
-    + int -> prt / ref 
-    + указатели на функции ок
-    + turns one type directly into another
-    + if you cast the result back to the original type, normally you will get the same value
     + usage: weird conversions, bit manipulations (like turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
+    + prt / ref                       -> prt / ref
+    + prt / ref                       -> int
+    + int                             -> prt / ref 
+    + не может быть приведено одно значение к другому значению
+    + turns one type directly into another
+    + cast the result back -> the original value
 * `std::bit_cast` (c++20)
 * `literal_cast`
 * stringstream
