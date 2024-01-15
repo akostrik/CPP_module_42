@@ -104,8 +104,8 @@ https://en.cppreference.com/w/cpp/language
     + Parent*     -> Child*
     + Child*      -> Parent*
     + expr        -> void : discards the value of expression after evaluating it
-    + void*       -> *T (any object type T)
-    + ptr         -> ptr один из указателей void*
+    + ptr         -> void*
+    + void*       -> ptr (any object type)
     + int         -> enumeration
     + enumeration -> enumeration
     + float       -> enumeration
