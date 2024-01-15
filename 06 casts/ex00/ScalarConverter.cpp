@@ -45,17 +45,17 @@ bool ScalarConverter::isDisplayableChar(std::string s) {
   return (ScalarConverter::strlen(s) == 1 && s[0] >= 32 && s[0] <= 126 && !(s[0] >= '0' && s[0] <= '9'));
 }
 
-bool ScalarConverter::isDisplayableChar(double d) {
-  return (d >= 32 && d <= 126);
-}
+// bool ScalarConverter::isDisplayableChar(double d) {
+//   return (d >= 32 && d <= 126);
+// }
 
-bool ScalarConverter::isNonDisplayableChar(double d) {
-  return (d >= CHAR_MIN && d <= CHAR_MAX && (d < 32 || d > 126));
-}
+// bool ScalarConverter::isNonDisplayableChar(double d) {
+//   return (d >= CHAR_MIN && d <= CHAR_MAX && (d < 32 || d > 126));
+// }
 
-bool ScalarConverter::isDisplayableChar(char c) {
-  return (c >= 32 && c <= 126);
-}
+// bool ScalarConverter::isDisplayableChar(char c) {
+//   return (c >= 32 && c <= 126);
+// }
 
 bool ScalarConverter::isNonDisplayableChar(std::string s) {
   return (ScalarConverter::strlen(s) == 1 && s[0] >= CHAR_MIN && (s[0] < 32 || s[0] > 126));
@@ -63,11 +63,11 @@ bool ScalarConverter::isNonDisplayableChar(std::string s) {
 
 void ScalarConverter::convert(std::string s) {
   if (s == "+inf" || s == "+inff") {
-    std::cout << "type:   special" << std::endl;
     std::cout << "char:   impossible" << std::endl;
     std::cout << "int:    impossible" << std::endl;
     std::cout << "float:  +inff" << std::endl;
     std::cout << "double: +inf" << std::endl;
+    std::cout << "(detected type: special)" << std::endl;
     return;
   }
   if (s == "-inf" || s == "-inff") {
@@ -88,25 +88,24 @@ void ScalarConverter::convert(std::string s) {
   }
   if (ScalarConverter::isChar(s)) {
     char c = s[0];
-    if (ScalarConverter::isDisplayableChar(s))
-      std::cout << "char:   '" << c << "'" << std::endl;
+    if (c >= 32 && c <= 126)
+      std::cout << "char:   '" << c << "' (detected type)" << std::endl;
     else
-      std::cout << "char:   Non displayable" << std::endl;
+      std::cout << "char:   Non displayable (detected type)" << std::endl;
     std::cout << "int:    " << static_cast<int>(c) << std::endl;
     std::cout << std::fixed << std::setprecision(2) << "float:  " << static_cast<float>(c) << std::endl;
     std::cout << std::fixed << std::setprecision(2) << "double: " << static_cast<double>(c) << std::endl;
-    std::cout << "(detected type: char)" << std::endl;
     return ;
   }
 
   char    *end;
   double  d = strtod(s.c_str(), &end);
   if (errno == ERANGE || (*end != '\0' && *end != 'f')) {
-    std::cout << "char:   impossible*" << std::endl;
+    std::cout << "char:   impossible" << std::endl;
     std::cout << "int:    impossible" << std::endl;
     std::cout << "float:  impossible" << std::endl;
     std::cout << "double: impossible" << std::endl;
-    std::cout << "(type: non detected)" << std::endl;
+    std::cout << "(type non detected)" << std::endl;
     return ;
   }
   if (d >= INT_MIN && d <= INT_MAX && !ScalarConverter::fInTheEnd(s) && !thereIsPoint(s)) {
@@ -114,14 +113,10 @@ void ScalarConverter::convert(std::string s) {
     if (static_cast<char>(i) >= 32 && static_cast<char>(i) <= 126)
       std::cout << "char:   '" << static_cast<char>(i) << "'" << std::endl;
     else
-       std::cout << "char:   Non displayable" << std::endl;
-    // else if (ScalarConverter::isNonDisplayableChar(d) && ScalarConverter::isNonDisplayableChar(s))
-    // else
-    //   std::cout << "char:   string-argument out of range [CHAR_MIN; CHAR_MAX]" << std::endl;
-    std::cout << "int:    " << i << std::endl;
+      std::cout << "char:   Non displayable" << std::endl;
+    std::cout << "int:    " << i << " (detected type)" << std::endl;
     std::cout << std::fixed << std::setprecision(2) << "float:  " << static_cast<float>(i) << "f" << std::endl;
     std::cout << std::fixed << std::setprecision(2) << "double: " << static_cast<double>(i) << std::endl;
-    std::cout << "(detected type: int)" << std::endl;
     return ;
   }
   if (d >=-FLT_MAX && d <= FLT_MAX && ScalarConverter::fInTheEnd(s)) {
@@ -130,16 +125,12 @@ void ScalarConverter::convert(std::string s) {
       std::cout << "char:   '" << static_cast<char>(f) << "'" << std::endl;
     else
       std::cout << "char:   Non displayable" << std::endl;
-    // else if (ScalarConverter::isNonDisplayableChar(d) && ScalarConverter::isNonDisplayableChar(s))
-    // else
-    //   std::cout << "char:   string-argument out of range [CHAR_MIN; CHAR_MAX]" << std::endl;
     if (d >= INT_MIN && d <= INT_MAX)
       std::cout << "int:    " << static_cast<int>(f) << std::endl;
     else
       std::cout << "int:    string-argument out of range [INT_MIN; INT_MAX]" << std::endl;
-    std::cout << std::fixed << std::setprecision(2) << "float:  " << f << "f" << std::endl;
+    std::cout << std::fixed << std::setprecision(2) << "float:  " << f << "f (detected type)" << std::endl;
     std::cout << std::fixed << std::setprecision(2) << "double: " << static_cast<double>(f) << std::endl;
-    std::cout << "(detected type: float)" << std::endl;
     return ;
   }
   if (!ScalarConverter::fInTheEnd(s)) {
@@ -155,8 +146,7 @@ void ScalarConverter::convert(std::string s) {
       std::cout << std::fixed << std::setprecision(2) << "float:  " << static_cast<float>(d) << "f" << std::endl;
     else
       std::cout << "float:  string-argument out of range [FLT_MIN; FLT_MAX]" << std::endl;
-    std::cout << std::fixed << std::setprecision(2) << "double: " << d << std::endl;
-    std::cout <<  "(detected type: double)" << std::endl;
+    std::cout << std::fixed << std::setprecision(2) << "double: " << d << " (detected type)" << std::endl;
     return ;
   }
   std::cout << "char:   impossible" << std::endl;
