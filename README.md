@@ -65,7 +65,7 @@ public:
 ### `intptr_t` data type
 ...
 
-## Convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
+## Convertions, casts (01/ex04, 06) (only before C++11 information)
 
 |                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
 |-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
@@ -105,7 +105,7 @@ int i = fromStr<int>(toStr(5));
 * `const_cast<target-type ﻿>(expr) ﻿`
     + самое простое приведение типов
     + убирает `const` и `volatile`
-* `static_cast<target-type ﻿>(expr ﻿)` 		
+* `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
     + https://en.cppreference.com/w/cpp/language/static_cast  
     + a compile-time cast
     + static_cast<встроенные типы>: встроенные в C++ правила приведения
@@ -147,7 +147,7 @@ employee &e;
 try { manager &m = dynamic_cast<manager&>(e); }
 catch (bad_cast) { ... }
 ```
-* `reinterpret_cast<target-type ﻿>(expr ﻿)`
+* `reinterpret_cast<target-type ﻿>(expr ﻿)` (06/ex01)
     + converts a pointer into a pointer of another type
     + does not check if the pointer type = type of the pointed data, никаких проверок нет, результат может быть некорректным
     + doesn’t have any return type
