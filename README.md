@@ -70,8 +70,8 @@ https://en.cppreference.com/w/cpp/language
 
 |                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
 |-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
-| to `char*`      | ---            | ---                                                     | c_str() sscanf myFromStr      |                |                |
-| to `std::string`| sprintf myToStr| = string_constructor (s.data(), std::to_string) myFunc| ---                           | sprintf myFunc| sprintf myFunc| sprintf myFunc
+| to `char*`      | ---            | ---                                                     | c_str() sscanf myFunc      |                |                |
+| to `std::string`| sprintf myFunc| = string_constructor (s.data(), std::to_string) myFunc| ---                           | sprintf myFunc| sprintf myFunc| sprintf myFunc
 | to `int`        |          |                                                   | atoi sscanf (stoi) myFunc  | ---            |                |
 | to `float`      |          |                                                   | strtof sscanf atof (stof) myFunc  | implicit       | ---            | implicit
 | to `double`     |          |                                                   | strtod sscanf (stod) myFunc| implicit       | implicit       | ---
