@@ -143,7 +143,7 @@ catch (bad_cast) { ... }
     + turns one type directly into another
     + normally if you cast the result back to the original type, you will get the exact same value (except if the intermediate type is smaller than the original one)
     + utiliry: weird conversions and bit manipulations (turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
-* `std::bit_cast`
+* `std::bit_cast` (c++20)
 * `literal_cast`
 * my functions
 ```
