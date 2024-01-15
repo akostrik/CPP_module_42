@@ -1,7 +1,7 @@
 # C++ feautures
 http://www.cplusplus.com  
 
-## Automatic initialisation, constructors, destructors - OOP feature
+## Automatic initialisation (OOP feature)
 Orthodox canonical class form in C++98: 
 ```
 class A
@@ -14,7 +14,7 @@ class A
 };
 ```
 
-## Inheritance - OOP feature
+## Inheritance (feature)
 * super class = base class = parent class
 * subclass = derived class = child class
 * a constructor is not inherited
@@ -23,7 +23,7 @@ class A
 * когда дочерний класс инициализирует свой объект, конструкторы вызываются один за другим иерархически, destructors are called in the inverse order
 * operator = is inherited, but hidden by the implicitely declared one
 
-## Overloading - OOP feature
+## Overloading (OOP feature)
 * different functions can have the same name provided they are distinguished by their parameter types 
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 * to use the operator = of the Parent in the Child:
@@ -44,38 +44,38 @@ public:
 }
 ```
 
-## Incapsulation - OOP feature
+## Incapsulation (OOP feature)
 * данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
 
 ## Types
 ### `std::string` 
 * = `'basic_string<char>`
-* ≈ динамический массив char'ов
+* ≈ массив char'ов
 * ≈ vector<char>
 * инициализирован динамически, не статически
 * != строковый литерал  
 
 ### `uintptr_t` data type (06/ex02)  
-* `unsigned int
-* is capable of storing a data pointer
+* `unsigned int`
+* stores a data pointer
 * `void*` can be converted to `uintptr_t`, then back to `void*`, the result will compare equal to the original pointer
-* if typically means that it's the same size as a pointer (may be the same size / larger / smaller: for ex on a hypothetical platform where `void*` is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`)
-* to perform integer-specific operations on a pointer, to do something unusual with a pointer - like for example invert all bits: you cast it to `uintptr_t`, manipulate it as an int, then cast back
+* typically is the same size as a pointer (may be larger or smaller, for ex on a hypothetical platform where `void*` is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`)
+* its utilility: integer-specific operations on a pointer, to do something unusual with a pointer, for ex to invert all bits, you cast a pointer to `uintptr_t`, manipulate it as an int, then cast back
 
 ### `intptr_t` data type
 ...
 
-## Convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
+## Convertions, casts (01/ex04, 06) (only before C++11 information)
+https://en.cppreference.com/w/cpp/language  
 
 |                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
 |-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
 | to `char*`      | ---            | ---                                                     | c_str() sscanf myFromStr      |                |                |
 | to `std::string`| sprintf myToStr| = string_constructor _s.data()_ _std::to_string_ myToStr| ---                           | sprintf myToStr| sprintf myToStr| sprintf myToStr
-| to `int`        | sscanf         | sscanf                                                  | atoi sscanf _stoi_ myFromStr  | ---            |                |
-| to `float`      | sscanf         | sscanf                                                  | strtof sscanf atof _stof_ myFromStr  | implicit       | ---            | implicit
-| to `double`     | sscanf         | sscanf                                                  | strtod sscanf _stod_ myFromStr| implicit       | implicit       | ---
+| to `int`        |          |                                                   | atoi sscanf _stoi_ myFromStr  | ---            |                |
+| to `float`      |          |                                                   | strtof sscanf atof _stof_ myFromStr  | implicit       | ---            | implicit
+| to `double`     |          |                                                   | strtod sscanf _stod_ myFromStr| implicit       | implicit       | ---
   
-* float->double: such that back from double to float result in exactly the same value  
 * С-style cast: `(int)`, `(float)` etc
     + отбрасывает `const` и `volatile`
     + преобразовывает `int` в указатель и обратно
@@ -87,26 +87,12 @@ public:
         - static_cast и затем const_cast
         - reinterpret_cast
         - reinterpret_cast и затем const_cast
-* to, from `std::string``
-```
-template<typename T> T fromStr(const std::string& s) {
-  std::istringstream iss(s);
-  T v;
-  iss >> v;
-  return v;
-}
-template <typename T> std::string toStr(T v) {
-  std::ostringstream oss;
-  oss << v;
-  return oss.str();
-}
-int i = fromStr<int>(toStr(5));
-```
+   + T(something) syntax is equivalent to (T)something and should be avoided
+   + can cast through inheritance hierarchies 
 * `const_cast<target-type ﻿>(expr) ﻿`
     + самое простое приведение типов
-    + убирает `const` и `volatile`
-* `static_cast<target-type ﻿>(expr ﻿)` 		
-    + https://en.cppreference.com/w/cpp/language/static_cast  
+    + utility: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
+* `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
     + a compile-time cast
     + static_cast<встроенные типы>: встроенные в C++ правила приведения
     + static_cast<типы определенны программистом>: правила приведения, определенные программистом
@@ -123,51 +109,62 @@ int i = fromStr<int>(toStr(5));
     + a pointer to member of some complete class D can be upcast to a pointer to member of its base class B
     + a prvalue of void* can be converted to pointer to any object type T
     + a conversion of void* and back preserves the original value
-    + the result is a prvalue (as with all cast expressions)
+    + like implicit conversions between types
+    + can call explicit conversion functions (or implicit ones)
+* `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
+    + casts from one pointer / reference type to another
+    + dynamic_cast<Child&> (ref Parent)
+    + T* dynamic_cast<T*> (obj);
+    + dynamic_cast<Child &>(ref Parent) почти как с указателями
+    + приведение по иерархии наследования
+    + (a polymorphic type has at least one virtual function, declared or inherited) !!
+    + dynamic_cast<Child *>(Parent): привести один указатель на объект класса к другому указателю на объект класса. Классы должны быть полиморфными, то есть в базовом классе должна быть хотя бы одна виртуальная функция
+    + there should be at least one virtual function in the base class (the base class has a virtual destructor)
+    + cast a pointer / reference to any polymorphic type to any other class type
+    + doesn't work if there are multiple objects of the same type in the inheritance hierarchy ('dreaded diamond') and you aren't using virtual inheritance
+    + can only go through public inheritance, fails to travel through protected or private inheritance
+    + utility: cast sideways or even up another chain, seeks out the desired object and returns it if possible
+    + utility: to handle polymorphism
+    + utility: to find the type of object (!)
+    + utility: safe downcast:
 ```
-float a = 5.2;
-int b = static_cast<int>(a);
-```
-* `dynamic_cast<target-type ﻿>(expr) ﻿` 
-    + 1) TYPE& dynamic_cast<TYPE&> (object); to cast from references to base class objects to references to derived class objects
-    + 2) TYPE* dynamic_cast<TYPE*> (object);
-    + casts a datum from one pointer or reference type to another
-    + casting to pointer to a type that is not a type of actual object -> result = NULL 
-    + casting to reference to a type that is not a type of actual object -> bad_cast exception
-    + we cannot verify the success by `if(reference types == 0)` (because there is no such thing as a 0-reference)
-    + may be used to find the type of object (!)
-    + there should be at least one virtual function in the Base class (in practice, this is not a limitation because base classes have a virtual destructor)
-    + a runtime check to ensure the validity of the cast
-    + безопасное приведение по иерархии наследования, в том числе и для виртуального наследования
-    + dynamic_cast<derv_class *>(base_class_ptr_expr): используется RTTI (Runtime Type Information), чтобы привести один указатель на объект класса к другому указателю на объект класса. Классы должны быть полиморфными, то есть в базовом классе должна быть хотя бы одна виртуальная функция. Если эти условие не соблюдено, ошибка возникнет на этапе компиляции. Если приведение невозможно, то об этом станет ясно только на этапе выполнения программы и будет возвращен NULL.
-    + dynamic_cast<derv_class &>(base_class_ref_expr) почти как с указателями, но в случае ошибки во время исполнения исключение bad_cast
-    + safe downcast possible
-```
-employee &e;
-try { manager &m = dynamic_cast<manager&>(e); }
+Parent &p;
+try { Child &m = dynamic_cast<Child&>(p); }
 catch (bad_cast) { ... }
 ```
-* `reinterpret_cast<target-type ﻿>(expr ﻿)`
+* `reinterpret_cast<target-type ﻿>(expr ﻿)` (06/ex01)
     + converts a pointer into a pointer of another type
-    + does not check if the pointer type = type of the pointed data, никаких проверок нет, результат может быть некорректным
     + doesn’t have any return type
     + не может быть приведено одно значение к другому значению
     + указатель к указателю, указатель к целому, целое к указателю
-    + умеет работать со ссылками
-    + приведении указателей на функции
-    + reinterpret_cast<whatever *>(some *)
-    + reinterpret_cast<integer_expression>(some *)
-    + reinterpret_cast<whatever *>(integer_expression)
+    + ссылки ок
+    + указатели на функции ок
     + Ex `T *v = reinterpret_cast <T *>(ptr)`
-* lexical_cast
+    + turns one type directly into another
+    + normally if you cast the result back to the original type, you will get the exact same value (except if the intermediate type is smaller than the original one)
+    + utiliry: weird conversions and bit manipulations (turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
+* `std::bit_cast` (c++20)
+* `literal_cast`
+* my functions
 ```
-#include <boost/lexical_cast.hpp>
-boost::lexical_cast<int>(str)
+template <typename T> T fromStr(const std::string& s) {
+  std::istringstream iss(s);
+  T v;
+  iss >> v;
+  return v;
+}
+template <typename T> std::string toStr(T v) {
+  std::ostringstream oss;
+  oss << v;
+  return oss.str();
+}
+int i = fromStr<int>(toStr(5));
+```
 * stoi c++11  
 * s.data() c++11  
 * std::to_string c++11  
 * stod c++11 
-```
+
 ## Implicit conversion sequence 
 * to convert an argument in a function call to the type of the corresponding parameter in a function declaration
 
@@ -462,8 +459,8 @@ In any of the parameters of a function declaration: that declaration becomes an 
 ### explicit
 
 # Approximation to real numbers
-* **Accuracy** how close a measurement is to the true value  
-* **Precision** how much information you have about a quantity
+**Accuracy** how close a measurement is to the true value  
+**Precision** how much information you have about a quantity  
 
 ## Single-precision floating-point approximation (FP32, float32)
 https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
