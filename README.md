@@ -87,24 +87,12 @@ public:
         - static_cast и затем const_cast
         - reinterpret_cast
         - reinterpret_cast и затем const_cast
-* to, from `std::string``
-```
-template<typename T> T fromStr(const std::string& s) {
-  std::istringstream iss(s);
-  T v;
-  iss >> v;
-  return v;
-}
-template <typename T> std::string toStr(T v) {
-  std::ostringstream oss;
-  oss << v;
-  return oss.str();
-}
-int i = fromStr<int>(toStr(5));
-```
+   + T(something) syntax is equivalent to (T)something and should be avoided
+   + can cast through inheritance hierarchies, it is unnecessary when casting upwards, but when casting downwards it can be used as long as it doesn't cast through virtual inheritance
 * `const_cast<target-type ﻿>(expr) ﻿`
     + самое простое приведение типов
     + убирает `const` и `volatile`
+    + its utility: to remove or add const to a variable
 * `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
     + https://en.cppreference.com/w/cpp/language/static_cast  
     + a compile-time cast
@@ -123,12 +111,9 @@ int i = fromStr<int>(toStr(5));
     + a pointer to member of some complete class D can be upcast to a pointer to member of its base class B
     + a prvalue of void* can be converted to pointer to any object type T
     + a conversion of void* and back preserves the original value
-    + the result is a prvalue (as with all cast expressions)
-```
-float a = 5.2;
-int b = static_cast<int>(a);
-```
-* `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
+    + like implicit conversions between types
+    + can call explicit conversion functions (or implicit ones)
+** `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
     + casts from one pointer / reference type to another
     + T& dynamic_cast<T&> (obj); to cast from references to base class objects to references to derived class objects
     + T* dynamic_cast<T*> (obj);
@@ -152,6 +137,21 @@ catch (bad_cast) { ... }
     + ссылки
     + указатели на функции
     + Ex `T *v = reinterpret_cast <T *>(ptr)`
+* to, from `std::string``
+```
+template<typename T> T fromStr(const std::string& s) {
+  std::istringstream iss(s);
+  T v;
+  iss >> v;
+  return v;
+}
+template <typename T> std::string toStr(T v) {
+  std::ostringstream oss;
+  oss << v;
+  return oss.str();
+}
+int i = fromStr<int>(toStr(5));
+```
 * stoi c++11  
 * s.data() c++11  
 * std::to_string c++11  
