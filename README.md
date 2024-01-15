@@ -60,7 +60,7 @@ public:
 * stores a data pointer
 * `void*` can be converted to `uintptr_t`, then back to `void*`, the result will compare equal to the original pointer
 * typically is the same size as a pointer (may be larger or smaller, for ex on a hypothetical platform where `void*` is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`)
-* its utilility: integer-specific operations on a pointer, to do something unusual with a pointer, for ex to invert all bits, you cast a pointer to `uintptr_t`, manipulate it as an int, then cast back
+* utilility: integer-specific operations on a pointer, to do something unusual with a pointer, for ex to invert all bits, you cast a pointer to `uintptr_t`, manipulate it as an int, then cast back
 
 ### `intptr_t` data type
 ...
