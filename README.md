@@ -56,16 +56,9 @@ public:
 * != строковый литерал  
 
 ### `uintptr_t` data type (06/ex02)  
-* an unsigned int type
-* any `void*` can be converted to `uintptr_t`, then converted back to `void*`, the result will compare equal to the original pointer
+* unsigned int
+* `void*` can be converted to `uintptr_t`, then back to `void*`, the result will compare equal to the original pointer
 * might be the same size as a `void*`, or larger, or smaller: for example on a hypothetical platform where void* is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`
-
-### Limits  
-`std::numeric_limits<T>::infinity()` the largest representable value  
-`std::numeric_limits<T>::max()` the largest finite value  
-`std::numeric_limits<T>::min()` the smallest positive normal value (there precision loss starts)  
-`std::numeric_limits<T>::denorm_min()` the smallest positive value, if the type has subnormal values  
-`std::numeric_limits<T>::lowest()` the least finite value (c++11)
 
 ## Convertions, casts (01/ex04, 06/ex00) (only before C++11 information)
 
