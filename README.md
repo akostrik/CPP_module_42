@@ -112,7 +112,6 @@ https://en.cppreference.com/w/cpp/language
     + void*       -> *T (any object type T)
     + void*       -> *T -> void\* : preserves the original value
     + ptr         -> ptr один из указателей void*
-    + ptr         -> ptr приведение между объектами классов, где один класс наследник другого
     + usage: ordinary type conversions
 * `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
     + cast within an inheritance hierarchy
@@ -128,16 +127,14 @@ https://en.cppreference.com/w/cpp/language
     + usage: to find the type of object (!)
     + &Parent -> &Child (safe downcast): `Parent &p; try { Child &m = dynamic_cast<Child&>(p); } catch (bad_cast) { }`
 * `reinterpret_cast<target-type ﻿>(expr ﻿)` (06/ex01)
-    + converts a pointer into a pointer of another type
-    + doesn’t have any return type
     + не может быть приведено одно значение к другому значению
-    + указатель к указателю, указатель к целому, целое к указателю
-    + ссылки ок
+    + prt / ref -> prt / ref
+    + prt / ref -> int
+    + int -> prt / ref 
     + указатели на функции ок
-    + Ex `T *v = reinterpret_cast <T *>(ptr)`
     + turns one type directly into another
-    + normally if you cast the result back to the original type, you will get the exact same value (except if the intermediate type is smaller than the original one)
-    + usage: weird conversions, bit manipulations (ex turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
+    + if you cast the result back to the original type, normally you will get the same value
+    + usage: weird conversions, bit manipulations (like turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
 * `std::bit_cast` (c++20)
 * `literal_cast`
 * stringstream
