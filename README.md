@@ -70,11 +70,11 @@ https://en.cppreference.com/w/cpp/language
 
 |                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
 |-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
-| to `char*`      | ---            | ---                                                     | c_str() sscanf stringstream      |                |                |
-| to `std::string`| sprintf stringstream| =  string_constructor  (s.data(),  std::to_string)  stringstream| ---                           | sprintf stringstream| sprintf stringstream| sprintf stringstream
-| to `int`        |          |                                                   | atoi sscanf (stoi) stringstream  | ---            |                |
-| to `float`      |          |                                                   | strtof sscanf atof (stof) stringstream  | implicit       | ---            | implicit
-| to `double`     |          |                                                   | strtod sscanf (stod) stringstream| implicit       | implicit       | ---
+| to `char*`      | ---            | ---                                                     | c_str()  sscanf  stringstream      |                |                |
+| to `std::string`| sprintf stringstream| =  string_constructor  stringstream  // s.data()  // std::to_string | ---                           | sprintf stringstream| sprintf stringstream| sprintf stringstream
+| to `int`        |          |                                                   | atoi  sscanf  stringstream  // stoi | ---            |                |
+| to `float`      |          |                                                   | strtof  sscanf  atof  stringstream  // stof | implicit       | ---            | implicit
+| to `double`     |          |                                                   | strtod  sscanf  stringstream  // stod| implicit       | implicit       | ---
   
 * С-style cast: `(int)`, `(float)` etc
     + отбрасывает `const` и `volatile`
