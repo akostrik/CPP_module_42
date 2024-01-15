@@ -128,20 +128,17 @@ int i = fromStr<int>(toStr(5));
 float a = 5.2;
 int b = static_cast<int>(a);
 ```
-* `dynamic_cast<target-type ﻿>(expr) ﻿` 
-    + 1) TYPE& dynamic_cast<TYPE&> (object); to cast from references to base class objects to references to derived class objects
-    + 2) TYPE* dynamic_cast<TYPE*> (object);
-    + casts a datum from one pointer or reference type to another
-    + casting to pointer to a type that is not a type of actual object -> result = NULL 
-    + casting to reference to a type that is not a type of actual object -> bad_cast exception
-    + we cannot verify the success by `if(reference types == 0)` (because there is no such thing as a 0-reference)
-    + may be used to find the type of object (!)
-    + there should be at least one virtual function in the Base class (in practice, this is not a limitation because base classes have a virtual destructor)
+* `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
+    + casts from one pointer / reference type to another
+    + T& dynamic_cast<T&> (obj); to cast from references to base class objects to references to derived class objects
+    + T* dynamic_cast<T*> (obj);
+    + there should be at least one virtual function in the base class (in practice, the base class has a virtual destructor)
     + a runtime check to ensure the validity of the cast
     + безопасное приведение по иерархии наследования, в том числе и для виртуального наследования
     + dynamic_cast<derv_class *>(base_class_ptr_expr): используется RTTI (Runtime Type Information), чтобы привести один указатель на объект класса к другому указателю на объект класса. Классы должны быть полиморфными, то есть в базовом классе должна быть хотя бы одна виртуальная функция. Если эти условие не соблюдено, ошибка возникнет на этапе компиляции. Если приведение невозможно, то об этом станет ясно только на этапе выполнения программы и будет возвращен NULL.
     + dynamic_cast<derv_class &>(base_class_ref_expr) почти как с указателями, но в случае ошибки во время исполнения исключение bad_cast
-    + safe downcast possible
+    + may be used to find the type of object (!)
+    + safe downcast:
 ```
 employee &e;
 try { manager &m = dynamic_cast<manager&>(e); }
@@ -149,25 +146,17 @@ catch (bad_cast) { ... }
 ```
 * `reinterpret_cast<target-type ﻿>(expr ﻿)` (06/ex01)
     + converts a pointer into a pointer of another type
-    + does not check if the pointer type = type of the pointed data, никаких проверок нет, результат может быть некорректным
     + doesn’t have any return type
     + не может быть приведено одно значение к другому значению
     + указатель к указателю, указатель к целому, целое к указателю
-    + умеет работать со ссылками
-    + приведении указателей на функции
-    + reinterpret_cast<whatever *>(some *)
-    + reinterpret_cast<integer_expression>(some *)
-    + reinterpret_cast<whatever *>(integer_expression)
+    + ссылки
+    + указатели на функции
     + Ex `T *v = reinterpret_cast <T *>(ptr)`
-* lexical_cast
-```
-#include <boost/lexical_cast.hpp>
-boost::lexical_cast<int>(str)
 * stoi c++11  
 * s.data() c++11  
 * std::to_string c++11  
 * stod c++11 
-```
+
 ## Implicit conversion sequence 
 * to convert an argument in a function call to the type of the corresponding parameter in a function declaration
 
