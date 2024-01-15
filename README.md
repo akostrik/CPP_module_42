@@ -66,6 +66,7 @@ public:
 ...
 
 ## Convertions, casts (01/ex04, 06) (only before C++11 information)
+https://en.cppreference.com/w/cpp/language/static_cast  
 
 |                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
 |-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
@@ -92,7 +93,6 @@ public:
     + самое простое приведение типов
     + utility: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
 * `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
-    + https://en.cppreference.com/w/cpp/language/static_cast  
     + a compile-time cast
     + static_cast<встроенные типы>: встроенные в C++ правила приведения
     + static_cast<типы определенны программистом>: правила приведения, определенные программистом
