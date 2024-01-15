@@ -541,7 +541,7 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(1+m/ 2^{23})         * 2^{e  âˆ
 * IEEE: ${denormals} = {subnormals}$ (there are no denormalized binary numbers outside the subnormal range)  
 
 **Subnormal floating point numbers**:    
-* A sybset of demormilised numbers
+* A subset of demormilised numbers
 * Any non-zero number with magnitude smaller than the smallest positive normal number
 * Fill the underflow gap around zero
 * If normalized, would have exponents below the smallest representable exponent
