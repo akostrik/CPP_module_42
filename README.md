@@ -70,11 +70,11 @@ https://en.cppreference.com/w/cpp/language
 
 |                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
 |-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
-| to `char*`      | ---            | ---                                                     | c_str() sscanf myFunc      |                |                |
-| to `std::string`| sprintf myFunc| = string_constructor (s.data(), std::to_string) myFunc| ---                           | sprintf myFunc| sprintf myFunc| sprintf myFunc
-| to `int`        |          |                                                   | atoi sscanf (stoi) myFunc  | ---            |                |
-| to `float`      |          |                                                   | strtof sscanf atof (stof) myFunc  | implicit       | ---            | implicit
-| to `double`     |          |                                                   | strtod sscanf (stod) myFunc| implicit       | implicit       | ---
+| to `char*`      | ---            | ---                                                     | c_str() sscanf stringstream      |                |                |
+| to `std::string`| sprintf stringstream| =  string_constructor  (s.data(),  std::to_string)  stringstream| ---                           | sprintf stringstream| sprintf stringstream| sprintf stringstream
+| to `int`        |          |                                                   | atoi sscanf (stoi) stringstream  | ---            |                |
+| to `float`      |          |                                                   | strtof sscanf atof (stof) stringstream  | implicit       | ---            | implicit
+| to `double`     |          |                                                   | strtod sscanf (stod) stringstream| implicit       | implicit       | ---
   
 * С-style cast: `(int)`, `(float)` etc
     + отбрасывает `const` и `volatile`
@@ -147,7 +147,7 @@ catch (bad_cast) { ... }
     + utility: weird conversions, bit manipulations (ex turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
 * `std::bit_cast` (c++20)
 * `literal_cast`
-* my functions
+* stringstream
 ```
 template <typename T> T fromStr(const std::string& s) {
   std::istringstream iss(s);
