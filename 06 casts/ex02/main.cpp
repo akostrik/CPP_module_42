@@ -28,6 +28,7 @@ Base *generate(void) {
 
 // checks if Give the cast is NULL
 void identify(Base *p) {
+  std::cout << "Using a pointer:" << std::endl;
   if (dynamic_cast<A*>(p))
     std::cout << "Pointer: It is a class A" << std::endl;
   else if (dynamic_cast<B*>(p))
@@ -41,7 +42,8 @@ void identify(Base *p) {
 // uses a try and catch block to check if the cast failed
 // Using a pointer inside this function is forbidden
 void identify(Base &p) {
-  if (dynamic_cast<A*>(&p))
+ std::cout << "Using a reference:" << std::endl;
+   if (dynamic_cast<A*>(&p))
     std::cout << "Reference: It is a class A" << std::endl;
   else if (dynamic_cast<B*>(&p))
     std::cout << "Reference: it is a class B" << std::endl;
@@ -60,9 +62,7 @@ int main() {
     return (1);
   }
 
-  std::cout << "Using a pointer:" << std::endl;
   identify(base);
-  std::cout << "Using a reference:" << std::endl;
   identify(*base);
 
   delete base;
