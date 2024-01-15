@@ -95,47 +95,38 @@ https://en.cppreference.com/w/cpp/language
     + самое простое приведение типов
     + usage: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
 * `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
-    + ... -> встроенный тип : встроенные в C++ правила приведения
-    + ... -Ю тип определенный программистом : правила приведения, определенные программистом
-    + ptr -> ptr один из указателей void*
-    + ptr -> ptr приведение между объектами классов, где один класс наследник другого
-    + Parent -> &Child : downcast
-    + *Parent -> *Child : downcast
-    + expr -> void : discards the value of expression after evaluating it
-    + is inverse of the implicit conversion (if a standard conversion sequence from target-type to the type of expression exists)
-    + explicitly performs involving lvalue-to-rvalue, array-to-pointer, function-to-pointer conversion 
-    + int -> any complete enumeration type
-    + enumeration type -> any complete enumeration type
-    + float -> any complete enumeration type
-    + * member Child -> upcast * member Parent
-    + void* -> *T (any object type T)
-    + void* -> *T -> void\* : preserves the original value
-    + can call explicit or implicit conversion functions
-    + a compile-time cast
     + ≈ implicit conversions between types
+    + compile-time
+    + inverse of the implicit conversion (if a standard conversion sequence exists)
+    + explicitly performs involving lvalue-to-rvalue, array-to-pointer, function-to-pointer conversion 
+    + can call explicit or implicit conversion functions
+    + ... -> встроенный тип : встроенные в C++ правила приведения
+    + ... -> тип определенный программистом : правила приведения, определенные программистом
+    + Parent      -> &Child
+    + *Parent     -> *Child
+    + *Child      -> *Parent
+    + expr        -> void : discards the value of expression after evaluating it
+    + int         -> any complete enumeration type
+    + enumeration -> any complete enumeration type
+    + float       -> any complete enumeration type
+    + void*       -> *T (any object type T)
+    + void*       -> *T -> void\* : preserves the original value
+    + ptr         -> ptr один из указателей void*
+    + ptr         -> ptr приведение между объектами классов, где один класс наследник другого
     + usage: ordinary type conversions
 * `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
-    + casts from a pointer / reference type to another
-    + dynamic_cast<Child&> (ref Parent)
-    + T* dynamic_cast<T*> (obj);
-    + dynamic_cast<Child &>(ref Parent) почти как с указателями
-    + приведение по иерархии наследования
-    + (a polymorphic type has at least one virtual function, declared or inherited) !!
-    + dynamic_cast<Child *>(Parent): привести один указатель на объект класса к другому указателю на объект класса. Классы должны быть полиморфными, то есть в базовом классе должна быть хотя бы одна виртуальная функция
+    + cast within an inheritance hierarchy
     + there should be at least one virtual function in the base class (the base class has a virtual destructor)
-    + cast a pointer / reference to any polymorphic type to any other class type
     + doesn't work if there are multiple objects of the same type in the inheritance hierarchy ('dreaded diamond') and you aren't using virtual inheritance
-    + can only go through public inheritance, fails to travel through protected or private inheritance
-    + usage: converting pointers/references within an inheritance hierarchy
-    + usage: cast sideways or even up another chain, seeks out the desired object and returns it if possible
+    + ptr / ref                       -> ptr / ref
+    + ptr / ref                       -> ptr / ref within an inheritance hierarchy
+    + ptr / ref to a polymorphic type -> ptr / ref to any type
+    + Parent                          -> Child *
+    + ref Parent                      -> Child&
     + usage: to handle polymorphism
+    + usage: cast sideways or even up another chain, seeks out the desired object and returns it if possible
     + usage: to find the type of object (!)
-    + usage: safe downcast:
-```
-Parent &p;
-try { Child &m = dynamic_cast<Child&>(p); }
-catch (bad_cast) { ... }
-```
+    + &Parent -> &Child (safe downcast): `Parent &p; try { Child &m = dynamic_cast<Child&>(p); } catch (bad_cast) { }`
 * `reinterpret_cast<target-type ﻿>(expr ﻿)` (06/ex01)
     + converts a pointer into a pointer of another type
     + doesn’t have any return type
@@ -424,7 +415,6 @@ const char *func() {
 * a pointer to the Parent's function calls the Parent's virtual function and executes its Child’s version 
 * a constructor and a destructor can not be virtual, a destructor must have a definition
 * a destructor of a non-final class with virtual functions is virtual (?)
-* **polymorphic class**: defines or inherits a virtual function 
 * объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
 * вызов виртуальной функции через имя объекта разрешается статически
 
@@ -462,8 +452,9 @@ In any of the parameters of a function declaration: that declaration becomes an 
 
 ### explicit
 
-### terminlogy 
+### terminlogy in the same style
 **Incomplete class** : a class until the end of its definition
+**Polymorphic class**: defines or inherits a virtual function 
 
 # Approximation to real numbers
 **Accuracy** how close a measurement is to the true value  
