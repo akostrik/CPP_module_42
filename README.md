@@ -257,6 +257,21 @@ Anonymous namespaces make private things really private.
 **lexical resolution** = **early binding** can be determined at compile time
 **dynamic resolution** = **late binding** can be determined at run time
 
+## malloc
+Процесс освобождения памяти должно "зеркально" соответствовать процессу его выделения  
+malloc выделит больше памяти, чем вы запросили. В дополнительные байты памяти (обычно в начале выделенного блока) будет записан размер выделенного блока памяти  
++-----+--------------------------     ----+  
+| 100 |                           ...     |  
++-----+--------------------------     ----+  
+^  ^  ^  
+|  |  адрес, кот `malloc` вернет в кач-ве рез-та  
+|  |  
+|  размер блока, записанный туда `malloc`  
+|  
+начало фактически выделенного `malloc` блока  
+  
+free() прочитает размер блока из этой области памяти "слева" от адреса pointer и узнает, сколько памяти нужно освободить
+
 ## Specifiers
 
 ### public / private / protected data
