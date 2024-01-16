@@ -86,9 +86,9 @@ https://en.cppreference.com/w/cpp/language
     + tries in turn:
         - const_cast
         - static_cast
-        - static_cast и затем const_cast
+        - static_cast, then const_cast
         - reinterpret_cast
-        - reinterpret_cast и затем const_cast
+        - reinterpret_cast, then const_cast
    + is not verified by the compiler => error possible, for ex, while convertign of const types or while changing the type of the data without checking the possible range of the types
    + should be avoided
 * `const_cast<target-type ﻿>(expr) ﻿`
@@ -220,8 +220,8 @@ Reference:
 * if something should always exist and never change, use a references  
 ```
    std::string &sREF = s;
-//             &sREF       переменная типа ссылка на string
-//                     s   переменная, на которую объявляется ссылка
+//             &sREF       the variable of the type 'reference to string'
+//                     s   the variable the reference is declared to
 ```
   
 Pointer:  
@@ -307,10 +307,10 @@ the real beginning of the bloc
 
 ## static member of a class  
 * belongs to the class, is not associated with a particular object, is the same for all the class instances
-* если создали три объекта класса, то конструктор вызывается один раз
-* не инициализируются с помощью конструктора
-* определяем объект: вне класса с помощью оператора разрешения области видимости `::`
-* объявляем объект: `static A a;`
+* if we crate three instances of the class, the constructor is called only one time
+* can not be nitialized by a constructor
+* definition of an object: out of the class, by `::`-operator
+* declaration of an object: `static A a;`
 * is called using the class name or through an object
 
 ### static class
@@ -326,7 +326,7 @@ the real beginning of the bloc
 * can't be instanciated
 * can't be inherited
 * should have constructors / destructors au a usual class ?
-* usage: to group methods ... для группирования связанных по смыслу методов, свойств и полей
+* usage: to group ressembling methods, proprieties and fields
 * usage: prevent writing instance members/methods
 
 ### static not member function 
