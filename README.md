@@ -253,6 +253,10 @@ Provides four components called algorithms, containers, functions, and iterators
 ## Namespace
 Anonymous namespaces make private things really private.  
 
+## Resolution
+**lexical resolution** = **early binding** can be determined at compile time
+**dynamic resolution** = **late binding** can be determined at run time
+
 ## Specifiers
 
 ### public / private / protected data
@@ -313,10 +317,10 @@ Anonymous namespaces make private things really private.
 * can be called using the class name or through an object  
 * can access only static variables and functions  
 * doesn't have `*this`
-* можное использовать без создания объекта класса
-* доступ с использованием имени класса и оператора разрешения области видимости (::)
-* внутри функции обращаться можно только к статическим членам данных, другим статическим функциям-членам и любым другим функциям извне класса
-* имеет область видимости класса, в котором находится
+* can beused without instantiating if the class
+* ia accessed by the class nale ou by the :: operator
+* can call ony static functions, members, extern functions
+* has the same scope as its class 
 
 Example:
 ```
@@ -373,8 +377,8 @@ const variable cannot be left un-initialized at the time
 `       int       * const  с     ` can't change the pointer, can&nbsp;&nbsp;&nbsp;change the value    
 `       int const * const  с     ` can't change the pointer, can't change the value  
   
-`const std::string& s = "AB";` OK, const запрещает умирать временному объекту, который присваивается этой ссылке, он жив пока жива константная ссылка  
-`      std::string& s = "AB";` NON, ссылка на адрес памяти указывает на тот же, на который и объект ей присвоенный, если объект временный, то он сразу умирает
+`const std::string& s = "AB";` OK, the temporary object is alive as long as the const ref is alive  
+`      std::string& s = "AB";` NON, the temporary object disappeares
 
 * mutable: * we can modify a mutable class member through member functions even if the containing object is const
 
