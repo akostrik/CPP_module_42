@@ -1,4 +1,4 @@
-# C++ feautures
+# C++ feautures (also C features)
 http://www.cplusplus.com  
 
 ## Automatic initialisation (OOP feature)
@@ -257,20 +257,26 @@ Anonymous namespaces make private things really private.
 **lexical resolution** = **early binding** can be determined at compile time
 **dynamic resolution** = **late binding** can be determined at run time
 
+## System call
+* call to the kernel
+* != call to a systle library
+* processus management: load, execute, exit, abort, fork, processus terminating, get/set process attributes, wait, signal, allocate, free
+* file management: create, delete, open, close, read, write, reposition, get/set file attributes
+* devicaes management: request device, release device, read, write, reposition, get/set device attributes, logically attach or detach devices
+* information management: get/set time or date, get/set system data, get/set process, file, device attributes
+* communications: create, delete communication connection, send, receive messages, transfer status information, attach or detach remote devices
+
 ## malloc
-Процесс освобождения памяти должно "зеркально" соответствовать процессу его выделения  
-malloc выделит больше памяти, чем вы запросили. В дополнительные байты памяти (обычно в начале выделенного блока) будет записан размер выделенного блока памяти  
+* free of the memory should be procedded in the inverse order to malloc
+* malloc allocates more memory that the programmes asked, because it puts the size of the block in the beginning on the bloc  
 +-----+--------------------------     ----+  
 | 100 |                           ...     |  
 +-----+--------------------------     ----+  
 ^  ^  ^  
-|  |  адрес, кот `malloc` вернет в кач-ве рез-та  
-|  |  
-|  размер блока, записанный туда `malloc`  
-|  
-начало фактически выделенного `malloc` блока  
-  
-free() прочитает размер блока из этой области памяти "слева" от адреса pointer и узнает, сколько памяти нужно освободить
+|  |  the address retured by `malloc`  
+|  the size   
+the real beginning of the bloc  
+* free() reads the size of the bloc and so knows how much memory it should free
 
 ## Specifiers
 
@@ -423,8 +429,8 @@ const char *func() {
 * a pointer to the Parent's function calls the Parent's virtual function and executes its Child’s version 
 * a constructor and a destructor can not be virtual, a destructor must have a definition
 * a destructor of a non-final class with virtual functions is virtual (?)
-* объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
-* вызов виртуальной функции через имя объекта разрешается статически
+* run-timed the object vreation and function call (late binding) 
+* stqtic resolution of a call of a virtual funciton via the object name
 
 3 scenarios:  
 `class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
