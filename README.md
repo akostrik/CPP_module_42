@@ -275,10 +275,10 @@ Anonymous namespaces make private things really private.
 * prohibites `virtual` functions in the inherited classes 
 
 ### static variable in a function
-* инициализируется один раз, выделение памяти один раз, переменная сохраняет значение между вызовами функции на протяжении всей жизни программы
-* хранятся в сегментах памяти .data и .bss (не в heap и не на stack)
-* медленнее, чем нестатические переменные (т.к. переход в другой сегмент памяти и проверка инициализации переменной)
-* осторожно использовать с многопоточностью
+* is initialized one time, the memory is allocated one time, the variable stores its value between the function calls during all the time of the executoin of the programm
+* is stored in the memory segments .data и .bss (not heap, not stack)
+* is slower than a non-static variable (the programm goes to another memory segment, vérifies if the variable is initialized)
+* to be careful while multithreading
 
 ## static member of a class  
 * belongs to the class, is not associated with a particular object, is the same for all the class instances
