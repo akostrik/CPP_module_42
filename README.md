@@ -500,12 +500,12 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 * an invisible 1 (not stored) is placed in front  
 * the exponent is stored without sign => it is deplaced by 127, there is -127 in the table
 * n ∈ [0 ; $2^{24}$] точно (полностью влезают в мантиссу)
-* n ∈ [ $2^{24}$ + 1 ; $2^{25}$] округляются до кратного 2
-* n ∈ [ $2^{25}$ + 1 ; $2^{26}$] округляются до кратного 4
+* n ∈ [ $2^{24}$ + 1 ; $2^{25}$] rounded to a multiple of 2
+* n ∈ [ $2^{25}$ + 1 ; $2^{26}$] rounded to a multiple of4
 * ...
-* n ∈ [ $2^{126}$ + 1 ; $2^{127}$] округляются до кратного $2^{103}$
-* n ∈ [ $2^{127}$ + 1 ; $2^{128}$] округляются до кратного $2^{104}$
-* n ∈ [ $2^{128}$ + 1 ; ...] превращаются в бесконечность
+* n ∈ [ $2^{126}$ + 1 ; $2^{127}$] rounded to a multiple of $2^{103}$
+* n ∈ [ $2^{127}$ + 1 ; $2^{128}$] rounded to a multiple of $2^{104}$
+* n ∈ [ $2^{128}$ + 1 ; ...] turn into infinity
   
 binary    	                                 | formula                                         | decimal 
 ---------------------------------------------|-------------------------------------------------|----------------------
