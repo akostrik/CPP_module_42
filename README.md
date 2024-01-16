@@ -445,7 +445,7 @@ Virtual function table :
 * if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A
 
 ### virtual inheritance
-* предотвращает появление множественных объектов базового класса в иерархии наследования 
+* prevents a lot of Children of a Parent (?) 
 
 ### template class
 
@@ -453,14 +453,14 @@ Virtual function table :
 * allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
 ### extern data
-сделать глобальную переменную внешней (которую можно использовать в любом файле программы)
+a global variable becomes accessible in any file of the programm
 
 ### auto (c++20)
 In any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
 
 ### friend functon
-* не являются членами класса
-* имеют доступ к его private переменным и функциям
+* are not member functions
+* have acces to its private variables and functions
 
 ### inline (c++ 17)
 
@@ -498,7 +498,7 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 * e != 11111111, e != 00000000  
 * m [0,1), no leading zeros in the mantissa, for example, 0.0123 would be written as $1.23 × 10^{−2}$
 * an invisible 1 (not stored) is placed in front  
-* экспонента хранится без знака => она смещена на 127, поэтому в таблице везде -127
+* the exponent is stored without sign => it is deplaced by 127, there is -127 in the table
 * n ∈ [0 ; $2^{24}$] точно (полностью влезают в мантиссу)
 * n ∈ [ $2^{24}$ + 1 ; $2^{25}$] округляются до кратного 2
 * n ∈ [ $2^{25}$ + 1 ; $2^{26}$] округляются до кратного 4
@@ -543,9 +543,9 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(1+m/ 2^{23})         * 2^{e  �
 0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$| 340282346638528859811704183484516925440 FLT_MAX
 
 **Denormalized = denormal floating point numbers**:     
-* расширить диапазон числа с плавающей запятой в ущерб точности
+* expands the floating point range at the expense of precision
 * e = 00000000  
-* m начинается с 0, a leading 0        
+* m starts with 0        
 * m != 00000000000000000000000  
 * m [0,1) ?  
 * Some old documents: _denormal_ = _subnormal_.  
@@ -557,7 +557,7 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(1+m/ 2^{23})         * 2^{e  �
 * Any non-zero number with magnitude smaller than the smallest positive normal number
 * Fill the underflow gap around zero
 * If normalized, would have exponents below the smallest representable exponent
-* e минимальное  
+* e minimal  
   
 binary    	                                 | formula                                         | decimal 
 ---------------------------------------------|-------------------------------------------------|---------
