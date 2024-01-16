@@ -20,7 +20,7 @@ class A
 * a constructor is not inherited
 * a destructor is not inherited
 * a destructor must be defined even if it is declared pure-virtual
-* когда дочерний класс инициализирует свой объект, конструкторы вызываются один за другим иерархически, destructors are called in the inverse order
+* when a child class initilaies its instance, the constructors are called hierarchically, the destructors are called in the inverse order
 * operator = is inherited, but hidden by the implicitely declared one
 
 ## Overloading (OOP feature)
@@ -45,15 +45,15 @@ public:
 ```
 
 ## Incapsulation (OOP feature)
-* данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
+* the data is **incapsulated** as mush as possible -> fewer parts of the program see them -> flexibility for changing
 
 ## Types
 ### `std::string` 
 * = `'basic_string<char>`
-* ≈ массив char'ов
+* ≈ an array of char
 * ≈ vector<char>
-* инициализирован динамически, не статически
-* != строковый литерал  
+* initialized dinamically, not statically
+* != text literal  
 
 ### `uintptr_t` data type (06/ex02)  
 * `unsigned int`
