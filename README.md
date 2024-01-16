@@ -76,7 +76,7 @@ https://en.cppreference.com/w/cpp/language
 | to `float`      |                      |                                                                | atof  strtof  stringstream  sscanf  _stof_| implicit             | ---                  | implicit
 | to `double`     |                      |                                                                | strtod  stringstream  sscanf  _stod_      | implicit             | implicit             | ---
   
-* С-style cast: `(int)`, `(float)` etc
+* С-style cast: `(int)x`, `int(x)` etc
     + casts off  `const` и `volatile`
     + int -> ptr
     + ptr -> int
@@ -89,7 +89,7 @@ https://en.cppreference.com/w/cpp/language
         - static_cast и затем const_cast
         - reinterpret_cast
         - reinterpret_cast и затем const_cast
-   + T(x) syntax is equivalent to (T)x 
+   + is not verified by the compiler => error possible, for ex, while convertign of const types or while changing the type of the data without checking the possible range of the types
    + should be avoided
 * `const_cast<target-type ﻿>(expr) ﻿`
     + the simpliest cast
