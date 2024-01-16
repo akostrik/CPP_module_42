@@ -77,13 +77,13 @@ https://en.cppreference.com/w/cpp/language
 | to `double`     |                      |                                                                | strtod  stringstream  sscanf  _stod_      | implicit             | implicit             | ---
   
 * С-style cast: `(int)`, `(float)` etc
-    + отбрасывает `const` и `volatile`
+    + casts off  `const` и `volatile`
     + int -> ptr
     + ptr -> int
-    + преобразовывает указатели вверх и вниз по иерархии наследования
-    + casts through inheritance hierarchies 
-    + преобразовывает указатели как reinterpret_cast, ориентируясь на битовое представление
-    + по очереди пробует :
+    + Child* -> Parent*
+    + Parent* -> Child*
+    + casts pointers as reinterpret_cast
+    + tries in turn:
         - const_cast
         - static_cast
         - static_cast и затем const_cast
@@ -92,7 +92,7 @@ https://en.cppreference.com/w/cpp/language
    + T(x) syntax is equivalent to (T)x 
    + should be avoided
 * `const_cast<target-type ﻿>(expr) ﻿`
-    + самое простое приведение типов
+    + the simpliest cast
     + usage: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
 * `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
     + usage: ordinary type conversions
@@ -124,7 +124,7 @@ https://en.cppreference.com/w/cpp/language
     + prt / ref                       -> prt / ref
     + prt / ref                       -> int
     + int                             -> prt / ref 
-    + не может быть приведено одно значение к другому значению
+    + can't cas a value to a value
     + turns one type directly into another
     + cast the result back -> the original value
 * `std::bit_cast` (c++20)
@@ -195,7 +195,7 @@ template<typename T> T max(T &a, T &b) {
 * content
 * refers to an object that persists beyond a single expression
 * can be l-values or non-l-values
-* Ex: выражение 4 + 9, во время исполнения программа генерирует значение 13, но поскольку в программе не указано где содержатся эти 13, выражения является не l-значением
+* Ex: the programm is executing, it sees the expression 4 + 9 and generates 13 value, but there is no indications there to strore 13 => 13 is not l-value
   
 **L-value**:
 * l = left side of the assignment operator
@@ -203,9 +203,8 @@ template<typename T> T max(T &a, T &b) {
 * a variable or a de-referenced reference
 * location
 * a temporary value that does not persist beyond the expression that uses it    
-* has storage addresses that are programmatically accessible to the running program
-* имеют адрес хранения, программно доступный исполняемой программе (например, используя &)
-* Ex: объявляется переменная x, которой присваивается значение 13
+* has storage addresses that are programmatically accessible to the running program (for ex, using &)
+* Ex: the cariable x is declared and attributed the value 13
    
 ## Reference vs pointer (01/ex03)
 * `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
