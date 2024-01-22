@@ -16,7 +16,14 @@ ScalarConverter::~ScalarConverter() {};
 
 ////////////////////////////////////////////////////// MEMBER FUNCTION
 void ScalarConverter::convert(std::string s) {
-  if (s == "+inf" || s == "+inff") {
+  if (s[0] == '\0'){
+    std::cout << "char:   impossible" << std::endl;
+    std::cout << "int:    impossible" << std::endl;
+    std::cout << "float:  impossible" << std::endl;
+    std::cout << "double: impossible" << std::endl;
+    std::cout << "(type: non detected)" << std::endl;
+    return ;
+  }  if (s == "+inf" || s == "+inff") {
     std::cout << "char:   impossible" << std::endl;
     std::cout << "int:    impossible" << std::endl;
     std::cout << "float:  +inff" << std::endl;
