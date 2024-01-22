@@ -68,18 +68,20 @@ public:
 ## Convertions, casts (01/ex04, 06) (only before C++11 information)
 https://en.cppreference.com/w/cpp/language  
 
-|                 | `char`         | `char*`                                                 | `std::string`                 | `int`          | `float`        | `double`
-|-----------------|----------------|---------------------------------------------------------|-------------------------------|----------------|----------------|---------
-| to `char*`      | ---            | ---                                                     | c_str() sscanf myFunc      |                |                |
-| to `std::string`| sprintf myFunc| = string_constructor (s.data(), std::to_string) myFunc| ---                           | sprintf myFunc| sprintf myFunc| sprintf myFunc
-| to `int`        |          |                                                   | atoi sscanf (stoi) myFunc  | ---            |                |
-| to `float`      |          |                                                   | strtof sscanf atof (stof) myFunc  | implicit       | ---            | implicit
-| to `double`     |          |                                                   | strtod sscanf (stod) myFunc| implicit       | implicit       | ---
+|                 | `char`               | `char*`                                                        | `std::string`                             | `int`                | `float`              | `double`
+|-----------------|----------------------|----------------------------------------------------------------|-------------------------------------------|----------------------|----------------------|---------
+| to `char*`      | ---                  | ---                                                            | c_str()  sscanf  stringstream             |                      |                      |
+| to `std::string`| sprintf  stringstream| =  string_constructor  stringstream  _s.data()  std::to_string_| ---                                       | sprintf  stringstream| sprintf  stringstream| sprintf  stringstream
+| to `int`        |                      |                                                                | atoi  stringstream  sscanf  _stoi_        | ---                  |                      |
+| to `float`      |                      |                                                                | atof  strtof  stringstream  sscanf  _stof_| implicit             | ---                  | implicit
+| to `double`     |                      |                                                                | strtod  stringstream  sscanf  _stod_      | implicit             | implicit             | ---
   
 * С-style cast: `(int)`, `(float)` etc
     + отбрасывает `const` и `volatile`
-    + преобразовывает `int` в указатель и обратно
+    + int -> ptr
+    + ptr -> int
     + преобразовывает указатели вверх и вниз по иерархии наследования
+    + casts through inheritance hierarchies 
     + преобразовывает указатели как reinterpret_cast, ориентируясь на битовое представление
     + по очереди пробует :
         - const_cast
@@ -87,67 +89,47 @@ https://en.cppreference.com/w/cpp/language
         - static_cast и затем const_cast
         - reinterpret_cast
         - reinterpret_cast и затем const_cast
-   + T(something) syntax is equivalent to (T)something and should be avoided
-   + can cast through inheritance hierarchies 
+   + T(x) syntax is equivalent to (T)x 
+   + should be avoided
 * `const_cast<target-type ﻿>(expr) ﻿`
     + самое простое приведение типов
-    + utility: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
+    + usage: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
 * `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
-    + a compile-time cast
-    + static_cast<встроенные типы>: встроенные в C++ правила приведения
-    + static_cast<типы определенны программистом>: правила приведения, определенные программистом
-    + static_cast<ptr> один из указателей void*
-    + static_cast<ptr> приведение между объектами классов, где один класс наследник другого
-    + static_cast<ref to complete class D>(lvalue of its non-virtual base B) -> downcast
-    + static_cast<ptr to complete class D>(prvalue pointer to its non-virtual base B) -> downcast
-    + static_cast<void>() discards the value of expression after evaluating it
-    + is inverse of the implicit conversion (if a standard conversion sequence from target-type to the type of expression exists)
-    + perform explicitly conversions involving lvalue-to-rvalue, array-to-pointer, function-to-pointer conversion 
-    + a value of int can be converted to any complete enumeration type
-    + a value of enumeration type can be converted to any complete enumeration type
-    + a value of a float can be converted to any complete enumeration type
-    + a pointer to member of some complete class D can be upcast to a pointer to member of its base class B
-    + a prvalue of void* can be converted to pointer to any object type T
-    + a conversion of void* and back preserves the original value
-    + like implicit conversions between types
-    + can call explicit conversion functions (or implicit ones)
-    + utility: ordinary type conversions
+    + usage: ordinary type conversions
+    + ≈ implicit type conversions 
+    + compile-time
+    + explicitly performs involving lvalue-to-rvalue, array-to-pointer, function-to-pointer conversion 
+    + can call explicit or implicit conversion functions
+    + Parent      -> Child&
+    + Parent*     -> Child*
+    + Child*      -> Parent*
+    + expr        -> void : discards the value of expression after evaluating it
+    + ptr         -> void*
+    + void*       -> ptr (any object type)
+    + int         -> enumeration
+    + enumeration -> enumeration
+    + float       -> enumeration
+    + void*       -> *T -> void\* -> the original value
 * `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
-    + casts from one pointer / reference type to another
-    + dynamic_cast<Child&> (ref Parent)
-    + T* dynamic_cast<T*> (obj);
-    + dynamic_cast<Child &>(ref Parent) почти как с указателями
-    + приведение по иерархии наследования
-    + (a polymorphic type has at least one virtual function, declared or inherited) !!
-    + dynamic_cast<Child *>(Parent): привести один указатель на объект класса к другому указателю на объект класса. Классы должны быть полиморфными, то есть в базовом классе должна быть хотя бы одна виртуальная функция
-    + there should be at least one virtual function in the base class (the base class has a virtual destructor)
-    + cast a pointer / reference to any polymorphic type to any other class type
-    + doesn't work if there are multiple objects of the same type in the inheritance hierarchy ('dreaded diamond') and you aren't using virtual inheritance
-    + can only go through public inheritance, fails to travel through protected or private inheritance
-    + utility: converting pointers/references within an inheritance hierarchy
-    + utility: cast sideways or even up another chain, seeks out the desired object and returns it if possible
-    + utility: to handle polymorphism
-    + utility: to find the type of object (!)
-    + utility: safe downcast:
-```
-Parent &p;
-try { Child &m = dynamic_cast<Child&>(p); }
-catch (bad_cast) { ... }
-```
+    + usage: cast within an inheritance hierarchy, cast sideways or even up another chain, seeks out the desired object and returns it if possible
+    + usage: to handle polymorphism
+    + usage: to find the type of object
+    + Parent should have a virtual function (Parent always has a virtual destructor)
+    + ptr / ref                       -> ptr / ref within an inheritance hierarchy
+    + ptr / ref to a polymorphic type -> ptr / ref to any type
+    + Parent                          -> Child*
+    + Parent&                         -> Child& `Parent &p; try { Child &m = dynamic_cast<Child&>(p); } catch (bad_cast) { }` (safe downcast)
 * `reinterpret_cast<target-type ﻿>(expr ﻿)` (06/ex01)
-    + converts a pointer into a pointer of another type
-    + doesn’t have any return type
+    + usage: weird conversions, bit manipulations (like turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
+    + prt / ref                       -> prt / ref
+    + prt / ref                       -> int
+    + int                             -> prt / ref 
     + не может быть приведено одно значение к другому значению
-    + указатель к указателю, указатель к целому, целое к указателю
-    + ссылки ок
-    + указатели на функции ок
-    + Ex `T *v = reinterpret_cast <T *>(ptr)`
     + turns one type directly into another
-    + normally if you cast the result back to the original type, you will get the exact same value (except if the intermediate type is smaller than the original one)
-    + utility: weird conversions, bit manipulations (ex turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
+    + cast the result back -> the original value
 * `std::bit_cast` (c++20)
 * `literal_cast`
-* my functions
+* stringstream
 ```
 template <typename T> T fromStr(const std::string& s) {
   std::istringstream iss(s);
@@ -310,17 +292,18 @@ Anonymous namespaces make private things really private.
 ### static class
 * ≈ a class with only static methods and members
 * formally C++ does not have static classes (Java-like languages like C# have no non-member functions, so they have static classes)
-* In C++, the namespace is more powerful, because:
+* In C++, the namespace is more powerful thamn static class, because:
     + static methods have access to the classes private symbols
     + private static methods are still visible (if inaccessible) to everyone, which breaches somewhat the encapsulation
     + static methods cannot be forward-declared
     + static methods cannot be overloaded by the class user without modifying the library header
     + there is nothing that can be done by a static method that can't be done better than a (possibly friend) non-member function in the same namespace
-    + namespaces have their own semantics (they can be combined, they can be anonymous, etc.)
+    + namespaces have their own semantics (can be combined, can be anonymous, ...)
 * can't be instanciated
 * can't be inherited
-* для группирования связанных по смыслу методов, свойств и полей
-* the compiler stopping you from writing any instance members/methods
+* should have constructors / destructors au a usual class ?
+* usage: to group methods ... для группирования связанных по смыслу методов, свойств и полей
+* usage: prevent writing instance members/methods
 
 ### static not member function 
 * can't be called from other places
@@ -422,7 +405,6 @@ const char *func() {
 * a pointer to the Parent's function calls the Parent's virtual function and executes its Child’s version 
 * a constructor and a destructor can not be virtual, a destructor must have a definition
 * a destructor of a non-final class with virtual functions is virtual (?)
-* **polymorphic class**: defines or inherits a virtual function 
 * объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
 * вызов виртуальной функции через имя объекта разрешается статически
 
@@ -459,6 +441,10 @@ In any of the parameters of a function declaration: that declaration becomes an 
 ### inline (c++ 17)
 
 ### explicit
+
+### terminlogy in the same style
+**Incomplete class** : a class until the end of its definition
+**Polymorphic class**: defines or inherits a virtual function 
 
 # Approximation to real numbers
 **Accuracy** how close a measurement is to the true value  

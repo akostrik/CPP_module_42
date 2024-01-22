@@ -1,27 +1,17 @@
 #ifndef BASE_HPP
 # define BASE_HPP
 
-# include <iostream>
-# include <string>
-# include <cstdlib>
-# include <cerrno>
-# include <climits>
-# include <cfloat>
-# include <string>
+# include <iostream>  // std
+# include <cstdlib>   // rand
 # include <exception>
-# include <iostream>
-# include <limits>
-# include <stdlib.h>
-# include <iostream>
-# include <iomanip>
-# include <math.h>
-# include <bitset>
-# include <stdint.h>
 
-// private constructor ?
 class Base {
   public:
     virtual ~Base();
 };
+
+class A : public Base {};
+class B : public Base {};
+class C : public Base {};
 
 #endif

@@ -14,11 +14,11 @@ protected:
 public: 
                Animal     ();
                Animal     (const Animal &obj);
-  virtual      ~Animal    ();                    // virtual ! (PB non-final 'Animal' has virtual functions but non-virtual destructor)
+  virtual      ~Animal    ();                    // virtual, non-final 'Animal' with virtual functions must have virtual destructor
   Animal&      operator = (const Animal &obj);
 
   std::string  getType    (void) const;
-  virtual void makeSound  ()     const;          // virtual!
+  virtual void makeSound  ()     const;          // virtual
 };
 
 #endif

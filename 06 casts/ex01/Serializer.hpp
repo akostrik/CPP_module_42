@@ -1,33 +1,24 @@
 #ifndef SERIALIZER_HPP
 # define SERIALIZER_HPP
 
-# include <iostream>
-# include <string>
-# include <cstdlib>
-# include <cerrno>
-# include <climits>
-# include <cfloat>
-# include <string>
-# include <exception>
-# include <iostream>
-# include <limits>
-# include <stdlib.h>
-# include <iostream>
-# include <iomanip>
-# include <math.h>
-# include <bitset>
-# include <stdint.h>
+# include <iostream> // std
+# include <stdint.h> // uintptr_t
 
 struct Data {
   std::string name;
   int         age;
 };
 
-// private constructor!
 class Serializer {
+  private:
+                   Serializer  ();
+                   Serializer  (const Serializer &obj);
+  Serializer       &operator = (const Serializer &obj);
+
   public:
-    static uintptr_t serialize  (Data* ptr);
-    static Data*     deserialize(uintptr_t raw);
+                   ~Serializer ();
+  static uintptr_t serialize   (Data* ptr);
+  static Data*     deserialize (uintptr_t raw);
 };
 
 #endif
