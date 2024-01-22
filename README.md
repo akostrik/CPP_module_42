@@ -470,7 +470,7 @@ In any of the parameters of a function declaration: that declaration becomes an 
 **Incomplete class** : a class until the end of its definition
 **Polymorphic class**: defines or inherits a virtual function 
 
-# Approximation to real numbers
+# Representation of real numbers
 **Accuracy** how close a measurement is to the true value  
 **Precision** how much information you have about a quantity  
 
@@ -609,7 +609,7 @@ binary    	                                                                     
 0&nbsp;10000110011&nbsp;00000000000000000000000000000000000000000000000000000000000000| $ ...                        * 2^{... -511}$| 9007199254740990 = $2^{53}$ max int in 53 bits   
 0&nbsp;11111111110&nbsp;11111111111111111111111111111111111111111111111111111111111111| $(-1)^0* 1+(2^{32}−1)/2^{32} * 2^{1022−511}$| 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000 DBL_MAX 
 
-## Fixed-point 
+## Fixed-point approximation
 https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
   
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
@@ -617,18 +617,19 @@ Fixed point arithmetic is much faster than the floating-point one.
 Example: Dollar amounts are often stored with exactly two fractional digits, representing the cents  
 Example: $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8)  
 
-## Logarithmic 
+## Logarithmic approximation
 Represent a real number by the logarithm of its absolute value and a sign bit. 
 
-## Tapered floating-point
-Does not appear to be used in practice.
-
-## Interval 
+## Interval approximation
 Allows one to represent numbers as intervals and obtain guaranteed bounds on results. It is generally based on other arithmetics, in particular floating point.
 
-## Rational representation to real numbers
-Represent numbers as fractions with integral numerator and denominator, and can therefore represent any rational number exactly. 
+## Tapered floating-point approximation
+Does not appear to be used in practice.
 
-## Without encoding representation of real numbers
-Handles irrational numbers like pi or sqrt{3} in a formal way, without dealing with an encoding. Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation.  
-Computer algebra systems such as Mathematica, Maxima, Maple.
+## Exact representation of rational numbers
+Represent numbers as fractions with integral numerator and denominator
+
+## Exact representation of real numbers
+* Handles irrational numbers like pi or sqrt{3} in a formal way, without dealing with an encoding
+* Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation  
+* Ex: computer algebra systems such as Mathematica, Maxima, Maple
