@@ -314,8 +314,13 @@ the real beginning of the bloc
 * is called using the class name or through an object
 
 ### static class
+* usage: to group ressembling methods, proprieties and fields
+* usage: prevent writing instance members/methods
 * ≈ a class with only static methods and members
 * formally C++ does not have static classes (Java-like languages like C# have no non-member functions, so they have static classes)
+* can't be instanciated
+* can't be inherited
+* should have constructors / destructors as a usual class ?
 * In C++, the namespace is more powerful thamn static class, because:
     + static methods have access to the classes private symbols
     + private static methods are still visible (if inaccessible) to everyone, which breaches somewhat the encapsulation
@@ -323,11 +328,6 @@ the real beginning of the bloc
     + static methods cannot be overloaded by the class user without modifying the library header
     + there is nothing that can be done by a static method that can't be done better than a (possibly friend) non-member function in the same namespace
     + namespaces have their own semantics (can be combined, can be anonymous, ...)
-* can't be instanciated
-* can't be inherited
-* should have constructors / destructors au a usual class ?
-* usage: to group ressembling methods, proprieties and fields
-* usage: prevent writing instance members/methods
 
 ### static not member function 
 * can't be called from other places
