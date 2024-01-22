@@ -430,7 +430,7 @@ const char *func() {
 * a constructor and a destructor can not be virtual, a destructor must have a definition
 * a destructor of a non-final class with virtual functions is virtual (?)
 * run-timed the object vreation and function call (late binding) 
-* stqtic resolution of a call of a virtual funciton via the object name
+* static resolution of a call of a virtual funciton via the object name
 
 3 scenarios:  
 `class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
