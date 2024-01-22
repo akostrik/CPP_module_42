@@ -466,9 +466,15 @@ In any of the parameters of a function declaration: that declaration becomes an 
 
 ### explicit
 
-### terminlogy in the same style
-**Incomplete class** : a class until the end of its definition
-**Polymorphic class**: defines or inherits a virtual function 
+### Just terminlogy 
+
+## incomplete class
+a class until the end of its definition  
+no keyword `incomplet`
+
+## polymorphic class
+defines or inherits a virtual function 
+// no keyword `incomplet`
 
 # Representation of real numbers
 **Accuracy** how close a measurement is to the true value  
