@@ -315,7 +315,7 @@ the real beginning of the bloc
 
 ### static class
 * usage: to group ressembling methods, proprieties and fields
-* usage: prevent writing instance members/methods
+* usage: to prevent writing instance members/methods
 * ≈ a class with only static methods and members
 * formally C++ does not have static classes (Java-like languages like C# have no non-member functions, so they have static classes)
 * can't be instanciated
