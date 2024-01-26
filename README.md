@@ -376,21 +376,21 @@ int main() {
 * `override` keyword is a C++11 extension
 
 ### const / mutable data
-a                function can't           modify `                    const data`  
-a                function can &nbsp;&nbsp;modity `casted const away   const data` // not advised   
-    ~~const~~ member function can't           modify `passed by value     const data`   
-    ~~const~~ member function can't           modify `passed by reference const data`   
-    const member function can't           modify `passed by value     const data`  
-    const member function can't           modify `passed by reference const data`  
-constructor               can &nbsp;&nbsp;modify `                    const data`  
-destructor                can &nbsp;&nbsp;modify `                    const data`  
+const function can't           modify `                    const data`  
+~~const~~ function can't           modify `                    const data`  
+const function can &nbsp;&nbsp;modity `casted const away   const data` // not advised   
+~~const~~ function can &nbsp;&nbsp;modity `casted const away   const data` // not advised   
+~~const~~ member function can't           modify `passed by value     const data`   
+~~const~~ member function can't           modify `passed by reference const data`   
+const member function can't           modify `passed by value     const data`  
+const member function can't           modify `passed by reference const data`  
+constructor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;&nbsp;modify `                    const data`  
+destructor            can&nbsp;&nbsp;modify `                    const data`  
   
-const&nbsp;&nbsp;&nbsp;obj.~~const~~ member function NON    
 const&nbsp;&nbsp;&nbsp;obj.const member function OK  
+const&nbsp;&nbsp;&nbsp;obj.~~const~~ member function NON    
 const *obj.~~const~~ member function NON  
 const &obj.~~const~~ member function NON  
-~~const~~ *obj.~~const~~ member function NON  
-~~const~~ &obj.~~const~~ member function NON  
 
 After compiling:  
 const variable cannot be left un-initialized at the time  
