@@ -385,7 +385,7 @@ a                function can &nbsp;&nbsp;modity `casted const away   const data
 constructor               can &nbsp;&nbsp;modify `                    const data`  
 destructor                can &nbsp;&nbsp;modify `                    const data`  
   
-const&nbsp;nbsp;obj.~~const~~ member function NON    
+const&nbsp;&nbsp;obj.~~const~~ member function NON    
 const *obj.~~const~~ member function NON  
 const &obj.~~const~~ member function NON  
 ~~const~~ *obj.~~const~~ member function NON  
