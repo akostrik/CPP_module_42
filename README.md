@@ -385,8 +385,6 @@ const function modifies casted const away const data &#9745; but not advised
 constructor modifies const data &#9745;  
 destructor&nbsp;&nbsp;modifies const data &#9745;   
   
-After compiling:  
-const variable cannot be left un-initialized at the time  
 `const int                с = 3` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can't change the value  
 `const int               *с    `  can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
 `       int         const *с     ` can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
