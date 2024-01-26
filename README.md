@@ -305,7 +305,7 @@ the real beginning of the bloc
 * is slower than a non-static variable (the programm goes to another memory segment, vérifies if the variable is initialized)
 * to be careful while multithreading
 
-## static member of a class  
+### static member of a class  
 * belongs to the class, is not associated with a particular object, is the same for all the class instances
 * if we crate three instances of the class, the constructor is called only one time
 * can not be nitialized by a constructor
