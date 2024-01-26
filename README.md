@@ -248,16 +248,16 @@ C++ file manipulations:
 * exceptions  
 
 ## Standard Template Library (STL)
-Provides four components called algorithms, containers, functions, and iterators.  
+* Provides four components called algorithms, containers, functions, and iterators  
 
 ## Namespace
-Anonymous namespaces make private things really private.  
+* Anonymous namespaces make private things really private
 
 ## Resolution
-**lexical resolution** = **early binding** can be determined at compile time
-**dynamic resolution** = **late binding** can be determined at run time
+* **lexical resolution** = **early binding** can be determined at compile time  
+* **dynamic resolution** = **late binding** can be determined at run time
 
-## System call
+## System call (c, c++)
 * call to the kernel
 * != call to a systle library
 * processus management: load, execute, exit, abort, fork, processus terminating, get/set process attributes, wait, signal, allocate, free
@@ -266,7 +266,7 @@ Anonymous namespaces make private things really private.
 * information management: get/set time or date, get/set system data, get/set process, file, device attributes
 * communications: create, delete communication connection, send, receive messages, transfer status information, attach or detach remote devices
 
-## malloc
+## malloc (c, c++)
 * free of the memory should be procedded in the inverse order to malloc
 * malloc allocates more memory that the programmes asked, because it puts the size of the block in the beginning on the bloc  
 +-----+--------------------------     ----+  
