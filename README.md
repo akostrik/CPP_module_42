@@ -384,8 +384,8 @@ const function modifies casted const away const data &#9745; but not advised
 ~~const~~ member function modifies passed by reference const data &#9746;    
 const member function modifies passed by value const data &#9746;    
 const member function modifies passed by ref const data &#9746;   
-constructor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;&nbsp;modify `                    const data`  
-destructor            can&nbsp;&nbsp;modify `                    const data`  
+constructor modifies modifies const data &#9745;  
+destructor&nbsp;&nbsp;modifies const data &#9745;   
   
 const&nbsp;&nbsp;&nbsp;obj.const member function &#9745;  
 const&nbsp;&nbsp;&nbsp;obj.~~const~~ member function &#9746;     
