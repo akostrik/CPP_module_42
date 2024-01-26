@@ -377,19 +377,14 @@ int main() {
 
 ### const / mutable data
 const function modifies passed by value const data &#9746;    
-const function modifies passed by ref const data &#9746;   
 ~~const~~ function modifies passed by value const data &#9746;     
+const function modifies passed by ref const data &#9746;   
 ~~const~~ function modifies passed by ref const data &#9746;    
 const function modifies casted const away const data &#9745; but not advised     
 ~~const~~ function modifies casted const away const data &#9745; but not advised    
 constructor modifies const data &#9745;  
 destructor&nbsp;&nbsp;modifies const data &#9745;   
   
-const&nbsp;&nbsp;&nbsp;obj.const member function &#9745;  
-const&nbsp;&nbsp;&nbsp;obj.~~const~~ member function &#9746;     
-const *obj.~~const~~ member function &#9746;  
-const &obj.~~const~~ member function &#9746;  
-
 After compiling:  
 const variable cannot be left un-initialized at the time  
 `const int                с = 3` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can't change the value  
@@ -409,6 +404,12 @@ const variable cannot be left un-initialized at the time
 * `const` we can't change the return value
 * `const` we can have a constant version and a non-constant version of the same function
 * mutable != const
+
+const&nbsp;&nbsp;&nbsp;obj.const member function &#9745;  
+const&nbsp;&nbsp;&nbsp;obj.~~const~~ member function &#9746;     
+const *obj.~~const~~ member function &#9746;  
+const &obj.~~const~~ member function &#9746;  
+
 ```
 const char *func() {
   return "text";
