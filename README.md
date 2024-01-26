@@ -378,12 +378,12 @@ int main() {
 ### const / mutable data
 const function modifies const data &#9746;  
 ~~const~~ function modifies const data &#9746;  
-const function modifies `casted const away const data &#9745; but not advised     
-~~const~~ function modifies casted const away const data &#9745; but not advised   
-~~const~~ member function can't           modify `passed by value     const data`  &#9745;  
-~~const~~ member function can't           modify `passed by reference const data`   
-const member function can't           modify `passed by value     const data`  
-const member function can't           modify `passed by reference const data`  
+const function modifies casted const away const data &#9745; but not advised     
+~~const~~ function modifies casted const away const data &#9745; but not advised    
+~~const~~ member function modifies passed by value const data &#9746;     
+~~const~~ member function modifies passed by reference const data &#9746;    
+const member function modifies passed by value const data &#9746;    
+const member function modifies passed by ref const data &#9746;   
 constructor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;&nbsp;modify `                    const data`  
 destructor            can&nbsp;&nbsp;modify `                    const data`  
   
