@@ -377,18 +377,21 @@ int main() {
 
 ### const / mutable data
 `a                function` can't           modify `                    const data`  
-`a                function` can &nbsp;&nbsp;modity `casted const away   const data` (not advised)   
-`non-const member function` can't           modify `passed by value     const data`   
-`non-const member function` can't           modify `passed by reference const data`   
+`a                function` can &nbsp;&nbsp;modity `casted const away   const data` // not advised   
+`    ~const~ member function` can't           modify `passed by value     const data`   
+`    ~const~ member function` can't           modify `passed by reference const data`   
 `    const member function` can't           modify `passed by value     const data`  
 `    const member function` can't           modify `passed by reference const data`  
 `constructor              ` can &nbsp;&nbsp;modify `                    const data`  
 `destructor               ` can &nbsp;&nbsp;modify `                    const data`  
-`                           const object`.`non-const member function` NON    
-`pointer/reference to a     const object`.`non-const member function` NON  
-`pointer/reference to a non const object`.`non-const member function` NON  
-`                           const object`.`    const member function` OK  
-`                           const object`.`non const member function` NON  
+  
+`const   obj`.`non-const member function` NON    
+`const * obj`.`non-const member function` NON  
+`const & obj`.`non-const member function` NON  
+`~const~ * obj`.`non-const member function` NON  
+`~const~ & obj`.`non-const member function` NON  
+`const   obj`.`    const member function` OK  
+`const   obj`.`non const member function` NON  
 
 After compiling:  
 const variable cannot be left un-initialized at the time  
