@@ -387,8 +387,8 @@ const member function can't           modify `passed by reference const data`
 constructor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;&nbsp;modify `                    const data`  
 destructor            can&nbsp;&nbsp;modify `                    const data`  
   
-const&nbsp;&nbsp;&nbsp;obj.const member function OK  
-const&nbsp;&nbsp;&nbsp;obj.~~const~~ member function NON    
+const&nbsp;&nbsp;&nbsp;obj.const member function &#x2611; 
+const&nbsp;&nbsp;&nbsp;obj.~~const~~ member function &#9746;   
 const *obj.~~const~~ member function NON  
 const &obj.~~const~~ member function NON  
 
