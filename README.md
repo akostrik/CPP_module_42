@@ -403,9 +403,6 @@ const variable cannot be left un-initialized at the time
 
 * mutable: * we can modify a mutable class member through member functions even if the containing object is const
 
-### const not member function
-* doesn't exist
-
 ### const / mutable member funciton
 * `const` doest't change the object
 * `const` doesn't call non-constant member functions  
@@ -417,6 +414,9 @@ const char *func() {
   return "text";
 }
 ```
+
+### const not member function
+* doesn't exist
 
 ### volatile data
 
