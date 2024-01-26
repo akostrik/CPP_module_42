@@ -14,7 +14,7 @@ class A
 };
 ```
 
-## Inheritance (feature)
+## Inheritance (OOP feature)
 * super class = base class = parent class
 * subclass = derived class = child class
 * a constructor is not inherited
