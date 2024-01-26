@@ -379,8 +379,7 @@ int main() {
 const function modifies passed by value const data &#9746;    
 const function modifies passed by ref const data &#9746;   
 ~~const~~ function modifies passed by value const data &#9746;     
-~~const~~ function modifies passed by reference const data &#9746;    
-~~const~~ function modifies const data &#9746;  
+~~const~~ function modifies passed by ref const data &#9746;    
 const function modifies casted const away const data &#9745; but not advised     
 ~~const~~ function modifies casted const away const data &#9745; but not advised    
 constructor modifies const data &#9745;  
