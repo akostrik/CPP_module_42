@@ -1,4 +1,4 @@
-# C++ feautures (also C features)
+# C++ feautures
 http://www.cplusplus.com  
 
 ## Automatic initialisation (OOP feature)
