@@ -2,7 +2,7 @@
 http://www.cplusplus.com  
 
 ## Automatic initialisation (OOP feature)
-Orthodox canonical class form (Coplienùs form): 
+Orthodox canonical class form (Coplien's form): 
 ```
 class A
 {
