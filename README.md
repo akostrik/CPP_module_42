@@ -394,7 +394,7 @@ destructor&nbsp;&nbsp;modifies const data &#9745;
 `const std::string& s = "AB";` OK, the temporary object is alive as long as the const ref is alive  
 `      std::string& s = "AB";` NON, the temporary object disappeares
 
-* mutable: * we can modify a mutable class member through member functions even if the containing object is const
+* mutable: we can modify a mutable class member through member functions even if the containing object is const
 
 ### const / mutable member funciton
 * `const` doest't change the object
