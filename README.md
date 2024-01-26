@@ -407,11 +407,11 @@ const variable cannot be left un-initialized at the time
 * doesn't exist
 
 ### const / mutable member funciton
-* doest't change the object
-* doesn't call non-constant member functions  
-* we can't change the return value
-* we can have a constant version and a non-constant version of the same function
-* mutable = const
+* `const` doest't change the object
+* `const` doesn't call non-constant member functions  
+* `const` we can't change the return value
+* `const` we can have a constant version and a non-constant version of the same function
+* mutable != const
 ```
 const char *func() {
   return "text";
