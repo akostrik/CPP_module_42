@@ -186,7 +186,7 @@ template<typename T> T max(T &a, T &b) {
 }
 ```
 
-##  Value 
+##  Value (c, c++)
 * is the representation of some entity that can be manipulated by a program  
 * this terminology is used to categorize expressions (and not values)  
 
