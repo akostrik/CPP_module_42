@@ -2,7 +2,7 @@
 http://www.cplusplus.com  
 
 ## Automatic initialisation (OOP feature)
-Orthodox canonical class form in C++98: 
+Orthodox canonical class form (Coplienùs form): 
 ```
 class A
 {
