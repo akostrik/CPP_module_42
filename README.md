@@ -19,7 +19,6 @@ class A
 * subclass = derived class = child class
 * a constructor is not inherited
 * a destructor is not inherited
-* a destructor must be defined even if it is declared pure-virtual
 * when a child class initilaies its instance, the constructors are called hierarchically, the destructors are called in the inverse order
 * operator = is inherited, but hidden by the implicitely declared one
 
@@ -114,7 +113,7 @@ https://en.cppreference.com/w/cpp/language
     + usage: cast within an inheritance hierarchy, cast sideways or even up another chain, seeks out the desired object and returns it if possible
     + usage: to handle polymorphism
     + usage: to find the type of object
-    + Parent should have a virtual function (Parent always has a virtual destructor)
+    + Parent should have a virtual function (in any case Parent always has a virtual destructor)
     + ptr / ref                       -> ptr / ref within an inheritance hierarchy
     + ptr / ref to a polymorphic type -> ptr / ref to any type
     + Parent                          -> Child*
@@ -417,21 +416,23 @@ const &obj.~~const~~ member function &#9746;
 ### virtual data
 
 ### virtual member function
-* a member function of a Parent, redefined by a Child (the same name and parametres) (one interface, several realisations) (**polymorphic functions**)
+* a member function of a Parent, redefined by a Child (**polymorphic functions**)
 * must be defined in Parent
 * cannot be static
 * a pointer to the Parent's function calls the Parent's virtual function and executes its Child’s version 
-* a constructor and a destructor can not be virtual, a destructor must have a definition
+* a constructor can not be virtual
+* if a class has any virtual function, it should have a virtual destructor
+* classes not designed to be base classes or not designed to be used polymorphically should not declare virtual destructors
+* a destructor can be virtual, must be defined even if it is declared pure-virtual
 * a destructor of a non-final class with virtual functions is virtual (?)
-* run-timed the object vreation and function call (late binding) 
-* static resolution of a call of a virtual funciton via the object name
+* virtual destructors are useful when you might potentially delete an instance of a derived class through a pointer to base class
 
 3 scenarios:  
-`class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
-`class Par  { virtual void f()     } class Chld: public Par  { void f() {} }`  Child **override** a virtual function   
-`class Par  {         void f()     } class Chld: public Par  { void f() {} }`  Child **hide** a non-virtual function   
+`class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **IPar** defines a functionality, Child defines the realisation  
+`class Par  { virtual void f()     } class Chld: public Par  { void f() {} }`  Child **overrides** a virtual function   
+`class Par  {         void f()     } class Chld: public Par  { void f() {} }`  Child **hides** a non-virtual function   
 
-Virtual function table :  
+ vtable (virtual functions table) :  
 * ≈ hidden static data member of the class  
 * every object of a polymorphic class is associated with (possibly multiple) vtable for its most-derived class  
 * stores pointers to virtual functions 
