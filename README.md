@@ -397,10 +397,11 @@ destructor&nbsp;&nbsp;modifies const data &#9745;
 * mutable: we can modify a mutable class member through member functions even if the containing object is const
 
 ### const / mutable member funciton
-* `const` doest't change the object
-* `const` doesn't call non-constant member functions  
-* `const` we can't change the return value
-* `const` we can have a constant version and a non-constant version of the same function
+* const function doest't change the object
+* const function does not modify any of the members of that class
+* const function doesn't call non-constant member functions  
+* we can't change the return value of a const function
+* we can have a constant version and a non-constant version of the same function
 * mutable != const
 
 const&nbsp;&nbsp;&nbsp;obj.const member function &#9745;  
