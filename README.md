@@ -386,8 +386,8 @@ constructor modifies const data &#9745;
 destructor&nbsp;&nbsp;modifies const data &#9745;   
   
 `const int                с = 3` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change the value &#9746;  
-`const int        *         с    `   change the pointer &#9745;, change the value &#9746;  
-`       int const *         с     ` change the pointer &#9745;, change the value &#9746;  
+`const int       *         с    `   change the pointer &#9745;, change the value &#9746;  
+`       int const *          с     ` change the pointer &#9745;, change the value &#9746;  
 `       int       * const   с     ` change the pointer &#9746;, change the value &#9745;    
 `       int const * const   с     ` change the pointer &#9746;, change the value &#9746;   
   
