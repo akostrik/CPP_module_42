@@ -385,11 +385,11 @@ const function modifies casted const away const data &#9745; but not advised
 constructor modifies const data &#9745;  
 destructor&nbsp;&nbsp;modifies const data &#9745;   
   
-`const int                с = 3` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can't change the value  
-`const int               *с    `  can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
-`       int         const *с     ` can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
-`       int       * const  с     ` can't change the pointer, can&nbsp;&nbsp;&nbsp;change the value    
-`       int const * const  с     ` can't change the pointer, can't change the value  
+`const int                с = 3` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change the value &#9746;  
+`const int               *с    `   change the pointer &#9745;, change the value &#9746;  
+`       int         const *с     ` change the pointer &#9745;, change the value &#9746;  
+`       int       * const  с     ` change the pointer &#9746;, &nbsp;change the value &#9745;    
+`       int const * const  с     ` change the pointer &#9746;, change the value &#9746;   
   
 `const std::string& s = "AB";` OK, the temporary object is alive as long as the const ref is alive  
 `      std::string& s = "AB";` NON, the temporary object disappeares
@@ -408,12 +408,6 @@ const&nbsp;&nbsp;&nbsp;obj.const member function &#9745;
 const&nbsp;&nbsp;&nbsp;obj.~~const~~ member function &#9746;     
 const *obj.~~const~~ member function &#9746;  
 const &obj.~~const~~ member function &#9746;  
-
-```
-const char *func() {
-  return "text";
-}
-```
 
 ### const not member function
 * doesn't exist
