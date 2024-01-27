@@ -401,6 +401,7 @@ destructor&nbsp;&nbsp;modifies const data &#9745;
 * const function calls only const member functions  
 * we can't change the return value of a const function
 * we can have a constant version and a non-constant version of the same function
+* `const int Cl::func() const;` 1st const = the returend object is const, 2nd const = the functin is const
 * mutable != const
 
 const&nbsp;&nbsp;&nbsp;obj.const member function &#9745;  
