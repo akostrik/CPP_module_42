@@ -461,15 +461,16 @@ In any of the parameters of a function declaration: that declaration becomes an 
 
 ### explicit
 
-### Just terminlogy 
-
-## incomplete class
+### incomplete class
 a class until the end of its definition  
-no keyword `incomplet`
+no keyword `incomplet`, just terminologie
 
-## polymorphic class
+### polymorphic class
 defines or inherits a virtual function 
-// no keyword `incomplet`
+no keyword `incomplet`, just terminologie
+
+# Other info
+`#pragma once` is only intended to be used in headers, there is no need to compile headers, don't compile headers
 
 # Representation of real numbers
 **Accuracy** how close a measurement is to the true value  
