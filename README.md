@@ -185,6 +185,10 @@ template<typename T> T max(T &a, T &b) {
 }
 ```
 
+## Collections
+* `clear()` removes all entries from a collection
+* `erase()` removes a single entry or a range of entries
+  
 ##  Value (c, c++)
 * is the representation of some entity that can be manipulated by a program  
 * this terminology is used to categorize expressions (and not values)  
