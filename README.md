@@ -291,6 +291,9 @@ the real beginning of the bloc
 * public: public data are inherited as public, protected data are inherited as protected 
 * private: all inherited data become private
 * protected: all inherited data become protected
+* par default: `class  Par {}; class Child:  /* private */ Parent {};`
+* par default: `class  Par {}; struct Child: /* public */  Parent {};`
+* par default: `struct Par {}; class Child:  /* public  */ Parent {};`
 
 ### final class
 * inheritance is prohibited
