@@ -188,7 +188,22 @@ template<typename T> T max(T &a, T &b) {
 ## Collections
 * `clear()` removes all entries from a collection
 * `erase()` removes a single entry or a range of entries
-  
+
+## #include
+*  Header Guards
+*  `#pragma once`
+*  `class A;`:
+  + an incomplete type
+  + one cannot create objects of it
+  + the compiler does not know what are its members and what its memory layout is
+  + you may reffering to an incomplete type as a pointer
+  + you can declare a member to be a pointer or a reference to the incomplete type
+  + you can declare functions or methods which accepts/return incomplete types
+  + you can define functions or methods which accepts/return pointers/references to the incomplete type (but without using its members)
+  + you can not use it as a base class
+  + you can not use it to declare a member
+  + you can not define functions or methods using this type
+
 ##  Value (c, c++)
 * is the representation of some entity that can be manipulated by a program  
 * this terminology is used to categorize expressions (and not values)  
