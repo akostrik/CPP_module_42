@@ -18,11 +18,11 @@ int main( void ) {
 
     Person* p1 = new Person("Poucette", 50);
     Person* p2 = new Person("Geant", 200);
-    std::cout << "p1 = " << *p1 << "; p2 = " << *p2 << std::endl;
+    std::cout << "p1 = " << *p1 << ", p2 = " << *p2 << std::endl;
     std::cout << "min(p1, p2) = " << ::min(*p1, *p2) << std::endl;
     std::cout << "max(p1, p2) = " << ::max(*p1, *p2) << std::endl << std::endl;
     delete p1;
     delete p2;
-    
+
     return 0;
 }
