@@ -52,7 +52,7 @@ public:
 * the compiler uses a **function template** (a parametric function definition, where a particular function instance is created by one or more parameter values) to generate a **function definition** (an instance of the template)
 * you could pass the address, instead of dereferenced value as a parameter
 * **template specialization** defines a behaviour that is different from the standard template
-** **class template** is not a class, it is a template used to create classes 
+* **class template** is not a class, it is a template used to create classes 
 ** a function / template can be overloaded
 * a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
 
@@ -62,7 +62,7 @@ public:
 
 ## Types
 ### `std::string` 
-* = `'basic_string<char>`
+* = `basic_string<char>`
 * ≈ an array of char
 * ≈ vector<char>
 * initialized dinamically, not statically
