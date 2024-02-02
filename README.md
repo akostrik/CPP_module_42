@@ -1,7 +1,7 @@
 # C++ feautures
 http://www.cplusplus.com  
 
-## Automatic initialisation (OOP feature)
+## Automatic initialisation
 Orthodox canonical class form (Coplien's form): 
 ```
 class A
@@ -14,7 +14,7 @@ class A
 };
 ```
 
-## Inheritance (OOP feature)
+## Inheritance
 * super class = base class = parent class
 * subclass = derived class = child class
 * a constructor is not inherited
@@ -22,7 +22,7 @@ class A
 * when a child class initilaies its instance, the constructors are called hierarchically, the destructors are called in the inverse order
 * operator = is inherited, but hidden by the implicitely declared one
 
-## Overloading (OOP feature)
+## Overloading
 * different functions can have the same name provided they are distinguished by their parameter types 
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 * to use the operator = of the Parent in the Child:
@@ -43,12 +43,26 @@ public:
 }
 ```
 
-## Incapsulation (OOP feature)
+## Incapsulation
 * the data is **incapsulated** as mush as possible -> fewer parts of the program see them -> flexibility for changing
+
+## Templates
+* allows functions and classes to operate with generic types  
+* are parameterized by one or more parameters of three kinds: type template parameters, non-type template parameters, and template template parameters.
+* the compiler uses a **function template** (a parametric function definition, where a particular function instance is created by one or more parameter values) to generate a **function definition** (an instance of the template)
+* you could pass the address, instead of dereferenced value as a parameter
+* **template specialization** defines a behaviour that is different from the standard template
+* **class template** is not a class, it is a template used to create classes 
+** a function / template can be overloaded
+* a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
+
+## Collections
+* `clear()` removes all entries from a collection
+* `erase()` removes a single entry or a range of entries
 
 ## Types
 ### `std::string` 
-* = `'basic_string<char>`
+* = `basic_string<char>`
 * ≈ an array of char
 * ≈ vector<char>
 * initialized dinamically, not statically
@@ -174,35 +188,6 @@ Consists of :
 
 ### Ellipsis conversion sequences
 Occurs when the compiler matches an argument in a function call with a corresponding ellipsis parameter
-
-## Templates
-Allows functions and classes to operate with generic types.  
-A templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
-Class templates / variable templates  
-```
-template<typename T> T max(T &a, T &b) {
-  return a > b ? a : b;
-}
-```
-
-## Collections
-* `clear()` removes all entries from a collection
-* `erase()` removes a single entry or a range of entries
-
-## #include
-*  Header Guards
-*  `#pragma once`
-*  `class A;`:
-  + an incomplete type
-  + one cannot create objects of it
-  + the compiler does not know what are its members and what its memory layout is
-  + you may reffering to an incomplete type as a pointer
-  + you can declare a member to be a pointer or a reference to the incomplete type
-  + you can declare functions or methods which accepts/return incomplete types
-  + you can define functions or methods which accepts/return pointers/references to the incomplete type (but without using its members)
-  + you can not use it as a base class
-  + you can not use it to declare a member
-  + you can not define functions or methods using this type
 
 ##  Value (c, c++)
 * is the representation of some entity that can be manipulated by a program  
@@ -483,9 +468,19 @@ In any of the parameters of a function declaration: that declaration becomes an 
 
 ### explicit
 
-### incomplete class
-a class until the end of its definition  
-no keyword `incomplet`, just terminologie
+### incomplete type
+* Ex: `class A;`
+* a class until the end of its definition  
+* no keyword `incomplet`, just terminologie
+* one cannot create objects of it
+* the compiler does not know what are its members and what its memory layout is
+* you may reffering to an incomplete type as a pointer
+* you can declare a member to be a pointer or a reference to the incomplete type
+* you can declare functions or methods which accepts/return incomplete types
+* you can define functions or methods which accepts/return pointers/references to the incomplete type (but without using its members)
+* you can not use it as a base class
+* you can not use it to declare a member
+* you can not define functions or methods using this type
 
 ### polymorphic class
 defines or inherits a virtual function 
