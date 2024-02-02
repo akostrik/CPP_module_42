@@ -1,6 +1,7 @@
 #include "iter.hpp"
 #define N 5
 
+// an instantiated function template
 template <typename T> void myPrint(T &elt) {
     std::cout << elt << std::endl;
 }
