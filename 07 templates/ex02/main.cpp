@@ -2,13 +2,14 @@
 
 int main(void) {
     Array<int>      arr1(5);
-    Array<int>      *arr2 = new Array<int>();
+    Array<int>      *arr2 = new Array<int>(2);
     Array<float>    arr3(5);
 
     for ( unsigned int i = 0; i < arr1.size(); i++) {
         arr1[i] = i * 2;
         arr3[i] = arr1[i] + 0.5;
     }
+    (void)arr2;
     *arr2 = arr1;
     std::cout << "arr1: " << arr1 << std::endl;
     std::cout << "arr2: " << *arr2 << std::endl;
@@ -22,5 +23,6 @@ int main(void) {
         std::cout << "Error: " << e.what() << std::endl;
     }
 
-    return ( 0 );
+    delete &arr2[0];
+    return (0);
 }
