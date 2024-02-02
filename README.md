@@ -4,8 +4,7 @@ http://www.cplusplus.com
 ## Automatic initialisation
 Orthodox canonical class form (Coplien's form): 
 ```
-class A
-{
+class A {
    public:
       A ();                         // default constructor
       A (const A &obj);             // copy constructor
