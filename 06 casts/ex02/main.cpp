@@ -82,6 +82,6 @@ int main() {
 >>>>>>> 417b088ab57bc00bbe8dfd543843e5a2f706655a
   identify(base);
   identify(*base);
-  //delete base; ?
+  delete base;
   return (0);
 }

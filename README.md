@@ -1,11 +1,10 @@
 # C++ feautures
 http://www.cplusplus.com  
 
-## Automatic initialisation (OOP feature)
-Orthodox canonical class form in C++98: 
+## Automatic initialisation
+Orthodox canonical class form (Coplien's form): 
 ```
-class A
-{
+class A {
    public:
       A ();                         // default constructor
       A (const A &obj);             // copy constructor
@@ -14,16 +13,15 @@ class A
 };
 ```
 
-## Inheritance (feature)
+## Inheritance
 * super class = base class = parent class
 * subclass = derived class = child class
 * a constructor is not inherited
 * a destructor is not inherited
-* a destructor must be defined even if it is declared pure-virtual
-* когда дочерний класс инициализирует свой объект, конструкторы вызываются один за другим иерархически, destructors are called in the inverse order
+* when a child class initilaies its instance, the constructors are called hierarchically, the destructors are called in the inverse order
 * operator = is inherited, but hidden by the implicitely declared one
 
-## Overloading (OOP feature)
+## Overloading
 * different functions can have the same name provided they are distinguished by their parameter types 
 * a child can have a function with the same name, this function becomes an independant funciton of the child
 * to use the operator = of the Parent in the Child:
@@ -44,25 +42,78 @@ public:
 }
 ```
 
-## Incapsulation (OOP feature)
-* данные **инкапсулированы**, насколько возможно -> они скрываются -> меньше частей программы могут их видеть -> больше гибкости для внесения изменений
+## Incapsulation
+* the data is **incapsulated** as mush as possible -> fewer parts of the program see them -> flexibility for changing
+
+## Templates
+* allows functions and classes to operate with generic types  
+* are parameterized by one or more parameters of three kinds: type template parameters, non-type template parameters, and template template parameters.
+* the compiler uses a **function template** (a parametric function definition, where a particular function instance is created by one or more parameter values) to generate a **function definition** (an instance of the template)
+* you could pass the address, instead of dereferenced value as a parameter
+* **template specialization** defines a behaviour that is different from the standard template
+* **class template** is not a class, it is a template used to create classes 
+** a function / template can be overloaded
+* a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
+
+## Containers (Standard Template Library, STL)
+
+### A standart conteiner
+* is a holder object that stores a collection of other objects
+* is implemented as class template => a great flexibility in the types supported as elements
+* manages the storage space for its elements
+* provides member functions to access  its elements, either directly or through iterators
+* many containers have member functions in common and share functionalities
+* which type of container to use ? depend on the functionality and on the efficiency of some of its members (complexity)
+* **a container adaptor**
+   + is not a full container classe
+   + provides an interface relying on an object of one of the container classes (such as deque or list) to handle the elements
+   + the underlying container is encapsulated in such a way that its elements are accessed by the members of the container adaptor independently of the underlying container class used.
+   + stack, queue, priority_queue are implemented as container adaptors
+
+### Container class templates
+* dynamic arrays (vector)
+* queues (queue)
+* stacks (stack)
+* heaps (priority_queue)
+* linked lists (list)
+* trees (set)
+* associative arrays (map)
+* ...
+
+### Container class templates
+Sequence containers:
+array	Array class (class template)
+vector	Vector (class template)
+deque	Double ended queue (class template)
+forward_list	Forward list (class template)
+list	List (class template)
+
+## Algorithms (STL)
+...
+
+## Iterators (STL)
+...
+
+## Collections
+* `clear()` removes all entries from a collection
+* `erase()` removes a single entry or a range of entries
 
 ## Types
 ### `std::string` 
-* = `'basic_string<char>`
-* ≈ массив char'ов
+* = `basic_string<char>`
+* ≈ an array of char
 * ≈ vector<char>
-* инициализирован динамически, не статически
-* != строковый литерал  
+* initialized dinamically, not statically
+* != text literal  
 
-### `uintptr_t` data type (06/ex02)  
+### `uintptr_t` data type (c, c++) (06/ex02)  
 * `unsigned int`
 * stores a data pointer
 * `void*` can be converted to `uintptr_t`, then back to `void*`, the result will compare equal to the original pointer
 * typically is the same size as a pointer (may be larger or smaller, for ex on a hypothetical platform where `void*` is 32 bits, but only 24 bits of virtual address space are used, you could have a 24-bit `uintptr_t`)
 * utilility: integer-specific operations on a pointer, to do something unusual with a pointer, for ex to invert all bits, you cast a pointer to `uintptr_t`, manipulate it as an int, then cast back
 
-### `intptr_t` data type
+### `intptr_t` data type (c, c++)
 ...
 
 ## Convertions, casts (01/ex04, 06) (only before C++11 information)
@@ -71,28 +122,28 @@ https://en.cppreference.com/w/cpp/language
 |                 | `char`               | `char*`                                                        | `std::string`                             | `int`                | `float`              | `double`
 |-----------------|----------------------|----------------------------------------------------------------|-------------------------------------------|----------------------|----------------------|---------
 | to `char*`      | ---                  | ---                                                            | c_str()  sscanf  stringstream             |                      |                      |
-| to `std::string`| sprintf  stringstream| =  string_constructor  stringstream  _s.data()  std::to_string_| ---                                       | sprintf  stringstream| sprintf  stringstream| sprintf  stringstream
-| to `int`        |                      |                                                                | atoi  stringstream  sscanf  _stoi_        | ---                  |                      |
-| to `float`      |                      |                                                                | atof  strtof  stringstream  sscanf  _stof_| implicit             | ---                  | implicit
-| to `double`     |                      |                                                                | strtod  stringstream  sscanf  _stod_      | implicit             | implicit             | ---
+| to `std::string`| sprintf  stringstream| =  string_constructor  stringstream  s.data()*  std::to_string*| ---                                       | sprintf  stringstream| sprintf  stringstream| sprintf  stringstream
+| to `int`        |                      |                                                                | atoi  stringstream  sscanf  stoi*         | ---                  |                      |
+| to `float`      |                      |                                                                | atof  strtof  stringstream  sscanf  stof* | implicit             | ---                  | implicit
+| to `double`     |                      |                                                                | strtod  stringstream  sscanf  stod*       | implicit             | implicit             | ---
   
-* С-style cast: `(int)`, `(float)` etc
-    + отбрасывает `const` и `volatile`
+* С-style cast: `(int)x`, `int(x)` etc
+    + casts off  `const` и `volatile`
     + int -> ptr
     + ptr -> int
-    + преобразовывает указатели вверх и вниз по иерархии наследования
-    + casts through inheritance hierarchies 
-    + преобразовывает указатели как reinterpret_cast, ориентируясь на битовое представление
-    + по очереди пробует :
+    + Child* -> Parent*
+    + Parent* -> Child*
+    + casts pointers as reinterpret_cast
+    + tries in turn:
         - const_cast
         - static_cast
-        - static_cast и затем const_cast
+        - static_cast, then const_cast
         - reinterpret_cast
-        - reinterpret_cast и затем const_cast
-   + T(x) syntax is equivalent to (T)x 
+        - reinterpret_cast, then const_cast
+   + is not verified by the compiler => error possible, for ex, while convertign of const types or while changing the type of the data without checking the possible range of the types
    + should be avoided
 * `const_cast<target-type ﻿>(expr) ﻿`
-    + самое простое приведение типов
+    + the simpliest cast
     + usage: to remove or add `const` or `volatile` (no other C++ cast is capable of removing it)
 * `static_cast<target-type ﻿>(expr ﻿)` (06/ex00)		
     + usage: ordinary type conversions
@@ -114,7 +165,7 @@ https://en.cppreference.com/w/cpp/language
     + usage: cast within an inheritance hierarchy, cast sideways or even up another chain, seeks out the desired object and returns it if possible
     + usage: to handle polymorphism
     + usage: to find the type of object
-    + Parent should have a virtual function (Parent always has a virtual destructor)
+    + Parent should have a virtual function (in any case Parent always has a virtual destructor)
     + ptr / ref                       -> ptr / ref within an inheritance hierarchy
     + ptr / ref to a polymorphic type -> ptr / ref to any type
     + Parent                          -> Child*
@@ -124,7 +175,7 @@ https://en.cppreference.com/w/cpp/language
     + prt / ref                       -> prt / ref
     + prt / ref                       -> int
     + int                             -> prt / ref 
-    + не может быть приведено одно значение к другому значению
+    + can't cas a value to a value
     + turns one type directly into another
     + cast the result back -> the original value
 * `std::bit_cast` (c++20)
@@ -149,10 +200,10 @@ int i = fromStr<int>(toStr(5));
 * std::to_string (c++11)  
 * stod (c++11) 
 
-## Implicit conversion sequence 
+### Implicit conversion sequence 
 * to convert an argument in a function call to the type of the corresponding parameter in a function declaration
 
-### Standard conversion sequences
+#### Standard conversion sequences
 1) Exact match includes the conversions:
     + identity conversions
     + lvalue-to-rvalue conversions
@@ -167,26 +218,16 @@ int i = fromStr<int>(toStr(5));
     + pointer-to-member conversions
     + boolean conversions
 
-### User-defined conversion sequences
+#### User-defined conversion sequences
 Consists of :
 * a standard conversion sequence
 * a user-defined conversion
 * a second standard conversion sequence
 
-### Ellipsis conversion sequences
+#### Ellipsis conversion sequences
 Occurs when the compiler matches an argument in a function call with a corresponding ellipsis parameter
 
-## Templates
-Allows functions and classes to operate with generic types.  
-A templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
-Class templates / variable templates  
-```
-template<typename T> T max(T &a, T &b) {
-  return a > b ? a : b;
-}
-```
-
-##  Value 
+##  Value (c, c++)
 * is the representation of some entity that can be manipulated by a program  
 * this terminology is used to categorize expressions (and not values)  
 
@@ -195,7 +236,7 @@ template<typename T> T max(T &a, T &b) {
 * content
 * refers to an object that persists beyond a single expression
 * can be l-values or non-l-values
-* Ex: выражение 4 + 9, во время исполнения программа генерирует значение 13, но поскольку в программе не указано где содержатся эти 13, выражения является не l-значением
+* Ex: the programm is executing, it sees the expression 4 + 9 and generates 13 value, but there is no indications there to strore 13 => 13 is not l-value
   
 **L-value**:
 * l = left side of the assignment operator
@@ -203,9 +244,8 @@ template<typename T> T max(T &a, T &b) {
 * a variable or a de-referenced reference
 * location
 * a temporary value that does not persist beyond the expression that uses it    
-* has storage addresses that are programmatically accessible to the running program
-* имеют адрес хранения, программно доступный исполняемой программе (например, используя &)
-* Ex: объявляется переменная x, которой присваивается значение 13
+* has storage addresses that are programmatically accessible to the running program (for ex, using &)
+* Ex: the cariable x is declared and attributed the value 13
    
 ## Reference vs pointer (01/ex03)
 * `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
@@ -221,8 +261,8 @@ Reference:
 * if something should always exist and never change, use a references  
 ```
    std::string &sREF = s;
-//             &sREF       переменная типа ссылка на string
-//                     s   переменная, на которую объявляется ссылка
+//             &sREF       the variable of the type 'reference to string'
+//                     s   the variable the reference is declared to
 ```
   
 Pointer:  
@@ -248,11 +288,36 @@ C++ file manipulations:
 * extensibility for user-defined types (you can teach streams how to handle your own classes)  
 * exceptions  
 
-## Standard Template Library (STL)
-Provides four components called algorithms, containers, functions, and iterators.  
-
 ## Namespace
-Anonymous namespaces make private things really private.  
+* Anonymous namespaces make private things really private
+
+## Resolution
+* **lexical resolution** = **early binding** can be determined at compile time  
+* **dynamic resolution** = **late binding** can be determined at run time
+
+## System call (c, c++)
+* call to the kernel
+* != call to a system library
+* processus management: load, execute, exit, abort, fork, processus terminating, get/set process attributes, wait, signal, allocate, free
+* file management: create, delete, open, close, read, write, reposition, get/set file attributes
+* devicaes management: request device, release device, read, write, reposition, get/set device attributes, logically attach or detach devices
+* information management: get/set time or date, get/set system data, get/set process, file, device attributes
+* communications: create, delete communication connection, send, receive messages, transfer status information, attach or detach remote devices
+
+## Memory
+* delete[] frees an array created with new[]
+* malloc allocates more memory that the programmes asked, puts the size of the block in the beginning on the bloc  
++-----+--------------------------     ----+  
+| 100 |                           ...     |  
++-----+--------------------------     ----+  
+^  ^  ^  
+|  |  the address retured by `malloc`  
+|  the size   
+the real beginning of the bloc  
+* free() reads the size of the bloc and so knows how much memory it should free
+
+## Errors 
+* **undefined behavior** it could work, it could crash, it could do something else
 
 ## Specifiers
 
@@ -268,6 +333,9 @@ Anonymous namespaces make private things really private.
 * public: public data are inherited as public, protected data are inherited as protected 
 * private: all inherited data become private
 * protected: all inherited data become protected
+* par default: `class  Par {}; class Child:  /* private */ Parent {};`
+* par default: `class  Par {}; struct Child: /* public */  Parent {};`
+* par default: `struct Par {}; class Child:  /* public  */ Parent {};`
 
 ### final class
 * inheritance is prohibited
@@ -276,22 +344,27 @@ Anonymous namespaces make private things really private.
 * prohibites `virtual` functions in the inherited classes 
 
 ### static variable in a function
-* инициализируется один раз, выделение памяти один раз, переменная сохраняет значение между вызовами функции на протяжении всей жизни программы
-* хранятся в сегментах памяти .data и .bss (не в heap и не на stack)
-* медленнее, чем нестатические переменные (т.к. переход в другой сегмент памяти и проверка инициализации переменной)
-* осторожно использовать с многопоточностью
+* is initialized one time, the memory is allocated one time, the variable stores its value between the function calls during all the time of the executoin of the programm
+* is stored in the memory segments .data и .bss (not heap, not stack)
+* is slower than a non-static variable (the programm goes to another memory segment, vérifies if the variable is initialized)
+* to be careful while multithreading
 
-## static member of a class  
+### static member of a class  
 * belongs to the class, is not associated with a particular object, is the same for all the class instances
-* если создали три объекта класса, то конструктор вызывается один раз
-* не инициализируются с помощью конструктора
-* определяем объект: вне класса с помощью оператора разрешения области видимости `::`
-* объявляем объект: `static A a;`
+* if we crate three instances of the class, the constructor is called only one time
+* can not be nitialized by a constructor
+* definition of an object: out of the class, by `::`-operator
+* declaration of an object: `static A a;`
 * is called using the class name or through an object
 
 ### static class
+* usage: to group ressembling methods, proprieties and fields
+* usage: to prevent writing instance members/methods
 * ≈ a class with only static methods and members
 * formally C++ does not have static classes (Java-like languages like C# have no non-member functions, so they have static classes)
+* can't be instanciated
+* can't be inherited
+* should have constructors / destructors as a usual class ?
 * In C++, the namespace is more powerful thamn static class, because:
     + static methods have access to the classes private symbols
     + private static methods are still visible (if inaccessible) to everyone, which breaches somewhat the encapsulation
@@ -299,11 +372,6 @@ Anonymous namespaces make private things really private.
     + static methods cannot be overloaded by the class user without modifying the library header
     + there is nothing that can be done by a static method that can't be done better than a (possibly friend) non-member function in the same namespace
     + namespaces have their own semantics (can be combined, can be anonymous, ...)
-* can't be instanciated
-* can't be inherited
-* should have constructors / destructors au a usual class ?
-* usage: to group methods ... для группирования связанных по смыслу методов, свойств и полей
-* usage: prevent writing instance members/methods
 
 ### static not member function 
 * can't be called from other places
@@ -314,10 +382,10 @@ Anonymous namespaces make private things really private.
 * can be called using the class name or through an object  
 * can access only static variables and functions  
 * doesn't have `*this`
-* можное использовать без создания объекта класса
-* доступ с использованием имени класса и оператора разрешения области видимости (::)
-* внутри функции обращаться можно только к статическим членам данных, другим статическим функциям-членам и любым другим функциям извне класса
-* имеет область видимости класса, в котором находится
+* can beused without instantiating if the class
+* ia accessed by the class nale ou by the :: operator
+* can call ony static functions, members, extern functions
+* has the same scope as its class 
 
 Example:
 ```
@@ -352,68 +420,64 @@ int main() {
 * `override` keyword is a C++11 extension
 
 ### const / mutable data
-`any              function` can't           modify `                    const data`  
-`any              function` can &nbsp;&nbsp;modity `casted const away   const data` (not advised)   
-`    const member function` can't           modify `passed by value     const data`  
-`    const member function` can't           modify `passed by reference const data`  
-`non-const member function` can't           modify `passed by value     const data`   
-`non-const member function` can't           modify `passed by reference const data`   
-`constructor              ` can &nbsp;&nbsp;modify `                    const data`  
-`destructor               ` can &nbsp;&nbsp;modify `                    const data`  
-`                           const object`.`non-const member function` NON    
-`pointer/reference to a     const object`.`non-const member function` NON  
-`pointer/reference to a non const object`.`non-const member function` NON  
-`                           const object`.`    const member function` OK  
-`                           const object`.`non const member function` NON  
-
-After compiling:  
-const variable cannot be left un-initialized at the time  
-`const int                с = 3` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can't change the value  
-`const int               *с    `  can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
-`       int         const *с     ` can&nbsp;&nbsp;&nbsp;change the pointer, can't change the value  
-`       int       * const  с     ` can't change the pointer, can&nbsp;&nbsp;&nbsp;change the value    
-`       int const * const  с     ` can't change the pointer, can't change the value  
+const function modifies passed by value const data &#9746;    
+~~const~~ function modifies passed by value const data &#9746;     
+const function modifies passed by ref const data &#9746;   
+~~const~~ function modifies passed by ref const data &#9746;    
+const function modifies casted const away const data &#9745; but not advised     
+~~const~~ function modifies casted const away const data &#9745; but not advised    
+constructor modifies const data &#9745;  
+destructor&nbsp;&nbsp;modifies const data &#9745;   
   
-`const std::string& s = "AB";` OK, const запрещает умирать временному объекту, который присваивается этой ссылке, он жив пока жива константная ссылка  
-`      std::string& s = "AB";` NON, ссылка на адрес памяти указывает на тот же, на который и объект ей присвоенный, если объект временный, то он сразу умирает
+`const int                 с = 3` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change the value &#9746;  
+`const int       *         с    `   change the pointer &#9745;, change the value &#9746;  
+`       int const *         с     ` change the pointer &#9745;, change the value &#9746;  
+`       int       * const   с     ` change the pointer &#9746;, change the value &#9745;    
+`       int const * const   с     ` change the pointer &#9746;, change the value &#9746;   
+  
+`const std::string& s = "AB";` OK, the temporary object is alive as long as the const ref is alive  
+`      std::string& s = "AB";` NON, the temporary object disappeares
 
-* mutable: * we can modify a mutable class member through member functions even if the containing object is const
+* mutable: we can modify a mutable class member through member functions even if the containing object is const
+
+### const / mutable member funciton
+* const function doest't change the object, does not modify any of the members of that class
+* const function calls only const member functions  
+* we can't change the return value of a const function
+* we can have a constant version and a non-constant version of the same function
+* `const int Cl::func() const;` 1st const = the returend object is const, 2nd const = the functin is const
+* mutable != const
+
+const&nbsp;&nbsp;&nbsp;obj.const member function &#9745;  
+const&nbsp;&nbsp;&nbsp;obj.~~const~~ member function &#9746;     
+const *obj.~~const~~ member function &#9746;  
+const &obj.~~const~~ member function &#9746;  
 
 ### const not member function
 * doesn't exist
-
-### const / mutable member funciton
-* doest't change the object
-* doesn't call non-constant member functions  
-* we can't change the return value
-* we can have a constant version and a non-constant version of the same function
-* mutable = const
-```
-const char *func() {
-  return "text";
-}
-```
 
 ### volatile data
 
 ### virtual data
 
 ### virtual member function
-* a member function of a Parent, redefined by a Child (the same name and parametres) (one interface, several realisations) (**polymorphic functions**)
+* a member function of a Parent, redefined by a Child (**polymorphic functions**)
 * must be defined in Parent
 * cannot be static
 * a pointer to the Parent's function calls the Parent's virtual function and executes its Child’s version 
-* a constructor and a destructor can not be virtual, a destructor must have a definition
+* a constructor can not be virtual
+* if a class has any virtual function, it should have a virtual destructor
+* classes not designed to be base classes or not designed to be used polymorphically should not declare virtual destructors
+* a destructor can be virtual, must be defined even if it is declared pure-virtual
 * a destructor of a non-final class with virtual functions is virtual (?)
-* объект и вызов функции будут сформированы при выполнении (**позднее связывание**) 
-* вызов виртуальной функции через имя объекта разрешается статически
+* virtual destructors are useful when you might potentially delete an instance of a derived class through a pointer to base class
 
 3 scenarios:  
-`class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **Interface** defines a functionality, Child defines the realisation  
-`class Par  { virtual void f()     } class Chld: public Par  { void f() {} }`  Child **override** a virtual function   
-`class Par  {         void f()     } class Chld: public Par  { void f() {} }`  Child **hide** a non-virtual function   
+`class IPar { virtual void f() = 0 } class Chld: public IPar { void f() {} }`  **IPar** defines a functionality, Child defines the realisation  
+`class Par  { virtual void f()     } class Chld: public Par  { void f() {} }`  Child **overrides** a virtual function   
+`class Par  {         void f()     } class Chld: public Par  { void f() {} }`  Child **hides** a non-virtual function   
 
-Virtual function table :  
+ vtable (virtual functions table) :  
 * ≈ hidden static data member of the class  
 * every object of a polymorphic class is associated with (possibly multiple) vtable for its most-derived class  
 * stores pointers to virtual functions 
@@ -421,7 +485,7 @@ Virtual function table :
 * if an object of type A does not point to the vtable of A, then that object is actually a sub-object of something derived from A
 
 ### virtual inheritance
-* предотвращает появление множественных объектов базового класса в иерархии наследования 
+* prevents a lot of Children of a Parent (?) 
 
 ### template class
 
@@ -429,24 +493,41 @@ Virtual function table :
 * allows functions and classes to operate with generic types. This allows a function or class declaration to reference via a generic variable another different class (built-in or newly declared data type) without creating full declaration for each of these different classes.
 
 ### extern data
-сделать глобальную переменную внешней (которую можно использовать в любом файле программы)
+a global variable becomes accessible in any file of the programm
 
 ### auto (c++20)
 In any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
 
 ### friend functon
-* не являются членами класса
-* имеют доступ к его private переменным и функциям
+* are not member functions
+* have acces to its private variables and functions
 
 ### inline (c++ 17)
 
 ### explicit
 
-### terminlogy in the same style
-**Incomplete class** : a class until the end of its definition
-**Polymorphic class**: defines or inherits a virtual function 
+### incomplete type
+* Ex: `class A;`
+* a class until the end of its definition  
+* no keyword `incomplet`, just terminologie
+* one cannot create objects of it
+* the compiler does not know what are its members and what its memory layout is
+* you may reffering to an incomplete type as a pointer
+* you can declare a member to be a pointer or a reference to the incomplete type
+* you can declare functions or methods which accepts/return incomplete types
+* you can define functions or methods which accepts/return pointers/references to the incomplete type (but without using its members)
+* you can not use it as a base class
+* you can not use it to declare a member
+* you can not define functions or methods using this type
 
-# Approximation to real numbers
+### polymorphic class
+defines or inherits a virtual function 
+no keyword `incomplet`, just terminologie
+
+# Other info
+`#pragma once` is only intended to be used in headers, there is no need to compile headers, don't compile headers
+
+# Representation of real numbers
 **Accuracy** how close a measurement is to the true value  
 **Precision** how much information you have about a quantity  
 
@@ -474,14 +555,14 @@ https://www.cprogramming.com/tutorial/floating_point/understanding_floating_poin
 * e != 11111111, e != 00000000  
 * m [0,1), no leading zeros in the mantissa, for example, 0.0123 would be written as $1.23 × 10^{−2}$
 * an invisible 1 (not stored) is placed in front  
-* экспонента хранится без знака => она смещена на 127, поэтому в таблице везде -127
-* n ∈ [0 ; $2^{24}$] точно (полностью влезают в мантиссу)
-* n ∈ [ $2^{24}$ + 1 ; $2^{25}$] округляются до кратного 2
-* n ∈ [ $2^{25}$ + 1 ; $2^{26}$] округляются до кратного 4
+* the exponent is stored without sign => it is deplaced by 127, there is -127 in the table
+* n ∈ [0 ; $2^{24}$] exaxt value (is places entirely to the mantissa)
+* n ∈ [ $2^{24}$ + 1 ; $2^{25}$] rounded to a multiple of 2
+* n ∈ [ $2^{25}$ + 1 ; $2^{26}$] rounded to a multiple of4
 * ...
-* n ∈ [ $2^{126}$ + 1 ; $2^{127}$] округляются до кратного $2^{103}$
-* n ∈ [ $2^{127}$ + 1 ; $2^{128}$] округляются до кратного $2^{104}$
-* n ∈ [ $2^{128}$ + 1 ; ...] превращаются в бесконечность
+* n ∈ [ $2^{126}$ + 1 ; $2^{127}$] rounded to a multiple of $2^{103}$
+* n ∈ [ $2^{127}$ + 1 ; $2^{128}$] rounded to a multiple of $2^{104}$
+* n ∈ [ $2^{128}$ + 1 ; ...] turn into infinity
   
 binary    	                                 | formula                                         | decimal 
 ---------------------------------------------|-------------------------------------------------|----------------------
@@ -503,7 +584,7 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(1+m/ 2^{23})         * 2^{e  �
 0&nbsp;10000001&nbsp;11000000000000000000000 | $1.75                  * 2^{129-127}           $| 7.0 
 0&nbsp;10000010&nbsp;00000000000000000000000 | $1.0                   * 2^{130-127}           $| 8.0
 0&nbsp;10010110&nbsp;11111111111111111111111 | $1.9999998807907104    * 2^{150-127}           $| 16777215   
-0&nbsp;10010111&nbsp;00000000000000000000000 | $1.9999998807907104    * 2^{150-127}           $| 16777216 = $2^{24}$ max неокругляющийся   
+0&nbsp;10010111&nbsp;00000000000000000000000 | $1.9999998807907104    * 2^{150-127}           $| 16777216 = $2^{24}$ max exact value   
 0&nbsp;10010111&nbsp;00000000000000000000000 | $1.9999998807907104    * 2^{150-127}           $| 16777217 -> 16777216 
 0&nbsp;10010111&nbsp;00000000000000000000001 | $1.9999998807907104    * 2^{150-127}           $| 16777218
 0&nbsp;10010111&nbsp;00000000000000000000010 | $1.9999998807907104    * 2^{150-127}           $| 16777219 -> 16777220
@@ -519,9 +600,9 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(1+m/ 2^{23})         * 2^{e  �
 0&nbsp;11111110&nbsp;11111111111111111111111 | $(-1)^0   * 1+ (2^{23}−1)/ 2^{23} * 2^{254−127}$| 340282346638528859811704183484516925440 FLT_MAX
 
 **Denormalized = denormal floating point numbers**:     
-* расширить диапазон числа с плавающей запятой в ущерб точности
+* expands the floating point range at the expense of precision
 * e = 00000000  
-* m начинается с 0, a leading 0        
+* m starts with 0        
 * m != 00000000000000000000000  
 * m [0,1) ?  
 * Some old documents: _denormal_ = _subnormal_.  
@@ -533,7 +614,7 @@ s&nbsp;eeeeeeee&nbsp;mmmmmmmmmmmm...m        | $(1+m/ 2^{23})         * 2^{e  �
 * Any non-zero number with magnitude smaller than the smallest positive normal number
 * Fill the underflow gap around zero
 * If normalized, would have exponents below the smallest representable exponent
-* e минимальное  
+* e minimal  
   
 binary    	                                 | formula                                         | decimal 
 ---------------------------------------------|-------------------------------------------------|---------
@@ -543,8 +624,7 @@ s&nbsp;00000000&nbsp;0mmmmmmmmmmm...m        | $0.(m)                 * 2^{1  -1
 0&nbsp;00000000&nbsp;11111111111111111111111 | $0.9999998807907104    * 2^{1  -127}           $| 1.17549421069e-38 min
   
 **Specail values (reserved in IEEE 754)**  
-e = 11111111  
-Получающихся в результате деления на ноль или при превышении числового диапазона.  
+the resultat of division by 0 or of an overflow  
   
 binary    	                                 | formula                                         | decimal 
 ---------------------------------------------|-------------------------------------------------|------------------
@@ -586,7 +666,7 @@ binary    	                                                                     
 0&nbsp;10000110011&nbsp;00000000000000000000000000000000000000000000000000000000000000| $ ...                        * 2^{... -511}$| 9007199254740990 = $2^{53}$ max int in 53 bits   
 0&nbsp;11111111110&nbsp;11111111111111111111111111111111111111111111111111111111111111| $(-1)^0* 1+(2^{32}−1)/2^{32} * 2^{1022−511}$| 179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000 DBL_MAX 
 
-## Fixed-point 
+## Fixed-point approximation
 https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html  
   
 Representing non-integer numbers by storing a fixed number of digits of their fractional part.  
@@ -594,18 +674,43 @@ Fixed point arithmetic is much faster than the floating-point one.
 Example: Dollar amounts are often stored with exactly two fractional digits, representing the cents  
 Example: $1234.4321_{float}$ = (316014.6176, 8) = (316015, 8) = ($00000000.00000100.11010010.01101111_{2}$, 8)  
 
-## Logarithmic 
+## Logarithmic approximation
 Represent a real number by the logarithm of its absolute value and a sign bit. 
 
-## Tapered floating-point
-Does not appear to be used in practice.
-
-## Interval 
+## Interval approximation
 Allows one to represent numbers as intervals and obtain guaranteed bounds on results. It is generally based on other arithmetics, in particular floating point.
 
-## Rational representation to real numbers
-Represent numbers as fractions with integral numerator and denominator, and can therefore represent any rational number exactly. 
+## Tapered floating-point approximation
+Does not appear to be used in practice.
 
-## Without encoding representation of real numbers
-Handles irrational numbers like pi or sqrt{3} in a formal way, without dealing with an encoding. Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation.  
-Computer algebra systems such as Mathematica, Maxima, Maple.
+## Exact representation of rational numbers
+Represent numbers as fractions with integral numerator and denominator
+
+## Exact representation of real numbers
+* Handles irrational numbers like pi or sqrt{3} in a formal way, without dealing with an encoding
+* Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation  
+* Ex: computer algebra systems such as Mathematica, Maxima, Maple
+
+# Tri par fusion-insertion = algorithme de Ford-Johnson
+https://fr.wikipedia.org/wiki/Tri_par_fusion-insertion#Algorithme  
+https://en.wikipedia.org/wiki/Merge-insertion_sort#Algorithm  
+https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort  
+https://github.com/decidedlyso/merge-insertion-sort/blob/master/README.md  
+https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort  
+https://www.youtube.com/watch?v=w1QXGe295sI  
+* L. R. Ford and S. M. Johnson. A tournament problem. American Mathematical Monthly, 66 :387–389, 1959
+* Lester Randolph Ford Jr. = Лестер Рэндольф Форд младший = Lester Randolph Ford junior
+* tri par comparaison 
+* le pire des cas: moins de comparaisons que le tri par insertion
+* le pire des cas: moins que et le tri fusion
+// http://www.lsv.fr/~goubault/AlgoI/graphs-dist_compressed.pdf algo Bellman-Ford = Bellman–Ford–Moore, des plus courts chemins depuis un sommet source donné dans un graphe orienté pondéré   
+// Lalgo Ford-Johnson   
+
+# other
+https://github.com/42YerevanProjects/cpp_modules  
+https://github.com/Saxsori/CPP_Modules  
+https://github.com/ifanzilka/CPP_Module  
+https://github.com/pasqualerossi/C-Plus-Plus  
+https://github.com/SavchenkoDV/cpp_School21_Ecole42  
+https://github.com/achrafelkhnissi/CPP_Modules  
+https://github.com/Akadil/42project_cpp  
