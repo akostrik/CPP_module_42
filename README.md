@@ -262,7 +262,7 @@ C++ file manipulations:
 
 ## System call (c, c++)
 * call to the kernel
-* != call to a systle library
+* != call to a system library
 * processus management: load, execute, exit, abort, fork, processus terminating, get/set process attributes, wait, signal, allocate, free
 * file management: create, delete, open, close, read, write, reposition, get/set file attributes
 * devicaes management: request device, release device, read, write, reposition, get/set device attributes, logically attach or detach devices
