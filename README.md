@@ -88,10 +88,10 @@ deque	Double ended queue (class template)
 forward_list	Forward list (class template)
 list	List (class template)
 
-## Algorithms (Standard Template Library, STL)
+## Algorithms (STL)
 ...
 
-## Itarators (Standard Template Library, STL)
+## Iterators (STL)
 ...
 
 ## Collections
