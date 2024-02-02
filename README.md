@@ -654,6 +654,15 @@ Does not appear to be used in practice.
 Represent numbers as fractions with integral numerator and denominator
 
 ## Exact representation of real numbers
+
+# other
+https://github.com/42YerevanProjects/cpp_modules 
+https://github.com/Saxsori/CPP_Modules
+https://github.com/ifanzilka/CPP_Module
+https://github.com/pasqualerossi/C-Plus-Plus
+https://github.com/SavchenkoDV/cpp_School21_Ecole42
+https://github.com/achrafelkhnissi/CPP_Modules
+https://github.com/Akadil/42project_cpp
 * Handles irrational numbers like pi or sqrt{3} in a formal way, without dealing with an encoding
 * Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation  
 * Ex: computer algebra systems such as Mathematica, Maxima, Maple
