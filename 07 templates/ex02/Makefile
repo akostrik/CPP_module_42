@@ -11,7 +11,7 @@ all: $(OBJS) $(HEADER)
 ./objs/%.o: %.cpp
 	clear
 	mkdir ./objs/ 2> /dev/null || true
-	$(CPP) -o $@ -c $<
+	$(CPP) -O0 -g -o $@ -c $<
 
 clean:
 	rm -f $(OBJS)

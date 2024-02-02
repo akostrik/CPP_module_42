@@ -8,7 +8,7 @@ private:
     unsigned int    _len;
 
 public:
-    Array() : _arr(new T()),  _len(0) {};
+    Array()               : _arr(new T()),  _len(0) {};
 
     Array(unsigned int n) : _arr(new T[n]), _len(n) {};
     
