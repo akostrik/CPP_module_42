@@ -691,6 +691,21 @@ Represent numbers as fractions with integral numerator and denominator
 * Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation  
 * Ex: computer algebra systems such as Mathematica, Maxima, Maple
 
+# Tri par fusion-insertion = algorithme de Ford-Johnson
+https://fr.wikipedia.org/wiki/Tri_par_fusion-insertion#Algorithme  
+https://en.wikipedia.org/wiki/Merge-insertion_sort#Algorithm  
+https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort  
+https://github.com/decidedlyso/merge-insertion-sort/blob/master/README.md  
+https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort  
+https://www.youtube.com/watch?v=w1QXGe295sI  
+* L. R. Ford and S. M. Johnson. A tournament problem. American Mathematical Monthly, 66 :387–389, 1959
+* Lester Randolph Ford Jr. = Лестер Рэндольф Форд младший = Lester Randolph Ford junior
+* tri par comparaison 
+* le pire des cas: moins de comparaisons que le tri par insertion
+* le pire des cas: moins que et le tri fusion
+// http://www.lsv.fr/~goubault/AlgoI/graphs-dist_compressed.pdf algo Bellman-Ford = Bellman–Ford–Moore, des plus courts chemins depuis un sommet source donné dans un graphe orienté pondéré   
+// Lalgo Ford-Johnson   
+
 # other
 https://github.com/42YerevanProjects/cpp_modules  
 https://github.com/Saxsori/CPP_Modules  
