@@ -4,8 +4,7 @@ http://www.cplusplus.com
 ## Automatic initialisation
 Orthodox canonical class form (Coplien's form): 
 ```
-class A
-{
+class A {
    public:
       A ();                         // default constructor
       A (const A &obj);             // copy constructor
@@ -55,6 +54,45 @@ public:
 * **class template** is not a class, it is a template used to create classes 
 ** a function / template can be overloaded
 * a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
+
+## Containers (Standard Template Library, STL)
+
+### A standart conteiner
+* is a holder object that stores a collection of other objects
+* is implemented as class template => a great flexibility in the types supported as elements
+* manages the storage space for its elements
+* provides member functions to access  its elements, either directly or through iterators
+* many containers have member functions in common and share functionalities
+* which type of container to use ? depend on the functionality and on the efficiency of some of its members (complexity)
+* **a container adaptor**
+   + is not a full container classe
+   + provides an interface relying on an object of one of the container classes (such as deque or list) to handle the elements
+   + the underlying container is encapsulated in such a way that its elements are accessed by the members of the container adaptor independently of the underlying container class used.
+   + stack, queue, priority_queue are implemented as container adaptors
+
+### Container class templates
+* dynamic arrays (vector)
+* queues (queue)
+* stacks (stack)
+* heaps (priority_queue)
+* linked lists (list)
+* trees (set)
+* associative arrays (map)
+* ...
+
+### Container class templates
+Sequence containers:
+array	Array class (class template)
+vector	Vector (class template)
+deque	Double ended queue (class template)
+forward_list	Forward list (class template)
+list	List (class template)
+
+## Algorithms (STL)
+...
+
+## Iterators (STL)
+...
 
 ## Collections
 * `clear()` removes all entries from a collection
@@ -249,9 +287,6 @@ C++ file manipulations:
 * dynamically sizing receiving strings based on the actual input  
 * extensibility for user-defined types (you can teach streams how to handle your own classes)  
 * exceptions  
-
-## Standard Template Library (STL)
-* Provides four components called algorithms, containers, functions, and iterators  
 
 ## Namespace
 * Anonymous namespaces make private things really private
