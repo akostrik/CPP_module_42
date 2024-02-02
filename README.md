@@ -55,10 +55,7 @@ public:
 ** a function / template can be overloaded
 * a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
 
-## Standard Template Library (STL)
-* Provides algorithms, containers, functions, iterators  
-
-## A container
+## Containers (Standard Template Library, STL)
 
 ### A standart conteiner
 * is a holder object that stores a collection of other objects
@@ -90,6 +87,12 @@ vector	Vector (class template)
 deque	Double ended queue (class template)
 forward_list	Forward list (class template)
 list	List (class template)
+
+## Algorithms (Standard Template Library, STL)
+...
+
+## Itarators (Standard Template Library, STL)
+...
 
 ## Collections
 * `clear()` removes all entries from a collection
