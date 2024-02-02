@@ -162,10 +162,10 @@ int i = fromStr<int>(toStr(5));
 * std::to_string (c++11)  
 * stod (c++11) 
 
-## Implicit conversion sequence 
+### Implicit conversion sequence 
 * to convert an argument in a function call to the type of the corresponding parameter in a function declaration
 
-### Standard conversion sequences
+#### Standard conversion sequences
 1) Exact match includes the conversions:
     + identity conversions
     + lvalue-to-rvalue conversions
@@ -180,13 +180,13 @@ int i = fromStr<int>(toStr(5));
     + pointer-to-member conversions
     + boolean conversions
 
-### User-defined conversion sequences
+#### User-defined conversion sequences
 Consists of :
 * a standard conversion sequence
 * a user-defined conversion
 * a second standard conversion sequence
 
-### Ellipsis conversion sequences
+#### Ellipsis conversion sequences
 Occurs when the compiler matches an argument in a function call with a corresponding ellipsis parameter
 
 ##  Value (c, c++)
@@ -280,6 +280,9 @@ C++ file manipulations:
 |  the size   
 the real beginning of the bloc  
 * free() reads the size of the bloc and so knows how much memory it should free
+
+## Errors 
+* **undefined behavior** it could work, it could crash, it could do something else
 
 ## Specifiers
 
