@@ -269,9 +269,9 @@ C++ file manipulations:
 * information management: get/set time or date, get/set system data, get/set process, file, device attributes
 * communications: create, delete communication connection, send, receive messages, transfer status information, attach or detach remote devices
 
-## malloc (c, c++)
-* free of the memory should be procedded in the inverse order to malloc
-* malloc allocates more memory that the programmes asked, because it puts the size of the block in the beginning on the bloc  
+## Memory
+* delete[] frees an array created with new[]
+* malloc allocates more memory that the programmes asked, puts the size of the block in the beginning on the bloc  
 +-----+--------------------------     ----+  
 | 100 |                           ...     |  
 +-----+--------------------------     ----+  
