@@ -1,4 +1,5 @@
 // inherits from std::stack
 // offers all of its member functions
+// rendre le container std::stack itérable
 // has an iterator
-// it is possible to do at least the operations shown in the subject's exqmples using iterators
+// the operations shown in the examples using iterators

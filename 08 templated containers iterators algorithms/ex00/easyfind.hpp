@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 
+// T est un container d’entiers
 template <typename T> void iter(T* arr, int len, void (*func)(T&)) {
     if (arr == NULL)
         return ;
