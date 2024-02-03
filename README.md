@@ -57,7 +57,7 @@ public:
 
 ## Containers (Standard Template Library, STL)
 
-### A standart conteiner
+### A class template (standart conteiner)
 * an object
 * stores a collection of other objects
 * is implemented as class template => a flexibility in the types supported as elements
@@ -67,19 +67,16 @@ public:
 
 collection              | acces                 |  modifiers | operators
 ------------------------|-----------------------|------------|---------------
-array*                  | [] at front back data | fill swap  | 
+array                   | [] at front back data | fill swap  | // fixed size
 vector (dynamic arrays) | [] at front back data | assign push_back pop_back insert erase swap clear emplace emplace_back | 
 deque                   | [] at front back      | assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front	emplace_back | 
 (linked) list           | front back            | assign	emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear | splice remove remove_if unique merge sort	reverse
 forward_list            | front                 | assign emplace_front push_front pop_front	emplace_after insert_after erase_after swap resize clear
 
-/* fixed size
-
 ### A container adaptor
-* позвляют работать с контейнером определенным образом
 * is not a full container classe
-* provides an interface relying on an object of one of the container classes (such as deque or list) to handle the elements
-* the underlying container is encapsulated in such a way that its elements are accessed by the members of the container adaptor independently of the underlying container class used
+* provides an interface relying on an object of one of the classes template
+* the underlying container's elements are accessed by the members of the container adaptor
   
 collection              | acces                 |  modifiers | operators
 ------------------------|-----------------------|------------|---------------
@@ -89,31 +86,24 @@ priority_queue (heap)   | top                   | push emplace pop swap |
 
 
 ### associative containers
-collection                | acces                  |  modifiers                                   | observers           | operators
---------------------------|------------------------|----------------------------------------------|---------------------|----
-set (tree)                |                        | insert erase swap clear emplace emplace_hint | key_comp	value_comp | find count lower_bound upper_bound equal_range
-unordered set             | find	count equal_range |                  |                      | 
-unordered multiset        |  |                  |                      | 
-multiset                  |          |                  |                      | 
-map (associative arrays)  |          |                  |                      | 
-unordered map             |          |                  |                      | 
+collection              |acces, lookup                | modifiers                                  |observers          |operators
+------------------------|-----------------------------|--------------------------------------------|-------------------|----
+set (tree)              |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range
+multiset                |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range
+map (associative arrays)|[ ] at                       |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range 
+unordered set           |find count equal_range       |emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator| 
+unordered multiset      |find count equal_range       |emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator|
+unordered map           |[ ] at find count equal_range|emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator| 
+unordered multimap arke     |[ ] at find count equal_range|emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator| 
 
-
-
-
-
-### Container class templates
-Sequence containers:
-array	Array class (class template)
-vector	Vector (class template)
-deque	Double ended queue (class template)
-forward_list	Forward list (class template)
-list	List (class template)
+emplace	Construct and insert element (public member function)
+emplace_hint	Construct and insert element with hint (public member function)
+insert	Insert elements (public member function)
+erase	Erase elements (public member function)
+clear	Clear content (public member function)
+swap
 
 ## Algorithms (STL)
-...
-
-## Iterators (STL)
 ...
 
 ## Collections
