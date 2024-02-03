@@ -58,19 +58,20 @@ public:
 ## Containers (Standard Template Library, STL)
 
 ### A standart conteiner
-* a holder object that stores a collection of other objects
+* an object
+* stores a collection of other objects
 * is implemented as class template => a flexibility in the types supported as elements
 * manages the storage space
 * provides member functions to access its elements, either directly or through iterators
 * type of container to use: depend on the functionality and on the complexity of some of its members
 
-collection   | size     | acces            | add, delete elements
+collection   | size     | acces            | add, delete elements | functions
 ---------------------------------------------------------------------------------------------
-array        | fix      | any element      | non
-vector       | variable | any element      | any
-deque        |          | any element      | 1-st elt, last elt
-list         |          | последовательный | 1-st elt, last elt
-forward_list |          | послед           | 1-st elt, last elt
+array        | fix      | any element      | non                  | begin, end
+vector       | variable | any element      | any                  | begin, end
+deque        |          | any element      | 1-st elt, last elt   | begin, end
+list         |          | последовательный | 1-st elt, last elt   | begin, end
+forward_list |          | послед           | 1-st elt, last elt   | begin, end
 
 ### A container adaptor
 * позвляют работать с контейнером определенным образом
@@ -78,13 +79,20 @@ forward_list |          | послед           | 1-st elt, last elt
 * provides an interface relying on an object of one of the container classes (such as deque or list) to handle the elements
 * the underlying container is encapsulated in such a way that its elements are accessed by the members of the container adaptor independently of the underlying container class used
   
-* stack
-* queue
-* priority_queue
+collection     | size     | acces            | add, delete elements | functions
+---------------------------------------------------------------------------------------------
+stack          |          |                  |                      | 
+queue          |          |                  |                      | 
+priority_queue |          |                  |                      | 
 
 ### associative containers
-* set
-* map
+collection     | size     | acces            | add, delete elements | functions
+---------------------------------------------------------------------------------------------
+set            |          |                  |                      | 
+unordered set  |          |                  |                      | 
+map            |          |                  |                      | 
+unordered map  |          |                  |                      | 
+
 ### Container class templates
 * dynamic arrays (vector)
 * queues (queue)
