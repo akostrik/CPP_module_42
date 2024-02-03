@@ -63,7 +63,7 @@ public:
 * is implemented as class template => a flexibility in the types supported as elements
 * manages the storage space
 * provides member functions to access its elements, either directly or through iterators
-* type of container to use: depend on the functionality and on the complexity of some of its members
+* type of container depend on the functionality and the complexity of some of its members
 
 collection              | acces                 |  modifiers | operators
 ------------------------|-----------------------|------------|---------------
@@ -89,13 +89,17 @@ priority_queue (heap)   | top                   | push emplace pop swap |
 
 
 ### associative containers
-collection                | size     | acces            | add, delete elements | functions
---------------------------|----------|------------------|----------------------|-------------
-set (tree)                |          |                  |                      | 
-unordered set             |          |                  |                      | 
+collection                | acces                  |  modifiers                                   | observers           | operators
+--------------------------|------------------------|----------------------------------------------|---------------------|----
+set (tree)                |                        | insert erase swap clear emplace emplace_hint | key_comp	value_comp | find count lower_bound upper_bound equal_range
+unordered set             | find	count equal_range |                  |                      | 
+unordered multiset        |  |                  |                      | 
 multiset                  |          |                  |                      | 
 map (associative arrays)  |          |                  |                      | 
 unordered map             |          |                  |                      | 
+
+
+
 
 
 ### Container class templates
