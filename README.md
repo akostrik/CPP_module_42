@@ -58,18 +58,33 @@ public:
 ## Containers (Standard Template Library, STL)
 
 ### A standart conteiner
-* is a holder object that stores a collection of other objects
-* is implemented as class template => a great flexibility in the types supported as elements
-* manages the storage space for its elements
-* provides member functions to access  its elements, either directly or through iterators
-* many containers have member functions in common and share functionalities
-* which type of container to use ? depend on the functionality and on the efficiency of some of its members (complexity)
-* **a container adaptor**
-   + is not a full container classe
-   + provides an interface relying on an object of one of the container classes (such as deque or list) to handle the elements
-   + the underlying container is encapsulated in such a way that its elements are accessed by the members of the container adaptor independently of the underlying container class used.
-   + stack, queue, priority_queue are implemented as container adaptors
+* a holder object that stores a collection of other objects
+* is implemented as class template => a flexibility in the types supported as elements
+* manages the storage space
+* provides member functions to access its elements, either directly or through iterators
+* type of container to use: depend on the functionality and on the complexity of some of its members
 
+collection   | size     | acces            | add, delete elements
+---------------------------------------------------------------------------------------------
+array        | fix      | any element      | non
+vector       | variable | any element      | any
+deque        |          | any element      | 1-st elt, last elt
+list         |          | последовательный | 1-st elt, last elt
+forward_list |          | послед           | 1-st elt, last elt
+
+### A container adaptor
+* позвляют работать с контейнером определенным образом
+* is not a full container classe
+* provides an interface relying on an object of one of the container classes (such as deque or list) to handle the elements
+* the underlying container is encapsulated in such a way that its elements are accessed by the members of the container adaptor independently of the underlying container class used
+  
+* stack
+* queue
+* priority_queue
+
+### associative containers
+* set
+* map
 ### Container class templates
 * dynamic arrays (vector)
 * queues (queue)
