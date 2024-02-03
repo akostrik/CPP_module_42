@@ -95,13 +95,6 @@ unordered multiset      |find count equal_range       |emplace emplace_hint inse
 unordered map           |[ ] at find count equal_range|emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator| 
 unordered multimap arke     |[ ] at find count equal_range|emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator| 
 
-emplace	Construct and insert element (public member function)
-emplace_hint	Construct and insert element with hint (public member function)
-insert	Insert elements (public member function)
-erase	Erase elements (public member function)
-clear	Clear content (public member function)
-swap
-
 ## Algorithms (STL)
 ...
 
