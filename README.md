@@ -56,6 +56,7 @@ public:
 * a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
 
 ## Containers (Standard Template Library, STL)
+https://en.cppreference.com/w/cpp/container  
 
 **A class template (standart conteiner)**
 * an object
