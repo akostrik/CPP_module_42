@@ -65,13 +65,18 @@ public:
 * provides member functions to access its elements, either directly or through iterators
 * type of container to use: depend on the functionality and on the complexity of some of its members
 
-collection              | size     | acces            | add, delete elements | functions
-------------------------|----------|------------------|----------------------|---------------
-array                   | fix      | any element      | non                  | begin, end
-vector (dynamic arrays) | variable | any element      | any                  | begin, end
-deque                   |          | any element      | 1-st elt, last elt   | begin, end
-(linked) list           |          | последовательный | 1-st elt, last elt   | begin, end
-forward_list            |          | послед           | 1-st elt, last elt   | begin, end
+collection              | elt acces             |  modifiers | operators
+------------------------|-----------------------|------------|---------------
+array*                  | [] at front back data | fill swap  | 
+vector (dynamic arrays) | [] at front back data | assign push_back pop_back insert erase swap clear emplace emplace_back | 
+deque                   | [] at front back      | assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front	emplace_back | 
+(linked) list           | front back            | assign	emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear | splice remove remove_if unique merge sort	reverse
+forward_list            | front                 | assign emplace_front push_front pop_front	emplace_after insert_after erase_after swap resize clear
+
+/* fixed size
+
+
+
 
 ### A container adaptor
 * позвляют работать с контейнером определенным образом
