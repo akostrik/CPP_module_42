@@ -65,7 +65,7 @@ public:
 * provides member functions to access its elements, either directly or through iterators
 * type of container to use: depend on the functionality and on the complexity of some of its members
 
-collection              | elt acces             |  modifiers | operators
+collection              | acces                 |  modifiers | operators
 ------------------------|-----------------------|------------|---------------
 array*                  | [] at front back data | fill swap  | 
 vector (dynamic arrays) | [] at front back data | assign push_back pop_back insert erase swap clear emplace emplace_back | 
@@ -75,20 +75,18 @@ forward_list            | front                 | assign emplace_front push_fron
 
 /* fixed size
 
-
-
-
 ### A container adaptor
 * позвляют работать с контейнером определенным образом
 * is not a full container classe
 * provides an interface relying on an object of one of the container classes (such as deque or list) to handle the elements
 * the underlying container is encapsulated in such a way that its elements are accessed by the members of the container adaptor independently of the underlying container class used
   
-collection            | size     | acces            | add, delete elements | functions
-----------------------|----------|------------------|----------------------|-----------------
-stack                 |          |                  |                      | 
-queue                 |          |                  |                      | 
-priority_queue (heap) |          |                  |                      | 
+collection              | acces                 |  modifiers | operators
+------------------------|-----------------------|------------|---------------
+stack                   | top                   | push emplace pop swap | 
+queue                   | front back            | push emplace pop swap | 
+priority_queue (heap)   | top                   | push emplace pop swap | 
+
 
 ### associative containers
 collection                | size     | acces            | add, delete elements | functions
