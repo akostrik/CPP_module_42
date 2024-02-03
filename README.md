@@ -66,7 +66,7 @@ public:
 * type of container to use: depend on the functionality and on the complexity of some of its members
 
 collection              | size     | acces            | add, delete elements | functions
----------------------------------------------------------------------------------------------
+------------------------|----------|------------------|----------------------|---------------
 array                   | fix      | any element      | non                  | begin, end
 vector (dynamic arrays) | variable | any element      | any                  | begin, end
 deque                   |          | any element      | 1-st elt, last elt   | begin, end
@@ -80,14 +80,14 @@ forward_list            |          | послед           | 1-st elt, last elt
 * the underlying container is encapsulated in such a way that its elements are accessed by the members of the container adaptor independently of the underlying container class used
   
 collection            | size     | acces            | add, delete elements | functions
----------------------------------------------------------------------------------------------
+----------------------|----------|------------------|----------------------|-----------------
 stack                 |          |                  |                      | 
 queue                 |          |                  |                      | 
 priority_queue (heap) |          |                  |                      | 
 
 ### associative containers
 collection                | size     | acces            | add, delete elements | functions
----------------------------------------------------------------------------------------------
+--------------------------|----------|------------------|----------------------|-------------
 set (tree)                |          |                  |                      | 
 unordered set             |          |                  |                      | 
 multiset                  |          |                  |                      | 
