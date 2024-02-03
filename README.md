@@ -65,13 +65,13 @@ public:
 * provides member functions to access its elements, either directly or through iterators
 * type of container to use: depend on the functionality and on the complexity of some of its members
 
-collection   | size     | acces            | add, delete elements | functions
+collection              | size     | acces            | add, delete elements | functions
 ---------------------------------------------------------------------------------------------
-array        | fix      | any element      | non                  | begin, end
-vector       | variable | any element      | any                  | begin, end
-deque        |          | any element      | 1-st elt, last elt   | begin, end
-list         |          | последовательный | 1-st elt, last elt   | begin, end
-forward_list |          | послед           | 1-st elt, last elt   | begin, end
+array                   | fix      | any element      | non                  | begin, end
+vector (dynamic arrays) | variable | any element      | any                  | begin, end
+deque                   |          | any element      | 1-st elt, last elt   | begin, end
+(linked) list           |          | последовательный | 1-st elt, last elt   | begin, end
+forward_list            |          | послед           | 1-st elt, last elt   | begin, end
 
 ### A container adaptor
 * позвляют работать с контейнером определенным образом
@@ -79,29 +79,21 @@ forward_list |          | послед           | 1-st elt, last elt   | begin,
 * provides an interface relying on an object of one of the container classes (such as deque or list) to handle the elements
 * the underlying container is encapsulated in such a way that its elements are accessed by the members of the container adaptor independently of the underlying container class used
   
-collection     | size     | acces            | add, delete elements | functions
+collection            | size     | acces            | add, delete elements | functions
 ---------------------------------------------------------------------------------------------
-stack          |          |                  |                      | 
-queue          |          |                  |                      | 
-priority_queue |          |                  |                      | 
+stack                 |          |                  |                      | 
+queue                 |          |                  |                      | 
+priority_queue (heap) |          |                  |                      | 
 
 ### associative containers
-collection     | size     | acces            | add, delete elements | functions
+collection                | size     | acces            | add, delete elements | functions
 ---------------------------------------------------------------------------------------------
-set            |          |                  |                      | 
-unordered set  |          |                  |                      | 
-map            |          |                  |                      | 
-unordered map  |          |                  |                      | 
+set (tree)                |          |                  |                      | 
+unordered set             |          |                  |                      | 
+multiset                  |          |                  |                      | 
+map (associative arrays)  |          |                  |                      | 
+unordered map             |          |                  |                      | 
 
-### Container class templates
-* dynamic arrays (vector)
-* queues (queue)
-* stacks (stack)
-* heaps (priority_queue)
-* linked lists (list)
-* trees (set)
-* associative arrays (map)
-* ...
 
 ### Container class templates
 Sequence containers:
