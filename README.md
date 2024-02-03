@@ -74,17 +74,17 @@ public:
 
 collection              |acces, lookup, observers     | modifiers                                  |operations
 ------------------------|-----------------------------|--------------------------------------------|----------
-class templates:        |                             |                                            |
+**class templates:**    |                             |                                            |
 array                   |[ ] at front back data       |fill swap                                   | // fixed size, 
 vector (dynamic arrays) |[ ] at front back data       |assign push_back pop_back insert erase swap clear emplace emplace_back | 
 deque                   |[ ] at front back            |assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front	emplace_back | 
 (linked) list           |front back                   |assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear|splice remove remove_if unique merge sort reverse
 forward_list            |front                        |assign emplace_front push_front pop_front emplace_after insert_after erase_after swap resize clear |
-container adaptors:     |                             |                                            |
+**container adaptors:** |                             |                                            |
 stack                   | top                         | push emplace pop swap                      | 
 queue                   | front back                  | push emplace pop swap                      | 
 priority_queue (heap)   | top                         | push emplace pop swap                      | 
-associative containers: |                             |                                            |
+**associative containers:**|                             |                                            |
 set (tree)              |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range
 multiset                |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range
 map (associative arrays)|[ ] at                       |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range 
