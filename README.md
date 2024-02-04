@@ -119,8 +119,7 @@ rotate, rotate_copy                    |rotates the order of elements in a range
 transform                              |applies a func to a range of elements, storing results in a destination range
 generate, generate_n                   |assigns the results of successive function calls to every element (N elements) in a range
 **Sorting and related operations**:    | 
-partition                              |divides a range of elements into two groups
-stable_partition                       |divides elements into two groups while preserving their relative order
+partition, stable_partition            |divides a range of elements into two groups, divides elements into two groups while preserving their relative order
 sort, stable_sort                      |
 partial_sort, partial_sort_copy, nth_element|sorts the first N elements of a range, copies and partially sorts a range of elements, partially sorts the given range making sure that it is partitioned by the given element
 lower_bound, upper_bound               |an iterator to the first element not less than the given value
