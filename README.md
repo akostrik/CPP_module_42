@@ -132,13 +132,12 @@ merge, inplace_merge                   |merges two ordered ranges
 push_heap, pop_heap                    |adds an element to a max heap, removes the largest element from a max heap
 make_heap                              |creates a max heap out of a range of elements
 sort_heap                              |turns a max heap into a range of elements sorted in ascending order
-max, min                               |the greater of the given values
-max_element, min_element               |the largest element in a range
+max, min, nax_element, min_element     |the greater of the given values, the largest element in a range
 lexicographical_compare                |true if one range is lexicographically less than another
 next_permutation, prev_permutation     |generates the next greater lexicographic permutation of a range of elements
 accumulate                             |sums up or folds a range of elements
-inner_product                          |the inner product of two ranges of element
-adjacent_difference                    |the differences between adjacent elements in a range
+inner_product                          |the inner product of two ranges of element (09/ex00)
+adjacent_difference                    |the differences between adjacent elements in a range (08/ex01)
 partial_sum                            |the partial sum of a range of elements
 
 ## Types
