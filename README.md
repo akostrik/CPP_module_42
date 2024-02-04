@@ -100,28 +100,23 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
   
 * Non-modifying sequence operations
     + for_each
-    + find, find_if
+    + find, find_if, find_first_of
     + find_end
-    + find_first_of
     + adjacent_find
     + count, count_if
     + mismatch
     + equal
-    + search
-    + search_n searches a range for a number of consecutive copies of an element
+    + search, search_n searches a range for a number of consecutive copies of an element
 * Modifying sequence operations
-   + copy copies a range of elements to a new location
-   + copy_backward 	copies a range of elements in backwards order
+   + copy, copy_backward copies a range of elements to a new location (in backwards order)
    + swap
    + swap_ranges swaps two ranges of elements
    + iter_swap swaps the elements pointed to by two iterators
    + transform applies a function to a range of elements, storing results in a destination range
    + replace, replace_if
-   + replace_copy,  replace_copy_if copies a range, replacing elements satisfying specific criteria with another value
-   + fill copy-assigns the given value to every element in a range
-   + fill_n copy-assigns the given value to N elements in a range
-   + generate assigns the results of successive function calls to every element in a range
-   + generate_n assigns the results of successive function calls to N elements in a range
+   + replace_copy, replace_copy_if copies a range, replacing elements satisfying specific criteria with another value
+   + fill, fill_n copy-assigns the given value to every element (N elements) in a range
+   + generate, generate_n assigns the results of successive function calls to every element (N elements) in a range
    + remove, remove_if removes elements satisfying specific criteria
    + remove_copy, remove_copy_if copies a range of elements omitting those that satisfy specific criteria
    + unique removes consecutive duplicate elements in a range
@@ -138,8 +133,7 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
   + partial_sort sorts the first N elements of a range
   + partial_sort_copy copies and partially sorts a range of elements
   + nth_element partially sorts the given range making sure that it is partitioned by the given element
-  + lower_bound returns an iterator to the first element not less than the given value
-  + upper_bound returns an iterator to the first element greater than a certain value
+  + lower_bound, upper_bound returns an iterator to the first element not less than the given value
   + equal_range returns range of elements matching a specific key
   + binary_search determines if an element exists in a partially-ordered range
   + includes returns true if one sequence is a subsequence of another
