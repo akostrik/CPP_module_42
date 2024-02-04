@@ -94,13 +94,12 @@ unordered map           |[ ] at find count equal_range|emplace emplace_hint inse
 unordered multimap      |[ ] at find count equal_range|emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator| 
 
 ## Algorithms library (STL) (c++ 98)
-**a range** = [first, last)  
-A sequence is **sorted** with respect to a comparator comp if for every iterator iter pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
-
 * functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
+* **a range** = [first, last)  
+* a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
+  
 * Non-modifying sequence operations
     + for_each
-    + Search
     + find
     + find_if
     + find_end
