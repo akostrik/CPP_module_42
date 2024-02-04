@@ -98,7 +98,7 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
   
-**Non-modifying sequence operations**: |
+**Non-modifying sequence operations**: | nn
 ---------------------------------------|---
 for_each                               |applies a function to a range of elements
 find, find_if, find_first_of, find_end |
