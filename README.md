@@ -122,8 +122,7 @@ generate, generate_n                   |assigns the results of successive functi
 partition                              |divides a range of elements into two groups
 stable_partition                       |divides elements into two groups while preserving their relative order
 sort, stable_sort                      |
-partial_sort, partial_sort_copy        |sorts the first N elements of a range, copies and partially sorts a range of elements
-nth_element                            |partially sorts the given range making sure that it is partitioned by the given element
+partial_sort, partial_sort_copy, nth_element|sorts the first N elements of a range, copies and partially sorts a range of elements, partially sorts the given range making sure that it is partitioned by the given element
 lower_bound, upper_bound               |an iterator to the first element not less than the given value
 equal_range                            |range of elements matchina specific key
 binary_search                          |if an element exists in a partially-ordered range
