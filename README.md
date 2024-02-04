@@ -109,21 +109,20 @@ equal                                  |if two sets of elements are the same
 search, search_n                       |searches a range for a number of consecutive copies of an element
 **Modifying sequence operations**:     |
 copy, copy_backward                    |copies a range of elements to a new location (in backwards order)
-swap, swap_ranges, iter_swap           |swaps two ranges / the elements pointed to by two iterators
 replace, replace_if, replace_copy, replace_copy_if|copies a range, replacing elements satisfying specific criteria with another value
-fill, fill_n                           |copy-assigns the given value to every element (N elements) in a range
 remove, remove_if, remove_copy, remove_copy_if|removes elements satisfying specific criteria, copies a range of elements omitting those that satisfy specific criteria
 unique, unique_copy                    |removes consecutive duplicate elements in a range, creates a copy of some range of elements that contains no consecutive duplicates
+fill, fill_n                           |copy-assigns the given value to every element (N elements) in a range
 reverse, reverse_copy                  |reverses the order of elements in a range, creates a copy of a range that is reversed
 rotate, rotate_copy                    |rotates the order of elements in a rangecopies and rotate a range of elements
+swap, swap_ranges, iter_swap           |swaps two ranges / the elements pointed to by two iterators
 transform                              |applies a func to a range of elements, storing results in a destination range
 generate, generate_n                   |assigns the results of successive function calls to every element (N elements) in a range
 **Sorting and related operations**:    | 
 partition, stable_partition            |divides a range of elements into two groups (while preserving their relative order)
-sort, stable_sort                      |
-partial_sort, partial_sort_copy, nth_element|sorts the first N elements of a range, copies and partially sorts a range of elements, partially sorts the given range making sure that it is partitioned by the given element
+sort, stable_sort, partial_sort, partial_sort_copy, nth_element|sorts the first N elements of a range, copies and partially sorts a range of elements, partially sorts the given range making sure that it is partitioned by the given element
 lower_bound, upper_bound               |an iterator to the first element not less than the given value
-equal_range                            |range of elements matchina specific key
+equal_range                            |range of elements matching a specific key
 binary_search                          |if an element exists in a partially-ordered range
 includes                               |true if one sequence is a subsequence of another
 set_union, set_intersection, set_difference, set_symmetric_difference|union, intersection, difference, the symmetric difference between two sets
