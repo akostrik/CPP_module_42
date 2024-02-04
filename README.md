@@ -695,17 +695,17 @@ Represent numbers as fractions with integral numerator and denominator
 * Ex: computer algebra systems such as Mathematica, Maxima, Maple
 
 # Tri par fusion-insertion = algorithme de Ford-Johnson = алгоритм Форда-Джонсона
-* takes into account this property of binary search: the maximal number of comparisons to perform a binary search on a sorted sequence is the same when the number of elements is $2^n$ and when it is $2^(n+1)−1$ (looking for an element in a sorted sequence of 8 or 15 elements requires the same number of comparisons)
+* modification of insertion sort
+* takes into account this property of binary search: the maximal number of comparisons to perform a binary search on a sorted sequence is the same for $2^n$ elements and $2^(n+1)−1$ elements (looking for an element in a sorted sequence of 8 or 15 elements requires the same number of comparisons)
 * ensures that the size of the insertion area is $2^n−1$ as often as possible
-* модификация сортировки вставкой с использованием чисел Якобсталя, чтобы свести к минимуму количество сравнений 
 * Jacobsthal numbers (числа Якобсталя)
    + the sequence starts with 0 and 1
    + each following number is found by adding the number before it to twice the number before that
    + 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525, …
-* le pire des cas: moins de comparaisons que le tri par insertion
-* le pire des cas: moins de comparaisons que le tri fusion
+* the worst case: less comparaisons than insertion sort
+* the worst case: less comparaisons than merge sort
 * L. R. Ford and S. M. Johnson. A tournament problem. American Mathematical Monthly, 66 :387–389, 1959
-* The Art of Computer Programming by Donald Knuth, Volume, глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния»
+* The Art of Computer Programming by Donald Knuth, Volume 3, глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния»
 * https://en.wikipedia.org/wiki/Merge-insertion_sort#Algorithm  
 * https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort  
 * https://github.com/decidedlyso/merge-insertion-sort/blob/master/README.md  
