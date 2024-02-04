@@ -96,10 +96,6 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
 ## Algorithms (STL)
 ...
 
-## Collections
-* `clear()` removes all entries from a collection
-* `erase()` removes a single entry or a range of entries
-
 ## Types
 ### `std::string` 
 * = `basic_string<char>`
