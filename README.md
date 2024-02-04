@@ -600,7 +600,7 @@ In any of the parameters of a function declaration: that declaration becomes an 
 defines or inherits a virtual function 
 no keyword `incomplet`, just terminologie
 
-# Other info
+## other
 `#pragma once` is only intended to be used in headers, there is no need to compile headers, don't compile headers
 
 # Representation of real numbers
