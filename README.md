@@ -98,7 +98,7 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
   
-**Non-modifying sequence operations**: | nn
+:**Non-modifying sequence operations**:| nn
 ---------------------------------------|---
 for_each                               |applies a function to a range of elements
 find, find_if, find_first_of, find_end |
@@ -108,7 +108,7 @@ mismatch                               |the first position where two ranges diff
 equal                                  |if two sets of elements are the same
 search, search_n                       |searches a range for a number of consecutive copies of an element
 **Modifying sequence operations**:     |
-copy, copy_backward copies a range of elements to a new location (in backwards order)
+copy, copy_backward                    |copies a range of elements to a new location (in backwards order)
 swap, swap_ranges, iter_swap           |swaps two ranges / the elements pointed to by two iterators
 transform                              |applies a func to a range of elements, storing results in a destination range
 replace, replace_if, replace_copy, replace_copy_if|copies a range, replacing elements satisfying specific criteria with another value
