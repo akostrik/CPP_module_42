@@ -694,7 +694,7 @@ Represent numbers as fractions with integral numerator and denominator
 * Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation  
 * Ex: computer algebra systems such as Mathematica, Maxima, Maple
 
-# Tri par fusion-insertion = algorithme de Ford-Johnson = алгоритм Форда-Джонсона
+# Merge-insertion sort = Ford-Johnson algorithm 
 * modification of insertion sort
 * takes into account this property of binary search: the maximal number of comparisons to perform a binary search on a sorted sequence is the same for $2^n$ elements and $2^(n+1)−1$ elements (looking for an element in a sorted sequence of 8 or 15 elements requires the same number of comparisons)
 * ensures that the size of the insertion area is $2^n−1$ as often as possible
@@ -705,7 +705,7 @@ Represent numbers as fractions with integral numerator and denominator
 * the worst case: less comparaisons than insertion sort
 * the worst case: less comparaisons than merge sort
 * Ford, Lester R., and Selmer M. Johnson. “A Tournament Problem.” The American Mathematical Monthly, vol. 66, no. 5, 1959, pp. 387–389. JSTOR, www.jstor.org/stable/2308750
-* The Art of Computer Programming by Donald Knuth, Volume 3, section 5.3.1 (глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния»)
+* The Art of Computer Programming by Donald Knuth, Volume 3, section 5.3.1
 * Mahmoud, Hosam M. Sorting: A Distribution Theory. John Wiley & Sons. (October 14, 2011)
 * Manacher, Glenn K. 1979. “The Ford-Johnson Sorting Algorithm Is Not Optimal”. J. ACM 26, 3 (july 1979), 441–456. DOI:https://doi.org/10.1145/322139.322145
 * Morwenn. “Ford-Johnson Merge-Insertion Sort”. Code Review Stack Exchange. 10 Jan. 2016, https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort
