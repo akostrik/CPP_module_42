@@ -110,25 +110,24 @@ search, search_n                       |searches a range for a number of consecu
 **Modifying sequence operations**:     |
 copy, copy_backward                    |copies a range of elements to a new location (in backwards order)
 swap, swap_ranges, iter_swap           |swaps two ranges / the elements pointed to by two iterators
-transform                              |applies a func to a range of elements, storing results in a destination range
 replace, replace_if, replace_copy, replace_copy_if|copies a range, replacing elements satisfying specific criteria with another value
 fill, fill_n                           |copy-assigns the given value to every element (N elements) in a range
-generate, generate_n                   |assigns the results of successive function calls to every element (N elements) in a range
 remove, remove_if, remove_copy, remove_copy_if|removes elements satisfying specific criteria, copies a range of elements omitting those that satisfy specific criteria
 unique, unique_copy                    |removes consecutive duplicate elements in a range, creates a copy of some range of elements that contains no consecutive duplicates
 reverse, reverse_copy                  |reverses the order of elements in a range, creates a copy of a range that is reversed
 rotate, rotate_copy                    |rotates the order of elements in a rangecopies and rotate a range of elements
+transform                              |applies a func to a range of elements, storing results in a destination range
+generate, generate_n                   |assigns the results of successive function calls to every element (N elements) in a range
 **Sorting and related operations**:    | 
 partition                              |divides a range of elements into two groups
 stable_partition                       |divides elements into two groups while preserving their relative order
-sort
-stable_sort                            |sorts a range of elements while preserving order between equal elements
+sort, stable_sort                      |
 partial_sort, partial_sort_copy        |sorts the first N elements of a range, copies and partially sorts a range of elements
 nth_element                            |partially sorts the given range making sure that it is partitioned by the given element
-lower_bound, upper_bound               |returns an iterator to the first element not less than the given value
-equal_range                            |returns range of elements matchina specific key
-binary_search                          |determines if an element exists in a partially-ordered range
-includes                               |returns true if one sequence is a subsequence of another
+lower_bound, upper_bound               |an iterator to the first element not less than the given value
+equal_range                            |range of elements matchina specific key
+binary_search                          |if an element exists in a partially-ordered range
+includes                               |true if one sequence is a subsequence of another
 set_union                              |the union of two sets
 set_intersection                       |the intersection of two sets
 set_difference                         |the difference between two sets
@@ -141,7 +140,7 @@ max, min                               |the greater of the given values
 max_element, min_element               |the largest element in a range
 lexicographical_compare                |true if one range is lexicographically less than another
 next_permutation, prev_permutation     |generates the next greater lexicographic permutation of a range of elements
-accumulate sums up or folds a range of elements
+accumulate                             |sums up or folds a range of elements
 inner_product                          |the inner product of two ranges of element
 adjacent_difference                    |the differences between adjacent elements in a range
 partial_sum                            |the partial sum of a range of elements
