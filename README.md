@@ -126,10 +126,7 @@ lower_bound, upper_bound               |an iterator to the first element not les
 equal_range                            |range of elements matchina specific key
 binary_search                          |if an element exists in a partially-ordered range
 includes                               |true if one sequence is a subsequence of another
-set_union                              |the union of two sets
-set_intersection                       |the intersection of two sets
-set_difference                         |the difference between two sets
-set_symmetric_difference               |the symmetric difference between two sets
+set_union, set_intersection, set_difference, set_symmetric_difference|union, intersection, difference, the symmetric difference between two sets
 merge, inplace_merge                   |merges two ordered ranges
 push_heap, pop_heap                    |adds an element to a max heap, removes the largest element from a max heap
 make_heap                              |creates a max heap out of a range of elements
