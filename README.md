@@ -1,5 +1,4 @@
 # C++ feautures
-http://www.cplusplus.com  
 
 ## Automatic initialisation
 Orthodox canonical class form (Coplien's form): 
@@ -717,6 +716,7 @@ Represent numbers as fractions with integral numerator and denominator
 * https://github.com/decidedlyso/merge-insertion-sort 
 
 # other
+http://www.cplusplus.com  
 https://github.com/42YerevanProjects/cpp_modules  
 https://github.com/Saxsori/CPP_Modules  
 https://github.com/ifanzilka/CPP_Module  
