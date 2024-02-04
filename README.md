@@ -44,7 +44,7 @@ public:
 ## Incapsulation
 * the data is **incapsulated** as mush as possible -> fewer parts of the program see them -> flexibility for changing
 
-## Templates
+## Templates (07)
 * allows functions and classes to operate with generic types  
 * are parameterized by one or more parameters of three kinds: type template parameters, non-type template parameters, and template template parameters.
 * the compiler uses a **function template** (a parametric function definition, where a particular function instance is created by one or more parameter values) to generate a **function definition** (an instance of the template)
@@ -54,7 +54,7 @@ public:
 ** a function / template can be overloaded
 * a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
 
-## Containers (Standard Template Library, STL)
+## STL-Containers (Standard Template Library) (08, 09)
 https://en.cppreference.com/w/cpp/container  
 
 **A class template (standart conteiner)**
@@ -93,7 +93,7 @@ unordered multiset      |find count equal_range       |emplace emplace_hint inse
 unordered map           |[ ] at find count equal_range|emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator| 
 unordered multimap      |[ ] at find count equal_range|emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator| 
 
-## Algorithms library (STL) (c++ 98)
+## Algorithms library (STL) (c++ 98) (08, 09)
 * functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
