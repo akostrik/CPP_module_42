@@ -705,7 +705,7 @@ Represent numbers as fractions with integral numerator and denominator
 * the worst case: less comparaisons than insertion sort
 * the worst case: less comparaisons than merge sort
 * L. R. Ford and S. M. Johnson. A tournament problem. American Mathematical Monthly, 66 :387–389, 1959
-* The Art of Computer Programming by Donald Knuth, Volume 3, глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния»
+* The Art of Computer Programming by Donald Knuth, Volume 3, section 5.3.1 (глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния») 
 * https://en.wikipedia.org/wiki/Merge-insertion_sort#Algorithm  
 * https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort  
 * https://github.com/decidedlyso/merge-insertion-sort/blob/master/README.md  
