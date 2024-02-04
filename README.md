@@ -98,7 +98,7 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
   
-:**Non-modifying sequence operations**:| nn
+::**Non-modifying sequence operations**:| nn
 ---------------------------------------|---
 for_each                               |applies a function to a range of elements
 find, find_if, find_first_of, find_end |
@@ -349,7 +349,7 @@ C++ file manipulations:
 * communications: create, delete communication connection, send, receive messages, transfer status information, attach or detach remote devices
 
 ## Memory
-* delete[] frees an array created with new[]
+* delete[ ] frees an array created with new[ ]
 * malloc allocates more memory that the programmes asked, puts the size of the block in the beginning on the bloc  
 +-----+--------------------------     ----+  
 | 100 |                           ...     |  
