@@ -769,7 +769,7 @@ Represent numbers as fractions with integral numerator and denominator
 
 # Merge-insertion sort = Ford-Johnson algorithm 
 * modification of insertion sort
-* takes into account this property of binary search: the maximal number of comparisons to perform a binary search on a sorted sequence is the same for $2^n$ elements and $2^(n+1)−1$ elements (looking for an element in a sorted sequence of 8 or 15 elements requires the same number of comparisons)
+* takes into account this property of binary search: the maximal number of comparisons to perform a binary search on a sorted sequence is the same for $2^n$ elements and $2^{n+1}−1$ elements (looking for an element in a sorted sequence of 8 or 15 elements requires the same number of comparisons)
 * ensures that the size of the insertion area is $2^n−1$ as often as possible
 * Jacobsthal numbers (числа Якобсталя)
    + the sequence starts with 0 and 1
