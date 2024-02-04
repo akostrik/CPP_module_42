@@ -702,8 +702,8 @@ https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort
 https://www.youtube.com/watch?v=w1QXGe295sI  
 
 * L. R. Ford and S. M. Johnson. A tournament problem. American Mathematical Monthly, 66 :387–389, 1959
-* The Art of Computer Programming by Donald Knuth, Volume, глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния»  
-* Lester Randolph Ford Jr. = Лестер Рэндольф Форд младший = Lester Randolph Ford junior
+* The Art of Computer Programming by Donald Knuth, Volume, глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния»
+* takes into account this property of binary search: the maximal number of comparisons to perform a binary search on a sorted sequence is the same when the number of elements is $2_n$ and when it is $28(n+1)−1$ (for ex, looking for an element in a sorted sequence of 8 or 15 elements requires the same number of comparisons)
 * le pire des cas: moins de comparaisons que le tri par insertion
 * le pire des cas: moins de comparaisons que le tri fusion
 * модификация сортировки вставкой с использованием чисел Якобсталя, чтобы количество сравнений свести к минимуму
