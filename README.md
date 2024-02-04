@@ -98,67 +98,55 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
   
-* Non-modifying sequence operations
-    + for_each
-    + find, find_if, find_first_of
-    + find_end
-    + adjacent_find
-    + count, count_if
-    + mismatch
-    + equal
-    + search, search_n searches a range for a number of consecutive copies of an element
-* Modifying sequence operations
-   + copy, copy_backward copies a range of elements to a new location (in backwards order)
-   + swap
-   + swap_ranges swaps two ranges of elements
-   + iter_swap swaps the elements pointed to by two iterators
-   + transform applies a function to a range of elements, storing results in a destination range
-   + replace, replace_if
-   + replace_copy, replace_copy_if copies a range, replacing elements satisfying specific criteria with another value
-   + fill, fill_n copy-assigns the given value to every element (N elements) in a range
-   + generate, generate_n assigns the results of successive function calls to every element (N elements) in a range
-   + remove, remove_if removes elements satisfying specific criteria
-   + remove_copy, remove_copy_if copies a range of elements omitting those that satisfy specific criteria
-   + unique removes consecutive duplicate elements in a range
-   + unique_copy creates a copy of some range of elements that contains no consecutive duplicates
-   + reverse reverses the order of elements in a range
-   + reverse_copy creates a copy of a range that is reversed
-   + rotate rotates the order of elements in a range
-   + rotate_copy copies and rotate a range of elements
-* Sorting and related operations
-  + partition divides a range of elements into two groups
-  + stable_partition divides elements into two groups while preserving their relative order
-  + sort
-  + stable_sort sorts a range of elements while preserving order between equal elements
-  + partial_sort sorts the first N elements of a range
-  + partial_sort_copy copies and partially sorts a range of elements
-  + nth_element partially sorts the given range making sure that it is partitioned by the given element
-  + lower_bound, upper_bound returns an iterator to the first element not less than the given value
-  + equal_range returns range of elements matching a specific key
-  + binary_search determines if an element exists in a partially-ordered range
-  + includes returns true if one sequence is a subsequence of another
-  + set_union computes the union of two sets
-  + set_intersection computes the intersection of two sets
-  + set_difference computes the difference between two sets
-  + set_symmetric_difference computes the symmetric difference between two sets
-  + merge merges two sorted ranges
-  + inplace_merge merges two ordered ranges in-place
-  + push_heap adds an element to a max heap
-  + pop_heap removes the largest element from a max heap
-  + make_heap creates a max heap out of a range of elements
-  + sort_heap turns a max heap into a range of elements sorted in ascending order
-  + max, min returns the greater of the given values
-  + max_element,min_element returns the largest element in a range
-  + lexicographical_compare returns true if one range is lexicographically less than another
-  + next_permutation generates the next greater lexicographic permutation of a range of elements
-  + prev_permutation generates the next smaller lexicographic permutation of a range of elements
-  + accumulate sums up or folds a range of elements
-  + inner_product computes the inner product of two ranges of element
-  + adjacent_difference computes the differences between adjacent elements in a range
-  + partial_sum computes the partial sum of a range of elements
-  + uninitialized_copy copies a range of objects to an uninitialized area of memory
-  + uninitialized_fill copies an object to an uninitialized area of memory, defined by a range
-  + uninitialized_fill_n copies an object to an uninitialized area of memory, defined by a start and a count
+**Non-modifying sequence operations**: |
+---------------------------------------|---
+for_each                               |applies a function to a range of elements
+find, find_if, find_first_of, find_end |
+adjacent_find                          |the first two adjacent items that are equal (or satisfy a given predicate)
+count, count_if                        |
+mismatch                               |the first position where two ranges differ
+equal                                  |if two sets of elements are the same
+search, search_n                       |searches a range for a number of consecutive copies of an element
+**Modifying sequence operations**:     |
+copy, copy_backward copies a range of elements to a new location (in backwards order)
+swap, swap_ranges, iter_swap           |swaps two ranges / the elements pointed to by two iterators
+transform                              |applies a func to a range of elements, storing results in a destination range
+replace, replace_if, replace_copy, replace_copy_if|copies a range, replacing elements satisfying specific criteria with another value
+fill, fill_n                           |copy-assigns the given value to every element (N elements) in a range
+generate, generate_n                   |assigns the results of successive function calls to every element (N elements) in a range
+remove, remove_if, remove_copy, remove_copy_if|removes elements satisfying specific criteria, copies a range of elements omitting those that satisfy specific criteria
+unique, unique_copy                    |removes consecutive duplicate elements in a range, creates a copy of some range of elements that contains no consecutive duplicates
+reverse, reverse_copy                  |reverses the order of elements in a range, creates a copy of a range that is reversed
+rotate, rotate_copy                    |rotates the order of elements in a rangecopies and rotate a range of elements
+**Sorting and related operations**:    | 
+partition                              |divides a range of elements into two groups
+stable_partition                       |divides elements into two groups while preserving their relative order
+sort
+stable_sort                            |sorts a range of elements while preserving order between equal elements
+partial_sort, partial_sort_copy        |sorts the first N elements of a range, copies and partially sorts a range of elements
+nth_element                            |partially sorts the given range making sure that it is partitioned by the given element
+lower_bound, upper_bound               |returns an iterator to the first element not less than the given value
+equal_range                            |returns range of elements matchina specific key
+binary_search                          |determines if an element exists in a partially-ordered range
+includes                               |returns true if one sequence is a subsequence of another
+set_union                              |the union of two sets
+set_intersection                       |the intersection of two sets
+set_difference                         |the difference between two sets
+set_symmetric_difference               |the symmetric difference between two sets
+merge, inplace_merge                   |merges two ordered ranges
+push_heap, pop_heap                    |adds an element to a max heap, removes the largest element from a max heap
+make_heap                              |creates a max heap out of a range of elements
+sort_heap                              |turns a max heap into a range of elements sorted in ascending order
+max, min                               |the greater of the given values
+max_element, min_element               |the largest element in a range
+lexicographical_compare                |true if one range is lexicographically less than another
+next_permutation, prev_permutation     |generates the next greater lexicographic permutation of a range of elements
+accumulate sums up or folds a range of elements
+inner_product                          |the inner product of two ranges of element
+adjacent_difference                    |the differences between adjacent elements in a range
+partial_sum                            |the partial sum of a range of elements
+uninitialized_copy                     |copies a range of objects to an uninitialized area of memory
+uninitialized_fill, uninitialized_fill_n|copies an object to an uninitialized area of memory, defined by a range (by a start and a count)
 
 ## Types
 ### `std::string` 
