@@ -81,13 +81,13 @@ deque                   |[ ] at front back            |assign push_back push_fro
 (linked) list           |front back                   |assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear|splice remove remove_if unique merge sort reverse
 forward_list            |front                        |assign emplace_front push_front pop_front emplace_after insert_after erase_after swap resize clear |
 **container adaptors:** |                             |                                            |
-stack                   | top                         | push emplace pop swap                      | 
+stack  (09/ex01)        | top                         | push emplace pop swap                      | 
 queue                   | front back                  | push emplace pop swap                      | 
 priority_queue (heap)   | top                         | push emplace pop swap                      | 
 **associative containers:**|                             |                                            |
 set (tree)              |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range
 multiset                |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range
-map (associative arrays)|[ ] at                       |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range 
+map (09/ex00)           |[ ] at                       |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range 
 unordered set           |find count equal_range       |emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator| 
 unordered multiset      |find count equal_range       |emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator|
 unordered map           |[ ] at find count equal_range|emplace emplace_hint insert erase clear swap|hash_function key_eq get_allocator| 
