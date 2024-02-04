@@ -695,7 +695,6 @@ Represent numbers as fractions with integral numerator and denominator
 * Ex: computer algebra systems such as Mathematica, Maxima, Maple
 
 # Tri par fusion-insertion = algorithme de Ford-Johnson = алгоритм Форда-Джонсона
-https://fr.wikipedia.org/wiki/Tri_par_fusion-insertion#Algorithme  
 https://en.wikipedia.org/wiki/Merge-insertion_sort#Algorithm  
 https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort  
 https://github.com/decidedlyso/merge-insertion-sort/blob/master/README.md  
@@ -703,9 +702,8 @@ https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort
 https://www.youtube.com/watch?v=w1QXGe295sI  
 
 * L. R. Ford and S. M. Johnson. A tournament problem. American Mathematical Monthly, 66 :387–389, 1959
-* Дональд Кнут «Искусство программирования», Том 3 «Сортировка и поиск», глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния» (https://habr.com/ru/companies/edison/articles/483786/)  
+* The Art of Computer Programming by Donald Knuth, Volume, глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния»  
 * Lester Randolph Ford Jr. = Лестер Рэндольф Форд младший = Lester Randolph Ford junior
-* tri par comparaison 
 * le pire des cas: moins de comparaisons que le tri par insertion
 * le pire des cas: moins de comparaisons que le tri fusion
 * модификация сортировки вставкой с использованием чисел Якобсталя, чтобы количество сравнений свести к минимуму
