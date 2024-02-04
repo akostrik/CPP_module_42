@@ -704,13 +704,17 @@ Represent numbers as fractions with integral numerator and denominator
    + 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525, …
 * the worst case: less comparaisons than insertion sort
 * the worst case: less comparaisons than merge sort
-* L. R. Ford and S. M. Johnson. A tournament problem. American Mathematical Monthly, 66 :387–389, 1959
-* The Art of Computer Programming by Donald Knuth, Volume 3, section 5.3.1 (глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния») 
+* Ford, Lester R., and Selmer M. Johnson. “A Tournament Problem.” The American Mathematical Monthly, vol. 66, no. 5, 1959, pp. 387–389. JSTOR, www.jstor.org/stable/2308750
+* The Art of Computer Programming by Donald Knuth, Volume 3, section 5.3.1 (глава 5 «Сортировка», раздел 5.3 «Оптимальная сортировка», подраздел «Сортировка с минимальным числом сравнений», часть «Сортировка посредством вставок и слияния»)
+* Mahmoud, Hosam M. Sorting: A Distribution Theory. John Wiley & Sons. (October 14, 2011)
+* Manacher, Glenn K. 1979. “The Ford-Johnson Sorting Algorithm Is Not Optimal”. J. ACM 26, 3 (july 1979), 441–456. DOI:https://doi.org/10.1145/322139.322145
+* Morwenn. “Ford-Johnson Merge-Insertion Sort”. Code Review Stack Exchange. 10 Jan. 2016, https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort
 * https://en.wikipedia.org/wiki/Merge-insertion_sort#Algorithm  
 * https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort  
 * https://github.com/decidedlyso/merge-insertion-sort/blob/master/README.md  
 * https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort  
-* https://www.youtube.com/watch?v=w1QXGe295sI  
+* https://www.youtube.com/watch?v=w1QXGe295sI
+* https://github.com/decidedlyso/merge-insertion-sort 
 
 # other
 https://github.com/42YerevanProjects/cpp_modules  
