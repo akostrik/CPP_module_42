@@ -100,13 +100,11 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
   
 * Non-modifying sequence operations
     + for_each
-    + find
-    + find_if
+    + find, find_if
     + find_end
     + find_first_of
     + adjacent_find
-    + count
-    + count_if
+    + count, count_if
     + mismatch
     + equal
     + search
@@ -118,18 +116,14 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
    + swap_ranges swaps two ranges of elements
    + iter_swap swaps the elements pointed to by two iterators
    + transform applies a function to a range of elements, storing results in a destination range
-   + replace replaces all values satisfying specific criteria with another value
-   + replace_if
-   + replace_copy copies a range, replacing elements satisfying specific criteria with another value
-   + replace_copy_if
+   + replace, replace_if
+   + replace_copy,  replace_copy_if copies a range, replacing elements satisfying specific criteria with another value
    + fill copy-assigns the given value to every element in a range
    + fill_n copy-assigns the given value to N elements in a range
    + generate assigns the results of successive function calls to every element in a range
    + generate_n assigns the results of successive function calls to N elements in a range
-   + remove removes elements satisfying specific criteria
-   + remove_if
-   + remove_copy copies a range of elements omitting those that satisfy specific criteria
-   + remove_copy_if
+   + remove, remove_if removes elements satisfying specific criteria
+   + remove_copy, remove_copy_if copies a range of elements omitting those that satisfy specific criteria
    + unique removes consecutive duplicate elements in a range
    + unique_copy creates a copy of some range of elements that contains no consecutive duplicates
    + reverse reverses the order of elements in a range
@@ -159,10 +153,8 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
   + pop_heap removes the largest element from a max heap
   + make_heap creates a max heap out of a range of elements
   + sort_heap turns a max heap into a range of elements sorted in ascending order
-  + max returns the greater of the given values
-  + max_element returns the largest element in a range
-  + min returns the smaller of the given value
-  + min_element returns the smallest element in a range
+  + max, min returns the greater of the given values
+  + max_element,min_element returns the largest element in a range
   + lexicographical_compare returns true if one range is lexicographically less than another
   + next_permutation generates the next greater lexicographic permutation of a range of elements
   + prev_permutation generates the next smaller lexicographic permutation of a range of elements
