@@ -109,10 +109,12 @@ equal                                  |if two sets of elements are the same
 search, search_n                       |searches a range for a number of consecutive copies of an element
 **Modifying sequence operations**:     |
 copy, copy_backward                    |copies a range of elements to a new location (in backwards order)
+fill, fill_n                           |copy-assigns the given value to every element (N elements) in a range
+uninitialized_copy                     |copies a range of objects to an uninitialized area of memory
+uninitialized_fill, uninitialized_fill_n|copies an object to an uninitialized area of memory, defined by a range (by a start and a count)
 replace, replace_if, replace_copy, replace_copy_if|copies a range, replacing elements satisfying specific criteria with another value
 remove, remove_if, remove_copy, remove_copy_if|removes elements satisfying specific criteria, copies a range of elements omitting those that satisfy specific criteria
 unique, unique_copy                    |removes consecutive duplicate elements in a range, creates a copy of some range of elements that contains no consecutive duplicates
-fill, fill_n                           |copy-assigns the given value to every element (N elements) in a range
 reverse, reverse_copy                  |reverses the order of elements in a range, creates a copy of a range that is reversed
 rotate, rotate_copy                    |rotates the order of elements in a rangecopies and rotate a range of elements
 swap, swap_ranges, iter_swap           |swaps two ranges / the elements pointed to by two iterators
@@ -138,8 +140,6 @@ accumulate                             |sums up or folds a range of elements
 inner_product                          |the inner product of two ranges of element
 adjacent_difference                    |the differences between adjacent elements in a range
 partial_sum                            |the partial sum of a range of elements
-uninitialized_copy                     |copies a range of objects to an uninitialized area of memory
-uninitialized_fill, uninitialized_fill_n|copies an object to an uninitialized area of memory, defined by a range (by a start and a count)
 
 ## Types
 ### `std::string` 
