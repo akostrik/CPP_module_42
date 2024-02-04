@@ -192,7 +192,7 @@ unordered multimap      |[ ] at find count equal_range|emplace emplace_hint inse
 ### `intptr_t` data type (c, c++)
 ...
 
-## Convertions, casts (01/ex04, 06) (only before C++11 information)
+## Convertions, casts (01/ex04, 06) (c++ 98)
 https://en.cppreference.com/w/cpp/language  
 
 |                 | `char`               | `char*`                                                        | `std::string`                             | `int`                | `float`              | `double`
