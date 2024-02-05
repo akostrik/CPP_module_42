@@ -102,9 +102,9 @@ vector                  |[ ] at front back data size max_size capacity empty |as
 deque                   |[ ] at front back            |assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front emplace_back                                  | 
 (linked) list           |front back                   |assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear remove remove_if          |splice unique merge sort reverse
 **associative containers:**|                          |                                                                                                                                           |
-set (tree)              |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp find count lower_bound upper_bound equal_range                            |
-map                     |[ ] at                       |insert erase swap clear emplace emplace_hint|key_comp value_comp find count lower_bound upper_bound equal_range                            |
-multiset                |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp find count lower_bound upper_bound equal_range                            |
+set (tree)              |       key_comp value_comp find count lower_bound upper_bound equal_range  | insert erase swap clear emplace emplace_hint                                                |
+map                     |[ ] at key_comp value_comp find count lower_bound upper_bound equal_range  | insert erase swap clear emplace emplace_hint                                                |
+multiset                |       key_comp value_comp find count lower_bound upper_bound equal_range  | insert erase swap clear emplace emplace_hint                                                |
 multimap                |                             |                                                                                                                                           |
 **container adaptors:** |                             |                                                                                                                                           |
 stack                   | top                         | push emplace pop swap                                                                                                                     | 
