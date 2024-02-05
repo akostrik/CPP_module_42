@@ -76,6 +76,7 @@ public:
 
 ## STL-Containers (Standard Template Library) (08, 09)
 https://en.cppreference.com/w/cpp/container  
+* array : the only C’s built-in container 
 * container.end() is an iterator and doesn't point to any element in the container
 
 **A class template (standart conteiner)**
