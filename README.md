@@ -63,8 +63,8 @@ public:
 * https://en.cppreference.com/w/cpp/iterator/iterator 
 
 `advance`   advance iterator  
-`distance`  distance between iterators
-`begin`	   tterator to beginning  
+`distance`  distance between iterators  
+`begin`	   iterator to beginning  
 `end`	      tterator to end  
 `prev`	   get iterator to previous element  
 `next`	   get iterator to next element  
