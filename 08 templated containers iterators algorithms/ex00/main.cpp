@@ -1,28 +1,23 @@
 #include "easyfind.hpp"
-#include "Person.hpp"
+//#include <array> C++11
+#include <vector>
+#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <string>
+
+template <typename T>
+void test(T container, int n) {
+  try                            { std::cout << *easyfind(container, n) << std::endl; }
+  catch(const std::exception& e) { std::cout << "Value not found!" << std::endl; }
+}
 
 int main( void ) {
-    int a = 2;
-    int b = 3;
-    ::swap(a, b);
-    std::cout << "a = " << a << ", b = " << b  << std::endl;
-    std::cout << "min(a, b) = " << ::min(a, b) << std::endl;
-    std::cout << "max(a, b) = " << ::max(a, b) << std::endl << std::endl;
+  std::vector<int> vector;
+  vector.push_back(1);
+  vector.push_back(2);
+  test(vector, 2);
+  test(vector, 3);
 
-    std::string c = "chaine1";
-    std::string d = "chaine2";
-    ::swap(c, d);
-    std::cout << "c = " << c << ", d = " << d  << std::endl;
-    std::cout << "min(c, d) = " << ::min(c, d) << std::endl;
-    std::cout << "max(c, d) = " << ::max(c, d) << std::endl << std::endl;
-
-    Person* p1 = new Person("Poucette", 50);
-    Person* p2 = new Person("Geant", 200);
-    std::cout << "p1 = " << *p1 << ", p2 = " << *p2 << std::endl;
-    std::cout << "min(p1, p2) = " << ::min(*p1, *p2) << std::endl;
-    std::cout << "max(p1, p2) = " << ::max(*p1, *p2) << std::endl << std::endl;
-    delete p1;
-    delete p2;
-
-    return 0;
+  return 0;
 }
