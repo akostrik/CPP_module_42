@@ -60,7 +60,8 @@ public:
 * a pointer is the most obvious form of iterator: a pointer points to elements, and can iterate through them using ++
 * not all iterators have the same functionality of pointer
 * std::iterator is the base class
-* the same interface for containers of several types => единой подход для обращения к элементам
+* the same interface for containers of several types
+* only for standard containers, not for container adaptors
 * https://en.cppreference.com/w/cpp/iterator/iterator 
 
 `advance`   advance iterator  
