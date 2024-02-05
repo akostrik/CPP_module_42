@@ -95,21 +95,21 @@ https://en.cppreference.com/w/cpp/container
 * provides an interface relying on an object of one of the classes template
 * the underlying container's elements are accessed by the members of the container adaptor
 
-collection              |acces, lookup, observers     | modifiers                                  |operations
-------------------------|-----------------------------|--------------------------------------------|----------
-**class templates:**    |                             |                                            |
-vector                  |[ ] at front back data size max_size capacity empty |assign push_back pop_back insert erase swap clear emplace emplace_back | resize reserve shrink_to_fit relational swap ≈ array, contiguous storage, the size changes dynamically, dosn't reallocate each time an element
-deque                   |[ ] at front back            |assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front	emplace_back | 
-(linked) list           |front back                   |assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear|splice remove remove_if unique merge sort reverse
-**associative containers:**|                          |                                            |
-set (tree)              |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range
-map                     |[ ] at                       |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range 
-multiset                |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range
-multimap                |                             |                                            |
-**container adaptors:** |                             |                                            |
-stack                   | top                         | push emplace pop swap                      | 
-queue                   | front back                  | push emplace pop swap                      | 
-priority_queue (heap)   | top                         | push emplace pop swap                      | 
+collection              |acces, lookup, observers     | modifiers, operations                                                                                                                     |other
+------------------------|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|----------
+**class templates:**    |                             |                                                                                                                                           |
+vector                  |[ ] at front back data size max_size capacity empty |assign push_back pop_back insert erase swap clear emplace emplace_back resize reserve shrink_to_fit relational swap | ≈ array, contiguous storage, the size changes dynamically, dosn't reallocate each time an element
+deque                   |[ ] at front back            |assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front emplace_back                                  | 
+(linked) list           |front back                   |assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear remove remove_if          |splice unique merge sort reverse
+**associative containers:**|                          |                                                                                                                                           |
+set (tree)              |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp find count lower_bound upper_bound equal_range                            |
+map                     |[ ] at                       |insert erase swap clear emplace emplace_hint|key_comp value_comp find count lower_bound upper_bound equal_range                            |
+multiset                |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp find count lower_bound upper_bound equal_range                            |
+multimap                |                             |                                                                                                                                           |
+**container adaptors:** |                             |                                                                                                                                           |
+stack                   | top                         | push emplace pop swap                                                                                                                     | 
+queue                   | front back                  | push emplace pop swap                                                                                                                     | 
+priority_queue (heap)   | top                         | push emplace pop swap                                                                                                                     | 
 
 ## Algorithms library (STL) (c++ 98) (08, 09)
 * functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
