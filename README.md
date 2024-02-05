@@ -54,8 +54,28 @@ public:
 ** a function / template can be overloaded
 * a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
 
+## Iterator
+* is an object that, pointing to some element in a range of elements, has the ability to iterate through these elements
+* a pointer is the most obvious form of iterator: a pointer points to elements, and can iterate through them using ++
+* not all iterators have the same functionality of pointer
+* std::iterator is the base class
+* the same interface for containers of several types => единой подход для обращения к элементам
+* https://en.cppreference.com/w/cpp/iterator/iterator 
+
+`advance`   advance iterator  
+`distance`  distance between iterators
+`begin`	   tterator to beginning  
+`end`	      tterator to end  
+`prev`	   get iterator to previous element  
+`next`	   get iterator to next element  
+`back_inserter`	construct back insert iterator  
+`front_inserter`	constructs front insert iterator  
+`inserter`	            construct insert iterator  
+`make_move_iterator`    construct move iterator  
+
 ## STL-Containers (Standard Template Library) (08, 09)
 https://en.cppreference.com/w/cpp/container  
+* container.end() is an iterator and doesn't point to any element in the container
 
 **A class template (standart conteiner)**
 * an object
