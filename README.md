@@ -97,8 +97,8 @@ https://en.cppreference.com/w/cpp/container
 
 collection              |acces, lookup, observers     | modifiers                                  |operations
 ------------------------|-----------------------------|--------------------------------------------|----------
-**class templates:**    |                             |                                            | // array that can change in size, contiguous storage
-vector                  |[ ] at front back data       |assign push_back pop_back insert erase swap clear emplace emplace_back | 
+**class templates:**    |                             |                                            |
+vector                  |[ ] at front back data       |assign push_back pop_back insert erase swap clear emplace emplace_back | size max_size resize capacity empty reserve shrink_to_fit  ≈ array, contiguous storage, the size changes dynamically, dosn't reallocate each time an element
 deque                   |[ ] at front back            |assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front	emplace_back | 
 (linked) list           |front back                   |assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear|splice remove remove_if unique merge sort reverse
 **associative containers:**|                          |                                            |
