@@ -361,6 +361,10 @@ the real beginning of the bloc
 ## Errors 
 * **undefined behavior** it could work, it could crash, it could do something else
 
+## Makefile
+`CXX = c++`
+`CXXFLAGS`
+
 ## Specifiers
 
 ### public / private / protected data
