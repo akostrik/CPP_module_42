@@ -66,7 +66,7 @@ public:
 `advance`   advance iterator  
 `distance`  distance between iterators  
 `begin`	   iterator to beginning  
-`end`	      tterator to end  
+`end`	      iterator to end  
 `prev`	   get iterator to previous element  
 `next`	   get iterator to next element  
 `back_inserter`	construct back insert iterator  
