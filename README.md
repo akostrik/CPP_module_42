@@ -56,6 +56,7 @@ public:
 
 ## Iterator
 * is an object that, pointing to some element in a range of elements, has the ability to iterate through these elements
+* points at the memory addresses of STL containers
 * a pointer is the most obvious form of iterator: a pointer points to elements, and can iterate through them using ++
 * not all iterators have the same functionality of pointer
 * std::iterator is the base class
