@@ -1,10 +1,8 @@
 #pragma once
-#include <iostream>
-#include <algorithm>
-#include <vector>
+#include <algorithm> // find
 #include <exception>
 
-// T &container ?
+// or easyfind(T &container, int n)
 
 template <typename T>
 typename T::iterator easyfind(T container, int n) {
@@ -13,4 +11,3 @@ typename T::iterator easyfind(T container, int n) {
     throw std::exception();
   return it;
 }
-
