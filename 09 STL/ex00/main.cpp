@@ -1,6 +1,5 @@
 // at least one container, explain 
 // once a container is used you cannot use it for the rest of the module
-// use c++
 // # $(NAME)
 // The program name is btcs
 // handle possible errors with an appropriate error message
@@ -20,3 +19,5 @@
 // run the prog with input.csv as parameter 
 // compare some dates manually with the specified value.
 // If the date does not exist in the database, the program will have to use the nearest lower date
+
+// inner_product()
