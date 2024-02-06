@@ -95,21 +95,21 @@ https://en.cppreference.com/w/cpp/container
 * provides an interface relying on an object of one of the classes template
 * the underlying container's elements are accessed by the members of the container adaptor
 
-collection              |acces, lookup, observers     | modifiers                                  |operations
-------------------------|-----------------------------|--------------------------------------------|----------
-**class templates:**    |                             |                                            |
-vector (dynamic array)  |[ ] at front back data       |assign push_back pop_back insert erase swap clear emplace emplace_back | 
-deque                   |[ ] at front back            |assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front	emplace_back | 
-(linked) list           |front back                   |assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear|splice remove remove_if unique merge sort reverse
-**associative containers:**|                          |                                            |
-set (tree)              |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range
-map                    |[ ] at                       |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range 
-multiset                |                             |insert erase swap clear emplace emplace_hint|key_comp value_comp|find count lower_bound upper_bound equal_range
-multimap                |                             |                                            |
-**container adaptors:** |                             |                                            |
-stack                   | top                         | push emplace pop swap                      | 
-queue                   | front back                  | push emplace pop swap                      | 
-priority_queue (heap)   | top                         | push emplace pop swap                      | 
+collection              |operations                                                                                                                     |other
+------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------
+**class templates:**    |                                                                                                                                                                        |
+vector                  |[ ] at front back data size max_size capacity empty assign push_back pop_back insert erase swap clear emplace emplace_back resize reserve shrink_to_fit relational swap |≈ array, the size changes dynamically but dosn't reallocate each time, efficient access, efficient add last 
+deque                   |[ ] at front back assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front emplace_back                                             |efficient qccess, insertion 1st and last, no garantee contiguous storage, efficent with long sequences where reallocations is expensive
+(linked) list           |front back assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear remove remove_if                            |splice unique merge sort reverse
+**associative containers:**|                          |                                                                                                                                          |
+set (tree)              | key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                               |unique elements following a specific order, the value = the key, each value is unique, elt cannot be modified, elt can be inserted/removed, internally the elements are sorted, implemented as binary search tree
+map                     |[ ] at key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                  |internally the elts are always sorted by keys, implemented as a binary search tree 
+multiset                |       key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                  |multiple elements can have equivalent values
+multimap                |                                                                                                                                                                        |
+**container adaptors:** |                                                                                                                                                                        |
+stack                   | top push emplace pop swap                                                                                                                                              | 
+queue                   | front back push emplace pop swap                                                                                                                                       | 
+priority_queue (heap)   | top push emplace pop swap                                                                                                                                              | 
 
 ## Algorithms library (STL) (c++ 98) (08, 09)
 * functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
@@ -136,7 +136,7 @@ unique, unique_copy                    |removes consecutive duplicate elements i
 reverse, reverse_copy                  |reverses the order of elements in a range, creates a copy of a range that is reversed
 rotate, rotate_copy                    |rotates the order of elements in a rangecopies and rotate a range of elements
 swap, swap_ranges, iter_swap           |swaps two ranges / the elements pointed to by two iterators
-transform                              |applies a func to a range of elements, storing results in a destination range
+transform                              |applies a func to a range of elements, storing results in a destination range; 1) an unary operation can be applied to the source range, on a per element basis, which ouputs the results in the destination range 2) a binary operation can be applied to both elements in the source and destination range, subsequently overwriting elements in the destination range
 generate, generate_n                   |assigns the results of successive function calls to every element (N elements) in a range
 **Sorting and related operations**:    | 
 partition, stable_partition            |divides a range of elements into two groups (while preserving their relative order)
