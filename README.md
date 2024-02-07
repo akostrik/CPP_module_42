@@ -357,6 +357,17 @@ C++ file manipulations:
 * **lexical resolution** = **early binding** can be determined at compile time  
 * **dynamic resolution** = **late binding** can be determined at run time
 
+## Exceptions
+* runtime_error: это общий тип исключений, возникающих в процессе выполнения;
+• range_error полученный результат превосходит определенный допустимый диапазон;
+• overflow_error полученный результат превышает допустимый диапазон;
+• underflow_error полученный по итогу вычислений результат имеет недопустимые отрицательные значения;
+• logic_error логических ошибок в программном коде;
+• domain_error: возникает, когда для какого-нибудь значения, которое передается в функцию, результат не определен;
+• invalid_argument: возникает в процессе передаче некорректного аргумента в функцию;
+• length_error: появляется в случае попытки создать объект большего размера, чем это допустимо для данного типа;
+• out_of_range: появляется при попытке доступа к элементам, которые отсутствуют в допустимом диапазоне.
+
 ## System call (c, c++)
 * call to the kernel
 * != call to a system library
