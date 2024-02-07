@@ -87,6 +87,7 @@ https://en.cppreference.com/w/cpp/container
 * provides member functions to access its elements, either directly or through iterators
 * type of container depend on the functionality and the complexity of some of its members
 * **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
+* `array` c++ 11
 
 **associative containers**
 * ?
@@ -100,7 +101,6 @@ https://en.cppreference.com/w/cpp/container
 collection             |operations                                                                                                                     |other
 -----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------
 **class templates:**   |                                                                                                                                                                        |
-array                  |[ ] array at back begin cbegin cend crbegin crend data empty end fill front max_size rbegin rend size swap                                                              |
 vector                 |[ ] at front back data size max_size capacity empty assign push_back pop_back insert erase swap clear emplace emplace_back resize reserve shrink_to_fit relational swap |≈ array, the size changes dynamically, dosn't reallocate each time, access O(1),  add last O(1)
 deque                  |[ ] at front back assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front emplace_back                                             |access O(1), add 1st / last O(1), no garantee contiguous storage, efficient with long sequences where reallocations is expensive
 (linked) list          |front back assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear remove remove_if                            |splice unique merge sort reverse
