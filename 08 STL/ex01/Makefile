@@ -2,7 +2,7 @@ SRCS    = *.cpp
 HEADERS = *.hpp
 OBJS    = $(SRCS:.cpp=.o)
 OBJS   := $(addprefix ./objs/, $(OBJS))
-FLAGS   = -std=c++98 -Wall -Wextra -Werror
+FLAGS   = -Wall -Wextra -Werror #-std=c++98
 CPP     = c++
 
 all: $(OBJS) $(HEADER)

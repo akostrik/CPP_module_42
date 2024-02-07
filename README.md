@@ -1,5 +1,4 @@
 # C++ feautures
-http://www.cplusplus.com  
 
 ## Automatic initialisation
 Orthodox canonical class form (Coplien's form): 
@@ -45,7 +44,7 @@ public:
 ## Incapsulation
 * the data is **incapsulated** as mush as possible -> fewer parts of the program see them -> flexibility for changing
 
-## Templates
+## Templates (07)
 * allows functions and classes to operate with generic types  
 * are parameterized by one or more parameters of three kinds: type template parameters, non-type template parameters, and template template parameters.
 * the compiler uses a **function template** (a parametric function definition, where a particular function instance is created by one or more parameter values) to generate a **function definition** (an instance of the template)
@@ -55,48 +54,112 @@ public:
 ** a function / template can be overloaded
 * a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
 
-## Containers (Standard Template Library, STL)
+## Iterator
+* is an object that, pointing to some element in a range of elements, has the ability to iterate through these elements
+* points at the memory addresses of STL containers
+* a pointer is the most obvious form of iterator: a pointer points to elements, and can iterate through them using ++
+* not all iterators have the same functionality of pointer
+* std::iterator is the base class
+* the same interface for containers of several types
+* only for standard containers, not for container adaptors
+* https://en.cppreference.com/w/cpp/iterator/iterator 
 
-### A standart conteiner
-* is a holder object that stores a collection of other objects
-* is implemented as class template => a great flexibility in the types supported as elements
-* manages the storage space for its elements
-* provides member functions to access  its elements, either directly or through iterators
-* many containers have member functions in common and share functionalities
-* which type of container to use ? depend on the functionality and on the efficiency of some of its members (complexity)
-* **a container adaptor**
-   + is not a full container classe
-   + provides an interface relying on an object of one of the container classes (such as deque or list) to handle the elements
-   + the underlying container is encapsulated in such a way that its elements are accessed by the members of the container adaptor independently of the underlying container class used.
-   + stack, queue, priority_queue are implemented as container adaptors
+`advance`   advance iterator  
+`distance`  distance between iterators  
+`begin`	   iterator to beginning  
+`end`	      iterator to end  
+`prev`	   get iterator to previous element  
+`next`	   get iterator to next element  
+`back_inserter`	construct back insert iterator  
+`front_inserter`	constructs front insert iterator  
+`inserter`	            construct insert iterator  
+`make_move_iterator`    construct move iterator  
 
-### Container class templates
-* dynamic arrays (vector)
-* queues (queue)
-* stacks (stack)
-* heaps (priority_queue)
-* linked lists (list)
-* trees (set)
-* associative arrays (map)
-* ...
+## STL-Containers (Standard Template Library) (08, 09) (c++ 98 only)
+https://en.cppreference.com/w/cpp/container  
+* array : the only C’s built-in container 
+* container.end() is an iterator and doesn't point to any element in the container
 
-### Container class templates
-Sequence containers:
-array	Array class (class template)
-vector	Vector (class template)
-deque	Double ended queue (class template)
-forward_list	Forward list (class template)
-list	List (class template)
+**sequence container = standart container = class template**
+* an object
+* stores a collection of other objects
+* manages the storage space
+* provides member functions to access its elements, either directly or through iterators
+* type of container depend on the functionality and the complexity of some of its members
+* **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
+* `array` c++ 11
 
-## Algorithms (STL)
-...
+**associative containers**
+* ?
 
-## Iterators (STL)
-...
+**container adaptor**
+* is not a full container classe
+* provides an interface relying on an object of one of the classes template
+* the underlying container's elements are accessed by the members of the container adaptor
+* **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
 
-## Collections
-* `clear()` removes all entries from a collection
-* `erase()` removes a single entry or a range of entries
+collection             |operations                                                                                                                     |other
+-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------
+**class templates:**   |                                                                                                                                                                        |
+vector                 |[ ] at front back data size max_size capacity empty assign push_back pop_back insert erase swap clear emplace emplace_back resize reserve shrink_to_fit relational swap |≈ array, the size changes dynamically, dosn't reallocate each time, access O(1),  add last O(1)
+deque                  |[ ] at front back assign push_back push_front pop_back pop_front insert erase swap clear emplace emplace_front emplace_back                                             |access O(1), add 1st / last O(1), no garantee contiguous storage, efficient with long sequences where reallocations is expensive
+(linked) list          |front back assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear remove remove_if                            |splice unique merge sort reverse
+**associative containers:**|                                                                                                                                                                     |
+set (tree)             | key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                        |unique elements following a specific order, the value = the key, each value is unique, elt cannot be modified, elt can be inserted/removed, internally the elements are sorted, implemented as binary search tree
+map                    |[ ] at key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                  |internally the elts are always sorted by keys, implemented as a binary search tree 
+multiset               |       key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                  |multiple elements can have equivalent values
+multimap               |                                                                                                                                                                        |
+**container adaptors:**|                                                                                                                                                                        |
+stack                  | top push emplace pop swap                                                                                                                                              | 
+queue                  | front back push emplace pop swap                                                                                                                                       | 
+priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap                                                                                                                   |add / remove O(ln n) 
+
+## Algorithms library (STL) (c++ 98) (08, 09)
+* functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
+* **a range** = [first, last)  
+* a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
+  
+:: **Non-modifying sequence operations**:| nn
+---------------------------------------|---
+for_each                               |applies a function to a range of elements
+find, find_if, find_first_of, find_end |
+adjacent_find                          |the first two adjacent items that are equal (or satisfy a given predicate)
+count, count_if                        |
+mismatch                               |the first position where two ranges differ
+equal                                  |if two sets of elements are the same
+search, search_n                       |searches a range for a number of consecutive copies of an element
+**Modifying sequence operations**:     |
+copy, copy_backward                    |copies a range of elements to a new location (in backwards order)
+fill, fill_n                           |copy-assigns the given value to every element (N elements) in a range
+uninitialized_copy                     |copies a range of objects to an uninitialized area of memory
+uninitialized_fill, uninitialized_fill_n|copies an object to an uninitialized area of memory, defined by a range (by a start and a count)
+replace, replace_if, replace_copy, replace_copy_if|copies a range, replacing elements satisfying specific criteria with another value
+remove, remove_if, remove_copy, remove_copy_if|removes elements satisfying specific criteria, copies a range of elements omitting those that satisfy specific criteria
+unique, unique_copy                    |removes consecutive duplicate elements in a range, creates a copy of some range of elements that contains no consecutive duplicates
+reverse, reverse_copy                  |reverses the order of elements in a range, creates a copy of a range that is reversed
+rotate, rotate_copy                    |rotates the order of elements in a rangecopies and rotate a range of elements
+swap, swap_ranges, iter_swap           |swaps two ranges / the elements pointed to by two iterators
+transform                              |applies a func to a range of elements, storing results in a destination range; 1) an unary operation can be applied to the source range, on a per element basis, which ouputs the results in the destination range 2) a binary operation can be applied to both elements in the source and destination range, subsequently overwriting elements in the destination range
+generate, generate_n                   |assigns the results of successive function calls to every element (N elements) in a range
+**Sorting and related operations**:    | 
+partition, stable_partition            |divides a range of elements into two groups (while preserving their relative order)
+sort, stable_sort, partial_sort, partial_sort_copy, nth_element|sorts the first N elements of a range, copies and partially sorts a range of elements, partially sorts the given range making sure that it is partitioned by the given element
+lower_bound, upper_bound               |an iterator to the first element not less than the given value
+equal_range                            |range of elements matching a specific key
+binary_search                          |if an element exists in a partially-ordered range
+includes                               |true if one sequence is a subsequence of another
+set_union, set_intersection, set_difference, set_symmetric_difference|union, intersection, difference, the symmetric difference between two sets
+merge, inplace_merge                   |merges two ordered ranges
+push_heap, pop_heap                    |adds an element to a max heap, removes the largest element from a max heap
+make_heap                              |creates a max heap out of a range of elements
+sort_heap                              |turns a max heap into a range of elements sorted in ascending order
+max, min, nax_element, min_element     |the greater of the given values, the largest element in a range
+lexicographical_compare                |true if one range is lexicographically less than another
+next_permutation, prev_permutation     |generates the next greater lexicographic permutation of a range of elements
+accumulate                             |sums up or folds a range of elements
+inner_product                          |the inner product of two ranges of element (09/ex00)
+adjacent_difference                    |the differences between adjacent elements in a range (08/ex01)
+partial_sum                            |the partial sum of a range of elements
 
 ## Types
 ### `std::string` 
@@ -116,7 +179,7 @@ list	List (class template)
 ### `intptr_t` data type (c, c++)
 ...
 
-## Convertions, casts (01/ex04, 06) (only before C++11 information)
+## Convertions, casts (01/ex04, 06) (c++ 98)
 https://en.cppreference.com/w/cpp/language  
 
 |                 | `char`               | `char*`                                                        | `std::string`                             | `int`                | `float`              | `double`
@@ -295,6 +358,17 @@ C++ file manipulations:
 * **lexical resolution** = **early binding** can be determined at compile time  
 * **dynamic resolution** = **late binding** can be determined at run time
 
+## Exceptions
+* runtime_error: это общий тип исключений, возникающих в процессе выполнения;
+• range_error полученный результат превосходит определенный допустимый диапазон;
+• overflow_error полученный результат превышает допустимый диапазон;
+• underflow_error полученный по итогу вычислений результат имеет недопустимые отрицательные значения;
+• logic_error логических ошибок в программном коде;
+• domain_error: возникает, когда для какого-нибудь значения, которое передается в функцию, результат не определен;
+• invalid_argument: возникает в процессе передаче некорректного аргумента в функцию;
+• length_error: появляется в случае попытки создать объект большего размера, чем это допустимо для данного типа;
+• out_of_range: появляется при попытке доступа к элементам, которые отсутствуют в допустимом диапазоне.
+
 ## System call (c, c++)
 * call to the kernel
 * != call to a system library
@@ -305,7 +379,7 @@ C++ file manipulations:
 * communications: create, delete communication connection, send, receive messages, transfer status information, attach or detach remote devices
 
 ## Memory
-* delete[] frees an array created with new[]
+* delete[ ] frees an array created with new[ ]
 * malloc allocates more memory that the programmes asked, puts the size of the block in the beginning on the bloc  
 +-----+--------------------------     ----+  
 | 100 |                           ...     |  
@@ -318,6 +392,10 @@ the real beginning of the bloc
 
 ## Errors 
 * **undefined behavior** it could work, it could crash, it could do something else
+
+## Makefile
+`CXX = c++`
+`CXXFLAGS`
 
 ## Specifiers
 
@@ -524,7 +602,7 @@ In any of the parameters of a function declaration: that declaration becomes an 
 defines or inherits a virtual function 
 no keyword `incomplet`, just terminologie
 
-# Other info
+## other
 `#pragma once` is only intended to be used in headers, there is no need to compile headers, don't compile headers
 
 # Representation of real numbers
@@ -691,22 +769,30 @@ Represent numbers as fractions with integral numerator and denominator
 * Process the underlying mathematics directly, instead of using approximate values for each intermediate calculation  
 * Ex: computer algebra systems such as Mathematica, Maxima, Maple
 
-# Tri par fusion-insertion = algorithme de Ford-Johnson
-https://fr.wikipedia.org/wiki/Tri_par_fusion-insertion#Algorithme  
-https://en.wikipedia.org/wiki/Merge-insertion_sort#Algorithm  
-https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort  
-https://github.com/decidedlyso/merge-insertion-sort/blob/master/README.md  
-https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort  
-https://www.youtube.com/watch?v=w1QXGe295sI  
-* L. R. Ford and S. M. Johnson. A tournament problem. American Mathematical Monthly, 66 :387–389, 1959
-* Lester Randolph Ford Jr. = Лестер Рэндольф Форд младший = Lester Randolph Ford junior
-* tri par comparaison 
-* le pire des cas: moins de comparaisons que le tri par insertion
-* le pire des cas: moins que et le tri fusion
-// http://www.lsv.fr/~goubault/AlgoI/graphs-dist_compressed.pdf algo Bellman-Ford = Bellman–Ford–Moore, des plus courts chemins depuis un sommet source donné dans un graphe orienté pondéré   
-// Lalgo Ford-Johnson   
+# Merge-insertion sort = Ford-Johnson algorithm 
+* modification of insertion sort
+* takes into account this property of binary search: the maximal number of comparisons to perform a binary search on a sorted sequence is the same for $2^n$ elements and $2^{n+1}−1$ elements (looking for an element in a sorted sequence of 8 or 15 elements requires the same number of comparisons)
+* ensures that the size of the insertion area is $2^n−1$ as often as possible
+* Jacobsthal numbers (числа Якобсталя)
+   + the sequence starts with 0 and 1
+   + each following number is found by adding the number before it to twice the number before that
+   + 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525, …
+* the worst case: less comparaisons than insertion sort
+* the worst case: less comparaisons than merge sort
+* Ford, Lester R., and Selmer M. Johnson. “A Tournament Problem.” The American Mathematical Monthly, vol. 66, no. 5, 1959, pp. 387–389. JSTOR, www.jstor.org/stable/2308750
+* The Art of Computer Programming by Donald Knuth, Volume 3, section 5.3.1
+* Mahmoud, Hosam M. Sorting: A Distribution Theory. John Wiley & Sons. (October 14, 2011)
+* Manacher, Glenn K. 1979. “The Ford-Johnson Sorting Algorithm Is Not Optimal”. J. ACM 26, 3 (july 1979), 441–456. DOI:https://doi.org/10.1145/322139.322145
+* Morwenn. “Ford-Johnson Merge-Insertion Sort”. Code Review Stack Exchange. 10 Jan. 2016, https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort
+* https://en.wikipedia.org/wiki/Merge-insertion_sort#Algorithm  
+* https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort  
+* https://github.com/decidedlyso/merge-insertion-sort/blob/master/README.md  
+* https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort  
+* https://www.youtube.com/watch?v=w1QXGe295sI
+* https://github.com/decidedlyso/merge-insertion-sort 
 
 # other
+http://www.cplusplus.com  
 https://github.com/42YerevanProjects/cpp_modules  
 https://github.com/Saxsori/CPP_Modules  
 https://github.com/ifanzilka/CPP_Module  
