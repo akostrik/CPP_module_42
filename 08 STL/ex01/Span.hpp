@@ -1,27 +1,28 @@
 #include <algorithm>
 #include <iostream>
 #include <exception>
-#include <set>
+#include <queue>
 
-class Span {
+class Span : public std::priority_queue<unsigned int> {
   private:
-    std::multiset<unsigned int> _container;
-    int                         _N;
-                                Span();
+    // std::priority_queue<unsigned int> _cont;
+    //std::priority_queue<unsigned int> _inverted_cont;
+    unsigned int                 _N;
+                                 Span();
 
   public:
-                                Span(unsigned int N);
-                                Span(const Span& o);
-                                ~Span();
-    Span&                       operator=(const Span& o);
-    std::multiset<unsigned int> getContainer() const;
-    void                        addNumber(const unsigned int a);
+                                 Span(unsigned int N);
+                                 Span(const Span& o);
+                                 ~Span();
+    Span&                        operator=(const Span& o);
+    // std::priority_queue<unsigned int>  getCont(); // const ?
+    void                         addNumber(const unsigned int a);
     // const unsigned int  shortestSpan();
     // const unsigned int  longestSpan();
 
 
   template <typename T>
-  void addManyNumbers(T container) {
-    (void)container;
+  void addManyNumbers(T cont) {
+    (void)cont;
   };
 };

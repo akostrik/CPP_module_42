@@ -2,11 +2,14 @@
 #include <iostream>
 
 int main() {
-  Span sp = Span(5);
+  Span s = Span(5);
 
-  sp.addNumber(6);
-  sp.addNumber(3);
-  //std::cout << sp.getContainer().begin() << std::endl;
+  s.push(1);
+  s.push(3);
+  s.push(2);
+  std::cout << "First = " << s.top() << ", size = " << s.size() << std::endl;
+  s.pop();
+  std::cout << "First = " << s.top() << ", size = " << s.size() << std::endl;
 
   // sp.addNumber(17);
   // sp.addNumber(9);
