@@ -791,7 +791,10 @@ Represent numbers as fractions with integral numerator and denominator
 * https://www.youtube.com/watch?v=w1QXGe295sI
 * https://github.com/decidedlyso/merge-insertion-sort 
 
-# other
+# Vocabulary
+* **GCC** = **GNU Compiler Collection** a compiler supporting various programming languages, hardware architectures and operating systems 
+
+# Linens
 http://www.cplusplus.com  
 https://github.com/42YerevanProjects/cpp_modules  
 https://github.com/Saxsori/CPP_Modules  
