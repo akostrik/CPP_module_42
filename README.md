@@ -109,7 +109,7 @@ multimap                |                                                       
 **container adaptors:** |                                                                                                                                                                        |
 stack                   | top push emplace pop swap                                                                                                                                              | 
 queue                   | front back push emplace pop swap                                                                                                                                       | 
-priority_queue (heap)   | top push emplace pop swap                                                                                                                                              |самый большойвсегда в верхней позиции, the largest element O(1), insertion/ extraction O(ln n) 
+priority_queue (heap)   | top (the largest element O(1)) push emplace pop swap                                                                                                                   |самый большойвсегда в верхней позиции, insertion/ extraction O(ln n) 
 
 ## Algorithms library (STL) (c++ 98) (08, 09)
 * functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
