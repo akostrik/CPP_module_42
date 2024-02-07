@@ -90,7 +90,7 @@ https://en.cppreference.com/w/cpp/container
 * `array` c++ 11
 
 **associative containers**
-* ?
+* элементы всегда автоматически (без участия программиста) отсортированы 
 
 **container adaptor**
 * is not a full container classe
