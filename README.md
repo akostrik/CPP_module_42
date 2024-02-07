@@ -80,12 +80,13 @@ https://en.cppreference.com/w/cpp/container
 * array : the only C’s built-in container 
 * container.end() is an iterator and doesn't point to any element in the container
 
-**sequence container = standart conteiner = class template**
+**sequence container = standart container = class template**
 * an object
 * stores a collection of other objects
 * manages the storage space
 * provides member functions to access its elements, either directly or through iterators
 * type of container depend on the functionality and the complexity of some of its members
+* **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
 
 **associative containers**
 * ?
@@ -94,6 +95,7 @@ https://en.cppreference.com/w/cpp/container
 * is not a full container classe
 * provides an interface relying on an object of one of the classes template
 * the underlying container's elements are accessed by the members of the container adaptor
+* **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
 
 collection              |operations                                                                                                                     |other
 ------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------
