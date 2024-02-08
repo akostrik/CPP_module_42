@@ -10,7 +10,7 @@ class Span : public std::vector<unsigned int> {
 
   public:
     unsigned int  _N; // private
-    unsigned int  i;
+    unsigned int  size;
     unsigned int  min;
     unsigned int  max;
                   Span(unsigned int N);
@@ -19,7 +19,7 @@ class Span : public std::vector<unsigned int> {
     Span&         operator=(const Span& o);
     void          addNumber(unsigned int a);
     unsigned int  shortestSpan();
-    //unsigned int  longestSpan();
+    unsigned int  longestSpan();
 
   // prennent une plage d’itérateurs afin d’ajouter une séquence d’éléments au container
   template <typename T>
