@@ -19,7 +19,7 @@ int main() {
   v.push_back(7);
   v.push_back(5);
   v.push_back(10);
-  s.addManyNumbers(v.begin(), v.end());
+  s.addManyNumbers(*v.begin(), *v.end());
 
   for (const int& i : s) 
     std::cout << i << "  ";

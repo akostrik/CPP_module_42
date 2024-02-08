@@ -21,6 +21,7 @@ Span& Span::operator=(const Span& o) {
 
 ////////////////////////////////////////////
 void Span::addNumber(unsigned int a) {
+  std::cout << "addNumber(" << a << ")" << std::endl;
   if(size == _N)
     throw std::overflow_error("Span has no free space");
   this->push_back(a);
