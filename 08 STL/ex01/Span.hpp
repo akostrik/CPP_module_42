@@ -4,13 +4,12 @@
 #include <climits>
 #include <vector>
 
-class Span {
+class Span : public std::vector<unsigned int> {
   private:  
                   Span();
 
   public:
-    unsigned int* arr;
-    unsigned int  N; // private
+    unsigned int  _N; // private
     unsigned int  i;
     unsigned int  min;
     unsigned int  max;
@@ -18,8 +17,7 @@ class Span {
                   Span(const Span& o);
                   ~Span();
     Span&         operator=(const Span& o);
-    void          addNumber(const unsigned int a);
-    unsigned int* getArr();
+    void          addNumber(unsigned int a);
     unsigned int  shortestSpan();
     //unsigned int  longestSpan();
 

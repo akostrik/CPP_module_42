@@ -2,20 +2,31 @@
 #include <iostream>
 
 int main() {
-  Span s = Span(0);
+  Span s = Span(5);
 
   s.addNumber(1);
   s.addNumber(5);
   s.addNumber(2);
-  std::cout << s.getArr()[0] << " " << s.getArr()[1] << " " << s.getArr()[2] << ", span = " << s.shortestSpan() << std::endl;
+  s.addNumber(10);
+  s.addNumber(0);
 
-  for (int i = 0; i < 3; i++) {
-    std::cout << s.getArr()[i] << " ";
-  }
+  for (int i = 0; i < 5; i++)
+    std::cout << s[i] << " ";
+  std::cout << std::endl;
+
+  std::sort(s.begin(), s.end());
+  for (int i = 0; i < 5; i++)
+    std::cout << s[i] << " ";
+  std::cout << std::endl;
+  // s.shortestSpan();
+  // for (int i = 0; i < 3; i++)
+  //   std::cout << s[i] << " ";
+  // std::cout << std::endl;
+  // std::sort(s.getArr().begin(), s.getArr().end());
 
 //  for (const int& i : s.getArr()) {
 //     std::cout << i << "  ";
 //   }
 
-  return 0;
-}
+    return 0;
+  }
