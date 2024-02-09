@@ -14,14 +14,17 @@ Span::Span(const Span& o) : std::vector<unsigned int>() {
 Span::~Span() {}
 
 Span& Span::operator=(const Span& o) {
-  //_N = o._N; // 
-  (void)o;
+  std::copy(o.begin(), o.end(), this->begin());
+  _N   = o._N;
+  size = o.size;
+  min  = o.min;
+  max  = o.max;
   return *this;
 }
 
 ////////////////////////////////////////////
 void Span::addNumber(unsigned int a) {
-  std::cout << "addNumber(" << a << ")" << std::endl;
+  std::cout << "add(" << a << ")" << std::endl;
   if(size == _N)
     throw std::overflow_error("Span has no free space");
   this->push_back(a);
@@ -35,13 +38,32 @@ void Span::addNumber(unsigned int a) {
 unsigned int Span::shortestSpan() {
   if(size <= 1)
     throw std::exception();
+
+  std::cout << std::endl << "not sorted : ";
+  for (std::vector<unsigned int>::iterator it = this->begin(); it != this->end(); it++)
+    std::cout << *it << "  ";
+
   std::sort(this->begin(), this->end());
-  std::vector<unsigned int> spans = std::vector<unsigned int>(size - 1);
-  std::transform(this->begin(), this->end(), this->begin() + 1, spans.begin(), [](unsigned int n1, unsigned int n2) { return n2 - n1; });
-  for (const unsigned int& i : spans) 
-    std::cout << i << "  ";
+  std::cout << std::endl << "sorted     : ";
+  for (std::vector<unsigned int>::iterator it = this->begin(); it != this->end(); it++)
+    std::cout << *it << "  ";
+
+  std::vector<unsigned int> rotatedCopy = *this;
+  std::rotate(rotatedCopy.begin(),rotatedCopy.begin() + 1,rotatedCopy.end());
+  std::cout << std::endl << "rotated    : ";
+  for (std::vector<unsigned int>::iterator it = rotatedCopy.begin(); it != rotatedCopy.end(); it++)
+    std::cout << *it << "  ";
   std::cout << std::endl;
-  return *std::min_element(spans.begin(), spans.end());
+
+  std::transform(this->begin(), this->end(), rotatedCopy.begin(), rotatedCopy.begin(), [](unsigned int n1, unsigned int n2) { return n2 - n1; });
+  rotatedCopy.pop_back();
+
+  std::cout << "spans      : ";
+  for (std::vector<unsigned int>::iterator it = rotatedCopy.begin(); it != rotatedCopy.end(); it++)
+    std::cout << *it << "  ";
+  std::cout << std::endl;
+
+  return *std::min_element(rotatedCopy.begin(), rotatedCopy.end());
 }
 
 unsigned int Span::longestSpan() {

@@ -23,18 +23,13 @@ class Span : public std::vector<unsigned int> {
 
     template <typename Iter>
     void addManyNumbers(Iter &begin, Iter &end) {
-      std::cout << "call addNumber(" << begin << ", " << *(&begin+1) << ", " << *(&begin+2) << ")" << std::endl;
-      std::cout << "begin = " << begin << ", &begin = " << &begin << ", &end = " << &end << std::endl;
-      //void Show(std::list<std::string>::const_iterator bgn, std::list<std::string>::const_iterator end);
-      for (Iter *it = &begin; it != &end; ) {
-//        try {
-          std::cout << "it = " << it << ", *it = " << *it << ", addNumber(" << *it << ")" << std::endl;
+      for (Iter *it = &begin; it != &end; it++) {
+        try {
           addNumber(*it);
-          //it = *(&it+1);
-          it++;
-        // } catch (std::exception &e) {
-        //  std::cout << e.what() << std::endl;
-        // }
+        } catch (std::exception &e) {
+          std::cout << e.what() << std::endl;
+          break;
+        }
       }
       (void)end;
     };
