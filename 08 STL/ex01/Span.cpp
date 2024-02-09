@@ -36,32 +36,24 @@ void Span::addNumber(unsigned int a) {
 }
 
 unsigned int Span::shortestSpan() {
-  if(size <= 1)
+  if(size < 2)
     throw std::exception();
 
-  std::cout << std::endl << "not sorted : ";
-  for (std::vector<unsigned int>::iterator it = this->begin(); it != this->end(); it++)
-    std::cout << *it << "  ";
-
   std::sort(this->begin(), this->end());
-  std::cout << std::endl << "sorted     : ";
+  std::cout << "sorted     : ";
   for (std::vector<unsigned int>::iterator it = this->begin(); it != this->end(); it++)
     std::cout << *it << "  ";
 
   std::vector<unsigned int> rotatedCopy = *this;
   std::rotate(rotatedCopy.begin(),rotatedCopy.begin() + 1,rotatedCopy.end());
-  std::cout << std::endl << "rotated    : ";
-  for (std::vector<unsigned int>::iterator it = rotatedCopy.begin(); it != rotatedCopy.end(); it++)
-    std::cout << *it << "  ";
-  std::cout << std::endl;
 
   std::transform(this->begin(), this->end(), rotatedCopy.begin(), rotatedCopy.begin(), [](unsigned int n1, unsigned int n2) { return n2 - n1; });
   rotatedCopy.pop_back();
 
-  std::cout << "spans      : ";
+  std::cout << std::endl << "spans      : ";
   for (std::vector<unsigned int>::iterator it = rotatedCopy.begin(); it != rotatedCopy.end(); it++)
     std::cout << *it << "  ";
-  std::cout << std::endl;
+  std::cout << std::endl << std::endl;
 
   return *std::min_element(rotatedCopy.begin(), rotatedCopy.end());
 }
