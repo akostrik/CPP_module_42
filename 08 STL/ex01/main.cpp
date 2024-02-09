@@ -21,7 +21,7 @@ int main() {
   v.push_back(10);
   s.addManyNumbers(*v.begin(), *v.end());
 
-  for (const int& i : s) 
+  for (const unsigned int& i : s) 
     std::cout << i << "  ";
   std::cout << std::endl;
 

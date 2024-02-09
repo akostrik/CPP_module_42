@@ -38,7 +38,7 @@ unsigned int Span::shortestSpan() {
   std::sort(this->begin(), this->end());
   std::vector<unsigned int> spans = std::vector<unsigned int>(size - 1);
   std::transform(this->begin(), this->end(), this->begin() + 1, spans.begin(), [](unsigned int n1, unsigned int n2) { return n2 - n1; });
-  for (const int& i : spans) 
+  for (unsigned int& i : spans) 
     std::cout << i << "  ";
   std::cout << std::endl;
   return *std::min_element(spans.begin(), spans.end());
