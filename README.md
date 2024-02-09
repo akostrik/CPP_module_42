@@ -62,6 +62,7 @@ public:
 * std::iterator is the base class
 * the same interface for containers of several types
 * only for standard containers, not for container adaptors
+* `&*it` convert an iterator to a pointer 
 * https://en.cppreference.com/w/cpp/iterator/iterator 
 
 `advance`   advance iterator  
