@@ -77,6 +77,12 @@ public:
 `inserter`	            construct insert iterator  
 `make_move_iterator`    construct move iterator  
 
+## range (c++ 11)
+```
+for (const unsigned int& i : s)
+  std::cout << i << "  ";
+```
+
 ## STL-Containers (Standard Template Library) (08, 09) (c++ 98 only)
 https://en.cppreference.com/w/cpp/container  
 * array : the only C’s built-in container 
@@ -575,7 +581,11 @@ const &obj.~~const~~ member function &#9746;
 ### extern data
 a global variable becomes accessible in any file of the programm
 
-### auto (c++20)
+### auto
+* useless keyword before c++ 11
+* a deduced type (c++ 11)
+
+### auto (c++ 20)
 In any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
 
 ### friend functon
