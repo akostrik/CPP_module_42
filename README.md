@@ -64,18 +64,25 @@ public:
 * only for standard containers, not for container adaptors
 * `&*it` convert an iterator to a pointer
 * `vector<int>::iterator it(...)` convert a pointer-to-int rvalue to vector<int>::iterator
+* comparing iterators from two different containers leads to undefined behavior
 * https://en.cppreference.com/w/cpp/iterator/iterator 
 
 `advance`   advance iterator  
 `distance`  distance between iterators  
 `begin`	   iterator to beginning  
-`end`	      iterator to end  
+`end`	      iterator to end, never refers to a valid element => we can't dereference end()  
 `prev`	   get iterator to previous element  
 `next`	   get iterator to next element  
 `back_inserter`	construct back insert iterator  
 `front_inserter`	constructs front insert iterator  
 `inserter`	            construct insert iterator  
 `make_move_iterator`    construct move iterator  
+
+## range (c++ 11)
+```
+for (const unsigned int& i : s)
+  std::cout << i << "  ";
+```
 
 ## STL-Containers (Standard Template Library) (08, 09) (c++ 98 only)
 https://en.cppreference.com/w/cpp/container  
@@ -575,7 +582,11 @@ const &obj.~~const~~ member function &#9746;
 ### extern data
 a global variable becomes accessible in any file of the programm
 
-### auto (c++20)
+### auto
+* useless keyword before c++ 11
+* a deduced type (c++ 11)
+
+### auto (c++ 20)
 In any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
 
 ### friend functon
