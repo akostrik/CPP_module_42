@@ -1,53 +1,49 @@
 #include "Span.hpp"
 #include <iostream>
 #include <list>
-#define N 6
+#define N 7
 
 int main() {
   Span s                   = Span(N);
-  std::vector<unsigned int> v{5,10,15};
-  std::list<unsigned int>   l{10,20,30};
 
-  // try {
-  //   s.addNumber(7);
-  // } catch (std::exception &e) {
-  //   std::cout << e.what() << std::endl;
-  // }
-  // std::cout << std::endl;
-
-  std::cout << "1) v.begin() = " << *v.begin() << std::endl;
   try {
+    s.addNumber(6);
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+
+  try {
+    std::vector<unsigned int> v{5,10,15};
     s.addNumbers(v.begin(), v.end());
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
-  std::cout << std::endl;
-
-
-  /////////////////////////////////////////////////////////////
-  std::cout << "1) list: ";
-  for (std::list<unsigned int>::iterator it = l.begin() ; it != l.end(); it++)
-    std::cout << *it << " ";
-  std::cout << std::endl << std::endl;
 
   try {
+    std::list<unsigned int>   l{10,20,30};
     s.addNumbers(l.begin(), l.end());
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
-  std::cout << std::endl;
 
-  std::cout << std::endl << "not sorted : ";
-  for (const unsigned int& i : s) // range  C++11
-    std::cout << i << "  ";
+  // try {
+  //   s.addNumber(100);
+  // } catch (std::exception &e) {
+  //   std::cout << e.what() << std::endl;
+  // }
+
+  std::cout << "not sorted : ";
+  for (std::vector<unsigned int>::iterator it = s.begin(); it != s.end(); it++)
+    std::cout << *it << "  ";
 
   try {
-    std::cout << std::endl << s.shortestSpan() << " (shortestSpan)" << std::endl;
+    std::cout << std::endl << s.shortestSpan() << std::endl;
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
+
   try {
-    std::cout << std::endl << s.longestSpan()  << " (longuestSpan)" << std::endl;
+    std::cout << s.longestSpan()  << std::endl;
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
