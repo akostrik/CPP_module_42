@@ -70,7 +70,7 @@ public:
 `advance`   advance iterator  
 `distance`  distance between iterators  
 `begin`	   iterator to beginning  
-`end`	      iterator to end  
+`end`	      iterator to end, never refers to a valid element => we can't dereference end()  
 `prev`	   get iterator to previous element  
 `next`	   get iterator to next element  
 `back_inserter`	construct back insert iterator  
