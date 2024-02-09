@@ -64,6 +64,7 @@ public:
 * only for standard containers, not for container adaptors
 * `&*it` convert an iterator to a pointer
 * `vector<int>::iterator it(...)` convert a pointer-to-int rvalue to vector<int>::iterator
+* comparing iterators from two different containers leads to undefined behavior
 * https://en.cppreference.com/w/cpp/iterator/iterator 
 
 `advance`   advance iterator  
