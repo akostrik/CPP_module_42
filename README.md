@@ -119,7 +119,7 @@ map                    |[ ] at key_comp value_comp find count lower_bound upper_
 multiset               |       key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                  |multiple elements can have equivalent values
 multimap               |                                                                                                                                                                        |
 **container adaptors:**|                                                                                                                                                                        |
-stack                  | top push emplace pop swap                                                                                                                                              | 
+stack                  | top push emplace pop swap                                                                                                                                              |not iterable
 queue                  | front back push emplace pop swap                                                                                                                                       | 
 priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap                                                                                                                   |add / remove O(ln n) 
 
