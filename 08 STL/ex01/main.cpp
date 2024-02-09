@@ -5,7 +5,7 @@
 
 int main() {
   Span s                   = Span(N);
-  //std::vector<unsigned int> v{5,10,15};
+  std::vector<unsigned int> v{5,10,15};
   std::list<unsigned int>   l{10,20,30};
 
   // try {
@@ -15,13 +15,13 @@ int main() {
   // }
   // std::cout << std::endl;
 
-  // std::cout << "1) v.begin() = " << *v.begin() << std::endl;
-  // try {
-  //   s.addNumbers(*v.begin(), *v.end());
-  // } catch (std::exception &e) {
-  //   std::cout << e.what() << std::endl;
-  // }
-  // std::cout << std::endl;
+  std::cout << "1) v.begin() = " << *v.begin() << std::endl;
+  try {
+    s.addNumbers(v.begin(), v.end());
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+  std::cout << std::endl;
 
 
   /////////////////////////////////////////////////////////////
@@ -31,7 +31,6 @@ int main() {
   std::cout << std::endl << std::endl;
 
   try {
-    std::cout << "call addMany(" << *l.begin() << ", " << *l.end() << ")\n";
     s.addNumbers(l.begin(), l.end());
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
@@ -42,16 +41,16 @@ int main() {
   for (const unsigned int& i : s) // range  C++11
     std::cout << i << "  ";
 
-  // try {
-  //   std::cout << std::endl << s.shortestSpan() << " (shortestSpan)" << std::endl;
-  // } catch (std::exception &e) {
-  //   std::cout << e.what() << std::endl;
-  // }
-  // try {
-  //   std::cout << std::endl << s.longestSpan()  << " (longuestSpan)" << std::endl;
-  // } catch (std::exception &e) {
-  //   std::cout << e.what() << std::endl;
-  // }
+  try {
+    std::cout << std::endl << s.shortestSpan() << " (shortestSpan)" << std::endl;
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+  try {
+    std::cout << std::endl << s.longestSpan()  << " (longuestSpan)" << std::endl;
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
 
   return 0;
 }
