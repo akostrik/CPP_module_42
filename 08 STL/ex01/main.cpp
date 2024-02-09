@@ -5,8 +5,8 @@
 
 int main() {
   Span s                   = Span(N);
-  std::vector<unsigned int> v{1,2,7};
-  std::list<unsigned int>   l{4,88,6};
+  //std::vector<unsigned int> v{5,10,15};
+  std::list<unsigned int>   l{10,20,30};
 
   // try {
   //   s.addNumber(7);
@@ -15,17 +15,16 @@ int main() {
   // }
   // std::cout << std::endl;
 
-  std::cout << "1) v.begin() = " << *v.begin() << std::endl;
-  try {
-    s.addNumber(*v.begin(), *v.end());
-  } catch (std::exception &e) {
-    std::cout << e.what() << std::endl;
-  }
-  std::cout << std::endl;
+  // std::cout << "1) v.begin() = " << *v.begin() << std::endl;
+  // try {
+  //   s.addNumbers(*v.begin(), *v.end());
+  // } catch (std::exception &e) {
+  //   std::cout << e.what() << std::endl;
+  // }
+  // std::cout << std::endl;
 
 
   /////////////////////////////////////////////////////////////
-  std::cout << "1) l.begin()     = " << *l.begin() << std::endl;
   std::cout << "1) list: ";
   for (std::list<unsigned int>::iterator it = l.begin() ; it != l.end(); it++)
     std::cout << *it << " ";
@@ -33,7 +32,7 @@ int main() {
 
   try {
     std::cout << "call addMany(" << *l.begin() << ", " << *l.end() << ")\n";
-    s.addNumber(*l.begin(), *l.end());
+    s.addNumbers(l.begin(), l.end());
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
