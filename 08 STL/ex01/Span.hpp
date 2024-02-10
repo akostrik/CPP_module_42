@@ -1,3 +1,5 @@
+#ifndef SPAN_HPP
+# define SPAN_HPP
 #include <algorithm>
 #include <iostream>
 #include <exception>
@@ -36,3 +38,4 @@ class Span : public std::vector<unsigned int> {
       }
     };
 };
+#endif

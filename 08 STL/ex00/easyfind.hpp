@@ -1,8 +1,9 @@
-#pragma once
+#ifndef EASYFIND_HPP
+# define EASYFIND_HPP
 #include <algorithm> // find
 #include <exception>
 
-// or easyfind(T &container, int n)
+// easyfind(T &container, int n) also works
 
 template <typename T>
 typename T::iterator easyfind(T container, int n) {
@@ -11,3 +12,4 @@ typename T::iterator easyfind(T container, int n) {
     throw std::exception();
   return it;
 }
+#endif
