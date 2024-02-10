@@ -592,6 +592,14 @@ a global variable becomes accessible in any file of the programm
 * useless keyword before c++ 11
 * a deduced type (c++ 11)
 
+### using namespaces, using namespace members
+
+### using declaration for class members
+
+### using enumerators (C++ 20)
+
+### using type alias, using alias template declaration (C++ 11)
+
 ### auto (c++ 20)
 In any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
 
