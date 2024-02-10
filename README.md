@@ -66,12 +66,13 @@ public:
 * `vector<int>::iterator it(...)` convert a pointer-to-int rvalue to vector<int>::iterator
 * comparing iterators from two different containers leads to undefined behavior
 * the nature of an iterator
-    + Input Iterator	Can scan the container forward only once, can't change the value it points to (read-only);
-    + Output Iterator	Can scan the container forward only once, can't read the value it points to (write-only);
-    + Forward Iterator	Can scan the container forward multiple times, can read and write the value it points to;
-    + Bidirectional Iterator	Same as previous one but can scan the container back and forth;
-    + Random Access Iterator	Same as previous one but can access the container also non-sequentially (i.e. by jumping around);
-    + Contiguous Iterator	Same as previous one, with the addition that logically adjacent elements are also physically adjacent in memory.
+    + Input Iterator	Can scan the container forward only once, can't change the value it points to (read-only)
+    + Output Iterator	Can scan the container forward only once, can't read the value it points to (write-only)
+    + Forward Iterator	Can scan the container forward multiple times, can read and write the value it points to
+    + Bidirectional Iterator	Same as previous one but can scan the container back and forth
+    + Random Access Iterator	Same as previous one but can access the container also non-sequentially (i.e. by jumping around)
+    + Contiguous Iterator	Same as previous one, with the addition that logically adjacent elements are also physically adjacent in memory
+* an iterator must be constructible, copy-constructible, copy-assignable, destructible, swappable
 
 `advance`   advance iterator  
 `distance`  distance between iterators  
