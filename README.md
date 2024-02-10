@@ -606,6 +606,9 @@ a global variable becomes accessible in any file of the programm
 ### auto (c++ 20)
 In any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
 
+### typedef
+synonyme
+
 ### friend functon
 * are not member functions
 * have acces to its private variables and functions
