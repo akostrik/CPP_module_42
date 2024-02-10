@@ -59,7 +59,8 @@ public:
 ```
 
 ## Incapsulation
-* the data is **incapsulated** as mush as possible -> fewer parts of the program see them -> flexibility for changing
+* **incapsulated data** few parts of the program see them
+* flexibility for changing
 
 ## Template
 * allows functions and classes to operate with generic types  
@@ -73,8 +74,8 @@ public:
 * you could pass the address, instead of dereferenced value as a parameter
 * **template specialization** defines a behaviour that is different from the standard template
 * **class template** is not a class, it is a template used to create classes 
-** can be overloaded
-* a templated class / function is the equivalent of (before compiling) copying and pasting the block of code, and replacing the template parameter with the actual one (templates are compile-time construct)
+* is compile-time construct: a templated class / function = before compiling replacing the template parameter with the actual one
+* can be overloaded
 
 ## Iterator
 * an object pointing to some element in a range of elements
