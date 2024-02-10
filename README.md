@@ -22,20 +22,12 @@ class A {
 * a constructor with a constexpr specifier make its type a LiteralType
 * **default constructor** may be called without any argument
 * **copy constructors** and **move constructors** take another object of the same type as the argument
-* 1) initialization of direct bases, virtual bases, non-static data members 2) the compound statement that forms the function body of the constructor is executied
-* **member initializer list** the place where non-default initialization of these subobjects can be specified
-* member initializers must be specified for:
+* 1) initialization of direct bases, virtual bases, non-static data members 2) execution of the function body of the constructor
+* **member initializer (list)** = non-default initialization of the subobjects, must be specified for:
    + bases that cannot be default-initialized
    + non-static data members that cannot be initialized by default-initializatio
    + non-static data members that cannot be initialized by their default member initializer (members of reference and const-qualified types)
-* default member initializers for non-static data members of class template instantiations may be invalid if the member type or initializer is dependent (c++ 11)
-  * No initialization is performed for anonymous unions or variant members that do not have a member initializer or default member initializer(since C++11).
-
-The initializers where class-or-identifier names a virtual base class are ignored during construction of any class that is not the most derived class of the object that's being constructed.
-
-Names that appear in expression-list or brace-init-list are evaluated in scope of the constructor:
 * `std::initializer_list<T>` provides access to an array of objects of type const T
-* member initializer lists
 
 ## Inheritance
 * super class = base class = parent class
