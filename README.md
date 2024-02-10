@@ -35,7 +35,7 @@ class A {
 * a constructor is not inherited
 * a destructor is not inherited
 * when a child class initilaies its instance, the constructors are called hierarchically, the destructors are called in the inverse order
-* operator = is inherited, but hidden by the implicitely declared one
+* operator `=` is inherited, but hidden by the implicitely declared one
 
 ## Overloading
 * different functions can have the same name provided they are distinguished by their parameter types 
