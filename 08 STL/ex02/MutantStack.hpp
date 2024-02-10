@@ -8,6 +8,7 @@
 #include <climits>
 #include <stack>
 #include <iterator>
+//#deinfe iterator ?
 
 template <typename T>
 class MutantStack : public std::stack<T> {
@@ -15,27 +16,23 @@ class MutantStack : public std::stack<T> {
 
   typedef typename std::stack<T>::container_type::iterator iterator;
 
-               MutantStack() {} // : std::stack<T>()
+               MutantStack () {} // : std::stack<T>()
                ~MutantStack() {} // virtual // this->c.clear();
-               MutantStack(const MutantStack& o) {   *this = o; } // std::stack<T>() ? // std::stack<T>(o)
-  MutantStack& operator=(const MutantStack& o) { std::stack<T>::operator=(o); return *this; }; // this->c = obj.c; 
+               MutantStack (const MutantStack& o) {   *this = o; } // std::stack<T>() ? // std::stack<T>(o)
+  MutantStack& operator=   (const MutantStack& o) { std::stack<T>::operator=(o); return *this; }; // this->c = obj.c; 
 
-  iterator     begin()            { return (this->c.begin());  };
-  iterator     end()              { return (this->c.end());    };
-  iterator     rbegin()           { return (this->c.rbegin()); };
-  iterator     rend()             { return (this->c.rend());   };
-  iterator     cbegin()  const    { return (this->c.begin());  };
-  iterator     cend()    const    { return (this->c.end());    };
-  iterator     crbegin() const    { return (this->c.rbegin()); };
-  iterator     crend()   const    { return (this->c.rend());   };
+  T*           operator->  ()                     { return *this; };
+  T&           operator*   () const               { return &this; };
 
-  T*           operator->()       { return *this; }; // ?
-  T&           operator* () const { return &this; }
-
-  // iterator(pointer ptr)  {
-  //   arr(ptr);
-  // }
-
+  iterator     begin       ()                     { return (this->c.begin());  };
+  iterator     rbegin      ()                     { return (this->c.rbegin()); };
+  iterator     cbegin      () const               { return (this->c.begin());  };
+  iterator     crbegin     () const               { return (this->c.rbegin()); };
+  iterator     end         ()                     { return (this->c.end());    };
+  iterator     rend        ()                     { return (this->c.rend());   };
+  iterator     cend        () const               { return (this->c.end());    };
+  iterator     crend       () const               { return (this->c.rend());   };
+  //             iterator    (T* ptr)               { this(ptr); }
 };
 
 // template <typename T>
