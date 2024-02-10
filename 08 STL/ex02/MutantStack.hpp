@@ -8,30 +8,40 @@
 #include <climits>
 #include <stack>
 #include <iterator>
-//#deinfe iterator ?
 
 template <typename T>
 class MutantStack : public std::stack<T> {
   public:
 
+// to give to stack the access to its underlying container (container_type)
+
   typedef typename std::stack<T>::container_type::iterator iterator;
 
-               MutantStack () {} // : std::stack<T>()
-               ~MutantStack() {} // this->c.clear();
-               MutantStack (const MutantStack& o) { *this = o; } // std::stack<T>() ? // std::stack<T>(o)
+               MutantStack () {}
+               ~MutantStack() {}
 
-  MutantStack& operator=   (const MutantStack& o) { std::stack<T>::operator=(o); return *this; }; // this->c = obj.c; 
+  MutantStack(const MutantStack<T>  &o): std::stack<T>(o) {} 
+ 
+  MutantStack& operator= (const MutantStack& o) { 
+    this->c = o.c;
+    //std::stack<T>::operator=(o); 
+    return *this; 
+  };
+
+
+
   T*           operator->  ()                     { return *this; };
   T&           operator*   () const               { return &this; };
   T*           operator++  ()                     { (*this)++;  return *this; };
 
+  // c = the underlying container
   iterator     begin       ()                     { return (this->c.begin());  };
-  iterator     rbegin      ()                     { return (this->c.rbegin()); };
-  iterator     cbegin      () const               { return (this->c.begin());  };
-  iterator     crbegin     () const               { return (this->c.rbegin()); };
   iterator     end         ()                     { return (this->c.end());    };
   iterator     rend        ()                     { return (this->c.rend());   };
+  iterator     rbegin      ()                     { return (this->c.rbegin()); };
+  iterator     cbegin      () const               { return (this->c.begin());  };
   iterator     cend        () const               { return (this->c.end());    };
+  iterator     crbegin     () const               { return (this->c.rbegin()); };
   iterator     crend       () const               { return (this->c.rend());   };
   //             iterator    (T* o)               { this(o); }
 };
