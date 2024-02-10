@@ -195,6 +195,8 @@ partial_sum                            |the partial sum of a range of elements
 ### `intptr_t` data type (c, c++)
 ...
 
+### `m_data`
+
 ## Convertions, casts (01/ex04, 06) (c++ 98)
 https://en.cppreference.com/w/cpp/language  
 
