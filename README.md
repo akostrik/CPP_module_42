@@ -1,6 +1,6 @@
-# C++ feautures
+# C++ 98 feautures
 
-## Automatic initialisation
+## Automatic initialisation and descruction
 Orthodox canonical class form (Coplien's form): 
 ```
 class A {
@@ -11,6 +11,31 @@ class A {
       A &operator = (const A &obj); // copy assignment operator
 };
 ```
+
+### Constructor
+* is a non-static member function of a class that is used to initialize objectss
+* has no name
+* cannot be called directly
+* is invoked when initialization takes place
+* is selected according to the rules of initialization
+* **converting constructor** without explicit specifier 
+* a constructor with a constexpr specifier make its type a LiteralType
+* **default constructor** may be called without any argument
+* **copy constructors** and **move constructors** take another object of the same type as the argument
+* 1) initialization of direct bases, virtual bases, non-static data members 2) the compound statement that forms the function body of the constructor is executied
+* **member initializer list** the place where non-default initialization of these subobjects can be specified
+* member initializers must be specified for:
+   + bases that cannot be default-initialized
+   + non-static data members that cannot be initialized by default-initializatio
+   + non-static data members that cannot be initialized by their default member initializer (members of reference and const-qualified types)
+* default member initializers for non-static data members of class template instantiations may be invalid if the member type or initializer is dependent (c++ 11)
+  * No initialization is performed for anonymous unions or variant members that do not have a member initializer or default member initializer(since C++11).
+
+The initializers where class-or-identifier names a virtual base class are ignored during construction of any class that is not the most derived class of the object that's being constructed.
+
+Names that appear in expression-list or brace-init-list are evaluated in scope of the constructor:
+* `std::initializer_list<T>` provides access to an array of objects of type const T
+* member initializer lists
 
 ## Inheritance
 * super class = base class = parent class
