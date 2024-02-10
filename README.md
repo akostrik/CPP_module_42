@@ -44,7 +44,7 @@ public:
 ## Incapsulation
 * the data is **incapsulated** as mush as possible -> fewer parts of the program see them -> flexibility for changing
 
-## Templates (07)
+## Templates
 * allows functions and classes to operate with generic types  
 * are parameterized by one or more parameters of three kinds: type template parameters, non-type template parameters, and template template parameters.
 * the compiler uses a **function template** (a parametric function definition, where a particular function instance is created by one or more parameter values) to generate a **function definition** (an instance of the template)
@@ -55,23 +55,25 @@ public:
 * a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
 
 ## Iterator
-* is an object that, pointing to some element in a range of elements, has the ability to iterate through these elements
+* an object pointing to some element in a range of elements
+* has the ability to iterate through these elements
 * points at the memory addresses of STL containers
-* a pointer is the most obvious form of iterator: a pointer points to elements, and can iterate through them using ++
+* ex: a pointer,it points to elements, can iterate through them using ++
 * not all iterators have the same functionality of pointer
-* std::iterator is the base class
+* `std::iterator` its base class
 * the same interface for containers of several types
-* only for standard containers, not for container adaptors
-* `&*it` convert an iterator to a pointer
-* `vector<int>::iterator it(...)` convert a pointer-to-int rvalue to vector<int>::iterator
+* for standard containers
+* not for container adaptors
+* `&*it` converts an iterator to a pointer
+* `vector<int>::iterator it(...)` converts a pointer-to-int rvalue to `vector<int>::iterator`
 * comparing iterators from two different containers leads to undefined behavior
 * the nature of an iterator
-    + Input Iterator	Can scan the container forward only once, can't change the value it points to (read-only)
-    + Output Iterator	Can scan the container forward only once, can't read the value it points to (write-only)
-    + Forward Iterator	Can scan the container forward multiple times, can read and write the value it points to
-    + Bidirectional Iterator	Same as previous one but can scan the container back and forth
-    + Random Access Iterator	Same as previous one but can access the container also non-sequentially (i.e. by jumping around)
-    + Contiguous Iterator	Same as previous one, with the addition that logically adjacent elements are also physically adjacent in memory
+    + Input Iterator	scans the container forward only once, can't change the value it points to (read-only)
+    + Output Iterator	scans the container forward only once, can't read the value it points to (write-only)
+    + Forward Iterator	scans the container forward multiple times, can read and write the value it points to
+    + Bidirectional Iterator	same as previous one but scasn the container back and forth
+    + Random Access Iterator	same as previous one but access the container also non-sequentially
+    + Contiguous Iterator	same as previous one, with the addition that logically adjacent elements are also physically adjacent in memory
 * an iterator must be constructible, copy-constructible, copy-assignable, destructible, swappable
 
 `advance`   advance iterator  
