@@ -65,7 +65,14 @@ public:
 * `&*it` convert an iterator to a pointer
 * `vector<int>::iterator it(...)` convert a pointer-to-int rvalue to vector<int>::iterator
 * comparing iterators from two different containers leads to undefined behavior
-* https://en.cppreference.com/w/cpp/iterator/iterator 
+* the nature of an iterator
+    + Input Iterator	Can scan the container forward only once, can't change the value it points to (read-only)
+    + Output Iterator	Can scan the container forward only once, can't read the value it points to (write-only)
+    + Forward Iterator	Can scan the container forward multiple times, can read and write the value it points to
+    + Bidirectional Iterator	Same as previous one but can scan the container back and forth
+    + Random Access Iterator	Same as previous one but can access the container also non-sequentially (i.e. by jumping around)
+    + Contiguous Iterator	Same as previous one, with the addition that logically adjacent elements are also physically adjacent in memory
+* an iterator must be constructible, copy-constructible, copy-assignable, destructible, swappable
 
 `advance`   advance iterator  
 `distance`  distance between iterators  
@@ -119,7 +126,7 @@ map                    |[ ] at key_comp value_comp find count lower_bound upper_
 multiset               |       key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                  |multiple elements can have equivalent values
 multimap               |                                                                                                                                                                        |
 **container adaptors:**|                                                                                                                                                                        |
-stack                  | top push emplace pop swap                                                                                                                                              | 
+stack                  | top push emplace pop swap                                                                                                                                              |not iterable
 queue                  | front back push emplace pop swap                                                                                                                                       | 
 priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap                                                                                                                   |add / remove O(ln n) 
 
@@ -585,6 +592,14 @@ a global variable becomes accessible in any file of the programm
 ### auto
 * useless keyword before c++ 11
 * a deduced type (c++ 11)
+
+### using namespaces, using namespace members
+
+### using declaration for class members
+
+### using enumerators (C++ 20)
+
+### using type alias, using alias template declaration (C++ 11)
 
 ### auto (c++ 20)
 In any of the parameters of a function declaration: that declaration becomes an abbreviated function template declaration
