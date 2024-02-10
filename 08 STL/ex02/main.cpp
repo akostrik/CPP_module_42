@@ -1,26 +1,28 @@
 // executez en remplaçant la MutantStack par std::list
 // testes !
 #include "MutantStack.hpp"
+#include <list>
 
 int main() {
-  MutantStack<int> mstack;
+  MutantStack<int> s;
 
-  mstack.push(5);
-  mstack.push(17);
+  s.push(5);
+  s.push(7);
 
-  std::cout << "top = " << mstack.top() << std::endl;
+  std::cout << "top = " << s.top() << ", stze = " << s.size() << std::endl;
 
-  mstack.pop();
-  std::cout << "stze = " << mstack.size() << std::endl;
-  mstack.push(3);
-  mstack.push(5);
-  mstack.push(737);
-  mstack.push(0);
+  s.pop();
+  std::cout << "top = " << s.top() << ", stze = " << s.size() << std::endl;
+  s.push(3);
+  s.push(5);
+  s.push(8);
+  s.push(4);
 
-  for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it)
+  for (MutantStack<int>::iterator it = s.begin(); it != s.end(); ++it)
     std::cout << *it << std::endl;
 
-  //std::stack<int> s(mstack);
+  std::stack<int> s2(s);
+  std::cout << "top = " << s2.top() << ", stze = " << s2.size() << std::endl;
 
   return 0;
 }

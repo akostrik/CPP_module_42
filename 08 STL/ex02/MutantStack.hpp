@@ -17,12 +17,13 @@ class MutantStack : public std::stack<T> {
   typedef typename std::stack<T>::container_type::iterator iterator;
 
                MutantStack () {} // : std::stack<T>()
-               ~MutantStack() {} // virtual // this->c.clear();
-               MutantStack (const MutantStack& o) {   *this = o; } // std::stack<T>() ? // std::stack<T>(o)
-  MutantStack& operator=   (const MutantStack& o) { std::stack<T>::operator=(o); return *this; }; // this->c = obj.c; 
+               ~MutantStack() {} // this->c.clear();
+               MutantStack (const MutantStack& o) { *this = o; } // std::stack<T>() ? // std::stack<T>(o)
 
+  MutantStack& operator=   (const MutantStack& o) { std::stack<T>::operator=(o); return *this; }; // this->c = obj.c; 
   T*           operator->  ()                     { return *this; };
   T&           operator*   () const               { return &this; };
+  T*           operator++  ()                     { (*this)++;  return *this; };
 
   iterator     begin       ()                     { return (this->c.begin());  };
   iterator     rbegin      ()                     { return (this->c.rbegin()); };
@@ -32,14 +33,8 @@ class MutantStack : public std::stack<T> {
   iterator     rend        ()                     { return (this->c.rend());   };
   iterator     cend        () const               { return (this->c.end());    };
   iterator     crend       () const               { return (this->c.rend());   };
-  //             iterator    (T* ptr)               { this(ptr); }
+  //             iterator    (T* o)               { this(o); }
 };
-
-// template <typename T>
-// typename std::stack<T>::container_type::iterator& operator++() {
-//   (this->iterator)++;
-//   return *this;
-// }
 
 template <typename T>
 typename std::stack<T>::container_type::iterator operator++(T o) {
@@ -50,12 +45,12 @@ typename std::stack<T>::container_type::iterator operator++(T o) {
 
 template <typename T>
 bool operator!=(const typename std::stack<T>::container_type::iterator& a, const typename std::stack<T>::container_type::iterator& b) {
-  return a.arr != b.arr;
+  return a != b;
 };
 
 template <typename T>
 bool operator==(const typename std::stack<T>::container_type::iterator& a, const typename std::stack<T>::container_type::iterator& b) {
-  return a.arr == b.arr;
+  return a == b;
 };
 
 #endif
