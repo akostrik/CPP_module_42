@@ -134,8 +134,11 @@ https://en.cppreference.com/w/cpp/container
 * элементы всегда автоматически (без участия программиста) отсортированы 
 
 **container adaptor**
-* is not a full container classe
-* provides an interface relying on an object of one of the classes template
+* is not a full container class
+* takes an existing STL container and provides a restricted interface to make them behave differently
+* provides an interface relying on an object of one of the class template
+* express the essential features of the underlying container type
+* the underlying containers are mostly vector, list, deque
 * the underlying container's elements are accessed by the members of the container adaptor
 * **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
 
@@ -151,7 +154,7 @@ map                    |[ ] at key_comp value_comp find count lower_bound upper_
 multiset               |       key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                  |multiple elements can have equivalent values
 multimap               |                                                                                                                                                                        |
 **container adaptors:**|                                                                                                                                                                        |
-stack                  | top push emplace pop swap                                                                                                                                              |not iterable
+stack                  | top push emplace pop swap                                                                                                                                              |not iterable, its underlying container is deque
 queue                  | front back push emplace pop swap                                                                                                                                       | 
 priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap                                                                                                                   |add / remove O(ln n) 
 
