@@ -1,6 +1,6 @@
-# C++ feautures
+# C++ 98 feautures
 
-## Automatic initialisation
+## Automatic initialisation and descruction
 Orthodox canonical class form (Coplien's form): 
 ```
 class A {
@@ -12,13 +12,30 @@ class A {
 };
 ```
 
+### Constructor
+* is a non-static member function of a class that is used to initialize objectss
+* has no name
+* cannot be called directly
+* is invoked when initialization takes place
+* is selected according to the rules of initialization
+* **converting constructor** without explicit specifier 
+* a constructor with a constexpr specifier make its type a LiteralType
+* **default constructor** may be called without any argument
+* **copy constructors** and **move constructors** take another object of the same type as the argument
+* 1) initialization of direct bases, virtual bases, non-static data members 2) execution of the function body of the constructor
+* **member initializer (list)** = non-default initialization of the subobjects, must be specified for:
+   + bases that cannot be default-initialized
+   + non-static data members that cannot be initialized by default-initializatio
+   + non-static data members that cannot be initialized by their default member initializer (members of reference and const-qualified types)
+* `std::initializer_list<T>` provides access to an array of objects of type const T
+
 ## Inheritance
 * super class = base class = parent class
 * subclass = derived class = child class
 * a constructor is not inherited
 * a destructor is not inherited
 * when a child class initilaies its instance, the constructors are called hierarchically, the destructors are called in the inverse order
-* operator = is inherited, but hidden by the implicitely declared one
+* operator `=` is inherited, but hidden by the implicitely declared one
 
 ## Overloading
 * different functions can have the same name provided they are distinguished by their parameter types 
@@ -42,36 +59,44 @@ public:
 ```
 
 ## Incapsulation
-* the data is **incapsulated** as mush as possible -> fewer parts of the program see them -> flexibility for changing
+* **incapsulated data** few parts of the program see them
+* flexibility for changing
 
-## Templates (07)
+## Template
 * allows functions and classes to operate with generic types  
-* are parameterized by one or more parameters of three kinds: type template parameters, non-type template parameters, and template template parameters.
-* the compiler uses a **function template** (a parametric function definition, where a particular function instance is created by one or more parameter values) to generate a **function definition** (an instance of the template)
+* is parameterized by parameter(s) of three kinds:
+   + type template parameters
+   + non-type template parameters
+   + template template parameters
+* **function template** a parametric function definition, where a particular function instance is created by parameter value(s)
+* **function definition** an instance of the template
+* the compiler uses a function template to generate a function definition
 * you could pass the address, instead of dereferenced value as a parameter
 * **template specialization** defines a behaviour that is different from the standard template
 * **class template** is not a class, it is a template used to create classes 
-** a function / template can be overloaded
-* a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
+* is compile-time construct: a templated class / function = before compiling replacing the template parameter with the actual one
+* can be overloaded
 
 ## Iterator
-* is an object that, pointing to some element in a range of elements, has the ability to iterate through these elements
+* an object pointing to some element in a range of elements
+* has the ability to iterate through these elements
 * points at the memory addresses of STL containers
-* a pointer is the most obvious form of iterator: a pointer points to elements, and can iterate through them using ++
+* ex: a pointer,it points to elements, can iterate through them using ++
 * not all iterators have the same functionality of pointer
-* std::iterator is the base class
+* `std::iterator` its base class
 * the same interface for containers of several types
-* only for standard containers, not for container adaptors
-* `&*it` convert an iterator to a pointer
-* `vector<int>::iterator it(...)` convert a pointer-to-int rvalue to vector<int>::iterator
+* for standard containers
+* not for container adaptors
+* `&*it` converts an iterator to a pointer
+* `vector<int>::iterator it(...)` converts a pointer-to-int rvalue to `vector<int>::iterator`
 * comparing iterators from two different containers leads to undefined behavior
 * the nature of an iterator
-    + Input Iterator	Can scan the container forward only once, can't change the value it points to (read-only)
-    + Output Iterator	Can scan the container forward only once, can't read the value it points to (write-only)
-    + Forward Iterator	Can scan the container forward multiple times, can read and write the value it points to
-    + Bidirectional Iterator	Same as previous one but can scan the container back and forth
-    + Random Access Iterator	Same as previous one but can access the container also non-sequentially (i.e. by jumping around)
-    + Contiguous Iterator	Same as previous one, with the addition that logically adjacent elements are also physically adjacent in memory
+    + Input Iterator	scans the container forward only once, can't change the value it points to (read-only)
+    + Output Iterator	scans the container forward only once, can't read the value it points to (write-only)
+    + Forward Iterator	scans the container forward multiple times, can read and write the value it points to
+    + Bidirectional Iterator	same as previous one but scasn the container back and forth
+    + Random Access Iterator	same as previous one but access the container also non-sequentially
+    + Contiguous Iterator	same as previous one, with the addition that logically adjacent elements are also physically adjacent in memory
 * an iterator must be constructible, copy-constructible, copy-assignable, destructible, swappable
 
 `advance`   advance iterator  
@@ -109,8 +134,11 @@ https://en.cppreference.com/w/cpp/container
 * элементы всегда автоматически (без участия программиста) отсортированы 
 
 **container adaptor**
-* is not a full container classe
-* provides an interface relying on an object of one of the classes template
+* is not a full container class
+* takes an existing STL container and provides a restricted interface to make them behave differently
+* provides an interface relying on an object of one of the class template
+* express the essential features of the underlying container type
+* the underlying containers are mostly vector, list, deque
 * the underlying container's elements are accessed by the members of the container adaptor
 * **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
 
@@ -126,7 +154,7 @@ map                    |[ ] at key_comp value_comp find count lower_bound upper_
 multiset               |       key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                  |multiple elements can have equivalent values
 multimap               |                                                                                                                                                                        |
 **container adaptors:**|                                                                                                                                                                        |
-stack                  | top push emplace pop swap                                                                                                                                              |not iterable
+stack                  | top push emplace pop swap                                                                                                                                              |not iterable, its underlying container is deque
 queue                  | front back push emplace pop swap                                                                                                                                       | 
 priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap                                                                                                                   |add / remove O(ln n) 
 
@@ -636,7 +664,17 @@ defines or inherits a virtual function
 no keyword `incomplet`, just terminologie
 
 ## other
-`#pragma once` is only intended to be used in headers, there is no need to compile headers, don't compile headers
+* `#pragma once` is only intended to be used in headers, there is no need to compile headers, don't compile headers
+* c++ 11
+    + Lambda Expressions
+    + Automatic Type Deduction
+    + decltype
+    + Uniform Initialization Syntax
+    + Deleted and Defaulted Functions
+    + nullptr
+    + Rvalue References
+    + New Smart Pointer Classes (shared_ptr, unique_ptr)
+    + More C++ Algorithms
 
 # Representation of real numbers
 **Accuracy** how close a measurement is to the true value  
