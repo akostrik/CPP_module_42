@@ -61,15 +61,20 @@ public:
 ## Incapsulation
 * the data is **incapsulated** as mush as possible -> fewer parts of the program see them -> flexibility for changing
 
-## Templates
+## Template
 * allows functions and classes to operate with generic types  
-* are parameterized by one or more parameters of three kinds: type template parameters, non-type template parameters, and template template parameters.
-* the compiler uses a **function template** (a parametric function definition, where a particular function instance is created by one or more parameter values) to generate a **function definition** (an instance of the template)
+* is parameterized by parameter(s) of three kinds:
+   + type template parameters
+   + non-type template parameters
+   + template template parameters
+* **function template** a parametric function definition, where a particular function instance is created by parameter value(s)
+* **function definition** an instance of the template
+* the compiler uses a function template to generate a function definition
 * you could pass the address, instead of dereferenced value as a parameter
 * **template specialization** defines a behaviour that is different from the standard template
 * **class template** is not a class, it is a template used to create classes 
-** a function / template can be overloaded
-* a templated class or function is the equivalent of (before compiling) copying and pasting the templated block of code, and then replacing the template parameter with the actual one.  
+** can be overloaded
+* a templated class / function is the equivalent of (before compiling) copying and pasting the block of code, and replacing the template parameter with the actual one (templates are compile-time construct)
 
 ## Iterator
 * an object pointing to some element in a range of elements
