@@ -22,7 +22,7 @@ class A {
 * a constructor with a constexpr specifier make its type a LiteralType
 * **default constructor** may be called without any argument
 * **copy constructors** and **move constructors** take another object of the same type as the argument
-* 1) initialization of direct bases, virtual bases, non-static data members 2) execution of the function body of the constructor
+* 1. initialization of direct bases, virtual bases, non-static data members 2. execution of the constructor body
 * **member initializer (list)** = non-default initialization of the subobjects, must be specified for:
    + bases that cannot be default-initialized
    + non-static data members that cannot be initialized by default-initializatio
