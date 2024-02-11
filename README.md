@@ -22,7 +22,7 @@ class A {
 * a constructor with a constexpr specifier make its type a LiteralType
 * **default constructor** may be called without any argument
 * **copy constructors** and **move constructors** take another object of the same type as the argument
-* 1) initialization of direct bases, virtual bases, non-static data members 2) execution of the function body of the constructor
+* 1. initialization of direct bases, virtual bases, non-static data members 2. execution of the constructor body
 * **member initializer (list)** = non-default initialization of the subobjects, must be specified for:
    + bases that cannot be default-initialized
    + non-static data members that cannot be initialized by default-initializatio
@@ -74,73 +74,44 @@ public:
 * you could pass the address, instead of dereferenced value as a parameter
 * **template specialization** defines a behaviour that is different from the standard template
 * **class template** is not a class, it is a template used to create classes 
-* is compile-time construct: a templated class / function = before compiling replacing the template parameter with the actual one
+* is compile-time construct: a templated class / functon = before compiling replacing the template parameter with the actual one
 * can be overloaded
-
-## Iterator
-* an object pointing to some element in a range of elements
-* has the ability to iterate through these elements
-* points at the memory addresses of STL containers
-* ex: a pointer,it points to elements, can iterate through them using ++
-* not all iterators have the same functionality of pointer
-* `std::iterator` its base class
-* the same interface for containers of several types
-* for standard containers
-* not for container adaptors
-* `&*it` converts an iterator to a pointer
-* `vector<int>::iterator it(...)` converts a pointer-to-int rvalue to `vector<int>::iterator`
-* comparing iterators from two different containers leads to undefined behavior
-* the nature of an iterator
-    + Input Iterator	scans the container forward only once, can't change the value it points to (read-only)
-    + Output Iterator	scans the container forward only once, can't read the value it points to (write-only)
-    + Forward Iterator	scans the container forward multiple times, can read and write the value it points to
-    + Bidirectional Iterator	same as previous one but scasn the container back and forth
-    + Random Access Iterator	same as previous one but access the container also non-sequentially
-    + Contiguous Iterator	same as previous one, with the addition that logically adjacent elements are also physically adjacent in memory
-* an iterator must be constructible, copy-constructible, copy-assignable, destructible, swappable
-
-`advance`   advance iterator  
-`distance`  distance between iterators  
-`begin`	   iterator to beginning  
-`end`	      iterator to end, never refers to a valid element => we can't dereference end()  
-`prev`	   get iterator to previous element  
-`next`	   get iterator to next element  
-`back_inserter`	construct back insert iterator  
-`front_inserter`	constructs front insert iterator  
-`inserter`	            construct insert iterator  
-`make_move_iterator`    construct move iterator  
-
-## range (c++ 11)
-```
-for (const unsigned int& i : s)
-  std::cout << i << "  ";
-```
 
 ## STL-Containers (Standard Template Library) (08, 09) (c++ 98 only)
 https://en.cppreference.com/w/cpp/container  
+* **container** класс, объекты которого хранят набор однотипных значений
+* предоставляет средства доступа к своему содержимому
+* эти средства доступа строятся на обобщении понятия “указатель на элемент массива”, iterator
 * array : the only C’s built-in container 
-* container.end() is an iterator and doesn't point to any element in the container
-
-**sequence container = standart container = class template**
-* an object
-* stores a collection of other objects
-* manages the storage space
-* provides member functions to access its elements, either directly or through iterators
-* type of container depend on the functionality and the complexity of some of its members
-* **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
-* `array` c++ 11
-
-**associative containers**
-* элементы всегда автоматически (без участия программиста) отсортированы 
-
-**container adaptor**
-* is not a full container class
-* takes an existing STL container and provides a restricted interface to make them behave differently
-* provides an interface relying on an object of one of the class template
-* express the essential features of the underlying container type
-* the underlying containers are mostly vector, list, deque
-* the underlying container's elements are accessed by the members of the container adaptor
-* **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
+* содержит
+   + вложенный тип iterator (чтения-записи), begin(), end()
+   + вложенный тип const_iterator (только чтения), cbegin(), cend()
+   + функции-члены rbegin(), rend(), crbegin(), crend() для контейнеров с двунаправленными итераторами 
+*  **allocator** класс для управления динамической памятью
+   + allocate() для выделения памяти под заданное количество элементов
+   + deallocate() 
+   + construct() для вызова конструктора
+   + destroy() для вызова деструктора
+   + rebind() метафункция, позволяющая получить аналогичный аллокатор для элементов другого типа
+* перегрузки операций << и >> помещены в пространство имён std из-за особенностей связывания имён в C++
+* **sequence container = standart container = class template**
+   + an object
+   + stores a collection of other objects
+   + manages the storage space
+   + provides member functions to access its elements, either directly or through iterators
+   + **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
+   + `array` c++ 11
+* **associative containers**
+   + элементы всегда автоматически (без участия программиста) отсортированы
+   + например, **хэш-таблица** неупорядоченный ассоциативный контейнер, используют два функтора: компаратор, задающий отношение “равно”, и хэш, задающий способ вычисления хэш-функции для элементов контейнера, возвращающий целое число
+* **container adaptor**
+   + is not a full container class
+   + takes an existing STL container and provides a restricted interface to make them behave differently
+   + provides an interface relying on an object of one of the class template
+   + express the essential features of the underlying container type
+   + the underlying containers are mostly vector, list, deque
+   + the underlying container's elements are accessed by the members of the container adaptor
+   + **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
 
 collection             |operations                                                                                                                     |other
 -----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------
@@ -158,8 +129,73 @@ stack                  | top push emplace pop swap                              
 queue                  | front back push emplace pop swap                                                                                                                                       | 
 priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap                                                                                                                   |add / remove O(ln n) 
 
-## Algorithms library (STL) (c++ 98) (08, 09)
+## Iterator
+* an object pointing to some element in a range of elements
+* can iterate through these elements
+* points at the memory addresses of STL containers
+* ex: a pointer points to elements, can iterate through them using ++
+* not all iterators have the same functionality of pointer
+* std::iterator<Category, T, Distance = ptrdiff_t, Pointer = T*, Reference = T&> its base class
+* the same interface for different standard containers:
+    + `advance(it, n)`   advance iterator  сдвигает итератор it (принимает по ссылке) на заданное число шагов n (сдвиг назад при отрицательных значениях n определен для двунаправленных итераторов)  
+    + `distance`  distance between iterators  
+    + `begin`	   iterator to beginning  
+    + `end`	      iterator to end, never refers to a valid element => we can't dereference end()
+    + rbegin()    представить последовательность значений как диапазон перебираемый в обратном порядке
+    + rend()      представить последовательность значений как диапазон перебираемый в обратном порядке
+    + `prev(it)` `prev(it, n)`	   get iterator to previous element  
+    + `next(it)` `next(it, n)`	   get iterator to next element, возвращают сдвинутый итератор
+    + `back_inserter`	construct back insert iterator  
+    + `front_inserter`	constructs front insert iterator  
+    + `inserter`	            construct insert iterator  
+    + `make_move_iterator`    construct move iterator  
+* not for container adaptors
+* `&*it` converts an iterator to a pointer
+* `vector<int>::iterator it(...)` converts a pointer-to-int rvalue to `vector<int>::iterator`
+* comparing iterators from two different containers leads to undefined behavior
+* как правило, итератор нельзя использовать для модификации структуры контейнера без вызова функций самого контейнера
+* the nature of an iterator
+    + Input:	      scans forward (++) only once, reads
+    + Output:	      scans forward only once, writes
+    + Forward:	      scans forward multiple times, reads, writes
+    + Bidirectional: scans back and forth multiple times (++ and --), reads, writes
+    + Random Access: scans back and forth multiple times, access the container also non-sequentially ([ ]), reads, writes
+    + Contiguous:	   scans back and forth multiple times, access the container also non-sequentially, logically adjacent elements are also physically adjacent in memory, reads, writes
+* Классы итераторы-адаптеры:
+    + reverse_iterator<Iterator> оборачивает объект двунаправленного итератора, обращая порядок обхода последовательности
+    + move_iterator<Iterator> является обёрткой, подменяющей копирующее присваивание перемещением
+    + back_insert_iterator<Container>, front_insert_iterator<Container>, insert_iterator<Container> итераторо вывода, реализующий операцию записи через вызов функции-члена push_back, указатель на который хранится в объекте итератора
+    + istream_iterator<T, CharT = char, Traits = char_traits<CharT>, Dist = ptrdiff_t> итератор ввода, предназначенный для чтения из basic_istream<CharT, Traits> (в частности istream)
+    + ostream_iterator<T, CharT = char, Traits = char_traits <CharT>> итератор вывода, предназначенный для записи в объект basic_ostream<CharT, Traits> (в частности, ostream)
+* an iterator must be constructible, copy-constructible, copy-assignable, destructible, swappable
+* пара итераторов задаёт **range** — последовательность значений (контейнер / часть контейнера / массив / файл / генерируется на ходу), которую можно перечислить, передвигая итератор
+* range (c++ 11)
+```
+for (const unsigned int& i : s)
+  std::cout << i << "  ";
+```
+* Класс характеристик iterator_traits<T>
+    + value_type
+    + reference тип ссылки, возвращаемой при разыменовании итератора
+    + pointer тип указателя, возвращаемого при обращении к объекту итератора через operator->
+    + difference_type значения смещений итераторов относительно друг друга
+    + iterator_category тип, указывающий на набор поддерживаемых операций (random_access_iterator_tag, bidirectional_iterator_tag, forward_iterator_tag, input_iterator_tag, output_iterator_tag)
+
+## Algorithms library STL (c++ 98)
 * functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
+* функции (алгоритмы), оперируют на наборах элементов, заданных диапазонами итераторов (т.о. итераторы соединяют алгоритмы и контейнеры)
+* **functor** = **function object** класс, объекты которого можно использовать как функции
+   + технически это оформляется с помощью перегрузки operator()
+   + operator() единственный оператор, допускающий перегрузку с произвольной сигнатурой (поэтому объекты функтора могут имитировать произвольные функции)
+   + обычные функции, передаваемые по указателю, - частным случай
+   + **генератор** функтор, который не принимает аргументов и возвращает некоторую (генерируемую) последовательность значений, например генератор псевдослучайных чисел
+   + **предикат** функтор, возвращающий булевское значение
+      - используется, например, при фильтрации последовательностей
+      - обычно являются одноместны (унарными)
+      - **компаратор** двуместный (бинарные) предикаты, принимающие два параметра и отвечающие некоторому отношению между ними
+
+
+* задавать произвольные операции с помощью функторов
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
   
