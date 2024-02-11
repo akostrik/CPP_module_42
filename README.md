@@ -102,7 +102,8 @@ https://en.cppreference.com/w/cpp/container
    + **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
    + `array` c++ 11
 * **associative containers**
-   + элементы всегда автоматически (без участия программиста) отсортированы 
+   + элементы всегда автоматически (без участия программиста) отсортированы
+   + например, **хэш-таблица** неупорядоченный ассоциативный контейнер, используют два функтора: компаратор, задающий отношение “равно”, и хэш, задающий способ вычисления хэш-функции для элементов контейнера, возвращающий целое число
 * **container adaptor**
    + is not a full container class
    + takes an existing STL container and provides a restricted interface to make them behave differently
