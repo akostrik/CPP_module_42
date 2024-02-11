@@ -168,7 +168,7 @@ priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap   
     + istream_iterator<T, CharT = char, Traits = char_traits<CharT>, Dist = ptrdiff_t> итератор ввода, предназначенный для чтения из basic_istream<CharT, Traits> (в частности istream)
     + ostream_iterator<T, CharT = char, Traits = char_traits <CharT>> итератор вывода, предназначенный для записи в объект basic_ostream<CharT, Traits> (в частности, ostream)
 * an iterator must be constructible, copy-constructible, copy-assignable, destructible, swappable
-* пара итераторов задаёт **range** — определение последовательности значений, которую можно перечислить, передвигая итератор, последовательность может представлять собой контейнер, часть контейнера, массив, файл или генерироваться на ходу
+* пара итераторов задаёт **range** — последовательность значений (контейнер / часть контейнера / массив / файл / генерируется на ходу), которую можно перечислить, передвигая итератор
 * range (c++ 11)
 ```
 for (const unsigned int& i : s)
