@@ -92,7 +92,8 @@ https://en.cppreference.com/w/cpp/container
    + deallocate() 
    + construct() для вызова конструктора
    + destroy() для вызова деструктора
-   + rebind() метафункция, позволяющая получить аналогичный аллокатор для элементов другого типа:
+   + rebind() метафункция, позволяющая получить аналогичный аллокатор для элементов другого типа
+* перегрузки операций << и >> помещены в пространство имён std из-за особенностей связывания имён в C++
 * **sequence container = standart container = class template**
    + an object
    + stores a collection of other objects
@@ -184,10 +185,23 @@ for (const unsigned int& i : s)
          - forward_iterator_tag (наследником input_iterator_tag и output_iterator_tag)
          - input_iterator_tag
          - output_iterator_tag
-* Класс-шаблон iterator<Category, T, Distance = ptrdiff_t, Pointer = T*, Reference = T&> используется в качестве базового при создании других классов итераторов: определяет вложенные типы, доступные затем через iterator_traits, что позволяет не определять вручную частную специализацию шаблона iterator_traits для своего типа итератора
+* Класс-шаблон iterator<Category, T, Distance = ptrdiff_t, Pointer = T*, Reference = T&> используется в качестве базового при создании других классов итераторов
 
 ## Algorithms library STL (c++ 98)
 * functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
+* функции (алгоритмы), оперируют на наборах элементов, заданных диапазонами итераторов (т.о. итераторы соединяют алгоритмы и контейнеры)
+* **functor** = **function object** класс, объекты которого можно использовать как функции
+   + технически это оформляется с помощью перегрузки operator()
+   + operator() единственный оператор, допускающий перегрузку с произвольной сигнатурой (поэтому объекты функтора могут имитировать произвольные функции)
+   + обычные функции, передаваемые по указателю, - частным случай
+   + **генератор** функтор, который не принимает аргументов и возвращает некоторую (генерируемую) последовательность значений, например генератор псевдослучайных чисел
+   + **предикат** функтор, возвращающий булевское значение
+      - используется, например, при фильтрации последовательностей
+      - обычно являются одноместны (унарными)
+      - **компаратор** двуместный (бинарные) предикаты, принимающие два параметра и отвечающие некоторому отношению между ними
+
+
+* задавать произвольные операции с помощью функторов
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
   
