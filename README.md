@@ -79,7 +79,7 @@ public:
 
 ## STL-Containers (Standard Template Library) (08, 09) (c++ 98 only)
 https://en.cppreference.com/w/cpp/container  
-* **container** класс, объекты которого способны хранить набор однотипных значени
+* **container** класс, объекты которого хранят набор однотипных значений
 * предоставляет средства доступа к своему содержимому
 * эти средства доступа строятся на обобщении понятия “указатель на элемент массива”, iterator
 * array : the only C’s built-in container 
