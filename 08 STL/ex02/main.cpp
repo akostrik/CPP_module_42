@@ -43,11 +43,9 @@ int main() {
   l.push_front(3);
   l.push_front(4);
   l.push_front(5);
-  std::list<int>::iterator it = l.end();
-  it--;
-  for (; it != l.begin(); it--) 
+  for (std::list<int>::reverse_iterator it = l.rbegin(); it != l.rend(); it++) 
     std::cout << *it << " ";
-  std::cout << *it << std::endl;
+  std::cout << std::endl;
   std::cout << "top = " << l.front() << ", stze = " << l.size() << std::endl;
 
   return 0;
