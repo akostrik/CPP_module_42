@@ -1,4 +1,3 @@
-// c = the underlying container
 #ifndef MUTANTSTACK_HPP
 # define MUTANTSTACK_HPP
 # include <algorithm>
@@ -12,7 +11,7 @@ template <typename T>
 class MutantStack : public std::stack<T> {
   public:
 
-  typedef typename std::stack<T>::container_type::iterator iterator; // so stack access its underlying container
+  typedef typename std::stack<T>::container_type::iterator iterator; // the stack access its underlying container (c)
 
                ~MutantStack()                     {}
                MutantStack ()                       : std::stack<T>()  {}

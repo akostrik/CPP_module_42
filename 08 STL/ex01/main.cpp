@@ -1,10 +1,10 @@
 #include "Span.hpp"
 #include <iostream>
 #include <list>
-#define N 7
+#define N 6
 
 int main() {
-  Span s                   = Span(N);
+  Span s = Span(N);
 
   try {
     s.addNumber(6);
@@ -13,21 +13,22 @@ int main() {
   }
 
   try {
-    std::vector<unsigned int> v{5,10,15};
+    std::vector<unsigned int> v{5,6,7};
     s.addNumbers(v.begin(), v.end());
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
 
   try {
-    std::list<unsigned int>   l{10,20,30};
+    std::list<unsigned int>   l{1,4,9};
     s.addNumbers(l.begin(), l.end());
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
 
+  // tester exception:
   // try {
-  //   s.addNumber(100);
+  //   s.addNumber(2);
   // } catch (std::exception &e) {
   //   std::cout << e.what() << std::endl;
   // }

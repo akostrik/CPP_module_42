@@ -11,12 +11,12 @@
 class Span : public std::vector<unsigned int> {
   private:  
                   Span();
-
-  public:
-    unsigned int  _N; // private
+    unsigned int  _N;
     unsigned int  size;
     unsigned int  min;
     unsigned int  max;
+
+  public:
                   Span(unsigned int N);
                   Span(const Span& o);
                   ~Span();
