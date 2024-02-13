@@ -77,7 +77,7 @@ public:
 * is compile-time construct: a templated class / functon = before compiling replacing the template parameter with the actual one
 * can be overloaded
 
-## STL-Containers (Standard Template Library) (08, 09) (c++ 98 only)
+## STL-Containers (Standard Template Library) (c++ 98 only)
 https://en.cppreference.com/w/cpp/container  
 * **container** класс, объекты которого хранят набор однотипных значений
 * предоставляет средства доступа к своему содержимому
@@ -238,7 +238,7 @@ lexicographical_compare                |true if one range is lexicographically l
 next_permutation, prev_permutation     |generates the next greater lexicographic permutation of a range of elements
 accumulate                             |sums up or folds a range of elements
 inner_product                          |the inner product of two ranges of element (09/ex00)
-adjacent_difference                    |the differences between adjacent elements in a range (08/ex01)
+adjacent_difference                    |the differences between adjacent elements in a range
 partial_sum                            |the partial sum of a range of elements
 
 ## Types
@@ -249,7 +249,7 @@ partial_sum                            |the partial sum of a range of elements
 * initialized dinamically, not statically
 * != text literal  
 
-### `uintptr_t` data type (c, c++) (06/ex02)  
+### `uintptr_t` data type (c, c++) 
 * `unsigned int`
 * stores a data pointer
 * `void*` can be converted to `uintptr_t`, then back to `void*`, the result will compare equal to the original pointer
@@ -261,7 +261,7 @@ partial_sum                            |the partial sum of a range of elements
 
 ### `m_data`
 
-## Convertions, casts (01/ex04, 06) (c++ 98)
+## Convertions, casts (c++ 98)
 https://en.cppreference.com/w/cpp/language  
 
 |                 | `char`               | `char*`                                                        | `std::string`                             | `int`                | `float`              | `double`
@@ -306,7 +306,7 @@ https://en.cppreference.com/w/cpp/language
     + enumeration -> enumeration
     + float       -> enumeration
     + void*       -> *T -> void\* -> the original value
-* `dynamic_cast<target-type ﻿>(expr) ﻿` (06/ex02)
+* `dynamic_cast<target-type ﻿>(expr) ﻿`
     + usage: cast within an inheritance hierarchy, cast sideways or even up another chain, seeks out the desired object and returns it if possible
     + usage: to handle polymorphism
     + usage: to find the type of object
@@ -315,7 +315,7 @@ https://en.cppreference.com/w/cpp/language
     + ptr / ref to a polymorphic type -> ptr / ref to any type
     + Parent                          -> Child*
     + Parent&                         -> Child& `Parent &p; try { Child &m = dynamic_cast<Child&>(p); } catch (bad_cast) { }` (safe downcast)
-* `reinterpret_cast<target-type ﻿>(expr ﻿)` (06/ex01)
+* `reinterpret_cast<target-type ﻿>(expr ﻿)`
     + usage: weird conversions, bit manipulations (like turning a raw data stream into actual data, or storing data in the low bits of a pointer to aligned data)
     + prt / ref                       -> prt / ref
     + prt / ref                       -> int
@@ -392,7 +392,7 @@ Occurs when the compiler matches an argument in a function call with a correspon
 * has storage addresses that are programmatically accessible to the running program (for ex, using &)
 * Ex: the cariable x is declared and attributed the value 13
    
-## Reference vs pointer (01/ex03)
+## Reference vs pointer
 * `HumanA`: a reference or a pointer to the Weapon, and a reference is better since the Weapon exists from creation and never changes
 * `HumanB`: a pointer to a Weapon, since the field is not set at creation time and the weapon can be NULL
 * in the both cases, we can change the type of the weapon  
@@ -414,7 +414,7 @@ Pointer:
 * can point to a non-existing address  
 * if something should not always exist and can change, use a pointer  
 
-## File manipulations (01/ex04)
+## File manipulations
 
 C file manipulations:  
 * FILE *fp  
