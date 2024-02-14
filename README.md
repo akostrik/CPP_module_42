@@ -240,8 +240,9 @@ lexicographical_compare                |true if one range is lexicographically l
 next_permutation, prev_permutation     |generates the next greater lexicographic permutation of a range of elements
 accumulate                             |sums up or folds a range of elements
 inner_product                          |the inner product of two ranges of element (09/ex00)
-adjacent_difference                    |the differences between adjacent elements in a range
 partial_sum                            |the partial sum of a range of elements
+
+PS `adjacent_difference` in not in algoritmhs
 
 ## Types
 ### `std::string` 
