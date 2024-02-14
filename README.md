@@ -181,7 +181,7 @@ for (const unsigned int& i : s)
     + difference_type значения смещений итераторов относительно друг друга
     + iterator_category тип, указывающий на набор поддерживаемых операций (random_access_iterator_tag, bidirectional_iterator_tag, forward_iterator_tag, input_iterator_tag, output_iterator_tag)
 
-## <algorithm> header STL (c++ 98)
+## `<algorithm>` header STL (c++ 98)
 * functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
 * **functor** = **function object**
    + is a struct
@@ -238,7 +238,7 @@ accumulate                             |sums up or folds a range of elements
 inner_product                          |the inner product of two ranges of element
 partial_sum                            |the partial sum of a range of elements
 
-PS `adjacent_difference` is in nuercic>, not in algoritmh>
+PS `adjacent_difference` is in `<numercic>` header
 
 ## Types
 ### `std::string` 
