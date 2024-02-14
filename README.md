@@ -184,7 +184,9 @@ for (const unsigned int& i : s)
 ## Algorithms library STL (c++ 98)
 * functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
 * функции (алгоритмы), оперируют на наборах элементов, заданных диапазонами итераторов (т.о. итераторы соединяют алгоритмы и контейнеры)
-* **functor** = **function object** класс, объекты которого можно использовать как функции
+* **functor** = **function object**
+   + = a struct that has a call operator that does what you want
+   + = класс, объекты которого можно использовать как функции
    + технически это оформляется с помощью перегрузки operator()
    + operator() единственный оператор, допускающий перегрузку с произвольной сигнатурой (поэтому объекты функтора могут имитировать произвольные функции)
    + обычные функции, передаваемые по указателю, - частным случай
