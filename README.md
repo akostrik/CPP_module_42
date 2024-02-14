@@ -217,7 +217,7 @@ unique, unique_copy                    |removes consecutive duplicate elementse,
 reverse, reverse_copy                  |reverses the order of elements in a range, creates a copy of a range that is reversed
 rotate, rotate_copy                    |rotates the order of elements in a rangecopies and rotate a range of elements
 swap, swap_ranges, iter_swap           |swaps two ranges / the elements pointed to by two iterators
-transform                              |applies a func to a range of elements, storing results in a destination range; 1) an unary operation can be applied to the source range, on a per element basis, which ouputs the results in the destination range 2) a binary operation can be applied to both elements in the source and destination range, subsequently overwriting elements in the destination range
+transform                              |applies a func to a range of elements, storing results in a destination range; 1) an unary operation can be applied to the source range, on a per element basis, which ouputs the results in the destination range 2) a binary operation can be applied to both elements in the source and destination range, subsequently overwriting elements in the destination range; не гарантирует определенный порядок обработки
 generate, generate_n                   |assigns the results of successive function calls to every element
 **Sorting and related operations**:    | 
 partition, stable_partition            |divides a range of elements into two groups (while preserving their relative order)
