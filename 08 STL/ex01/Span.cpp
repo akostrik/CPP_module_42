@@ -46,7 +46,7 @@ unsigned int Span::shortestSpan() {
   std::vector<unsigned int> rotatedCopy = *this;
   std::rotate(rotatedCopy.begin(),rotatedCopy.begin() + 1,rotatedCopy.end());
 
-  std::transform(this->begin(), this->end(), rotatedCopy.begin(), rotatedCopy.begin(), [](unsigned int n1, unsigned int n2) { return n2 - n1; });
+  //std::transform(this->begin(), this->end(), rotatedCopy.begin(), rotatedCopy.begin(), [](unsigned int n1, unsigned int n2) { return n2 - n1; });
   rotatedCopy.pop_back();
 
   std::cout << std::endl << "spans      : ";

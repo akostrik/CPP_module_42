@@ -11,7 +11,7 @@
 class Span : public std::vector<unsigned int> {
   private:  
                   Span();
-    unsigned int  _N;
+    unsigned int  _N; 
     unsigned int  size;
     unsigned int  min;
     unsigned int  max;
@@ -27,15 +27,20 @@ class Span : public std::vector<unsigned int> {
 
 
     template <typename IterType>
-    void addNumbers(IterType begin, IterType end) {
-      for (; begin != end; begin++) {
-        try {
-          addNumber(*begin);
-        } catch (std::exception &e) {
-          std::cout << e.what() << std::endl;
-          break;
-        }
-      }
+    void addNumber(IterType begin, IterType end) {
+      std::cout << "4) size = " << size << ", dist = " << std::distance(begin, end) << ", _N = " << _N << " !" << std::endl;
+      if (size + std::distance(begin, end) > _N)
+        throw std::overflow_error("Span has no free space");
+      this->insert (this->begin(), begin, end);
+      size += std::distance(begin, end);
+      // for (; begin != end; begin++) {
+      //   try {
+      //     addNumber(*begin);
+      //   } catch (std::exception &e) {
+      //     std::cout << e.what() << std::endl;
+      //     break;
+      //   }
+      // }
     };
 };
 #endif
