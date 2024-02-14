@@ -28,7 +28,7 @@ class Span : public std::vector<unsigned int> {
 
     template <typename IterType>
     void addNumber(IterType begin, IterType end) {
-      std::cout << "8) size = " << size << ", dist = " << std::distance(begin, end) << ", _N = " << _N << " !" << std::endl;
+      std::cout << "2) size = " << size << ", dist = " << std::distance(begin, end) << ", _N = " << _N << " !" << std::endl;
       if (size + std::distance(begin, end) > _N)
         throw std::overflow_error("Span has no free space");
       this->insert (this->begin(), begin, end);

@@ -1,6 +1,6 @@
 # $<
 # $^ .o
-# $@ executable
+# $@ .o
 # FLAGS preprocessor flags
 
 
@@ -17,11 +17,14 @@ all: $(NAME)
 $(NAME): $(OBJS) $(HEADERS)
 	$(CPP) $(CPPFLAGS) -I $(HEADERS) $(OBJS) -o $(NAME)
 
-main.o:
-	g++ -MM $(<:.o=.cpp) -MT main.o > main.d && g++ -c -Os $(<:.o=.cpp) -o main.o
+# main.o:
+# 	g++ -MM $(<:.o=.cpp) -MT $@ > $(@:.o=.d) && g++ -c -Os $(<:.o=.cpp) -o $@
 
-Span.o:
-	g++ -MM $(<:.o=.cpp) -MT Span.o > Span.d && g++ -c -Os $(<:.o=.cpp) -o Span.o
+# Span.o:
+# 	g++ -MM $(<:.o=.cpp) -MT $@ > $(@:.o=.d) && g++ -c -Os $(<:.o=.cpp) -o $@
+
+%.o:
+	g++ -MM $(<:.o=.cpp) -MT $@ > $(@:.o=.d) && g++ -c -Os $(<:.o=.cpp) -o $@
 
 -include *.d
 
