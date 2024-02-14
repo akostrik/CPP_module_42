@@ -49,7 +49,7 @@ unsigned int Span::shortestSpan() {
   //std::transform(this->begin(), this->end(), rotatedCopy.begin(), rotatedCopy.begin(), [](unsigned int n1, unsigned int n2) { return n2 - n1; });
   rotatedCopy.pop_back();
 
-  std::cout << std::endl << "spans      : ";
+  std::cout << std::endl << "8) spans      : ";
   for (std::vector<unsigned int>::iterator it = rotatedCopy.begin(); it != rotatedCopy.end(); it++)
     std::cout << *it << "  ";
   std::cout << std::endl << std::endl;
