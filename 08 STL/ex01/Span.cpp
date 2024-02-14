@@ -52,6 +52,14 @@ unsigned int Span::shortestSpan() {
 
   std::vector<unsigned int> spans;
   //std::adjacent_difference(this->begin(), this->end(), spans); // algo
+  // std::transform(x.begin()+1, x.end(), y.begin(), y.begin()+1, std::min<тип>);
+
+  // int min(int x, int y) { return (x < y) ? x : y; }
+  // std::transform(x.begin()+1,x.end(),y.begin(),y.begin()+1, min);
+
+  // transform(str1.begin(), str1.end(), str1.begin(), ::tolower);
+
+  // transform( ia, ia+5, vec.begin(), outfile, difference ); https://it.wikireading.ru/36213 
 
   std::cout << std::endl << "spans       : ";
   for (std::vector<unsigned int>::iterator it = spans.begin(); it != spans.end(); it++)
