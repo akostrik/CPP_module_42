@@ -1,46 +1,60 @@
-# $<
-# $^ .o
-# $@ .o
-# FLAGS preprocessor flags
-
-
 NAME      = a.out
 SRCS      = main.cpp Span.cpp
-HEADERS   =          Span.hpp
 OBJS      = $(SRCS:.cpp=.o)
-DEPENDS   = $(OBJS:.o=.d)
-CPP      = c++ 
-CPPFLAGS  = -Wall -Wextra -Werror -std=c++98
+CGPP      = c++ -MM $(1).cpp -MT $(1).o > $(1).d && c++ -c -Os $(1).cpp -o $(1).o
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(HEADERS)
-	$(CPP) $(CPPFLAGS) -I $(HEADERS) $(OBJS) -o $(NAME)
+$(NAME): $(OBJS)
+	@echo NAME $(OBJS)
+	c++ $(OBJS) -o $(NAME)
 
-# main.o:
-# 	g++ -MM $(<:.o=.cpp) -MT $@ > $(@:.o=.d) && g++ -c -Os $(<:.o=.cpp) -o $@
+main.o:
+	@echo CGPP
+	$(call CGPP,main)
 
-# Span.o:
-# 	g++ -MM $(<:.o=.cpp) -MT $@ > $(@:.o=.d) && g++ -c -Os $(<:.o=.cpp) -o $@
+Span.o:
+	$(call CGPP,Span)
 
-%.o:
-	g++ -MM $(<:.o=.cpp) -MT $@ > $(@:.o=.d) && g++ -c -Os $(<:.o=.cpp) -o $@
+clean:
+	rm -f $(OBJS)
+	rm -f *.d *.o
 
 -include *.d
 
-# .cpp.o:
-# %.o: %.cpp %.hpp
-# 	$(CPP) -MM $< -MT $^ > Span.d && g++ -c -Os $< -o $^
-#	$(CPP) $(CPPFLAGS) -I $(HEADERS) -c $< -o $(<:.cpp=.o) 
-# 	$(CPP) $(CPPFLAGS) $< -o $@
-
-clean:
-	@rm -f $(OBJS)
-
 fclean: clean
-	@rm $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
-
 .PHONY: all clean fclean re
+
+
+# $<
+# $^
+# $@ arg
+
+# OBJS      = $(SRCS:.cpp=.o)
+# CPP       = c++ 
+# CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 # preprocessor flags
+
+# all: $(NAME)
+
+# $(NAME): $(OBJS)
+# 	c++ $(OBJS)
+# #	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
+
+# main.o:
+# 	c++ -MM main.cpp -MT main.o > main.d && c++ -c -Os main.cpp -o main.o
+
+# Span.o:
+# 	c++ -MM Span.cpp -MT Span.o > Span.d && c++ -c -Os Span.cpp -o Span.o
+
+# -include *.d
+
+# # .cpp.o:
+# # %.o: %.cpp %.hpp
+# # 	$(CPP) -MM $< -MT $^ > Span.d && g++ -c -Os $< -o $^
+# #	$(CPP) $(CPPFLAGS) -I $(HEADERS) -c $< -o $(<:.cpp=.o) 
+# # 	$(CPP) $(CPPFLAGS) $< -o $@
+
