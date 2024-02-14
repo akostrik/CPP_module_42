@@ -7,6 +7,7 @@
 #include <vector>
 #include <list>
 #include <iterator>
+#include <functional>
 
 class Span : public std::vector<unsigned int> {
   private:  
@@ -24,11 +25,11 @@ class Span : public std::vector<unsigned int> {
     void          addNumber(unsigned int a);
     unsigned int  shortestSpan();
     unsigned int  longestSpan();
-
+    unsigned int  diff(unsigned int n1, unsigned int n2);
 
     template <typename IterType>
     void addNumber(IterType begin, IterType end) {
-      std::cout << "6) size = " << size << ", dist = " << std::distance(begin, end) << ", _N = " << _N << " !" << std::endl;
+      std::cout << "size = " << size << ", dist = " << std::distance(begin, end) << ", _N = " << _N << std::endl;
       if (size + std::distance(begin, end) > _N)
         throw std::overflow_error("Span has no free space");
       this->insert (this->begin(), begin, end);

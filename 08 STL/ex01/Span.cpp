@@ -38,23 +38,27 @@ unsigned int Span::shortestSpan() {
   if(size < 2)
     throw std::exception();
 
-  std::sort(this->begin(), this->end());
-  std::cout << "sorted     : ";
+  std::sort(this->begin(), this->end()); // algo
+  std::cout << "sorted      : ";
   for (std::vector<unsigned int>::iterator it = this->begin(); it != this->end(); it++)
     std::cout << *it << "  ";
 
-  std::vector<unsigned int> rotatedCopy = *this;
-  std::rotate(rotatedCopy.begin(),rotatedCopy.begin() + 1,rotatedCopy.end());
+  // std::vector<unsigned int> rotatedCopy = *this;
+  // std::rotate(rotatedCopy.begin(),rotatedCopy.begin() + 1,rotatedCopy.end()); // algo
+  // std::cout << "rotated copy: ";
+  // for (std::vector<unsigned int>::iterator it = rotatedCopy.begin(); it != rotatedCopy.end(); it++)
+  //   std::cout << *it << "  ";
+  //rotatedCopy.pop_back();
 
-  //std::transform(this->begin(), this->end(), rotatedCopy.begin(), rotatedCopy.begin(), [](unsigned int n1, unsigned int n2) { return n2 - n1; });
-  rotatedCopy.pop_back();
+  std::vector<unsigned int> spans;
+  //std::adjacent_difference(this->begin(), this->end(), spans); // algo
 
-  std::cout << std::endl << "6) spans      : ";
-  for (std::vector<unsigned int>::iterator it = rotatedCopy.begin(); it != rotatedCopy.end(); it++)
+  std::cout << std::endl << "spans       : ";
+  for (std::vector<unsigned int>::iterator it = spans.begin(); it != spans.end(); it++)
     std::cout << *it << "  ";
   std::cout << std::endl << std::endl;
 
-  return *std::min_element(rotatedCopy.begin(), rotatedCopy.end());
+  return *std::min_element(spans.begin(), spans.end()); // algo
 }
 
 unsigned int Span::longestSpan() {

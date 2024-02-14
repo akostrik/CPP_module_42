@@ -1,9 +1,27 @@
 #include "Span.hpp"
 #include <iostream>
 #include <list>
+#include <vector>
+#include <iterator>
+#include <algorithm>
+#include <numeric>
+
+
 #define N 10 // -1
 
 int main() {
+
+  std::vector<unsigned int> v0;
+  v0.push_back(5);
+  v0.push_back(7);
+  v0.push_back(9);
+  v0.push_back(11);
+  std::adjacent_difference(v0.begin(), v0.end(), v0.begin());
+  std::cout << "INIT : ";
+  for (std::vector<unsigned int>::iterator it = v0.begin(); it != v0.end(); it++)
+    std::cout << *it << "  ";
+  std::cout << std::endl;
+
   Span s = Span(N);
 
   try {
@@ -13,7 +31,7 @@ int main() {
   }
 
   try {
-    std::vector<unsigned int> v; // v{5,6,7} c++ 11
+    std::vector<unsigned int> v;
     v.push_back(5);
     v.push_back(8);
     v.push_back(7);
