@@ -183,25 +183,23 @@ for (const unsigned int& i : s)
 
 ## Algorithms library STL (c++ 98)
 * functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
-* функции (алгоритмы), оперируют на наборах элементов, заданных диапазонами итераторов (т.о. итераторы соединяют алгоритмы и контейнеры)
 * **functor** = **function object**
-   + = a struct that has a call operator that does what you want
-   + = класс, объекты которого можно использовать как функции
+   + is a struct
+   + has a call operator that does anything you want
+   + is a class, объекты которого можно использовать как функции
    + технически это оформляется с помощью перегрузки operator()
-   + operator() единственный оператор, допускающий перегрузку с произвольной сигнатурой (поэтому объекты функтора могут имитировать произвольные функции)
-   + обычные функции, передаваемые по указателю, - частным случай
-   + **генератор** функтор, который не принимает аргументов и возвращает некоторую (генерируемую) последовательность значений, например генератор псевдослучайных чисел
-   + **предикат** функтор, возвращающий булевское значение
+   + operator() допускает перегрузку с произвольной сигнатурой => объекты функтора могут имитировать произвольные функции
+   + Ex: обычные функции, передаваемые по указателю
+   + Ex: **генератор**, не принимает аргументов, возвращает некоторую генерируемую последовательность значений, например генератор псевдослучайных чисел
+   + Ex: **предикат**, возвращает булевское значение
       - используется, например, при фильтрации последовательностей
       - обычно являются одноместны (унарными)
       - **компаратор** двуместный (бинарные) предикаты, принимающие два параметра и отвечающие некоторому отношению между ними
-
-
-* задавать произвольные операции с помощью функторов
+   + задавать произвольные операции с помощью функторов
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
   
-:: **Non-modifying sequence operations**:| nn
+**Non-modifying sequence operations**  | .
 ---------------------------------------|---
 for_each                               |applies a function to a range of elements
 find, find_if, find_first_of, find_end |
@@ -209,28 +207,26 @@ adjacent_find                          |the first two adjacent items that are eq
 count, count_if                        |
 mismatch                               |the first position where two ranges differ
 equal                                  |if two sets of elements are the same
-search, search_n                       |searches a range for a number of consecutive copies of an element
+search, search_n                       |
 **Modifying sequence operations**:     |
-copy, copy_backward                    |copies a range of elements to a new location (in backwards order)
-fill, fill_n                           |copy-assigns the given value to every element (N elements) in a range
-uninitialized_copy                     |copies a range of objects to an uninitialized area of memory
-uninitialized_fill, uninitialized_fill_n|copies an object to an uninitialized area of memory, defined by a range (by a start and a count)
-replace, replace_if, replace_copy, replace_copy_if|copies a range, replacing elements satisfying specific criteria with another value
-remove, remove_if, remove_copy, remove_copy_if|removes elements satisfying specific criteria, copies a range of elements omitting those that satisfy specific criteria
-unique, unique_copy                    |removes consecutive duplicate elements in a range, creates a copy of some range of elements that contains no consecutive duplicates
+copy, copy_backward, uninitialized_copy|copies a range of elements to a new location
+fill, fill_n, uninitialized_fill, uninitialized_fill_n|copy-assigns the given value to every element (N elements) in a range
+replace, replace_if, replace_copy, replace_copy_if|copies a range, replacing elements satisfying specific criteria 
+remove, remove_if, remove_copy, remove_copy_if|removes elements satisfying specific criteria
+unique, unique_copy                    |removes consecutive duplicate elementse, creates a copy of a range that contains no consecutive duplicates
 reverse, reverse_copy                  |reverses the order of elements in a range, creates a copy of a range that is reversed
 rotate, rotate_copy                    |rotates the order of elements in a rangecopies and rotate a range of elements
 swap, swap_ranges, iter_swap           |swaps two ranges / the elements pointed to by two iterators
-transform                              |applies a func to a range of elements, storing results in a destination range; 1) an unary operation can be applied to the source range, on a per element basis, which ouputs the results in the destination range 2) a binary operation can be applied to both elements in the source and destination range, subsequently overwriting elements in the destination range
-generate, generate_n                   |assigns the results of successive function calls to every element (N elements) in a range
+transform                              |applies a func to a range of elements, storing results in a destination range; 1) an unary operation can be applied to the source range, on a per element basis, which ouputs the results in the destination range 2) a binary operation can be applied to both elements in the source and destination range, subsequently overwriting elements in the destination range; не гарантирует определенный порядок обработки
+generate, generate_n                   |assigns the results of successive function calls to every element
 **Sorting and related operations**:    | 
 partition, stable_partition            |divides a range of elements into two groups (while preserving their relative order)
-sort, stable_sort, partial_sort, partial_sort_copy, nth_element|sorts the first N elements of a range, copies and partially sorts a range of elements, partially sorts the given range making sure that it is partitioned by the given element
+sort, stable_sort, partial_sort, partial_sort_copy, nth_element|
 lower_bound, upper_bound               |an iterator to the first element not less than the given value
 equal_range                            |range of elements matching a specific key
 binary_search                          |if an element exists in a partially-ordered range
-includes                               |true if one sequence is a subsequence of another
-set_union, set_intersection, set_difference, set_symmetric_difference|union, intersection, difference, the symmetric difference between two sets
+includes                               |if one sequence is a subsequence of another
+set_union, set_intersection, set_difference, set_symmetric_difference |union, intersection, difference, the symmetric difference between two sets
 merge, inplace_merge                   |merges two ordered ranges
 push_heap, pop_heap                    |adds an element to a max heap, removes the largest element from a max heap
 make_heap                              |creates a max heap out of a range of elements
@@ -239,9 +235,10 @@ max, min, nax_element, min_element     |the greater of the given values, the lar
 lexicographical_compare                |true if one range is lexicographically less than another
 next_permutation, prev_permutation     |generates the next greater lexicographic permutation of a range of elements
 accumulate                             |sums up or folds a range of elements
-inner_product                          |the inner product of two ranges of element (09/ex00)
-adjacent_difference                    |the differences between adjacent elements in a range
+inner_product                          |the inner product of two ranges of element
 partial_sum                            |the partial sum of a range of elements
+
+PS `adjacent_difference` is in nuercic>, not in algoritmh>
 
 ## Types
 ### `std::string` 
