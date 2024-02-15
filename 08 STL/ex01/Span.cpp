@@ -44,7 +44,7 @@ unsigned int Span::shortestSpan() {
     std::cout << *it << "  ";
 
   std::vector<unsigned int> *spans = new std::vector<unsigned int>(this->size());
-  std::adjacent_difference(this->begin(), this->end(), spans->begin());                 // numeric>
+  std::adjacent_difference(this->begin(), this->end(), spans->begin());                 // <numeric>
   std::rotate(spans->begin(), spans->begin() + 1, spans->end());                        // algo
   spans->pop_back();
   std::cout << std::endl << "spans       : ";
@@ -52,7 +52,9 @@ unsigned int Span::shortestSpan() {
     std::cout << *it << "  ";
   std::cout << std::endl << std::endl;
 
-  return *std::min_element(spans->begin(), spans->end());                               // algo
+  unsigned int ret = *std::min_element(spans->begin(), spans->end());                   // algo
+  delete spans;
+  return ret;
 }
 
 unsigned int Span::longestSpan() {
