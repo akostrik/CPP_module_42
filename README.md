@@ -278,6 +278,7 @@ https://en.cppreference.com/w/cpp/language
 | to `char*`      | ---                  | ---                                                            | c_str()  sscanf  stringstream             |                      |                      |
 | to `std::string`| sprintf  stringstream| =  string_constructor  stringstream  s.data()*  std::to_string*| ---                                       | sprintf  stringstream| sprintf  stringstream| sprintf  stringstream
 | to `int`        |                      |                                                                | atoi  stringstream  sscanf  stoi*         | ---                  |                      |
+| to `unsigned int`|                     |                                                                | stoul                                     | ---                  |                      |
 | to `float`      |                      |                                                                | atof  strtof  stringstream  sscanf  stof* | implicit             | ---                  | implicit
 | to `double`     |                      |                                                                | strtod  stringstream  sscanf  stod*       | implicit             | implicit             | ---
   
