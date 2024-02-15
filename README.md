@@ -78,13 +78,9 @@ public:
 * can be overloaded
 
 ## STL (Standard Template Library) (here: c++ 98 only)
-* containers
-* iterators
-* algorithms
-* functions
 
 ### Standard containers 
-https://en.cppreference.com/w/cpp/container  
+* https://en.cppreference.com/w/cpp/container  
 * **container** класс, объекты которого хранят набор однотипных значений
 * предоставляет средства доступа к своему содержимому
 * эти средства доступа строятся на обобщении понятия “указатель на элемент массива”, iterator
@@ -189,6 +185,7 @@ for (const unsigned int& i : s)
 
 ### `<algorithm>` header 
 * https://en.cppreference.com/w/cpp/header/algorithm 
+* there are algorithms in other headers also, for example `adjacent_difference` in `<numercic>` (https://en.cppreference.com/w/cpp/algorithm)
 * **algorithm** = a function for searching, sorting, counting, manipulating, ... that operate on ranges of elements
 * **functor** = **function object**
    + is a struct
@@ -205,7 +202,6 @@ for (const unsigned int& i : s)
    + задавать произвольные операции с помощью функторов
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
-* c++ has also algorithms in other headers, for example `adjacent_difference` is in `<numercic>` (https://en.cppreference.com/w/cpp/algorithm)
   
 **Non-modifying sequence operations**  | .
 ---------------------------------------|---
@@ -244,6 +240,9 @@ next_permutation, prev_permutation     |generates the next greater lexicographic
 accumulate                             |sums up or folds a range of elements
 inner_product                          |the inner product of two ranges of element
 partial_sum                            |the partial sum of a range of elements
+
+### Functions STL
+...
 
 ## Types
 ### `std::string` 
