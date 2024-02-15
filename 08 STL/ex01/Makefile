@@ -1,8 +1,7 @@
 NAME      = a.out
 SRCS      = main.cpp Span.cpp
 OBJS      = $(SRCS:.cpp=.o)
-C         = c++ -Wall -Wextra -Werror 
-#-std=c++98
+C         = c++ -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 

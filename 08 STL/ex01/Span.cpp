@@ -1,3 +1,7 @@
+// Vous pouvez avoir recours à quasi l’ensemble de la bibliothèque standard. 
+// Donc plutôt que de rester en terrain connu, 
+// essayez d’utiliser le plus possible les versions C++ des fonctions C dont vous avec l’habitude
+
 #include "Span.hpp"
 
 Span::Span(unsigned int N) : std::vector<unsigned int>() {
@@ -38,21 +42,34 @@ unsigned int Span::shortestSpan() {
   if(size < 2)
     throw std::exception();
 
-  std::sort(this->begin(), this->end()); // algo
-  std::cout << "sorted      : ";
+  std::cout << "not sorted  : ";
   for (std::vector<unsigned int>::iterator it = this->begin(); it != this->end(); it++)
     std::cout << *it << "  ";
+  std::sort(this->begin(), this->end());                                                 // algo
+  std::cout << std::endl << "sorted      : ";
+  for (std::vector<unsigned int>::iterator it = this->begin(); it != this->end(); it++)
+    std::cout << *it << "  ";
+
+  std::vector<unsigned int> *spans = new std::vector<unsigned int>(this->size);
+  std::adjacent_difference(this->begin(), this->end(), spans->begin());                 // numeric>
+  std::rotate(spans->begin(), spans->begin() + 1, spans->end());                        // algo
+  spans->pop_back();
+
+  std::cout << std::endl << "spans       : ";
+  for (std::vector<unsigned int>::iterator it = spans->begin(); it != spans->end(); it++)
+    std::cout << *it << "  ";
+  std::cout << std::endl << std::endl;
+
+  return *std::min_element(spans->begin(), spans->end());                               // algo
 
   // std::vector<unsigned int> rotatedCopy = *this;
   // std::rotate(rotatedCopy.begin(),rotatedCopy.begin() + 1,rotatedCopy.end()); // algo
   // std::cout << "rotated copy: ";
   // for (std::vector<unsigned int>::iterator it = rotatedCopy.begin(); it != rotatedCopy.end(); it++)
   //   std::cout << *it << "  ";
-  //rotatedCopy.pop_back();
+  // rotatedCopy.pop_back();
 
-  std::vector<unsigned int> spans;
-  //std::adjacent_difference(this->begin(), this->end(), spans); // algo
-  // std::transform(x.begin()+1, x.end(), y.begin(), y.begin()+1, std::min<тип>);
+  //std::transform(x.begin()+1, x.end(), y.begin(), y.begin()+1, std::min<тип>);
 
   // int min(int x, int y) { return (x < y) ? x : y; }
   // std::transform(x.begin()+1,x.end(),y.begin(),y.begin()+1, min);
@@ -61,12 +78,6 @@ unsigned int Span::shortestSpan() {
 
   // transform( ia, ia+5, vec.begin(), outfile, difference ); https://it.wikireading.ru/36213 
 
-  std::cout << std::endl << "spans       : ";
-  for (std::vector<unsigned int>::iterator it = spans.begin(); it != spans.end(); it++)
-    std::cout << *it << "  ";
-  std::cout << std::endl << std::endl;
-
-  return *std::min_element(spans.begin(), spans.end()); // algo
 }
 
 unsigned int Span::longestSpan() {
