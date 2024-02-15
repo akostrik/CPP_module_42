@@ -101,7 +101,7 @@ https://en.cppreference.com/w/cpp/container
    + destroy() для вызова деструктора
    + rebind() метафункция, позволяющая получить аналогичный аллокатор для элементов другого типа
 * перегрузки операций << и >> помещены в пространство имён std из-за особенностей связывания имён в C++
-* **sequence container = standart container = class template**
+* **sequence container = standard container = class template**
    + an object
    + stores a collection of other objects
    + manages the storage space
