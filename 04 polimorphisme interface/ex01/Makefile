@@ -1,3 +1,5 @@
+# need to fix: makefile shoud not relink
+
 SRCS    = main.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp
 HEADERS =          Animal.hpp Cat.hpp Dog.hpp Brain.hpp
 OBJS    = $(SRCS:.cpp=.o)

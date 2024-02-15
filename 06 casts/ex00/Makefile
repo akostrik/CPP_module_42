@@ -1,3 +1,5 @@
+# need to fix: makefile shoud not relink
+
 SRCS    = main.cpp ScalarConverter.cpp
 HEADERS =          ScalarConverter.hpp
 OBJS    = $(SRCS:.cpp=.o)

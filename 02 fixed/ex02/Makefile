@@ -1,4 +1,6 @@
-SRCS    = main.cpp Fixed.cpp
+# need to fix: makefile shoud not relink
+
+RCS    = main.cpp Fixed.cpp
 HEADERS = Fixed.hpp  
 OBJS    = $(SRCS:.cpp=.o)
 OBJS   := $(addprefix ./objs/, $(OBJS))

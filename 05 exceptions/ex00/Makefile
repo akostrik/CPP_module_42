@@ -1,3 +1,5 @@
+# need to fix: makefile shoud not relink
+
 SRCS    = main.cpp Bureaucrat.cpp
 HEADERS =          Bureaucrat.hpp
 OBJS    = $(SRCS:.cpp=.o)

@@ -1,3 +1,5 @@
+# need to fix: makefile shoud not relink
+
 SRCS    = main.cpp File.cpp
 HEADERS = File.hpp 
 OBJS    = $(SRCS:.cpp=.o)

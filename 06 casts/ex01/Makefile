@@ -1,3 +1,5 @@
+# need to fix: makefile shoud not relink
+
 SRCS    = main.cpp Serializer.cpp
 HEADERS =          Serializer.hpp
 OBJS    = $(SRCS:.cpp=.o)

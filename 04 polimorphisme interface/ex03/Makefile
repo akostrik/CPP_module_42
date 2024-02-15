@@ -1,3 +1,5 @@
+# need to fix: makefile shoud not relink
+
 SRCS    = main.cpp AMateria.cpp Cure.cpp Ice.cpp MateriaSource.cpp Character.cpp 
 HEADERS =          AMateria.hpp Cure.hpp Ice.hpp MateriaSource.hpp Character.hpp IMateriaSource.hpp ICharacter.hpp
 OBJS    = $(SRCS:.cpp=.o)

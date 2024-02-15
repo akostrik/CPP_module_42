@@ -1,3 +1,5 @@
+# need to fix: makefile shoud not relink
+
 SRCS    = main.cpp Zombie.cpp
 HEADERS =          Zombie.hpp
 OBJS    = $(SRCS:.cpp=.o)

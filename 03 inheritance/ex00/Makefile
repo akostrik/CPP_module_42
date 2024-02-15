@@ -1,3 +1,5 @@
+# need to fix: makefile shoud not relink
+
 SRCS    = main.cpp ClapTrap.cpp
 HEADERS =          ClapTrap.hpp  
 OBJS    = $(SRCS:.cpp=.o)
