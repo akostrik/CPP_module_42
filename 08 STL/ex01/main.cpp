@@ -8,7 +8,7 @@
 #include <string>
 #include <sstream>
 
-#define N 10
+#define N 4611686018427387903
 
 template < typename T > std::string my_to_string(const T& n) {
   std::ostringstream stm;
@@ -17,45 +17,32 @@ template < typename T > std::string my_to_string(const T& n) {
 }
 
 bool is_unsigned_int(const std::string& s) {
-  if (s.empty())
-    return false;
-  if (s.find_first_not_of("+0123456789") != s.npos)
-    return false;
-  return (s.compare(std::string("4294967295")) <= 0);
+  if (!s.empty() && s.find_first_not_of("+0123456789") == s.npos && strtoul(s.c_str(), NULL, 10) <= s.max_size()) 
+    return true;
+  std::cout << "N = " << N << std::endl << "N sould be an int in [0, " << s.max_size() << "]" << std::endl;
+  return false;
 }
 
 int main() {
-  Span         s      = Span(1); // tmp // test 0
+  Span         s      = Span(1); // tmp
   std::string  N_str  = my_to_string(N);
-  unsigned int N_real = 3; // tmp
+  long long    N_real;
 
-  std::cout << "N_str  = " << N_str << std::endl;
-  if (!is_unsigned_int(N_str)) {
-    std::cout << "N sould be an insigned int" << std::endl;
+  if (!is_unsigned_int(N_str))
     return 0;
-  }
 
   N_real = strtoul(N_str.c_str(), NULL, 10);
-  std::cout << "N_real = " << N_real << std::endl;
-  if (N_real > s.max_size()) {
-    std::cout << "N sould be less than " << s.max_size() << std::endl;
-    return 0;
-  }
-
   try {
     s = Span(N_real);
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
 
-  std::cout << "here " << std::endl;
   try {
     s.addNumber(1);
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
-
-  std::cout << "here " << std::endl;
 
   try {
     std::vector<unsigned int> v;
