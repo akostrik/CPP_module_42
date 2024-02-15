@@ -335,6 +335,7 @@ https://en.cppreference.com/w/cpp/language
 * `std::bit_cast` (c++20)
 * `literal_cast`
 * stringstream
+  converts `INT_MAX + 1` to `INT_MIN`
 ```
 template <typename T> T fromStr(const std::string& s) {
   std::istringstream iss(s);
