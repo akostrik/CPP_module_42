@@ -77,7 +77,14 @@ public:
 * is compile-time construct: a templated class / functon = before compiling replacing the template parameter with the actual one
 * can be overloaded
 
-## STL-Containers (Standard Template Library) (c++ 98 only)
+## STL (Standard Template Library)
+Provides four components:
+* algorithms
+* containers
+* functions
+* iterators
+
+## Containers (STL) (here: c++ 98 only)
 https://en.cppreference.com/w/cpp/container  
 * **container** класс, объекты которого хранят набор однотипных значений
 * предоставляет средства доступа к своему содержимому
@@ -181,8 +188,9 @@ for (const unsigned int& i : s)
     + difference_type значения смещений итераторов относительно друг друга
     + iterator_category тип, указывающий на набор поддерживаемых операций (random_access_iterator_tag, bidirectional_iterator_tag, forward_iterator_tag, input_iterator_tag, output_iterator_tag)
 
-## Algorithms library STL (c++ 98)
-* functions for searching, sorting, counting, manipulating, ... that operate on ranges of elements
+## algorithms (STL) (here: c++ 98 only)
+* https://en.cppreference.com/w/cpp/algorithm 
+* **algorithm** = a function for searching, sorting, counting, manipulating, ... that operate on ranges of elements
 * **functor** = **function object**
    + is a struct
    + has a call operator that does anything you want
@@ -198,12 +206,14 @@ for (const unsigned int& i : s)
    + задавать произвольные операции с помощью функторов
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
+
+### `<algorithm>` header (STL) (here: c++ 98 only)
+* https://en.cppreference.com/w/cpp/header/algorithm 
   
 **Non-modifying sequence operations**  | .
 ---------------------------------------|---
 for_each                               |applies a function to a range of elements
-find, find_if, find_first_of, find_end |
-adjacent_find                          |the first two adjacent items that are equal (or satisfy a given predicate)
+find, find_if, find_first_of, find_end, adjacent_find |
 count, count_if                        |
 mismatch                               |the first position where two ranges differ
 equal                                  |if two sets of elements are the same
@@ -238,7 +248,7 @@ accumulate                             |sums up or folds a range of elements
 inner_product                          |the inner product of two ranges of element
 partial_sum                            |the partial sum of a range of elements
 
-PS `adjacent_difference` is in nuercic>, not in algoritmh>
+PS `adjacent_difference` is in `<numercic>` header
 
 ## Types
 ### `std::string` 
