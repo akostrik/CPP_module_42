@@ -14,7 +14,6 @@ class Span : public std::vector<unsigned int> {
   private:  
                   Span();
     unsigned int  _N; 
-    unsigned int  size;
     unsigned int  min;
     unsigned int  max;
 
@@ -30,7 +29,7 @@ class Span : public std::vector<unsigned int> {
 
     template <typename IterType>
     void addNumber(IterType new_diapason_begin, IterType new_diapason_end) {
-      if (size + std::distance(new_diapason_begin, new_diapason_end) > _N)
+      if (this->size() + std::distance(new_diapason_begin, new_diapason_end) > _N)
         throw std::overflow_error("Span has no free space");
       unsigned int potentially_new_min = *std::min_element(new_diapason_begin, new_diapason_end);
       unsigned int potentially_new_max = *std::max_element(new_diapason_begin, new_diapason_end);
@@ -39,7 +38,6 @@ class Span : public std::vector<unsigned int> {
       if (max < potentially_new_max)
         max = potentially_new_max;
       this->insert (this->begin(), new_diapason_begin, new_diapason_end);
-      size += std::distance(new_diapason_begin, new_diapason_end);
     };
 };
 #endif
