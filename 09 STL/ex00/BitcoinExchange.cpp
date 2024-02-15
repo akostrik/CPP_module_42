@@ -1,55 +1,39 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(unsigned int N) {
-	try {
-		readFile("data.csv", ',');
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>() {
+	std::ifstream      db_file(DB_FILE);
+	std::string        line;
+  std::string        date;
+  std::string        dollars;
+  std::string        cents;
+  unsigned long long value; // the price in cents
+
+	if (!db_file.is_open())
+		throw std::exception(); // !
+  std::getline(db_file, line); // skip first line
+ 	while (getline (db_file, line)) {
+    date    = line.substr(0, line.find(",")); // trim 
+    dollars = line.substr(11, line.find(".") - line.find(",") - 1);
+    cents   = line.substr(line.find(".") + 1, line.size() - line.find("."));
+    value   = 100 * std::strtol(dollars.c_str(), NULL, 10);
+    if (line.find(".") != std::string::npos && cents.size() == 2)
+      value += std::strtol(cents.c_str(), NULL, 10);
+    else if (line.find(".") != std::string::npos && cents.size() == 1)
+      value += 10 * std::strtol(cents.c_str(), NULL, 10);
+    this->insert(std::pair<std::string, unsigned long long>(date, value));
+  }
+	db_file.close();
 }
 
-BitcoinExchange::~BitcoinExchange() {}
+// BitcoinExchange::~BitcoinExchange() {}
 
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& o) {
-  std::copy(o.begin(), o.end(), this->begin());
-  return *this;
-}
+// BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& o) {
+//   std::copy(o.begin(), o.end(), this->begin());
+//   return *this;
+// }
 
 ////////////////////////////////////////////
-std::map<std::string, double> BitcoinExchange::readFile(std::string const filename, char const separator) {
-	std::ifstream                 in(filename);
-	std::map<std::string, double> m;
-	std::string                   line;
-
-	if (!in.is_open()) {
-		throw std::exception(); // to see
-	while (getline (in, line)) {
-		std::split
-		m.add() += line + "\n";
-	}
-
-	in.close();
-	return m;
-}
-
-
-unsigned int BitcoinExchange::shortestBitcoinExchange() {
-  std::cout << "not sorted  : ";
-  for (std::vector<unsigned int>::iterator it = this->begin(); it != this->end(); it++)
-    std::cout << *it << "  ";
-  std::sort(this->begin(), this->end());                                                 // algo
-  std::cout << std::endl << "sorted      : ";
-  for (std::vector<unsigned int>::iterator it = this->begin(); it != this->end(); it++)
-    std::cout << *it << "  ";
-
-  std::vector<unsigned int> *BitcoinExchanges = new std::vector<unsigned int>(this->size());
-  std::adjacent_difference(this->begin(), this->end(), BitcoinExchanges->begin());                 // numeric>
-  std::rotate(BitcoinExchanges->begin(), BitcoinExchanges->begin() + 1, BitcoinExchanges->end());                        // algo
-  BitcoinExchanges->pop_back();
-  std::cout << std::endl << "BitcoinExchanges       : ";
-  for (std::vector<unsigned int>::iterator it = BitcoinExchanges->begin(); it != BitcoinExchanges->end(); it++)
-    std::cout << *it << "  ";
-  std::cout << std::endl << std::endl;
-
-  return *std::min_element(BitcoinExchanges->begin(), BitcoinExchanges->end());                               // algo
-}
+// std::map<std::string, double> BitcoinExchange::readFile(std::string const filename) {
+// 	std::map<std::string, double> data2; // a float or a positive integer, between 0 and 1000
+// 	return m;
+// }

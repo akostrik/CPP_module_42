@@ -1,30 +1,26 @@
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
-# include <algorithm>
 # include <iostream>
-# include <exception>
-# include <climits>
-# include <vector>
-# include <list>
-# include <iterator>
-# include <functional>
-# include <numeric>
 # include <map>
 # include <string>
 # include <fstream>
+#include <stdlib.h> // strtod
+// # include <algorithm>
+// # include <exception>
+// # include <iterator>
+// # include <functional>
+// # include <numeric>
 
-class BitcoinExchange {
+# define DB_FILE "data.csv"
+
+class BitcoinExchange : std::map<std::string, unsigned long long> {
 	private:
-	std::map<std::string, double> data1;
-	std::map<std::string, double> data2; // a float or a positive integer, between 0 and 1000
-									BitcoinExchange();
 
 	public:
-								BitcoinExchange        (unsigned int N);
-								BitcoinExchange        (const BitcoinExchange& o);
-								~BitcoinExchange       ();
-	BitcoinExchange&              operator=   (const BitcoinExchange& o);
-	std::map<std::string, double> readFile(std::string const filename, char const separator);
+								BitcoinExchange();
+	// 							BitcoinExchange        (const BitcoinExchange& o);
+	// 							~BitcoinExchange       ();
+	// BitcoinExchange&              operator=   (const BitcoinExchange& o);
 
 };
 #endif

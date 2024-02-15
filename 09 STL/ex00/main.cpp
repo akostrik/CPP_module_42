@@ -15,3 +15,23 @@
 // run the prog with input.csv as parameter 
 
 // inner_product()
+
+// Vous pouvez avoir recours à quasi l’ensemble de la bibliothèque standard. 
+// Donc plutôt que de rester en terrain connu, 
+// essayez d’utiliser le plus possible les versions C++ des fonctions C dont vous avec l’habitude
+
+#include "BitcoinExchange.hpp"
+// #include <iostream>
+// #include <list>
+// #include <vector>
+// #include <iterator>
+// #include <algorithm>
+// #include <numeric>
+// #include <string>
+// #include <sstream>
+
+int main() {
+  BitcoinExchange b = BitcoinExchange();
+
+  return 0;
+}

@@ -4,8 +4,9 @@ OBJS    = $(addprefix ./objs/, $(SRCS:.cpp=.o))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror
 CPP     = c++
 
+all: $(NAME)
 
-all: $(OBJS) $(HEADER) 
+$(NAME): $(OBJS)
 	$(CPP) $(FLAGS) $(SRCS)
 
 ./objs/%.o: %.cpp
