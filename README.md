@@ -77,14 +77,13 @@ public:
 * is compile-time construct: a templated class / functon = before compiling replacing the template parameter with the actual one
 * can be overloaded
 
-## STL (Standard Template Library)
-Provides four components:
-* algorithms
+## STL (Standard Template Library) (here: c++ 98 only)
 * containers
-* functions
 * iterators
+* algorithms
+* functions
 
-## Containers (STL) (here: c++ 98 only)
+### Standard containers 
 https://en.cppreference.com/w/cpp/container  
 * **container** класс, объекты которого хранят набор однотипных значений
 * предоставляет средства доступа к своему содержимому
@@ -101,7 +100,7 @@ https://en.cppreference.com/w/cpp/container
    + destroy() для вызова деструктора
    + rebind() метафункция, позволяющая получить аналогичный аллокатор для элементов другого типа
 * перегрузки операций << и >> помещены в пространство имён std из-за особенностей связывания имён в C++
-* **sequence container = standard container = class template**
+* **sequence container = class template**
    + an object
    + stores a collection of other objects
    + manages the storage space
@@ -136,7 +135,7 @@ stack                  | top push emplace pop swap                              
 queue                  | front back push emplace pop swap                                                                                                                                       | 
 priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap                                                                                                                   |add / remove O(ln n) 
 
-## Iterator
+### Iterator
 * an object pointing to some element in a range of elements
 * can iterate through these elements
 * points at the memory addresses of STL containers
@@ -188,8 +187,8 @@ for (const unsigned int& i : s)
     + difference_type значения смещений итераторов относительно друг друга
     + iterator_category тип, указывающий на набор поддерживаемых операций (random_access_iterator_tag, bidirectional_iterator_tag, forward_iterator_tag, input_iterator_tag, output_iterator_tag)
 
-## algorithms (STL) (here: c++ 98 only)
-* https://en.cppreference.com/w/cpp/algorithm 
+### `<algorithm>` header 
+* https://en.cppreference.com/w/cpp/header/algorithm 
 * **algorithm** = a function for searching, sorting, counting, manipulating, ... that operate on ranges of elements
 * **functor** = **function object**
    + is a struct
@@ -206,9 +205,7 @@ for (const unsigned int& i : s)
    + задавать произвольные операции с помощью функторов
 * **a range** = [first, last)  
 * a **sorted with respect to a comparator `comp` sequence**: for every iterator `iter` pointing to the sequence and every non-negative integer n such that `iter + n` is a valid iterator pointing to an element of the sequence, `comp(*(iter + n), *iter) == false`
-
-### `<algorithm>` header (STL) (here: c++ 98 only)
-* https://en.cppreference.com/w/cpp/header/algorithm 
+* c++ has also algorithms in other headers, for example `adjacent_difference` is in `<numercic>` (https://en.cppreference.com/w/cpp/algorithm)
   
 **Non-modifying sequence operations**  | .
 ---------------------------------------|---
@@ -247,8 +244,6 @@ next_permutation, prev_permutation     |generates the next greater lexicographic
 accumulate                             |sums up or folds a range of elements
 inner_product                          |the inner product of two ranges of element
 partial_sum                            |the partial sum of a range of elements
-
-PS `adjacent_difference` is in `<numercic>` header
 
 ## Types
 ### `std::string` 
