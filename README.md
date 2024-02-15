@@ -404,7 +404,9 @@ Occurs when the compiler matches an argument in a function call with a correspon
 * in the both cases, we can change the type of the weapon  
 
 Reference:  
-* is a dereferenced pointer  
+* is a dereferenced pointer
+* объект, указывающий на данные, но не хранящий их = другое имя для объекта
+* доступны операции копирования и разыменования (разыменование = получение объекта по ссылке)
 * is an aliase for an existing variable !=  new variable  
 * is a constant pointer, always points to the same variable, we can't change it (?)  
 * doesn't occupy memory  
@@ -418,7 +420,9 @@ Reference:
   
 Pointer:  
 * can point to a non-existing address  
-* if something should not always exist and can change, use a pointer  
+* if something should not always exist and can change, use a pointer
+* указатель = целое число
+* доступны операции с целыми числами
 
 ## File manipulations
 
