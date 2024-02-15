@@ -1,12 +1,11 @@
-SRCS    = *.cpp
-HEADERS = *.hpp
-OBJS    = $(SRCS:.cpp=.o)
-OBJS   := $(addprefix ./objs/, $(OBJS))
+NAME    = btc
+SRCS    = main.cpp BitcoinExchange.cpp
+OBJS    = $(addprefix ./objs/, $(SRCS:.cpp=.o))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror
 CPP     = c++
 
-all: $(OBJS) $(HEADER)
-	clear
+
+all: $(OBJS) $(HEADER) 
 	$(CPP) $(FLAGS) $(SRCS)
 
 ./objs/%.o: %.cpp
