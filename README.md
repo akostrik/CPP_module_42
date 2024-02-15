@@ -278,7 +278,6 @@ https://en.cppreference.com/w/cpp/language
 | to `char*`      | ---                  | ---                                                            | c_str()  sscanf  stringstream             |                      |                      |
 | to `std::string`| sprintf  stringstream| =  string_constructor  stringstream  s.data()*  std::to_string*| ---                                       | sprintf  stringstream| sprintf  stringstream| sprintf  stringstream
 | to `int`        |                      |                                                                | atoi  stringstream  sscanf  stoi*         | ---                  |                      |
-| to `unsigned int`|                     |                                                                | stoul                                     | ---                  |                      |
 | to `float`      |                      |                                                                | atof  strtof  stringstream  sscanf  stof* | implicit             | ---                  | implicit
 | to `double`     |                      |                                                                | strtod  stringstream  sscanf  stod*       | implicit             | implicit             | ---
   
@@ -350,7 +349,8 @@ template <typename T> std::string toStr(T v) {
 }
 int i = fromStr<int>(toStr(5));
 ```
-* stoi (c++11)  
+* stoi (c++ 11)
+* stoul (c++ 11)  
 * s.data() (c++11)  
 * std::to_string (c++11)  
 * stod (c++11) 
