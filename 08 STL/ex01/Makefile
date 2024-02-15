@@ -1,22 +1,23 @@
-NAME      = a.out
-SRCS      = main.cpp Span.cpp
-OBJS      = $(SRCS:.cpp=.o)
-C         = c++ -Wall -Wextra -Werror -std=c++98
+NAME    = a.out
+SRCS    = main.cpp Span.cpp
+OBJS    = $(addprefix ./objs/, $(SRCS:.cpp=.o))
+FLAGS   = -std=c++98 -Wall -Wextra -Werror
+CPP     = c++
 
-all: $(NAME)
+all: $(OBJS) $(HEADER)
+	$(CPP) $(FLAGS) $(SRCS)
 
-$(NAME): $(OBJS)
-	$(C) $(OBJS) -o $(NAME)
-
-.cpp.o:
-	$(C) -c $< -o $(<:.cpp=.o)
+./objs/%.o: %.cpp
+	mkdir ./objs/ 2> /dev/null || true
+	$(CPP) -o $@ -c $<
 
 clean:
-	@rm -f $(OBJS)
+	rm -f $(OBJS)
+	rmdir ./objs/ 2> /dev/null || true
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f a.out
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all, clean, fclean, re, debug

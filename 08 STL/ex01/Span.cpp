@@ -1,7 +1,3 @@
-// Vous pouvez avoir recours à quasi l’ensemble de la bibliothèque standard. 
-// Donc plutôt que de rester en terrain connu, 
-// essayez d’utiliser le plus possible les versions C++ des fonctions C dont vous avec l’habitude
-
 #include "Span.hpp"
 
 Span::Span(unsigned int N) : std::vector<unsigned int>() {

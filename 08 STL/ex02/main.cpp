@@ -17,21 +17,21 @@ int main() {
   for (MutantStack<int>::iterator it = s.begin(); it != s.end(); it++)
     std::cout << *it << " ";
   std::cout << std::endl;
-  std::cout << "top = " << s.top() << ", stze = " << s.size() << std::endl;
+  std::cout << "top = " << s.top() << ", stze = " << s.size() << std::endl << std::endl;
 
   std::cout << "** TEST constructor MutantStack s2(s)" << std::endl;
   MutantStack<int> s2(s);
   std::cout << "top = " << s2.top() << ", stze = " << s2.size() << std::endl;
   for (MutantStack<int>::iterator it = s2.begin(); it != s2.end(); it++)
     std::cout << *it << " ";
-  std::cout << std::endl;
+  std::cout << std::endl << std::endl;
 
   std::cout << "*** TEST MutantStack s3 = s" << std::endl;
   MutantStack<int> s3 = s;
   std::cout << "top = " << s3.top() << ", stze = " << s3.size() << std::endl;
   for (MutantStack<int>::iterator it = s3.begin(); it != s3.end(); it++)
     std::cout << *it << " ";
-  std::cout << std::endl;
+  std::cout << std::endl << std::endl;
 
   std::cout << "*** TEST list" << std::endl;
   std::list<int> l;

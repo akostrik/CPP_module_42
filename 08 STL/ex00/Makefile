@@ -1,12 +1,10 @@
-SRCS    = *.cpp
-HEADERS = *.hpp
-OBJS    = $(SRCS:.cpp=.o)
-OBJS   := $(addprefix ./objs/, $(OBJS))
+SRCS    = main.cpp
+HEADERS = easyfind.hpp
+OBJS    = $(addprefix ./objs/, $(SRCS:.cpp=.o))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror
 CPP     = c++
 
 all: $(OBJS) $(HEADER)
-	clear
 	$(CPP) $(FLAGS) $(SRCS)
 
 ./objs/%.o: %.cpp

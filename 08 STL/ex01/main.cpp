@@ -1,3 +1,7 @@
+// Vous pouvez avoir recours à quasi l’ensemble de la bibliothèque standard. 
+// Donc plutôt que de rester en terrain connu, 
+// essayez d’utiliser le plus possible les versions C++ des fonctions C dont vous avec l’habitude
+
 #include "Span.hpp"
 #include <iostream>
 #include <list>
@@ -24,7 +28,7 @@ bool is_unsigned_int(const std::string& s) {
 }
 
 int main() {
-  Span         s      = Span(1); // tmp
+  Span         s      = Span(0); // tmp
   std::string  N_str  = my_to_string(N);
   long long    N_real;
 
