@@ -1,10 +1,12 @@
+NAME    = a.out
 SRCS    = main.cpp
-HEADERS = easyfind.hpp
 OBJS    = $(addprefix ./objs/, $(SRCS:.cpp=.o))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror
 CPP     = c++
 
-all: $(OBJS) $(HEADER)
+all: $(NAME)
+
+$(NAME): $(OBJS)
 	$(CPP) $(FLAGS) $(SRCS)
 
 ./objs/%.o: %.cpp
