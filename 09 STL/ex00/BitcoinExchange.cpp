@@ -128,7 +128,7 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
   }
 	in.close();
   if (this->size() == 0)
-		throw std::exception(); // file es empty
+    throw std::underflow_error("Error: database file es empty");
 }
 
 // BitcoinExchange::BitcoinExchange(const BitcoinExchange& o) : std::map<std::string, unsigned long long>() {
@@ -187,5 +187,5 @@ void BitcoinExchange::run(std::string filename) {
   }
 	in.close();
   if (file_is_empty)
-		throw std::exception(); // !
+    throw std::underflow_error("Error: argument file es empty");
 }
