@@ -97,9 +97,9 @@ bool is_valid_date(std::string date) {
   return false;
 }
 
+// modify "input.csv" !!!!!!!!!!!!!
 ///////////////////////////////////////////////////////////////////////////////////
 BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>() {
-// modify "input.csv"
 	std::ifstream      in(DB_FILE);
 	std::string        line;
   std::string        date;
