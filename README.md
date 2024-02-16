@@ -123,13 +123,16 @@ deque                  |[ ] at front back assign push_back push_front pop_back p
 (linked) list          |front back assign emplace_front push_front pop_front emplace_back push_back pop_back emplace insert erase swap resize clear remove remove_if                            |splice unique merge sort reverse
 **associative containers:**|                                                                                                                                                                     |
 set (tree)             | key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                        |unique elements following a specific order, the value = the key, each value is unique, elt cannot be modified, elt can be inserted/removed, internally the elements are sorted, implemented as binary search tree
-map                    |[ ] at key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                  |internally the elts are always sorted by keys, implemented as a binary search tree 
+map                    |[ ] at key_comp value_comp find count lower_bound* upper_bound* equal_range insert erase swap clear emplace emplace_hint                                                |internally the elts are always sorted by keys, implemented as a binary search tree 
 multiset               |       key_comp value_comp find count lower_bound upper_bound equal_range insert erase swap clear emplace emplace_hint                                                  |multiple elements can have equivalent values
 multimap               |                                                                                                                                                                        |
 **container adaptors:**|                                                                                                                                                                        |
 stack                  | top push emplace pop swap                                                                                                                                              |not iterable, its underlying container is deque
 queue                  | front back push emplace pop swap                                                                                                                                       | 
 priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap                                                                                                                   |add / remove O(ln n) 
+
+\* upper bound return first element which is > value; if not, return end()
+\* lower bound return first element which is ≥ value; if not, return end()
 
 ### Iterator
 * an object pointing to some element in a range of elements
