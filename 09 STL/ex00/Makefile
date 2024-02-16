@@ -1,5 +1,4 @@
 NAME    = btc
-# btc not a.out
 SRCS    = main.cpp BitcoinExchange.cpp
 OBJS    = $(addprefix ./objs/, $(SRCS:.cpp=.o))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror
@@ -8,7 +7,7 @@ CPP     = c++
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CPP) $(FLAGS) $(SRCS)
+	$(CPP) $(FLAGS) $(SRCS) -o $(NAME)
 # valgrind -q 
 
 ./objs/%.o: %.cpp
@@ -20,7 +19,7 @@ clean:
 	@rmdir ./objs/ 2> /dev/null || true
 
 fclean: clean
-	rm -f a.out
+	rm -f $(NAME)
 
 re: fclean all
 

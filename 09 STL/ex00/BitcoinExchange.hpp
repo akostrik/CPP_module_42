@@ -6,8 +6,11 @@
 # include <fstream>
 # include <stdlib.h> // strtod
 # include <iomanip>
-#include <stdexcept>
-#include <limits>
+# include <stdexcept>
+# include <limits>
+// # include <regex> c++11
+# include <regex.h>
+
 // # include <algorithm>
 // # include <exception>
 // # include <iterator>
@@ -23,6 +26,7 @@ class BitcoinExchange : std::map<std::string, unsigned long long> {
 								   ~BitcoinExchange       ();
 	BitcoinExchange& operator=   (const BitcoinExchange& o);
   void             run(std::string filename);
+  bool             is_valid_date(std::string date);
 };
 
 #endif

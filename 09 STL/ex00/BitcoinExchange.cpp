@@ -65,6 +65,36 @@ BitcoinExchange::~BitcoinExchange() {}
 //   return str;
 // }
 
+bool BitcoinExchange::is_valid_date(std::string date) {
+  //std::regex pattern("\\b\\d{4}[-]\\d{2}[-]\\d{2}\\b");
+  //[0-9]{2}/[0-9]{2}/[0-9]{4}
+  //(((19|20)([2468][048]|[13579][26]|0[48])|2000)[-]02[-]29|((19|20)[0-9]{2}[-](0[4678]|1[02])[-](0[1-9]|[12][0-9]|30)|(19|20)[0-9]{2}[-](0[1359]|11)[-](0[1-9]|[12][0-9]|3[01])|(19|20)[0-9]{2}[-]02[-](0[1-9]|1[0-9]|2[0-8])))
+  // std::string year          = strd::substr(0, date.find("-") - 1);
+  // if (!year.empty() || year.size() <= 2008 || s.find_first_not_of("0123456789") == s.npos)
+  //   return false;
+
+  // std::string month_and_day = std::substr(date.find("-"), date.size()); // size ?
+  regex_t regex;
+
+  int reti = regcomp(&regex, "(((19|20)([2468][048]|[13579][26]|0[48])|2000)[-]02[-]29|((19|20)[0-9]{2}[-](0[4678]|1[02])[-](0[1-9]|[12][0-9]|30)|(19|20)[0-9]{2}[-](0[1359]|11)[-](0[1-9]|[12][0-9]|3[01])|(19|20)[0-9]{2}[-]02[-](0[1-9]|1[0-9]|2[0-8])))", 0);   // Compile regular expression 
+  if (reti) {
+    fprintf(stderr, "Could not compile regex\n");
+    exit(1);
+  }
+
+  reti = regexec(&regex, date.c_str(), 0, NULL, 0);   // Execute regular expression
+  if (!reti) 
+    return true;
+  else if (reti == REG_NOMATCH) 
+    return false;
+  else {
+    char msgbuf[100];
+    regerror(reti, &regex, msgbuf, sizeof(msgbuf));
+    fprintf(stderr, "Regex match failed: %s\n", msgbuf);
+    exit(1);
+  }
+}
+
 void BitcoinExchange::run(std::string filename) {
 	std::ifstream in(filename.c_str());
 	std::string        line;
