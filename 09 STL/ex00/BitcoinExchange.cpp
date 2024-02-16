@@ -13,7 +13,7 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
 		throw std::exception(); // !
   std::getline(in, line); // skip first line
  	while (getline (in, line)) {
-    date    = line.substr(0, line.find(",")); // trim
+    date    = line.substr(0, line.find(","));
     date.erase(date.find_last_not_of(" \n\r\t") + 1);
     dollars = line.substr(11, line.find(".") - line.find(",") - 1);
     dollars.erase(dollars.find_last_not_of(" \n\r\t") + 1);
@@ -72,27 +72,53 @@ bool BitcoinExchange::is_valid_date(std::string date) {
   // std::string year          = strd::substr(0, date.find("-") - 1);
   // if (!year.empty() || year.size() <= 2008 || s.find_first_not_of("0123456789") == s.npos)
   //   return false;
-
   // std::string month_and_day = std::substr(date.find("-"), date.size()); // size ?
   regex_t regex;
 
-  int reti = regcomp(&regex, "(((19|20)([2468][048]|[13579][26]|0[48])|2000)[-]02[-]29|((19|20)[0-9]{2}[-](0[4678]|1[02])[-](0[1-9]|[12][0-9]|30)|(19|20)[0-9]{2}[-](0[1359]|11)[-](0[1-9]|[12][0-9]|3[01])|(19|20)[0-9]{2}[-]02[-](0[1-9]|1[0-9]|2[0-8])))", 0);   // Compile regular expression 
-  if (reti) {
-    fprintf(stderr, "Could not compile regex\n");
-    exit(1);
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][0-2][0-9]", 0); // compile reg expression // janv march may july august
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))                   // execute
+    return true;
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][3][0-1]", 0);
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+    return true;
+
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]1[02][-][0-2][0-9]", 0); // octob decem
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+    return true;
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]1[02][-][3][0-1]", 0);
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+    return true;
+
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[469][-][0-2][0-9]", 0); // april june sept
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+    return true;
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[469][-][3][0]", 0);
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+    return true;
+
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]11[-][0-2][0-9]", 0); // nov
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+    return true;
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]11[-][3][0]", 0);
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+    return true;
+
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-][01][0-9]", 0); // feb
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+    return true;
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-][2][0-8]", 0);
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+    return true;
+
+  std::string year_str = date.substr(0, date.find("-"));
+  int year = std::strtol(year_str.c_str(), NULL, 10);
+  if (year % 4 == 0 && year % 400 != 0) {
+    regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-]29", 0);
+    if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+      return true;
   }
 
-  reti = regexec(&regex, date.c_str(), 0, NULL, 0);   // Execute regular expression
-  if (!reti) 
-    return true;
-  else if (reti == REG_NOMATCH) 
-    return false;
-  else {
-    char msgbuf[100];
-    regerror(reti, &regex, msgbuf, sizeof(msgbuf));
-    fprintf(stderr, "Regex match failed: %s\n", msgbuf);
-    exit(1);
-  }
+  return false;
 }
 
 void BitcoinExchange::run(std::string filename) {
@@ -111,6 +137,7 @@ void BitcoinExchange::run(std::string filename) {
  	while (getline (in, line)) {
     date      = line.substr(0, line.find("|") - 1);
     date.erase(date.find_last_not_of(" \n\r\t") + 1);
+    std::cout << date << " is valid : " << is_valid_date(date) << std::endl;
     value_str = line.substr(line.find("|") + 1, line.size() - line.find("|"));
     value_str.erase(value_str.find_last_not_of(" \n\r\t") + 1);
     value     = std::strtod(value_str.c_str(), NULL);
@@ -129,12 +156,12 @@ void BitcoinExchange::run(std::string filename) {
       else
         day_price_cents = (--(this->upper_bound(date)))->second;
       result = value * day_price_cents;
-      if (result % 100 == 0)
-        std::cout << date << " => " << value << " = " << result / 100 << std::endl;
-      if (result % 10 == 0)
-        std::cout << date << " => " << value << " = " << result / 100 << "." << (result / 10) << std::endl;
-      else
-        std::cout << date << " => " << value << " = " << result / 100 << "." << result % 100 << std::endl;
+      // if (result % 100 == 0)
+      //   std::cout << date << " => " << value << " = " << result / 100 << std::endl;
+      // if (result % 10 == 0)
+      //   std::cout << date << " => " << value << " = " << result / 100 << "." << (result / 10) << std::endl;
+      // else
+      //   std::cout << date << " => " << value << " = " << result / 100 << "." << result % 100 << std::endl;
     }
   }
 	in.close();
