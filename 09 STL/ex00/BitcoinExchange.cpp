@@ -144,7 +144,6 @@ BitcoinExchange::~BitcoinExchange() {}
 
 
 ///////////////////////////////////////////////////////////////////////////////////
-// use an empty file
 // a file with errors (a basic example exists in the subject)
 // run the prog with input.csv as parameter 
 
