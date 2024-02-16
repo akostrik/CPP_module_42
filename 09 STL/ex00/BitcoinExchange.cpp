@@ -19,7 +19,7 @@ void trim(std::string& s) {
 void print_without_trailing_zeros(std::string date, unsigned long long n) {
   if (n % 100 == 0)
     std::cout << date << " => " << n << " = " << n / 100 << std::endl;
-  if (n % 10 == 0)
+  else if (n % 10 == 0)
     std::cout << date << " => " << n << " = " << n / 100 << "." << (n / 10) << std::endl;
   else
     std::cout << date << " => " << n << " = " << n / 100 << "." << n % 100 << std::endl;
@@ -113,8 +113,8 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
  	while (getline (in, line)) {
     date    = line.substr(0, line.find(","));
     trim(date);
-    //else if (!is_valid_date(date))
-    //  std::cout << "Error: the date " << date << " is invalid.\n";
+    if (!is_valid_date(date))
+      std::cout << "Error: the date " << date << " is invalid (in the database).\n";
     dollars = line.substr(11, line.find(".") - line.find(",") - 1);
     trim(dollars);
     cents   = line.substr(line.find(".") + 1, line.size() - line.find("."));
@@ -183,7 +183,6 @@ void BitcoinExchange::run(std::string filename) {
         day_price_in_cents = (--(this->upper_bound(date)))->second;
       print_without_trailing_zeros(date, (unsigned long long)value * day_price_in_cents);
     }
-    //delete date;
     file_is_empty = false;
   }
 	in.close();
