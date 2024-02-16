@@ -108,7 +108,7 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
   unsigned long long day_price_in_cents;
 
 	if (!in.is_open())
-		throw std::exception(); // !
+		throw std::runtime_error("database file problem");
   std::getline(in, line); // skip first line
  	while (getline (in, line)) {
     date    = line.substr(0, line.find(","));
@@ -158,7 +158,7 @@ void BitcoinExchange::run(std::string filename) {
   bool               file_is_empty = true;
 
 	if (!in.is_open())
-		throw std::exception(); // !
+		throw std::runtime_error("argument file problem");
   std::getline(in, line);
  	while (getline (in, line)) {
     date      = line.substr(0, line.find("|") - 1);
