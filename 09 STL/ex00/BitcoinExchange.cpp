@@ -66,19 +66,15 @@ BitcoinExchange::~BitcoinExchange() {}
 // }
 
 void BitcoinExchange::run(std::string filename) {
-	std::ifstream in("input.txt"); // in(filename);
-  (void)filename;
-	std::string   line;
-  std::string   date;
-  std::string   value_str;
-  double        value;
+	std::ifstream in(filename.c_str());
+	std::string        line;
+  std::string        date;
+  std::string        value_str;
+  double             value;
   unsigned long long day_price_cents; // the price in cents
   unsigned long long result;
 
   // if all keys are considered to go before k
-  //std::map<std::string, unsigned long long>::iterator upper = this->lower_bound("2011-01-08");
-  //std::map<std::string, unsigned long long>::iterator lower = --upper;
-  //std::cout << "lower 2011-01-08 : " << lower->first << " " << lower->second << std::endl;
 	if (!in.is_open())
 		throw std::exception(); // !
   std::getline(in, line);
@@ -94,6 +90,9 @@ void BitcoinExchange::run(std::string filename) {
       std::cout << "Error: not a positive number.\n";
     else if (value > 10000) 
       std::cout << "Error: too large a number.\n";
+    else if(this->find(date) == this->end() && this->upper_bound(date) == this->begin()) {
+      std::cout << "Error: the date is too early.\n";
+    }
     else {
       if (this->find(date) != this->end())
         day_price_cents = this->find(date)->second;
