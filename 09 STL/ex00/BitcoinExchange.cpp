@@ -139,8 +139,8 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& o) : std::map<std::strin
 BitcoinExchange::~BitcoinExchange() {}
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& o) {
-  //return new map<std::string, unsigned long long>; // Create memebers
-  (void)o;
+  for(BitcoinExchange::const_iterator it = o.begin(); it != o.end(); it++)
+    this->insert(std::pair<std::string, unsigned long long>(it->first, it->second));
   return *this;
 }
 
@@ -148,7 +148,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& o) {
 ///////////////////////////////////////////////////////////////////////////////////
 
 void BitcoinExchange::run(std::string filename) {
-	std::ifstream in(filename.c_str());
+	std::ifstream      in(filename.c_str());
 	std::string        line;
   std::string        date;
   std::string        value_str;

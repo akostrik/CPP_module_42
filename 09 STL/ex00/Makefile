@@ -8,7 +8,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CPP) $(FLAGS) $(SRCS) -o $(NAME)
-# valgrind -q 
 
 ./objs/%.o: %.cpp
 	@mkdir ./objs/ 2> /dev/null || true

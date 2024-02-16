@@ -14,11 +14,11 @@
 
 class BitcoinExchange : std::map<std::string, unsigned long long> {
 	public:
-								   BitcoinExchange();
-								   BitcoinExchange        (const BitcoinExchange& o);
-								   ~BitcoinExchange       ();
-	BitcoinExchange& operator=   (const BitcoinExchange& o);
-  void             run(std::string filename);
+								   BitcoinExchange ();
+								   BitcoinExchange (const BitcoinExchange& o);
+								   ~BitcoinExchange();
+	BitcoinExchange& operator=       (const BitcoinExchange& o);
+  void             run             (std::string filename);
 };
 
 #endif
