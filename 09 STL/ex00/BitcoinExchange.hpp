@@ -6,6 +6,8 @@
 # include <fstream>
 # include <stdlib.h> // strtod
 # include <iomanip>
+#include <stdexcept>
+#include <limits>
 // # include <algorithm>
 // # include <exception>
 // # include <iterator>
@@ -21,6 +23,6 @@ class BitcoinExchange : std::map<std::string, unsigned long long> {
 								   ~BitcoinExchange       ();
 	BitcoinExchange& operator=   (const BitcoinExchange& o);
   void             run(std::string filename);
-
 };
+
 #endif

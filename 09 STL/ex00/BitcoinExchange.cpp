@@ -7,7 +7,7 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
   std::string        date;
   std::string        dollars;
   std::string        cents;
-  unsigned long long value; // the price in cents
+  unsigned long long day_price_cents; // the price in cents
 
 	if (!in.is_open())
 		throw std::exception(); // !
@@ -19,15 +19,15 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
     dollars.erase(dollars.find_last_not_of(" \n\r\t") + 1);
     cents   = line.substr(line.find(".") + 1, line.size() - line.find("."));
     cents.erase(cents.find_last_not_of(" \n\r\t")+1);
-    value   = 100 * std::strtol(dollars.c_str(), NULL, 10);
+    day_price_cents   = 100 * std::strtol(dollars.c_str(), NULL, 10);
     if (line.find(".") != std::string::npos && cents.size() == 2)
-      value += std::strtol(cents.c_str(), NULL, 10);
+      day_price_cents += std::strtol(cents.c_str(), NULL, 10);
     else if (line.find(".") != std::string::npos && cents.size() == 1)
-      value += 10 * std::strtol(cents.c_str(), NULL, 10);
-    this->insert(std::pair<std::string, unsigned long long>(date, value));
-    // for(map<std::string, unsigned long long>::const_iterator it = this->begin(); it != this->end(); ++it)
-    //   std::cout << it->first << " " << it->second << "\n";
+      day_price_cents += 10 * std::strtol(cents.c_str(), NULL, 10);
+    this->insert(std::pair<std::string, unsigned long long>(date, day_price_cents));
   }
+  // for(map<std::string, unsigned long long>::const_iterator it = this->begin(); it != this->end(); ++it)
+  //   std::cout << it->first << " " << it->second << "\n";
 	in.close();
 }
 
@@ -49,6 +49,22 @@ BitcoinExchange::~BitcoinExchange() {}
 // a wrong date
 // run the prog with input.csv as parameter 
 // if the date not exist in your DB, use the closest date contained in your DB, the lower date, not the upper one
+
+// std::string BitcoinExchange::convert(double v) {
+//   std::stringstream ss;                                         // Print v to a string
+//   ss << std::fixed << std::setprecision(2) << v;
+//   std::string str = ss.str();
+//   // Ensure that there is a decimal point somewhere (there should be)
+//   if(str.find('.') != std::string::npos) {
+//     // Remove trailing zeroes
+//     str = str.substr(0, str.find_last_not_of('0')+1);
+//     // If the decimal point is now the last character, remove that as well
+//     if(str.find('.') == str.size()-1)
+//         str = str.substr(0, str.size()-1);
+//   }
+//   return str;
+// }
+
 void BitcoinExchange::run(std::string filename) {
 	std::ifstream in("input.txt"); // in(filename);
   (void)filename;
@@ -56,35 +72,44 @@ void BitcoinExchange::run(std::string filename) {
   std::string   date;
   std::string   value_str;
   double        value;
+  unsigned long long day_price_cents; // the price in cents
+  unsigned long long result;
 
   // if all keys are considered to go before k
-  std::map<std::string, unsigned long long>::iterator upper = this->lower_bound("2011-01-08");
-  std::map<std::string, unsigned long long>::iterator lower = --upper;
-  std::cout << "lower 2011-01-08 : " << lower->first << " " << lower->second << std::endl;
+  //std::map<std::string, unsigned long long>::iterator upper = this->lower_bound("2011-01-08");
+  //std::map<std::string, unsigned long long>::iterator lower = --upper;
+  //std::cout << "lower 2011-01-08 : " << lower->first << " " << lower->second << std::endl;
 	if (!in.is_open())
 		throw std::exception(); // !
   std::getline(in, line); // skip first line
  	while (getline (in, line)) {
-    date      = line.substr(0, line.find("|") - 1); // trim
+    date      = line.substr(0, line.find("|") - 1);
     date.erase(date.find_last_not_of(" \n\r\t") + 1);
     value_str = line.substr(line.find("|") + 1, line.size() - line.find("|"));
     value_str.erase(value_str.find_last_not_of(" \n\r\t") + 1);
     value     = std::strtod(value_str.c_str(), NULL);
+    //std::cout << std::fixed << "value double = " << value << std::endl;
     if (line.find("|") == std::string::npos) 
       std::cout << "Error: bad input => " << line << std::endl;
     else if (value < 0) 
       std::cout << "Error: not a positive number.\n";
     else if (value > 10000) 
       std::cout << "Error: too large a number.\n";
-    else if (this->find(date) != this->end())
-      std::cout << date << " => " << value << " = " << (value * (this->find(date)->second) / 100.) << std::endl;
     else {
-      std::map<std::string, unsigned long long>::iterator upper = this->upper_bound(date);
-      std::map<std::string, unsigned long long>::iterator lower = --upper;
-      std::cout << date << " => " << value << " = " << (value * (lower->second) / 100.) << std::endl;
-
-      //std::cout << date << " => " << value << " * " << (this->lower_bound(date)->second / 100.) << " = " << (value * this->lower_bound(date)->second / 100.) << std::endl; // if no date
-    //std::cout << date << " => " << value << " * " << this->find(date)->second / 100. << std::endl; // if no date
+      if (this->find(date) != this->end())
+        day_price_cents = this->find(date)->second;
+      else {
+        std::map<std::string, unsigned long long>::iterator next = this->upper_bound(date);
+        std::map<std::string, unsigned long long>::iterator prev = --next;
+        day_price_cents = prev->second;
+      }
+      result = (unsigned long long)(value * day_price_cents); // what type of cast ?
+      if (result % 100 == 0)
+        std::cout << date << " => " << value << " = " << result / 100 << std::endl;
+      if (result % 10 == 0)
+        std::cout << date << " => " << value << " = " << result / 100 << "." << ((result / 10) ) << std::endl;
+      else
+        std::cout << date << " => " << value << " = " << result / 100 << "." << result % 100 << std::endl;
     }
   }
 	in.close();
