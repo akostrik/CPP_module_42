@@ -1,5 +1,6 @@
 #include "BitcoinExchange.hpp"
 
+/////////////////////////////////////////////////////////////////////////////////// UTILS
 void trimR(std::string& s) {
   std::string::size_type pos = s.find_last_not_of(" \f\n\r\t\v");
   s.erase(pos + 1);
@@ -27,7 +28,7 @@ void print_without_trailing_zeros(std::string date, unsigned long long n) {
 bool is_valid_date(std::string date) {
   regex_t regex;
 
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][0-2][0-9]", 0); // compile reg expression // janv march may july aug
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][0-2][0-9]", 0); // compile regex // janv march may july aug
   if (!regexec(&regex, date.c_str(), 0, NULL, 0))                     // execute
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][3][0-1]", 0);
@@ -88,11 +89,11 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
   std::getline(in, line); // skip first line
  	while (getline (in, line)) {
     date    = line.substr(0, line.find(","));
-    //date.erase(date.find_last_not_of(" \n\r\t") + 1);
+    trim(date);
     dollars = line.substr(11, line.find(".") - line.find(",") - 1);
-    //dollars.erase(dollars.find_last_not_of(" \n\r\t") + 1);
+    trim(dollars);
     cents   = line.substr(line.find(".") + 1, line.size() - line.find("."));
-    cents.erase(cents.find_last_not_of(" \n\r\t")+1);
+    trim(cents);
     day_price_in_cents   = 100 * std::strtol(dollars.c_str(), NULL, 10);
     if (line.find(".") != std::string::npos && cents.size() == 2)
       day_price_in_cents += std::strtol(cents.c_str(), NULL, 10);
@@ -118,11 +119,9 @@ BitcoinExchange::~BitcoinExchange() {}
 
 
 ///////////////////////////////////////////////////////////////////////////////////
-// handle possible errors with an appropriate error message
 // use an empty file
 // a file with errors (a basic example exists in the subject)
 // run the prog with input.csv as parameter 
-// if the date not exist in your DB, use the closest date contained in your DB, the lower date, not the upper one
 
 void BitcoinExchange::run(std::string filename) {
 	std::ifstream in(filename.c_str());
@@ -131,17 +130,16 @@ void BitcoinExchange::run(std::string filename) {
   std::string        value_str;
   double             value;
   unsigned long long day_price_in_cents;
+  bool               file_is_empty = true;
 
 	if (!in.is_open())
 		throw std::exception(); // !
   std::getline(in, line);
  	while (getline (in, line)) {
     date      = line.substr(0, line.find("|") - 1);
-    //date.erase(date.find_last_not_of(" \n\r\t") + 1);
     trim(date);
-    std::cout << "*** date = [" << date << "]" << std::endl;
     value_str = line.substr(line.find("|") + 1, line.size() - line.find("|"));
-    value_str.erase(value_str.find_last_not_of(" \n\r\t") + 1);
+    trim(value_str);
     value     = std::strtod(value_str.c_str(), NULL);
     if (line.find("|") == std::string::npos) 
       std::cout << "Error: bad input => " << line << std::endl;
@@ -160,7 +158,10 @@ void BitcoinExchange::run(std::string filename) {
         day_price_in_cents = (--(this->upper_bound(date)))->second;
       print_without_trailing_zeros(date, (unsigned long long)value * day_price_in_cents);
     }
-    // delete date;
+    //delete date;
+    file_is_empty = false;
   }
 	in.close();
+  if (file_is_empty)
+		throw std::exception(); // !
 }

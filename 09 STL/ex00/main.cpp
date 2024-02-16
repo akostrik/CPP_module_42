@@ -6,7 +6,8 @@ int main(int argc, char *argv[]) {
     return 0;
   }
   try {
-    BitcoinExchange().run(argv[1]);
+    BitcoinExchange b = BitcoinExchange();
+    b.run(argv[1]);
 	 } catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
