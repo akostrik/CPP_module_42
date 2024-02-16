@@ -1,5 +1,7 @@
 #include "BitcoinExchange.hpp"
 
+// run the prog with input.csv as parameter 
+
 int main(int argc, char *argv[]) {
   if (argc != 2) {
     std::cout << "Error: give a filename as the argument\n";
@@ -7,7 +9,8 @@ int main(int argc, char *argv[]) {
   }
   try {
     BitcoinExchange b = BitcoinExchange();
-    b.run(argv[1]);
+    BitcoinExchange b2(b);
+    b2.run(argv[1]);
 	 } catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}

@@ -32,56 +32,56 @@ bool is_valid_date(std::string date) {
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][0-2][0-9]", 0); // compile regex // janv march may july aug
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0); // execute
   regfree(&regex);
-    if (ok)
+  if (ok)
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][3][0-1]", 0);
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
-    if (ok)
+  if (ok)
     return true;
 
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]1[02][-][0-2][0-9]", 0); // octob decem
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
-    if (ok)
+  if (ok)
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]1[02][-][3][0-1]", 0);
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
-    if (ok)
+  if (ok)
     return true;
 
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[469][-][0-2][0-9]", 0); // april june sept
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
-    if (ok)
+  if (ok)
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[469][-][3][0]", 0);
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
-    if (ok)
+  if (ok)
     return true;
 
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]11[-][0-2][0-9]", 0); // nov
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
-    if (ok)
+  if (ok)
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]11[-][3][0]", 0);
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
-    if (ok)
+  if (ok)
     return true;
 
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-][01][0-9]", 0); // feb
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
-    if (ok)
+  if (ok)
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-][2][0-8]", 0);
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
-    if (ok)
+  if (ok)
     return true;
 
   std::string year_str = date.substr(0, date.find("-")); // feb 29
@@ -97,7 +97,8 @@ bool is_valid_date(std::string date) {
   return false;
 }
 
-// modify "input.csv" !!!!!!!!!!!!!
+// modify "input.csv" !!!!!!!!!!!!! empty line!
+
 ///////////////////////////////////////////////////////////////////////////////////
 BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>() {
 	std::ifstream      in(DB_FILE);
@@ -119,7 +120,7 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
     trim(dollars);
     cents   = line.substr(line.find(".") + 1, line.size() - line.find("."));
     trim(cents);
-    day_price_in_cents   = 100 * std::strtol(dollars.c_str(), NULL, 10);
+    day_price_in_cents = 100 * std::strtol(dollars.c_str(), NULL, 10);
     if (line.find(".") != std::string::npos && cents.size() == 2)
       day_price_in_cents += std::strtol(cents.c_str(), NULL, 10);
     else if (line.find(".") != std::string::npos && cents.size() == 1)
@@ -131,21 +132,20 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
     throw std::underflow_error("Error: database file es empty");
 }
 
-// BitcoinExchange::BitcoinExchange(const BitcoinExchange& o) : std::map<std::string, unsigned long long>() {
-//   *this = o;
-// }
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& o) : std::map<std::string, unsigned long long>() {
+  *this = o;
+}
 
 BitcoinExchange::~BitcoinExchange() {}
 
-// BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& o) {
-//   std::copy(o.begin(), o.end(), this->begin());
-//   return *this;
-// }
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& o) {
+  //return new map<std::string, unsigned long long>; // Create memebers
+  (void)o;
+  return *this;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////
-// a file with errors (a basic example exists in the subject)
-// run the prog with input.csv as parameter 
 
 void BitcoinExchange::run(std::string filename) {
 	std::ifstream in(filename.c_str());
@@ -156,8 +156,8 @@ void BitcoinExchange::run(std::string filename) {
   unsigned long long day_price_in_cents;
   bool               file_is_empty = true;
 
-	if (!in.is_open())
-		throw std::runtime_error("argument file problem");
+  if (!in.is_open())
+    throw std::runtime_error("argument file problem");
   std::getline(in, line);
  	while (getline (in, line)) {
     date      = line.substr(0, line.find("|") - 1);
