@@ -488,9 +488,10 @@ the real beginning of the bloc
 ## Errors 
 * **undefined behavior** it could work, it could crash, it could do something else
 
-## Regular expression
+## Regular expressions
 * std::regex (c++ 11)
 * under UNIX-like systems you can use POSIX regex functions
+* https://regex101.com/
 
 ## Specifiers
 
