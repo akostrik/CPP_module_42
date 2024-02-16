@@ -27,47 +27,70 @@ void print_without_trailing_zeros(std::string date, unsigned long long n) {
 
 bool is_valid_date(std::string date) {
   regex_t regex;
+  bool ok;
 
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][0-2][0-9]", 0); // compile regex // janv march may july aug
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))                     // execute
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0); // execute
+  regfree(&regex);
+    if (ok)
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][3][0-1]", 0);
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+  regfree(&regex);
+    if (ok)
     return true;
 
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]1[02][-][0-2][0-9]", 0); // octob decem
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+  regfree(&regex);
+    if (ok)
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]1[02][-][3][0-1]", 0);
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+  regfree(&regex);
+    if (ok)
     return true;
 
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[469][-][0-2][0-9]", 0); // april june sept
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+  regfree(&regex);
+    if (ok)
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[469][-][3][0]", 0);
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+  regfree(&regex);
+    if (ok)
     return true;
 
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]11[-][0-2][0-9]", 0); // nov
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+  regfree(&regex);
+    if (ok)
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]11[-][3][0]", 0);
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+  regfree(&regex);
+    if (ok)
     return true;
 
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-][01][0-9]", 0); // feb
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+  regfree(&regex);
+    if (ok)
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-][2][0-8]", 0);
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+  regfree(&regex);
+    if (ok)
     return true;
 
   std::string year_str = date.substr(0, date.find("-")); // feb 29
   int year = std::strtol(year_str.c_str(), NULL, 10);
   if (year % 4 == 0 && year % 400 != 0) {
     regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-]29", 0);
-    if (!regexec(&regex, date.c_str(), 0, NULL, 0))
+    ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+    regfree(&regex);
+    if (ok)
       return true;
   }
 
@@ -90,6 +113,8 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
  	while (getline (in, line)) {
     date    = line.substr(0, line.find(","));
     trim(date);
+    //else if (!is_valid_date(date))
+    //  std::cout << "Error: the date " << date << " is invalid.\n";
     dollars = line.substr(11, line.find(".") - line.find(",") - 1);
     trim(dollars);
     cents   = line.substr(line.find(".") + 1, line.size() - line.find("."));
