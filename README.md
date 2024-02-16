@@ -131,8 +131,8 @@ stack                  | top push emplace pop swap                              
 queue                  | front back push emplace pop swap                                                                                                                                       | 
 priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap                                                                                                                   |add / remove O(ln n) 
 
-\* upper bound return first element which is > value; if not, return end()
-\* lower bound return first element which is ≥ value; if not, return end()
+\* upper bound return first element which is > value; if not, return end()  
+\* lower bound return first element which is ≥ value; if not, return end()  
 
 ### Iterator
 * an object pointing to some element in a range of elements
