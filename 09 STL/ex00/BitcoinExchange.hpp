@@ -27,6 +27,7 @@ class BitcoinExchange : std::map<std::string, unsigned long long> {
 	BitcoinExchange& operator=   (const BitcoinExchange& o);
   void             run(std::string filename);
   bool             is_valid_date(std::string date);
+  void             print_without_trailing_zeros(std::string date, unsigned long long n);
 };
 
 #endif

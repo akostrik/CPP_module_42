@@ -7,7 +7,7 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
   std::string        date;
   std::string        dollars;
   std::string        cents;
-  unsigned long long day_price_cents; // the price in cents
+  unsigned long long day_price_in_cents;
 
 	if (!in.is_open())
 		throw std::exception(); // !
@@ -19,16 +19,16 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
     dollars.erase(dollars.find_last_not_of(" \n\r\t") + 1);
     cents   = line.substr(line.find(".") + 1, line.size() - line.find("."));
     cents.erase(cents.find_last_not_of(" \n\r\t")+1);
-    day_price_cents   = 100 * std::strtol(dollars.c_str(), NULL, 10);
+    day_price_in_cents   = 100 * std::strtol(dollars.c_str(), NULL, 10);
     if (line.find(".") != std::string::npos && cents.size() == 2)
-      day_price_cents += std::strtol(cents.c_str(), NULL, 10);
+      day_price_in_cents += std::strtol(cents.c_str(), NULL, 10);
     else if (line.find(".") != std::string::npos && cents.size() == 1)
-      day_price_cents += 10 * std::strtol(cents.c_str(), NULL, 10);
-    this->insert(std::pair<std::string, unsigned long long>(date, day_price_cents));
+      day_price_in_cents += 10 * std::strtol(cents.c_str(), NULL, 10);
+    this->insert(std::pair<std::string, unsigned long long>(date, day_price_in_cents));
   }
-  // for(map<std::string, unsigned long long>::const_iterator it = this->begin(); it != this->end(); ++it)
-  //   std::cout << it->first << " " << it->second << "\n";
 	in.close();
+  if (this->size() == 0)
+		throw std::exception(); // file es empty
 }
 
 // BitcoinExchange::BitcoinExchange(const BitcoinExchange& o) : std::map<std::string, unsigned long long>() {
@@ -66,17 +66,10 @@ BitcoinExchange::~BitcoinExchange() {}
 // }
 
 bool BitcoinExchange::is_valid_date(std::string date) {
-  //std::regex pattern("\\b\\d{4}[-]\\d{2}[-]\\d{2}\\b");
-  //[0-9]{2}/[0-9]{2}/[0-9]{4}
-  //(((19|20)([2468][048]|[13579][26]|0[48])|2000)[-]02[-]29|((19|20)[0-9]{2}[-](0[4678]|1[02])[-](0[1-9]|[12][0-9]|30)|(19|20)[0-9]{2}[-](0[1359]|11)[-](0[1-9]|[12][0-9]|3[01])|(19|20)[0-9]{2}[-]02[-](0[1-9]|1[0-9]|2[0-8])))
-  // std::string year          = strd::substr(0, date.find("-") - 1);
-  // if (!year.empty() || year.size() <= 2008 || s.find_first_not_of("0123456789") == s.npos)
-  //   return false;
-  // std::string month_and_day = std::substr(date.find("-"), date.size()); // size ?
   regex_t regex;
 
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][0-2][0-9]", 0); // compile reg expression // janv march may july august
-  if (!regexec(&regex, date.c_str(), 0, NULL, 0))                   // execute
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][0-2][0-9]", 0); // compile reg expression // janv march may july aug
+  if (!regexec(&regex, date.c_str(), 0, NULL, 0))                     // execute
     return true;
   regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][3][0-1]", 0);
   if (!regexec(&regex, date.c_str(), 0, NULL, 0))
@@ -110,7 +103,7 @@ bool BitcoinExchange::is_valid_date(std::string date) {
   if (!regexec(&regex, date.c_str(), 0, NULL, 0))
     return true;
 
-  std::string year_str = date.substr(0, date.find("-"));
+  std::string year_str = date.substr(0, date.find("-")); // feb 29
   int year = std::strtol(year_str.c_str(), NULL, 10);
   if (year % 4 == 0 && year % 400 != 0) {
     regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-]29", 0);
@@ -121,47 +114,48 @@ bool BitcoinExchange::is_valid_date(std::string date) {
   return false;
 }
 
+void BitcoinExchange::print_without_trailing_zeros(std::string date, unsigned long long n) {
+  if (n % 100 == 0)
+    std::cout << date << " => " << n << " = " << n / 100 << std::endl;
+  if (n % 10 == 0)
+    std::cout << date << " => " << n << " = " << n / 100 << "." << (n / 10) << std::endl;
+  else
+    std::cout << date << " => " << n << " = " << n / 100 << "." << n % 100 << std::endl;
+}
+
 void BitcoinExchange::run(std::string filename) {
 	std::ifstream in(filename.c_str());
 	std::string        line;
   std::string        date;
   std::string        value_str;
   double             value;
-  unsigned long long day_price_cents; // the price in cents
-  unsigned long long result;
+  unsigned long long day_price_in_cents;
 
-  // if all keys are considered to go before k
 	if (!in.is_open())
 		throw std::exception(); // !
   std::getline(in, line);
  	while (getline (in, line)) {
     date      = line.substr(0, line.find("|") - 1);
     date.erase(date.find_last_not_of(" \n\r\t") + 1);
-    std::cout << date << " is valid : " << is_valid_date(date) << std::endl;
     value_str = line.substr(line.find("|") + 1, line.size() - line.find("|"));
     value_str.erase(value_str.find_last_not_of(" \n\r\t") + 1);
     value     = std::strtod(value_str.c_str(), NULL);
     if (line.find("|") == std::string::npos) 
       std::cout << "Error: bad input => " << line << std::endl;
     else if (value < 0) 
-      std::cout << "Error: not a positive number.\n";
+      std::cout << "Error: " << value << " is not a positive number.\n";
     else if (value > 10000) 
-      std::cout << "Error: too large a number.\n";
-    else if(this->find(date) == this->end() && this->upper_bound(date) == this->begin()) {
-      std::cout << "Error: the date is too early.\n";
-    }
+      std::cout << "Error: " << value << " is a too large number.\n";
+    else if(this->find(date) == this->end() && this->upper_bound(date) == this->begin())
+      std::cout << "Error: the date " << date << " is invalid (the earliest possible date is 2009-01-02).\n";
+    else if (!is_valid_date(date))
+      std::cout << "Error: the date " << date << " is invalid.\n";
     else {
       if (this->find(date) != this->end())
-        day_price_cents = this->find(date)->second;
+        day_price_in_cents = this->find(date)->second;
       else
-        day_price_cents = (--(this->upper_bound(date)))->second;
-      result = value * day_price_cents;
-      // if (result % 100 == 0)
-      //   std::cout << date << " => " << value << " = " << result / 100 << std::endl;
-      // if (result % 10 == 0)
-      //   std::cout << date << " => " << value << " = " << result / 100 << "." << (result / 10) << std::endl;
-      // else
-      //   std::cout << date << " => " << value << " = " << result / 100 << "." << result % 100 << std::endl;
+        day_price_in_cents = (--(this->upper_bound(date)))->second;
+      print_without_trailing_zeros(date, (unsigned long long)value * day_price_in_cents);
     }
   }
 	in.close();
