@@ -81,14 +81,13 @@ void BitcoinExchange::run(std::string filename) {
   //std::cout << "lower 2011-01-08 : " << lower->first << " " << lower->second << std::endl;
 	if (!in.is_open())
 		throw std::exception(); // !
-  std::getline(in, line); // skip first line
+  std::getline(in, line);
  	while (getline (in, line)) {
     date      = line.substr(0, line.find("|") - 1);
     date.erase(date.find_last_not_of(" \n\r\t") + 1);
     value_str = line.substr(line.find("|") + 1, line.size() - line.find("|"));
     value_str.erase(value_str.find_last_not_of(" \n\r\t") + 1);
     value     = std::strtod(value_str.c_str(), NULL);
-    //std::cout << std::fixed << "value double = " << value << std::endl;
     if (line.find("|") == std::string::npos) 
       std::cout << "Error: bad input => " << line << std::endl;
     else if (value < 0) 
@@ -98,16 +97,13 @@ void BitcoinExchange::run(std::string filename) {
     else {
       if (this->find(date) != this->end())
         day_price_cents = this->find(date)->second;
-      else {
-        std::map<std::string, unsigned long long>::iterator next = this->upper_bound(date);
-        std::map<std::string, unsigned long long>::iterator prev = --next;
-        day_price_cents = prev->second;
-      }
-      result = (unsigned long long)(value * day_price_cents); // what type of cast ?
+      else
+        day_price_cents = (--(this->upper_bound(date)))->second;
+      result = value * day_price_cents;
       if (result % 100 == 0)
         std::cout << date << " => " << value << " = " << result / 100 << std::endl;
       if (result % 10 == 0)
-        std::cout << date << " => " << value << " = " << result / 100 << "." << ((result / 10) ) << std::endl;
+        std::cout << date << " => " << value << " = " << result / 100 << "." << (result / 10) << std::endl;
       else
         std::cout << date << " => " << value << " = " << result / 100 << "." << result % 100 << std::endl;
     }
