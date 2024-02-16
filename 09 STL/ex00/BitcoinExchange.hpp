@@ -4,7 +4,8 @@
 # include <map>
 # include <string>
 # include <fstream>
-#include <stdlib.h> // strtod
+# include <stdlib.h> // strtod
+# include <iomanip>
 // # include <algorithm>
 // # include <exception>
 // # include <iterator>
@@ -14,13 +15,12 @@
 # define DB_FILE "data.csv"
 
 class BitcoinExchange : std::map<std::string, unsigned long long> {
-	private:
-
 	public:
-								BitcoinExchange();
-	// 							BitcoinExchange        (const BitcoinExchange& o);
-	// 							~BitcoinExchange       ();
-	// BitcoinExchange&              operator=   (const BitcoinExchange& o);
+								   BitcoinExchange();
+								   BitcoinExchange        (const BitcoinExchange& o);
+								   ~BitcoinExchange       ();
+	BitcoinExchange& operator=   (const BitcoinExchange& o);
+  void             run(std::string filename);
 
 };
 #endif

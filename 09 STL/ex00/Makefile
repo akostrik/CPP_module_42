@@ -1,4 +1,5 @@
 NAME    = btc
+# btc not a.out
 SRCS    = main.cpp BitcoinExchange.cpp
 OBJS    = $(addprefix ./objs/, $(SRCS:.cpp=.o))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror
@@ -8,6 +9,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CPP) $(FLAGS) $(SRCS)
+# valgrind -q 
 
 ./objs/%.o: %.cpp
 	mkdir ./objs/ 2> /dev/null || true
