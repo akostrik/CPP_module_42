@@ -488,9 +488,9 @@ the real beginning of the bloc
 ## Errors 
 * **undefined behavior** it could work, it could crash, it could do something else
 
-## Makefile
-`CXX = c++`
-`CXXFLAGS`
+## Regular expression
+* std::regex (c++ 11)
+* under UNIX-like systems you can use POSIX regex functions
 
 ## Specifiers
 
