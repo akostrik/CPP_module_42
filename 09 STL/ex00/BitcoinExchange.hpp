@@ -9,6 +9,7 @@
 # include <stdexcept>
 # include <limits>
 # include <regex.h>
+# include <algorithm>
 
 # define DB_FILE "data.csv"
 
