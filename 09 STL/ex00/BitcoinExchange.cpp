@@ -14,62 +14,25 @@ bool is_valid_date(std::string date) {
   regex_t regex;
   bool ok;
 
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][0-2][0-9]", 0); // compile regex // janv march may july aug
-  ok = !regexec(&regex, date.c_str(), 0, NULL, 0); // execute
-  regfree(&regex);
-  if (ok)
-    return true;
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[13578][-][3][0-1]", 0);
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-](01|03|05|07|08|10|12)[-]([0-2][0-9]|30|31)", REG_EXTENDED); // 31
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
   if (ok)
     return true;
 
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]1[02][-][0-2][0-9]", 0); // octob decem
-  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
-  regfree(&regex);
-  if (ok)
-    return true;
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]1[02][-][3][0-1]", 0);
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-](02|04|06|09|11)[-]([0-2][0-9]|30)", REG_EXTENDED); // 30
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
   if (ok)
     return true;
 
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[469][-][0-2][0-9]", 0); // april june sept
-  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
-  regfree(&regex);
-  if (ok)
-    return true;
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]0[469][-][3][0]", 0);
+  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-]([01][0-9]|2[0-8])", REG_EXTENDED); // 28
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
   if (ok)
     return true;
 
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]11[-][0-2][0-9]", 0); // nov
-  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
-  regfree(&regex);
-  if (ok)
-    return true;
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]11[-][3][0]", 0);
-  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
-  regfree(&regex);
-  if (ok)
-    return true;
-
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-][01][0-9]", 0); // feb
-  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
-  regfree(&regex);
-  if (ok)
-    return true;
-  regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-][2][0-8]", 0);
-  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
-  regfree(&regex);
-  if (ok)
-    return true;
-
-  std::string year_str = date.substr(0, date.find("-")); // feb 29
+  std::string year_str = date.substr(0, date.find("-")); // 29
   int year = std::strtol(year_str.c_str(), NULL, 10);
   if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
     regcomp(&regex, "[2-9][0-9][0-9][0-9][-]02[-]29", 0);
