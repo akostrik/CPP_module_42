@@ -54,10 +54,10 @@ RPN::RPN(std::string arg) : std::stack<float>() {
       if (*it == '/')
         this->push(a / b);
     }
-    else {
-      std::cout << arg << " : in not valid" << std::endl;
-      return ;
-    }
+    else
+      throw std::invalid_argument("Error");
   }
+  if (this->size() != 1)
+    throw std::invalid_argument("Error");
   std::cout << this->top() << std::endl;
 }

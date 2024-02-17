@@ -10,7 +10,7 @@
 # include <stdexcept>
 # include <limits>
 # include <algorithm>
-# include <regex.h>
+# include <exception>
 
 class RPN : std::stack<float> {
   private:
