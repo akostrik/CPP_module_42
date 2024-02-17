@@ -33,7 +33,8 @@ int main(int argc, char *argv[]) {
   }
   try {
     RPN b = RPN(argv[1]);
-    //RPN b2(b);
+    RPN b2 = b;
+    b2.run();
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }

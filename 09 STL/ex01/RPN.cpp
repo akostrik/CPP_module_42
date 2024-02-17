@@ -29,9 +29,8 @@ typename ADAPTER::container_type & get_container (ADAPTER &a) {
 // }
 
 RPN& RPN::operator=(const RPN& o) { // to test
-  std::stack<float>::container_type underliyng_container_of_o    = o.c;
-  std::stack<float>::container_type underliyng_container_of_this = this->c;
-  underliyng_container_of_this = underliyng_container_of_o;
+  std::stack<float>::container_type underliyng_cont_o    = o.c;
+  this->c = underliyng_cont_o;
   return *this;
 }
 
@@ -59,5 +58,8 @@ RPN::RPN(std::string arg) : std::stack<float>() {
   }
   if (this->size() != 1)
     throw std::invalid_argument("Error");
+}
+
+void RPN::run() {
   std::cout << this->top() << std::endl;
 }
