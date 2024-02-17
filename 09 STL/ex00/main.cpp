@@ -11,8 +11,8 @@ int main(int argc, char *argv[]) {
     BitcoinExchange b = BitcoinExchange();
     BitcoinExchange b2(b);
     b2.run(argv[1]);
-	 } catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
   return 0;
 }
