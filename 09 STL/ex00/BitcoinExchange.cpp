@@ -14,25 +14,25 @@ bool is_valid_date(std::string date) {
   regex_t regex;
   bool ok;
 
-  regcomp(&regex, "[0-9][0-9][0-9][0-9][-](01|03|05|07|08|10|12)[-]([0-2][0-9]|30|31)", REG_EXTENDED); // 31
+  regcomp(&regex, "^[0-9][0-9][0-9][0-9][-](01|03|05|07|08|10|12)[-]([0-2][0-9]|30|31)$", REG_EXTENDED); // 31
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
   if (ok)
     return true;
 
-  regcomp(&regex, "[0-9][0-9][0-9][0-9][-](04|06|09|11)[-]([0-2][0-9]|30)", REG_EXTENDED); // 30
+  regcomp(&regex, "^[0-9][0-9][0-9][0-9][-](04|06|09|11)[-]([0-2][0-9]|30)$", REG_EXTENDED); // 30
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
   if (ok)
     return true;
 
-  regcomp(&regex, "[0-9][0-9][0-9][0-9][-]02[-]([01][0-9]|2[0-8])", REG_EXTENDED); // 28
+  regcomp(&regex, "^[0-9][0-9][0-9][0-9][-]02[-]([01][0-9]|2[0-8])$", REG_EXTENDED); // 28
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
   if (ok)
     return true;
 
-  regcomp(&regex, "[0-9][0-9][0-9][0-9][-]02[-]29", REG_EXTENDED); // 29
+  regcomp(&regex, "^[0-9][0-9][0-9][0-9][-]02[-]29$", REG_EXTENDED); // 29
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
   regfree(&regex);
   int year = std::strtol(date.substr(0, date.find("-")).c_str(), NULL, 10);
@@ -47,7 +47,7 @@ bool is_valid_db_line(std::string line) {
   bool        ok;
   std::string date = line.substr(0, line.find(","));
 
-  regcomp(&regex, "[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9][,]([0-9]+[.]?[0-9]{0,2}|[0-9]*[.][0-9][0-9]?)$", REG_EXTENDED);
+  regcomp(&regex, "^[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9][,]([0-9]+[.]?[0-9]{0,2}|[0-9]*[.][0-9][0-9]?)$", REG_EXTENDED);
   ok = !regexec(&regex, line.c_str(), 0, NULL, 0);
   regfree(&regex);
   if (!ok) {
@@ -66,7 +66,7 @@ bool is_valid_arg_file_line(std::string line, double value, std::string firstDat
   bool        ok;
   std::string date = line.substr(0, line.find("|"));
 
-  regcomp(&regex, "[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9][|][-]?([0-9]+[.]?[0-9]*|[0-9]*[.][0-9][0-9]?)$", REG_EXTENDED);
+  regcomp(&regex, "^[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9][|][-]?([0-9]+[.]?[0-9]*|[0-9]*[.][0-9][0-9]?)$", REG_EXTENDED);
   ok = !regexec(&regex, line.c_str(), 0, NULL, 0);
   regfree(&regex);
 
@@ -75,7 +75,7 @@ bool is_valid_arg_file_line(std::string line, double value, std::string firstDat
   if (std::count(line.begin(), line.end(), '-') == 3)
     return (std::cout << "Error: not a positive number.\n", false);
   if (value > 10000)
-    return (std::cout << "Error: " << value << " is a too large number.\n", false);
+    return (std::cout << "Error: a too large number.\n", false);
   if(date < firstDate)
     return (std::cout << "Error: the date " << date << " is invalid (the earliest possible date is " << firstDate << ").\n", false);
   if (!is_valid_date(date))
@@ -106,7 +106,7 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
   bool               file_is_empty = true;
 
   if (!in.is_open())
-    throw std::runtime_error("database file problem");
+    throw std::runtime_error("Error: can't open the database.");
   std::getline(in, line); // skip first line
   while (getline (in, line)) {
     file_is_empty = false;
@@ -125,7 +125,7 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
   }
   in.close();
   if (file_is_empty)
-    throw std::underflow_error("Error: database file es empty");
+    throw std::underflow_error("Error: database es empty.");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ void BitcoinExchange::run(std::string filename) {
   bool               file_is_empty = true;
 
   if (!in.is_open())
-    throw std::runtime_error("argument file problem");
+    throw std::runtime_error("Error: can't open the argument file.");
   std::getline(in, line);
   while (getline (in, line)) {
     file_is_empty = false;
