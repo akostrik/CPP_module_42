@@ -1,7 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-// run the prog with input.csv as parameter 
-
 int main(int argc, char *argv[]) {
   if (argc != 2) {
     std::cout << "Error: give a filename as the argument\n";

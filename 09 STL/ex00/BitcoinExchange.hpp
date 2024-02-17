@@ -10,16 +10,15 @@
 # include <limits>
 # include <algorithm>
 # include <regex.h>
-// # include <regex.h> c++ 11
 
 # define DB_FILE "data.csv"
 
 class BitcoinExchange : std::map<std::string, unsigned long long> {
-	public:
-								   BitcoinExchange ();
-								   BitcoinExchange (const BitcoinExchange& o);
-								   ~BitcoinExchange();
-	BitcoinExchange& operator=       (const BitcoinExchange& o);
+  public:
+                   BitcoinExchange ();
+                   BitcoinExchange (const BitcoinExchange& o);
+                   ~BitcoinExchange();
+  BitcoinExchange& operator=       (const BitcoinExchange& o);
   void             run             (std::string filename);
 };
 

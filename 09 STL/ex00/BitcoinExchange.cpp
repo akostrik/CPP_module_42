@@ -83,7 +83,17 @@ bool is_valid_arg_file_line(std::string line, double value, std::string firstDat
   return true;
 }
 
-// modify "input.csv" !!!!!!!!!!!!! empty line!
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& o) : std::map<std::string, unsigned long long>() {
+  *this = o;
+}
+
+BitcoinExchange::~BitcoinExchange() {}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& o) {
+  for(BitcoinExchange::const_iterator it = o.begin(); it != o.end(); it++)
+    this->insert(std::pair<std::string, unsigned long long>(it->first, it->second));
+  return *this;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////
 BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>() {
@@ -116,18 +126,6 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
   in.close();
   if (file_is_empty)
     throw std::underflow_error("Error: database file es empty");
-}
-
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& o) : std::map<std::string, unsigned long long>() {
-  *this = o;
-}
-
-BitcoinExchange::~BitcoinExchange() {}
-
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& o) {
-  for(BitcoinExchange::const_iterator it = o.begin(); it != o.end(); it++)
-    this->insert(std::pair<std::string, unsigned long long>(it->first, it->second));
-  return *this;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
