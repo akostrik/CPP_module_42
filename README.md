@@ -711,20 +711,20 @@ synonyme
 
 ### polymorphic class
 defines or inherits a virtual function 
-no keyword `incomplet`, just terminologie
 
 ## other
-* `#pragma once` is only intended to be used in headers, there is no need to compile headers, don't compile headers
-* c++ 11
-    + Lambda Expressions
-    + Automatic Type Deduction
-    + decltype
-    + Uniform Initialization Syntax
-    + Deleted and Defaulted Functions
-    + nullptr
-    + Rvalue References
-    + New Smart Pointer Classes (shared_ptr, unique_ptr)
-    + More C++ Algorithms
+* `#pragma once` is only intended to be used in headers, don't compile headers
+
+## c++ 11
+* Lambda Expressions
+* Automatic Type Deduction
+* decltype
+* Uniform Initialization Syntax
+* Deleted and Defaulted Functions
+* nullptr
+* Rvalue References
+* New Smart Pointer Classes (shared_ptr, unique_ptr)
+* More C++ Algorithms
 
 # Linens
 http://www.cplusplus.com  
