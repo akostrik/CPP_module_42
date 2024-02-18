@@ -36,18 +36,24 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
     elt_t elt;
     elt.v = std::strtoul(argv[i], NULL, 10);
     elt.pair = NULL;
-    if (i % 2 == 1)
+    if (i % 2 == 0)
       elt.pair = &(lst.front());
-    lst.push_front(elt);
+    std::cout << "elt = [" << elt.v << "," << (elt.pair != NULL ? elt.pair->v : 0) << "] " << std::endl;
+      lst.push_front(elt);
   }
   order = calc_order_insertions(argc);
 }
 
 void PmergeMe::run(std::list<elt_t> lst) {
-// sort recursively
-
+  // sort recursively
   for (std::list<elt_t>::iterator it = lst.begin(); it != lst.end(); ++it)
-    std::cout << it->v << std::endl;
+    std::cout << it->v << " ";
+  std::cout << std::endl;
+
+  // for (std::list<elt_t>::iterator it = lst.begin(); it != lst.end(); ++it)
+  //   std::cout << "[" << it->v << " " << /*it->pair->v << */"] ";
+  std::cout << std::endl;
+
 }
 
 void PmergeMe::run() {
