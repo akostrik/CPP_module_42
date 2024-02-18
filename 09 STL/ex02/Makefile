@@ -1,19 +1,21 @@
-NAME    = a.out
+NAME    = PmergeMe
 SRCS    = main.cpp PmergeMe.cpp
 OBJS    = $(addprefix ./objs/, $(SRCS:.cpp=.o))
 FLAGS   = -std=c++98 -Wall -Wextra -Werror
 CPP     = c++
 
-all: $(OBJS) $(HEADER)
+all: $(NAME)
+
+$(NAME): $(OBJS)
 	$(CPP) $(FLAGS) $(SRCS)
 
 ./objs/%.o: %.cpp
-	mkdir ./objs/ 2> /dev/null || true
+	@mkdir ./objs/ 2> /dev/null || true
 	$(CPP) -o $@ -c $<
 
 clean:
 	rm -f $(OBJS)
-	rmdir ./objs/ 2> /dev/null || true
+	@rmdir ./objs/ 2> /dev/null || true
 
 fclean: clean
 	rm -f a.out
