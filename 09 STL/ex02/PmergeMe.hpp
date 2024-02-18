@@ -16,11 +16,16 @@
 # include <exception>
 # include <cmath>
 
+typedef struct elt_s{
+  unsigned int v;
+  elt_s        *pair;
+} elt_t;
+
 class PmergeMe {
   private:
-  std::list<unsigned int>             lst;
-  std::set<unsigned int>              set;
-  std::map<unsigned int,unsigned int> map;
+  std::list<elt_t>             lst;
+  //std::set<elt_t>              set;
+  //std::map<unsigned int,unsigned int> map;
   int                                 *order;
                           PmergeMe ();
 
@@ -29,8 +34,13 @@ class PmergeMe {
                           PmergeMe (const PmergeMe& o);
                           ~PmergeMe();
   PmergeMe&               operator=(const PmergeMe& o);
-  void                    run      (std::map<unsigned int,unsigned int> map);
+  void                    run      (std::list<elt_t> lst);
   void                    run      ();
 };
 
 #endif
+
+    // if(i % 2 == 0 && argv[i + 1] != NULL)
+    //   map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i], NULL, 10), std::strtoul(argv[i + 1], NULL, 10)));
+    // else if (i % 2 == 0 && argv[i + 1] == NULL)
+    //   map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i], NULL, 10), std::strtoul(argv[i], NULL, 10)));
