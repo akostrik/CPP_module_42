@@ -6,8 +6,11 @@
 
 template <typename T>
 void test(T container, int n) {
-  try                            { std::cout << *easyfind(container, n) << std::endl; }
-  catch(const std::exception& e) { std::cout << "Value not found!"      << std::endl; }
+  try                            {
+    std::cout << *easyfind(container, n) << std::endl;
+  } catch(const std::exception& e) {
+    std::cout << "Value not found!"      << std::endl;
+  }
 }
 
 int main( void ) {

@@ -69,7 +69,7 @@ int main() {
   }
 
   try {
-    std::cout << std::endl << s.shortestSpan() << std::endl;
+    std::cout << s.shortestSpan() << std::endl;
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
