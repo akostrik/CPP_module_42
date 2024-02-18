@@ -37,21 +37,34 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
     elt.v = std::strtoul(argv[i], NULL, 10);
     elt.pair = NULL;
     if (i % 2 == 0)
-      elt.pair = &(lst.front());
-    std::cout << "elt = [" << elt.v << "," << (elt.pair != NULL ? elt.pair->v : 0) << "] " << std::endl;
-      lst.push_front(elt);
+      elt.pair = &(lst.back());
+    lst.push_back(elt);
   }
   order = calc_order_insertions(argc);
 }
 
+
 void PmergeMe::run(std::list<elt_t> lst) {
   // sort recursively
-  for (std::list<elt_t>::iterator it = lst.begin(); it != lst.end(); ++it)
-    std::cout << it->v << " ";
-  std::cout << std::endl;
 
-  // for (std::list<elt_t>::iterator it = lst.begin(); it != lst.end(); ++it)
-  //   std::cout << "[" << it->v << " " << /*it->pair->v << */"] ";
+    size_t size = lst.size();
+    std::list<elt_t>::iterator it = lst.begin();
+    while(size--) {
+      std::list<elt_t>::iterator toDelete = it;
+      it++;
+      if (size%2==1)
+          lst.erase(toDelete);
+    }
+    
+  // for (std::list<elt_t>::iterator it = std::next(lst.begin(), 1); it != lst.end();) {
+  //   it = lst.erase(it);
+  //   lst.erase(it);
+  //   if (it != lst.end())
+  //      ++it;
+  // }
+
+  for (std::list<elt_t>::iterator it = lst.begin(); it != lst.end(); it++)
+    std::cout << "[" << it->v << "," << (it->pair != NULL ? it->pair->v : 0) << "] ";
   std::cout << std::endl;
 
 }
