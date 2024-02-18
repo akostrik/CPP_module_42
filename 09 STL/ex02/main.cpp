@@ -13,9 +13,9 @@ int main(int argc, char *argv[]) {
     std::cout << "Error: give arguments (a sequence of numbers).\n";
     return 0;
   }
+
   try {
-    PmergeMe p = PmergeMe(argv[1]);
-    //PmergeMe p2 = p;
+    PmergeMe p = PmergeMe(argc, argv);
     p.run();
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;

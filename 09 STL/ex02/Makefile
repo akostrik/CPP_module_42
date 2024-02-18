@@ -7,7 +7,7 @@ CPP     = c++
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CPP) $(FLAGS) $(SRCS)
+	$(CPP) $(FLAGS) $(SRCS) -o $(NAME)
 
 ./objs/%.o: %.cpp
 	@mkdir ./objs/ 2> /dev/null || true
