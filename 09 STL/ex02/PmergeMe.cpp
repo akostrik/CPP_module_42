@@ -1,5 +1,3 @@
-// to avoid using a generic function
-
 #include "PmergeMe.hpp"
 
 int *calc_order_insertions(int argc) {
@@ -32,36 +30,25 @@ PmergeMe::PmergeMe(const PmergeMe& o) { *this = o; }
 PmergeMe& PmergeMe::operator=(const PmergeMe& o) { (void)o; return *this; }
 
 PmergeMe::PmergeMe(int argc, char *argv[]) {
-  for(int i = 1; argv[i] != NULL; i++) {
-    elt_t elt;
-    elt.v = std::strtoul(argv[i], NULL, 10);
-    elt.pair = NULL;
-    if (i % 2 == 0)
-      elt.pair = &(lst.back());
-    lst.push_back(elt);
-  }
+  for(int i = 1; i < argc; i++)
+    if(i % 2 == 1 && argv[i + 1] != NULL)
+      map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i + 1], NULL, 10), std::strtoul(argv[i], NULL, 10)));
+    else if (i % 2 == 1 && argv[i + 1] == NULL)
+      map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i], NULL, 10), 0)); // 0 ?
   order = calc_order_insertions(argc);
 }
 
-void delete_every_second(std::list<elt_t> *lst) {
-  size_t size = lst->size();
-  std::list<elt_t>::iterator it = lst->begin();
-  while(size--) {
-    std::list<elt_t>::iterator toErase = it;
-    it++;
-    if (size%2 == 1)
-      lst->erase(toErase);
-  }
-}
+// int pos_where_insert(std::list<unsigned int, unsigned int>::iterator begin, std::list<unsigned int, unsigned int>::iterator end, unsigned int a) { // искать середину
+//   return pos;
+// }
 
-void PmergeMe::run(std::list<elt_t> lst) {
+void PmergeMe::run(std::map<unsigned int, unsigned int> map) {
   // sort recursively
-  delete_every_second(&lst);
-  for (std::list<elt_t>::iterator it = lst.begin(); it != lst.end(); it++)
-    std::cout << "[" << it->v << "," << (it->pair != NULL ? it->pair->v : 0) << "] ";
+  for (std::map<unsigned int, unsigned int>::iterator it = map.begin(); it != map.end(); it++)
+    std::cout << "[" << it->first << "," << it->second << "] ";
   std::cout << std::endl;
 }
 
 void PmergeMe::run() {
-  run(lst);
+  run(map);
 }

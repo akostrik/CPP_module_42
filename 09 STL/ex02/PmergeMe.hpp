@@ -16,16 +16,10 @@
 # include <exception>
 # include <cmath>
 
-typedef struct elt_s{
-  unsigned int v;
-  elt_s        *pair;
-} elt_t;
-
 class PmergeMe {
   private:
-  std::list<elt_t>             lst;
   //std::set<elt_t>              set;
-  //std::map<unsigned int,unsigned int> map;
+  std::map<unsigned int, unsigned int> map;
   int                                 *order;
                           PmergeMe ();
 
@@ -34,13 +28,32 @@ class PmergeMe {
                           PmergeMe (const PmergeMe& o);
                           ~PmergeMe();
   PmergeMe&               operator=(const PmergeMe& o);
-  void                    run      (std::list<elt_t> lst);
+  void                    run      (std::map<unsigned int, unsigned int> map);
   void                    run      ();
 };
 
 #endif
 
-    // if(i % 2 == 0 && argv[i + 1] != NULL)
-    //   map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i], NULL, 10), std::strtoul(argv[i + 1], NULL, 10)));
-    // else if (i % 2 == 0 && argv[i + 1] == NULL)
-    //   map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i], NULL, 10), std::strtoul(argv[i], NULL, 10)));
+// list is not adapted for binary search
+// for(int i = 1; argv[i] != NULL; i++) {
+//   elt_t elt;
+//   elt.v = std::strtoul(argv[i], NULL, 10);
+//   elt.pair = NULL;
+//   if (i % 2 == 0)
+//     elt.pair = &(lst.back());
+//   lst.push_back(elt);
+// }
+// void delete_every_second(std::list<elt_t> *lst) {
+//   size_t size = lst->size();
+//   std::list<elt_t>::iterator it = lst->begin();
+//   while(size--) {
+//     std::list<elt_t>::iterator toErase = it;
+//     it++;
+//     if (size%2 == 1)
+//       lst->erase(toErase);
+//   }
+// }
+// typedef struct elt_s{
+//   unsigned int v;
+//   elt_s        *pair;
+// } elt_t;
