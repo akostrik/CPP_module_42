@@ -108,9 +108,8 @@ public:
    + например, **хэш-таблица** неупорядоченный ассоциативный контейнер, используют два функтора: компаратор, задающий отношение “равно”, и хэш, задающий способ вычисления хэш-функции для элементов контейнера, возвращающий целое число
 * **container adaptor**
    + is not a full container class
-   + takes an existing STL container and provides a restricted interface to make them behave differently
-   + provides an interface relying on an object of one of the class template
-   + express the essential features of the underlying container type
+   + takes an existing STL container and express the essential features of the underlying container type
+   + provides a restricted interface relying on an object of one of the class template, to make them behave differently
    + the underlying containers are mostly vector, list, deque
    + the underlying container's elements are accessed by the members of the container adaptor
    + **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
