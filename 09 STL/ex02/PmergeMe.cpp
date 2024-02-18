@@ -43,30 +43,23 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
   order = calc_order_insertions(argc);
 }
 
+void delete_every_second(std::list<elt_t> *lst) {
+  size_t size = lst->size();
+  std::list<elt_t>::iterator it = lst->begin();
+  while(size--) {
+    std::list<elt_t>::iterator toErase = it;
+    it++;
+    if (size%2 == 1)
+      lst->erase(toErase);
+  }
+}
 
 void PmergeMe::run(std::list<elt_t> lst) {
   // sort recursively
-
-    size_t size = lst.size();
-    std::list<elt_t>::iterator it = lst.begin();
-    while(size--) {
-      std::list<elt_t>::iterator toDelete = it;
-      it++;
-      if (size%2==1)
-          lst.erase(toDelete);
-    }
-    
-  // for (std::list<elt_t>::iterator it = std::next(lst.begin(), 1); it != lst.end();) {
-  //   it = lst.erase(it);
-  //   lst.erase(it);
-  //   if (it != lst.end())
-  //      ++it;
-  // }
-
+  delete_every_second(&lst);
   for (std::list<elt_t>::iterator it = lst.begin(); it != lst.end(); it++)
     std::cout << "[" << it->v << "," << (it->pair != NULL ? it->pair->v : 0) << "] ";
   std::cout << std::endl;
-
 }
 
 void PmergeMe::run() {
