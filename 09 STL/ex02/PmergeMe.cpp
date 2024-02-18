@@ -20,18 +20,27 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
     else if (i % 2 == 0 && argv[i + 1] == NULL)
       map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i], NULL, 10), std::strtoul(argv[i], NULL, 10)));
   }
-  int nb_insertions = (argc - 2) / 2;
+  int nb_insertions = (argc - 3) / 2;
+  std::cout << "nb_insertions = " << nb_insertions << std::endl; 
   order = new int[nb_insertions];
   int size_group = 0;
   int k = 1;
-  for (int i = 0; i < argc - 1;) {
-    size_group = pow(2, k) - size_group;
-    k++;
-    // for (int j = 0; j < size_group; j++)
-    //   order[j] = 3;
-    i += size_group;
-    std::cout << "group " << size_group << ", i = " << i << std::endl;
+  for (int i = 0; i < nb_insertions;) {
+    size_group = pow(2, k++) - size_group;
+    int where_to_stop = i + size_group;
+    int v = i + size_group - 1;
+    if(where_to_stop >= argc - 1) {
+      v -= (where_to_stop - argc + 1);
+      where_to_stop -= (where_to_stop - argc + 1);
+    }
+    //std::cout << "group " << size_group << ", where_to_stop = " << where_to_stop << std::endl;
+    for (; i < where_to_stop && i < nb_insertions; v--, i++) {
+      order[i] = v;
+      std::cout << order[i] << " ";
+    }
   }
+//   for (int i = 0; i < argc - 1; i++)
+//     std::cout << order[i] << " ";
 }
 
 void PmergeMe::run(std::map<unsigned int,unsigned int> map) {
