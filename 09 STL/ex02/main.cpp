@@ -13,7 +13,6 @@ int main(int argc, char *argv[]) {
     std::cout << "Error: give arguments (a sequence of numbers).\n";
     return 0;
   }
-
   try {
     PmergeMe p = PmergeMe(argc, argv);
     p.run();
