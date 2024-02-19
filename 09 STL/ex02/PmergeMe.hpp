@@ -22,9 +22,9 @@ typedef std::map<unsigned int, unsigned int>::iterator map_iterator;
 class PmergeMe {
   private:
   //std::set<elt_t>              set;
-  std::map<unsigned int, unsigned int> map;
-  int                     nb_insertions;
-  int                     *order_insertions;
+  std::map<unsigned int, unsigned int> _map;
+  int                     nb_insertions; // size()
+  int                     *order;
                           PmergeMe             ();
 
   public:
