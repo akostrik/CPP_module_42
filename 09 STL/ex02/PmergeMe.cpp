@@ -79,7 +79,14 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
 // does not force the new elt to be inserted at that position (the elements in a map always follow a specific)
 void PmergeMe::run(std::map<unsigned int, unsigned int> map) {
   sort_every_pair(map);
+
   // sort recursively
+  for (map_iterator it = map.begin(), i = 0; it != map.end(); it++)
+    if(i % 2 == 1 && argv[i + 1] != NULL)
+      map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i + 1], NULL, 10), std::strtoul(argv[i], NULL, 10)));
+    else if (i % 2 == 1 && argv[i + 1] == NULL)
+      map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i], NULL, 10), 0));
+  }
 
   map.insert(std::pair<unsigned int, unsigned int>(map.begin()->second, 0)); // insert in the beginning
   for (map_iterator it = map.begin(); it != map.end(); it++)
