@@ -60,12 +60,13 @@ void PmergeMe::run(std::map<unsigned int, unsigned int> map) {
   map.insert(map.begin(), std::pair<unsigned int, unsigned int>(map.begin()->second, 0));
   for (map_iterator it = ++map.begin(); it != map.end(); it++) {
     unsigned int a = it->second;
-    map_iterator insert_after = insert_after_(map.begin(), map.end(), a);
+    map_iterator insert_after = insert_after_(map.begin(), map.end(), a); // order_insertions !!!
     std::cout << a << " insert after " << insert_after->first << std::endl;
-    map.insert(map.begin(), std::pair<unsigned int, unsigned int>(a, 0));
+    map.insert(map.begin(), std::pair<unsigned int, unsigned int>(a, 0)); // my own insert
   }
   for (map_iterator it = map.begin(); it != map.end(); it++)
-    std::cout << "[" << it->first << "," << it->second << "] ";
+    std::cout << it->first << " ";
+  std::cout << std::endl;
 }
 
 void PmergeMe::run() {
