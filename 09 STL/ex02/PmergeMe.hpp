@@ -14,15 +14,16 @@
 # include <limits>
 # include <exception>
 # include <cmath>
-# include <iterator>     // std::next
+# include <iterator>     // std::next c+11 ?
 # include <algorithm>    // std::for_each
 # include <bits/stdc++.h>
 
-typedef std::map<unsigned int, unsigned int>::iterator map_iterator;
+typedef std::list<unsigned int>::iterator list_iterator;
+typedef std::map<unsigned int,unsigned int>::iterator map_iterator;
+
 class PmergeMe {
   private:
-  //std::set<elt_t>              set;
-  std::map<unsigned int, unsigned int> _map;
+  std::list<unsigned int> _lst;
   int                     nb_insertions; // size()
   int                     *order;
                           PmergeMe             ();
@@ -33,7 +34,7 @@ class PmergeMe {
                           ~PmergeMe            ();
   PmergeMe&               operator=            (const PmergeMe& o);
   void                    calc_order_insertions(int argc);
-  void                    run                  (std::map<unsigned int, unsigned int> map);
+  void                    run                  (std::list<unsigned int> lst);
   void                    run                  ();
 };
 
@@ -48,17 +49,16 @@ class PmergeMe {
 //     elt.pair = &(lst.back());
 //   lst.push_back(elt);
 // }
-// void delete_every_second(std::list<elt_t> *lst) {
-//   size_t size = lst->size();
-//   std::list<elt_t>::iterator it = lst->begin();
-//   while(size--) {
-//     std::list<elt_t>::iterator toErase = it;
-//     it++;
-//     if (size%2 == 1)
-//       lst->erase(toErase);
+
+// map no
+// void sort_every_pair(std::map<unsigned int, unsigned int> map) {
+//   for(map_iterator it = map.begin(); it != map.end();) {
+//     if(it->first < it->second) {
+//       map_iterator to_erase = it;
+//       it++;
+//       map.insert(map.begin(), std::pair<unsigned int, unsigned int>(to_erase->second, to_erase->first));
+//       map.erase(to_erase);
+//     } 
+//     else
+//       it++;
 //   }
-// }
-// typedef struct elt_s{
-//   unsigned int v;
-//   elt_s        *pair;
-// } elt_t;

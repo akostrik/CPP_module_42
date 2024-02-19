@@ -1,7 +1,7 @@
 NAME    = PmergeMe
 SRCS    = main.cpp PmergeMe.cpp
 OBJS    = $(addprefix ./objs/, $(SRCS:.cpp=.o))
-FLAGS   = -std=c++98 -Wall -Wextra -Werror
+FLAGS   = -Wall -Wextra -Werror -std=c++98 
 CPP     = c++
 
 all: $(NAME)
