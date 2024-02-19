@@ -16,6 +16,7 @@
 # include <cmath>
 # include <iterator>     // std::next
 # include <algorithm>    // std::for_each
+# include <bits/stdc++.h>
 
 typedef std::map<unsigned int, unsigned int>::iterator map_iterator;
 class PmergeMe {
