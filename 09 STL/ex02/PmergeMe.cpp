@@ -67,6 +67,7 @@ void PmergeMe::run(std::map<unsigned int, unsigned int> map) {
   for (map_iterator it = map.begin(); it != map.end(); it++)
     std::cout << "[" << it->first << "," << it->second << "] ";
   map.insert(map.begin(), std::pair<unsigned int, unsigned int>(map.begin()->second, 0)); // вручную поставить на место
+  map.begin().next().second = 0;
   std::cout << std::endl << "after in 0: ";
   for (map_iterator it = map.begin(); it != map.end(); it++)
     std::cout << "[" << it->first << "," << it->second << "] ";
