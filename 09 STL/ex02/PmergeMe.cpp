@@ -38,15 +38,34 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
   order = calc_order_insertions(argc);
 }
 
-// int pos_where_insert(std::list<unsigned int, unsigned int>::iterator begin, std::list<unsigned int, unsigned int>::iterator end, unsigned int a) { // искать середину
-//   return pos;
-// }
+map_iterator it_where_insert(map_iterator begin, map_iterator end, unsigned int a) { // искать середину
+  if(a <= begin->first)
+    return begin;
+  else if(a >= end->first)
+    begin = end;
+  while(1) {
+    map_iterator middle = begin;
+    std::advance(middle, std::distance(begin, end) / 2);
+    std::cout << "middle: " << middle->first << "," << middle->second << std::endl;
+    if(a == begin->first)
+      return middle ;
+    else if(a < middle->first)
+      end = middle;
+    else if(a > middle->first)
+      begin = middle;
+    if (std::distance(begin, end) <= 1)
+      return begin;
+  }
+}
 
 void PmergeMe::run(std::map<unsigned int, unsigned int> map) {
   // sort recursively
-  for (std::map<unsigned int, unsigned int>::iterator it = map.begin(); it != map.end(); it++)
+  for (map_iterator it = map.begin(); it != map.end(); it++)
     std::cout << "[" << it->first << "," << it->second << "] ";
   std::cout << std::endl;
+  //std::cout << "where_insert = " << it_where_insert(map.begin(), map.end(), 3)->first << std::endl; // end !
+  map_iterator where_insert = it_where_insert(map.begin(), map.end(), 7);
+  std::cout << "where_insert: " << where_insert->first << std::endl;
 }
 
 void PmergeMe::run() {

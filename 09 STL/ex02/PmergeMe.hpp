@@ -16,6 +16,7 @@
 # include <exception>
 # include <cmath>
 
+typedef std::map<unsigned int, unsigned int>::iterator map_iterator;
 class PmergeMe {
   private:
   //std::set<elt_t>              set;
