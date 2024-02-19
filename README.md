@@ -132,6 +132,7 @@ priority_queue (heap)  | top (the largest element O(1)) push emplace pop swap   
 
 \* upper bound return first element which is > value; if not, return end()  
 \* lower bound return first element which is ≥ value; if not, return end()  
+\* the only difference between `map.at('a')` and `map['a']`: `at` throws an exception if the accessed key is not present in the map, `[ ]` inserts the key in the map if the key is not present already
 
 ### Iterator
 * an object pointing to some element in a range of elements
