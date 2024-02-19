@@ -22,16 +22,18 @@ class PmergeMe {
   private:
   //std::set<elt_t>              set;
   std::map<unsigned int, unsigned int> map;
-  int                                 *order;
-                          PmergeMe ();
+  int                     nb_insertions;
+  int                     *order_insertions;
+                          PmergeMe             ();
 
   public:
-                          PmergeMe (int argc, char *argv[]);
-                          PmergeMe (const PmergeMe& o);
-                          ~PmergeMe();
-  PmergeMe&               operator=(const PmergeMe& o);
-  void                    run      (std::map<unsigned int, unsigned int> map);
-  void                    run      ();
+                          PmergeMe             (int argc, char *argv[]);
+                          PmergeMe             (const PmergeMe& o);
+                          ~PmergeMe            ();
+  PmergeMe&               operator=            (const PmergeMe& o);
+  void                    calc_order_insertions(int argc);
+  void                    run                  (std::map<unsigned int, unsigned int> map);
+  void                    run                  ();
 };
 
 #endif

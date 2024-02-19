@@ -1,8 +1,8 @@
 #include "PmergeMe.hpp"
 
-int *calc_order_insertions(int argc) {
-  int nb_insertions = (argc - 3) / 2;
-  int *order = new int[nb_insertions];
+void PmergeMe::calc_order_insertions(int argc) {
+  nb_insertions = (argc - 3) / 2;
+  order_insertions = new int[nb_insertions];
   int size_group = 0;
   int k = 1;
   for(int i = 0; i < nb_insertions;) {
@@ -14,15 +14,14 @@ int *calc_order_insertions(int argc) {
       where_to_stop -= (where_to_stop - argc + 1);
     }
     for(; i < where_to_stop && i < nb_insertions; v--, i++) 
-      order[i] = v;
+      order_insertions[i] = v;
   }
-  return order;
 }
 
 PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {
-  delete order;
+  delete order_insertions;
 }
 
 PmergeMe::PmergeMe(const PmergeMe& o) { *this = o; }
@@ -34,11 +33,11 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
     if(i % 2 == 1 && argv[i + 1] != NULL)
       map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i + 1], NULL, 10), std::strtoul(argv[i], NULL, 10)));
     else if (i % 2 == 1 && argv[i + 1] == NULL)
-      map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i], NULL, 10), 0)); // 0 ?
-  order = calc_order_insertions(argc);
+      map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i], NULL, 10), 0));
+  calc_order_insertions(argc);
 }
 
-map_iterator insert_after_(map_iterator begin, map_iterator end, unsigned int a) { // искать середину
+map_iterator insert_after_(map_iterator begin, map_iterator end, unsigned int a) {
   while(1) {
     map_iterator middle = begin;
     std::advance(middle, std::distance(begin, end) / 2);
@@ -48,11 +47,9 @@ map_iterator insert_after_(map_iterator begin, map_iterator end, unsigned int a)
       end = middle;
     else if(a > middle->first)
       begin = middle;
-    std::cout << " distance = " << std::distance(begin, end) << std::endl;
-    if (std::distance(begin, end) <= 1)
+    if(std::distance(begin, end) <= 1)
       return begin;
   }
-  return end;
 }
 
 void PmergeMe::run(std::map<unsigned int, unsigned int> map) {
@@ -60,10 +57,15 @@ void PmergeMe::run(std::map<unsigned int, unsigned int> map) {
   for (map_iterator it = map.begin(); it != map.end(); it++)
     std::cout << "[" << it->first << "," << it->second << "] ";
   std::cout << std::endl;
-  //std::cout << "where_insert = " << it_where_insert(map.begin(), map.end(), 3)->first << std::endl; // end !
-  //if(a <= map.begin()->first);
-  map_iterator insert_after = insert_after_(map.begin(), map.end(), 13);
-  std::cout << "insert_after " << insert_after->first << std::endl;
+  map.insert(map.begin(), std::pair<unsigned int, unsigned int>(map.begin()->second, 0));
+  for (map_iterator it = ++map.begin(); it != map.end(); it++) {
+    unsigned int a = it->second;
+    map_iterator insert_after = insert_after_(map.begin(), map.end(), a);
+    std::cout << a << " insert after " << insert_after->first << std::endl;
+    map.insert(map.begin(), std::pair<unsigned int, unsigned int>(a, 0));
+  }
+  for (map_iterator it = map.begin(); it != map.end(); it++)
+    std::cout << "[" << it->first << "," << it->second << "] ";
 }
 
 void PmergeMe::run() {
