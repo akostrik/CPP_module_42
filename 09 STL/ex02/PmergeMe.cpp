@@ -143,11 +143,6 @@ void PmergeMe::run(std::list<unsigned int> *lst) {
     std::cout << *it << " ";
   // sort lalf_list recursively                                         // 4 6 7 9 10
 
-  std::map<unsigned int, list_iterator> inverse_map = inverse_map_(half_lst, map);// [1 &7] [2 &4] [3 &10] [5 &6] [8 &9]
-  std::cout << std::endl << "inverse_map     : ";
-  for (std::map<unsigned int, list_iterator>::iterator it = inverse_map.begin(); it != inverse_map.end(); it++)
-    std::cout << "[" << it->first << ",&" << *(it->second) << "] ";
-
   size_t size_array = lst->size() / 2;
   unsigned int *arr = put_map_values_to_array_in_order(&half_lst, map); // map[4] map[6] map[7] map[9] map[10]
   std::cout << std::endl << "arr             : ";                       // 2      5      1      8      3
@@ -155,13 +150,20 @@ void PmergeMe::run(std::list<unsigned int> *lst) {
     std::cout << arr[i] << " ";
   std::cout << std::endl;
 
+  std::map<unsigned int, list_iterator> inverse_map = inverse_map_(half_lst, map);// [1 &7] [2 &4] [3 &10] [5 &6] [8 &9]
+  std::cout << std::endl << "inverse_map     : ";
+  for (std::map<unsigned int, list_iterator>::iterator it = inverse_map.begin(); it != inverse_map.end(); it++)
+    std::cout << "[" << it->first << "," << *(it->second) << "] ";
+  std::cout << std::endl << "inverse_map     : ";
+
   list_iterator begin = half_lst.begin();
   for (size_t i = 0; i < size_array; i++) {
-    std::cout << "end = inverse_map[" << arr[i] << "] = " << *inverse_map[arr[i]] << "\n"; /// !!!!
+    std::cout << "inverse_map[3] = " << *inverse_map[3] << " *" << std::endl;
     list_iterator end = inverse_map[arr[i]];
+    std::cout << std::endl << "inverse_map[" << arr[i] << "] = " << *inverse_map[arr[i]] << "\n"; /// !!!!
     if (arr[i] < *(half_lst.begin())) {
       std::cout << "insert " << arr[i] << " in the beginning\n";
-      half_lst.push_front(arr[i]);
+      //half_lst.push_front(arr[i]); // modifies insert_map !
     }
     else {
       std::cout << "insert " << arr[i] << " between " << *begin << " and " << *end << std::endl;
