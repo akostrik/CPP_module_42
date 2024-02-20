@@ -46,10 +46,8 @@ unsigned int *PmergeMe::put_map_values_to_array_in_order(std::list<unsigned int>
   size_t size_array = lst->size();
   unsigned int *arr = new unsigned int[size_array];
   size_t i = 0;
-  for(list_iterator it = lst->begin(); it != lst->end(); ++it) {
-    std::cout << "it = " << *it << ", insert " << map[*it] << std::endl;
+  for(list_iterator it = lst->begin(); it != lst->end(); ++it)
     arr[_order[i++]] = map[*it];
-  }
   return arr;
 }
 
@@ -66,15 +64,29 @@ void sort_2_elts_of_pair(std::map<unsigned int, unsigned int> *map) {
   }
 }
 
-void binary_search_insert(std::list<unsigned int> lst, list_iterator end, unsigned int a) {
-  // list_iterator begin = lst.begin();
-  // list_iterator insert_after_this_elt;
-  // int k = 0;
+std::map<unsigned int, list_iterator> inverse_map_(std::list<unsigned int> lst, std::map<unsigned int, unsigned int> map) {
+  std::map<unsigned int, list_iterator> inverse_map;
+  map_iterator itm = map.begin();
+  list_iterator itl = lst.begin();
+  for(; itm != map.end(); ++itm, ++itl)
+    inverse_map.insert(std::pair<unsigned int, list_iterator>(itm->second, itl));
+  return inverse_map;
+}
+
+void binary_search_insert(std::list<unsigned int> half_lst, list_iterator begin, list_iterator end, unsigned int a) {
+  //list_iterator insert_after_this_elt;
+  //list_iterator middle;
+  (void)half_lst;
+  (void)begin;
+  (void)end;
   (void)a;
-  std::cout << "binary_search_insert " << a << " between " << *(lst.begin()) << " and " << *end << std::endl;
-  // while(k++ < 5) {
-  //   list_iterator middle = begin;
+  // std::cout << "binary_search_insert " << a << " between " << *begin << " and " << *end << std::endl;
+  // std::cout << "distance = " << std::distance(begin, end) << std::endl;
+  // while(1) {
+  //   middle = begin;
+  //   std::cout << "middle = " << *middle << " advance by " << (std::distance(begin, end) / 2) << std::endl;
   //   std::advance(middle, std::distance(begin, end) / 2); // left ?
+  //   std::cout << "test middle " << *middle << std::endl;
   //   if(a == *middle) {
   //     insert_after_this_elt = middle ;
   //     break ;
@@ -110,46 +122,53 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PmergeMe::run(std::list<unsigned int> *lst) {
-  std::cout << std::endl << "run             : ";                          //  1 7 9 8 4 2 3 10 5 6
+  std::cout << std::endl << "run             : ";                        //  1 7 9 8 4 2 3 10 5 6
   for (list_iterator it = lst->begin(); it != lst->end(); it++)
     std::cout << *it << " ";
   if (lst->size() <= 1)
     return ;
 
-  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst); // [1 7] [3 10] [4 2] [5 6] [9 8]
+  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst);     
   std::cout << std::endl << "not sorted      : ";
   for (map_iterator it = map.begin(); it != map.end(); it++)
     std::cout << "[" << it->first << "," << it->second << "] ";
-  sort_2_elts_of_pair(&map);                                        // [4 2] [6 5]  [7 1] [9 8] [10 3]
+  sort_2_elts_of_pair(&map);                                            // [4 2]  [6 5]  [7 1]   [9 8]  [10 3]
   std::cout << std::endl << "map sorted pairs: ";
   for (map_iterator it = map.begin(); it != map.end(); it++)
     std::cout << "[" << it->first << "," << it->second << "] ";
-  // std::map<unsigned int, unsigned int> map2;
 
-  std::list<unsigned int> half_lst = put_map_keys_to_list(map);     // 7 9 4 10 6
-  std::cout << std::endl << "half list: ";
+  std::list<unsigned int> half_lst = put_map_keys_to_list(map);         //
+  std::cout << std::endl << "half list       : ";
   for (list_iterator it = half_lst.begin(); it != half_lst.end(); it++)
     std::cout << *it << " ";
-  // sort lalf_list recursively                                     // 4 6 7 9 10
+  // sort lalf_list recursively                                         // 4 6 7 9 10
+
+  std::map<unsigned int, list_iterator> inverse_map = inverse_map_(half_lst, map);// [1 &7] [2 &4] [3 &10] [5 &6] [8 &9]
+  std::cout << std::endl << "inverse_map     : ";
+  for (std::map<unsigned int, list_iterator>::iterator it = inverse_map.begin(); it != inverse_map.end(); it++)
+    std::cout << "[" << it->first << ",&" << *(it->second) << "] ";
 
   size_t size_array = lst->size() / 2;
-  unsigned int *arr = put_map_values_to_array_in_order(&half_lst, map);   // map[4] map[6] map[7] map[9] map[10]
-  std::cout << std::endl << "arr      : ";                          // 2      5      1      8      3
-  for (size_t i = 0; i < size_array; i++)                           // 5      2      8      1      3      (the order of the algo)
+  unsigned int *arr = put_map_values_to_array_in_order(&half_lst, map); // map[4] map[6] map[7] map[9] map[10]
+  std::cout << std::endl << "arr             : ";                       // 2      5      1      8      3
+  for (size_t i = 0; i < size_array; i++)                               // 5      2      8      1      3      (the order of the algo)
     std::cout << arr[i] << " ";
   std::cout << std::endl;
 
-  // for (size_t i = 0; i < size_array; i++) {
-  //   if (arr[i] < *(half_lst.begin())) {
-  //     std::cout << "insert " << arr[i] << " in the beginning\n";
-  //     half_lst.push_front(arr[i]);
-  //   }
-  //   else {
-  //     list_iterator it_end = ++(half_lst...);
-  //     binary_search_insert(half_lst, it_end, arr[i]);
-  //   }
-  //   ++it_end;
-  // }
+  list_iterator begin = half_lst.begin();
+  for (size_t i = 0; i < size_array; i++) {
+    std::cout << "end = inverse_map[" << arr[i] << "] = " << *inverse_map[arr[i]] << "\n"; /// !!!!
+    list_iterator end = inverse_map[arr[i]];
+    if (arr[i] < *(half_lst.begin())) {
+      std::cout << "insert " << arr[i] << " in the beginning\n";
+      half_lst.push_front(arr[i]);
+    }
+    else {
+      std::cout << "insert " << arr[i] << " between " << *begin << " and " << *end << std::endl;
+      //binary_search_insert(half_lst, begin, end, arr[i]);
+    }
+    ++end;
+  }
 
   std::cout << std::endl;
   delete arr;
