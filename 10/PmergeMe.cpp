@@ -66,13 +66,12 @@ PmergeMe::~PmergeMe() { delete _order; } //
 void PmergeMe::run(list_iterator begin, list_iterator end) {
   if (std::distance(begin, end) <= 1)
     return ;                        //  1 7 9 8 4 2 3 10 5 6
-  std::cout << "distance = " << std::distance(begin, end) << std::endl;
-
-  list_iterator it1 = begin;
-  list_iterator it2 = end;
-  std::advance(it2, (std::distance(begin, end) + 3) / 2);
 
   std::cout << "1)" << std::endl;
+  list_iterator it1 = begin;
+  list_iterator it2 = begin;
+  std::advance(it2, (std::distance(begin, end) + 1) / 2);
+  std::cout << "distance = " << std::distance(begin, end) << ", begin = " << *begin << ", end = " << *end << std::endl;
   for (; it2 != end; ++it1, ++it2) {
     std::cout << "[" << *it1 << " " << *it2 << "]\n";
   }
@@ -80,21 +79,24 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {
     std::cout << "[" << *it1 <<"]\n";
   std::cout << std::endl;
 
-  // it1 = begin;
-  // it2 = end;
-  // for (; it2 != this->end(); ++it1, ++it2)
-  //   if(*it1 < *it2)
-  //       std::swap(*it1, *it2);
+  it1 = begin;
+  it2 = begin;
+  std::advance(it2, (std::distance(begin, end) + 1) / 2);
+  for (; it2 != this->end(); ++it1, ++it2)
+    if(*it1 < *it2)
+        std::swap(*it1, *it2);
 
-  // std::cout << "2)" << std::endl;
-  // it1 = begin;
-  // it2 = end;
-  // for (; it2 != this->end(); ++it1, ++it2) {
-  //   std::cout << "[" << *it1 << " " << *it2 << "]\n";
-  // }
-  // if(std::distance(begin, end) % 2 == 1)
-  //   std::cout << "[" << *it1 <<"]\n";
-  // std::cout << std::endl;
+  it1 = begin;
+  it2 = begin;
+  std::advance(it2, (std::distance(begin, end) + 1) / 2);
+  std::cout << "2)" << std::endl;
+  std::cout << "distance = " << std::distance(begin, end) << ", begin = " << *begin << ", end = " << *end << std::endl;
+  for (; it2 != this->end(); ++it1, ++it2) {
+    std::cout << "[" << *it1 << " " << *it2 << "]\n";
+  }
+  if(std::distance(begin, end) % 2 == 1)
+    std::cout << "[" << *it1 <<"]\n";
+  std::cout << std::endl;
 
 }
 
