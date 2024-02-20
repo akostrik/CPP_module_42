@@ -63,9 +63,18 @@ std::list<unsigned int> put_map_keys_to_list(std::map<unsigned int, unsigned int
 }
 
 unsigned int *PmergeMe::put_map_values_to_array_in_order(std::map<unsigned int, unsigned int> map) {
-  unsigned int *arr = new unsigned int[map.size() - 1];
-  int i = 0;
-  for(map_iterator it = ++(map.begin()); it != map.end(); ++it, ++i)
+  size_t size_array;
+  size_t i;
+  map_iterator it;
+
+  unsigned int last_value = (--(map.end()))->second;
+  if (last_value == 0)
+    size_array = map.size() - 2;
+  else
+    size_array = map.size() - 1;
+  std::cout << std::endl << "size_array = " << size_array << std::endl;
+  unsigned int *arr = new unsigned int[size_array];
+  for(it = ++(map.begin()), i = 0; i < size_array; ++it, ++i)
     arr[_order[i]] = it->second;
   return arr;
 }
@@ -118,29 +127,31 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PmergeMe::run(std::list<unsigned int> *lst) {
-  std::cout << std::endl << "run        : ";                           // 1 2 4 3 8 76 5
+  std::cout << std::endl << "run        : ";                           // 1 2 4 3 8 7 6 5 9
   for (list_iterator it = lst->begin(); it != lst->end(); it++)
     std::cout << *it << " ";
   if (lst->size() <= 1)
     return ;
 
-  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst);    // [2 1] [4 3] [6 5] [8 7]
+  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst);    // [2 1] [4 3] [6 5] [8 7] [9 0]
   sort_every_pair(&map);
   std::cout << std::endl << "map with sorted pairs: ";
   for (map_iterator it = map.begin(); it != map.end(); it++)
     std::cout << "[" << it->first << "," << it->second << "] ";
 
-  std::list<unsigned int> half_lst = put_map_keys_to_list(map);        // 1 and 2 4 6 8 -> 1 2 4 6 8
+  std::list<unsigned int> half_lst = put_map_keys_to_list(map);        // 1 and 2 4 6 8 9 -> 1 2 4 6 8 9
   std::cout << std::endl << "half list: ";
   for (list_iterator it = half_lst.begin(); it != half_lst.end(); it++)
     std::cout << *it << " ";
 
-  unsigned int *arr = put_map_values_to_array_in_order(map);          // 1 3 5 in order -> 3 1 5
+  size_t size_array = lst->size() / 2 - 1;
+  std::cout << std::endl << "size_array = " << size_array << std::endl;
+  unsigned int *arr = put_map_values_to_array_in_order(map);          // 3 5 7 (in order)
   std::cout << std::endl << "arr      : ";
-  for (size_t i = 0; i < half_lst.size() - 2; i++)
+  for (size_t i = 0; i < size_array; i++) // half_lst.size() - 2 if even, half_lst.size() - 3 if odd
     std::cout << arr[_order[i]] << " ";
 
-  // sort recursively
+  // lalf_list sort recursively
 
   // unsigned int insertions[std::distance(lst.begin(), lst.end())]; // [2 0] [8 0] [4 0] [6 0] and 1 3 7 5
   // for (list_iterator it = map.begin(); it != map.end(); it++)
