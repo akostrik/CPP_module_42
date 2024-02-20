@@ -49,20 +49,17 @@ struct my_iterator : std::iterator<std::random_access_iterator_tag, unsigned int
 
 class PmergeMe : public std::list<unsigned int> {
   private:
-  std::list<unsigned int> _lst;
   int                     *_order;
                           PmergeMe             ();
 
   public:
-
-
                           PmergeMe             (int argc, char *argv[]);
                           PmergeMe             (const PmergeMe& o);
                           ~PmergeMe            ();
   PmergeMe&               operator=            (const PmergeMe& o);
   void                    calc_order_insertions(int argc);
   void                    run                  ();
-  void                    run(list_iterator begin, list_iterator end);
+  void                    run                  (list_iterator begin, list_iterator end);
 };
 
 //void swap(iterator& a, iterator& b) { std::swap(a.pos, b.pos); }
