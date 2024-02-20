@@ -56,20 +56,18 @@ std::map<unsigned int, unsigned int> put_list_to_map(std::list<unsigned int> lst
 
 std::list<unsigned int> put_map_keys_to_list(std::map<unsigned int, unsigned int> map) {
   std::list<unsigned int> lst;
+  lst.push_back(map.begin()->second);
   for(map_iterator it = map.begin(); it != map.end(); ++it)
     lst.push_back(it->first);
   return lst;
 }
 
-std::vector<unsigned int> PmergeMe::put_map_values_to_vector_in_order(std::map<unsigned int, unsigned int> map) {
-  std::vector<unsigned int> vector;
+unsigned int *PmergeMe::put_map_values_to_array_in_order(std::map<unsigned int, unsigned int> map) {
+  unsigned int *arr = new unsigned int[map.size() - 1];
   int i = 0;
-  for(map_iterator itm = map.begin(); itm != map.end(); ++itm, ++i) {
-    vector_iterator itv = vector.begin();
-    std::advance(itv, _order[i]);
-    vector.insert(itv, itm->second);
-  }
-  return vector;
+  for(map_iterator it = ++(map.begin()); it != map.end(); ++it, ++i)
+    arr[_order[i]] = it->second;
+  return arr;
 }
 
 void erase_every_2nd_elt(std::list<unsigned int> *lst) {
@@ -101,6 +99,7 @@ PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {
   delete _order;
+  // delete arr
 }
 
 PmergeMe::PmergeMe(const PmergeMe& o) { *this = o; }
@@ -111,34 +110,37 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
   for(int i = 1; i < argc; i++)
     _lst.push_back(std::strtoul(argv[i], NULL, 10));
   calc_order_insertions(argc);
+  std::cout << std::endl << "order: ";
   for(int i = 0; i < nb_insertions; i++)
     std::cout << _order[i] << " ";
-  std::cout << std::endl;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PmergeMe::run(std::list<unsigned int> *lst) {
+  std::cout << std::endl << "run        : ";                           // 1 2 4 3 8 76 5
+  for (list_iterator it = lst->begin(); it != lst->end(); it++)
+    std::cout << *it << " ";
   if (lst->size() <= 1)
     return ;
-  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst);
+
+  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst);    // [2 1] [4 3] [6 5] [8 7]
   sort_every_pair(&map);
-  for (list_iterator it = lst->begin(); it != lst->end(); it++)
+  std::cout << std::endl << "map with sorted pairs: ";
+  for (map_iterator it = map.begin(); it != map.end(); it++)
+    std::cout << "[" << it->first << "," << it->second << "] ";
+
+  std::list<unsigned int> half_lst = put_map_keys_to_list(map);        // 1 and 2 4 6 8 -> 1 2 4 6 8
+  std::cout << std::endl << "half list: ";
+  for (list_iterator it = half_lst.begin(); it != half_lst.end(); it++)
     std::cout << *it << " ";
-  std::cout << std::endl;
 
-  std::list<unsigned int> half_lst = put_map_keys_to_list(map);
-  std::vector<unsigned int> vector = put_map_values_to_vector_in_order(map);
+  unsigned int *arr = put_map_values_to_array_in_order(map);          // 1 3 5 in order -> 3 1 5
+  std::cout << std::endl << "arr      : ";
+  for (size_t i = 0; i < half_lst.size() - 2; i++)
+    std::cout << arr[_order[i]] << " ";
 
-  for (list_iterator it = lst->begin(); it != lst->end(); it++)
-    std::cout << *it << " ";
-  std::cout << std::endl;
-  for (vector_iterator it = vector.begin(); it != vector.end(); it++)
-    std::cout << *it << " ";
-  std::cout << std::endl;
-
-
-  // // sort recursively
+  // sort recursively
 
   // unsigned int insertions[std::distance(lst.begin(), lst.end())]; // [2 0] [8 0] [4 0] [6 0] and 1 3 7 5
   // for (list_iterator it = map.begin(); it != map.end(); it++)
@@ -157,9 +159,6 @@ void PmergeMe::run(std::list<unsigned int> *lst) {
   //   list_iterator insert_after = calc_where_insert(map.begin(), map.end(), it->second);
   //   std::cout << "insert " << it->second << " after " << insert_after->first << std::endl;
   //   map.insert(insert_after, std::pair<unsigned int, unsigned int>(it->second, 0));
-  //   for (list_iterator it = map.begin(); it != map.end(); it++)
-  //     std::cout << "[" << it->first << "," << it->second << "] ";
-  //   std::cout << std::endl;
 
   //   std::cout << "advance it [" << it->first << " " << it->second << "] by " << (order[i + 1] - order[i] + 1) << " -> ";
   //   std::advance(it, order[i + 1] - order[i] + 1);

@@ -35,7 +35,7 @@ class PmergeMe {
                           ~PmergeMe            ();
   PmergeMe&               operator=            (const PmergeMe& o);
   void                    calc_order_insertions(int argc);
-  std::vector<unsigned int> put_map_values_to_vector_in_order(std::map<unsigned int, unsigned int> map);
+  unsigned int*           put_map_values_to_array_in_order(std::map<unsigned int, unsigned int> map);
   void                    run                  (std::list<unsigned int> *lst); // * ?
   void                    run                  ();
 };
