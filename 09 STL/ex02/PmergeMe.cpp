@@ -2,21 +2,27 @@
 
 /////////////////////////////////////////////////////////////////////////////// UTILS
 void PmergeMe::calc_order_insertions(int argc) {
-  nb_insertions = (argc - 3) / 2;
+  int nb_insertions = (argc - 3) / 2;
+  std::cout << "nb_insertions = " << nb_insertions << std::endl;
   _order = new int[nb_insertions];
   int size_group = 0;
   int k = 1;
-  for(int i = 0; i < nb_insertions;) {
-    size_group = pow(2, k++) - size_group;
-    int where_to_stop = i + size_group;
-    int v = i + size_group - 1;
-    if(where_to_stop >= argc - 1) {
-      v -= (where_to_stop - argc + 1);
-      where_to_stop -= (where_to_stop - argc + 1);
-    }
-    for(; i < where_to_stop && i < nb_insertions; v--, i++)
+  int i = 0;
+  for(; i < nb_insertions && k < 5;) {
+    std::cout << "i < nb_insertions : " << i << " < " << nb_insertions << " : " << (i < nb_insertions) <<" => continue\n";
+    size_group = pow(2, k++) - size_group;                                // 0 1  2
+    std::cout << "size_group = " << size_group << std::endl;              // 1 0  3
+    int where_to_stop = std::min(i + size_group - 1, nb_insertions - 1);
+    std::cout << "  where_to_stop = " << "min(" << (i + size_group - 1) << ", " << (nb_insertions - 1) << ") = " << where_to_stop << std::endl;
+    for(int v = where_to_stop; i <= where_to_stop; v--, i++) {
       _order[i] = v;
+      std::cout << "order[" << i << "] = " << _order[i] << std::endl;
+    }
   }
+  std::cout << std::endl << "order: ";
+  for(i = 0; i < nb_insertions; i++)
+    std::cout << _order[i] << " ";
+
 }
 
 list_iterator calc_where_insert(list_iterator begin, list_iterator end, unsigned int a) {
@@ -72,7 +78,6 @@ unsigned int *PmergeMe::put_map_values_to_array_in_order(std::map<unsigned int, 
     size_array = map.size() - 2;
   else
     size_array = map.size() - 1;
-  std::cout << std::endl << "size_array = " << size_array << std::endl;
   unsigned int *arr = new unsigned int[size_array];
   for(it = ++(map.begin()), i = 0; i < size_array; ++it, ++i)
     arr[_order[i]] = it->second;
@@ -119,9 +124,6 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
   for(int i = 1; i < argc; i++)
     _lst.push_back(std::strtoul(argv[i], NULL, 10));
   calc_order_insertions(argc);
-  std::cout << std::endl << "order: ";
-  for(int i = 0; i < nb_insertions; i++)
-    std::cout << _order[i] << " ";
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,40 +147,14 @@ void PmergeMe::run(std::list<unsigned int> *lst) {
     std::cout << *it << " ";
 
   size_t size_array = lst->size() / 2 - 1;
-  std::cout << std::endl << "size_array = " << size_array << std::endl;
   unsigned int *arr = put_map_values_to_array_in_order(map);          // 3 5 7 (in order)
   std::cout << std::endl << "arr      : ";
   for (size_t i = 0; i < size_array; i++) // half_lst.size() - 2 if even, half_lst.size() - 3 if odd
-    std::cout << arr[_order[i]] << " ";
+    std::cout << arr[i] << " ";
 
   // lalf_list sort recursively
 
-  // unsigned int insertions[std::distance(lst.begin(), lst.end())]; // [2 0] [8 0] [4 0] [6 0] and 1 3 7 5
-  // for (list_iterator it = map.begin(); it != map.end(); it++)
-  //   if (std::distance(map.begin(), it) % 2 == 1)
-  //   if(i % 2 == 1 && argv[i + 1] != NULL)
-  //     map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i + 1], NULL, 10), std::strtoul(argv[i], NULL, 10)));
-  //   else if (i % 2 == 1 && argv[i + 1] == NULL)
-  //     map.insert(std::pair<unsigned int, unsigned int>(std::strtoul(argv[i], NULL, 10), 0));
-  // }
-
-  // map.insert(std::pair<unsigned int, unsigned int>(map.begin()->second, 0)); // insert in the beginning
-
-  // list_iterator it = ++(++(++(map.begin()))); // если короткая
-  // std::cout << "it = [" << it->first << " " << it->second << "]" << std::endl;
-  // for (int i = 0; i < nb_insertions; i++) {
-  //   list_iterator insert_after = calc_where_insert(map.begin(), map.end(), it->second);
-  //   std::cout << "insert " << it->second << " after " << insert_after->first << std::endl;
-  //   map.insert(insert_after, std::pair<unsigned int, unsigned int>(it->second, 0));
-
-  //   std::cout << "advance it [" << it->first << " " << it->second << "] by " << (order[i + 1] - order[i] + 1) << " -> ";
-  //   std::advance(it, order[i + 1] - order[i] + 1);
-  //   std::cout << "[" << it->first << " " << it->second << "]" << std::endl;
-  // }
-  // std::cout << std::endl << "final     : ";
-  // for (list_iterator it = map.begin(); it != map.end(); it++)
-  //   std::cout << "[" << it->first << "," << it->second << "] ";
-  // std::cout << std::endl;
+  std::cout << std::endl;
 }
 
 void PmergeMe::run() {

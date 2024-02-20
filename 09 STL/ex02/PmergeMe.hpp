@@ -25,7 +25,6 @@ typedef std::vector<unsigned int>::iterator           vector_iterator;
 class PmergeMe {
   private:
   std::list<unsigned int> _lst;
-  int                     nb_insertions; // size()
   int                     *_order;
                           PmergeMe             ();
 
