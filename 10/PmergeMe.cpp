@@ -85,6 +85,15 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {
     std::cout << *it << " ";
   std::cout << std::endl;
 
+  std::list<unsigned int> l;
+  l.push_back(3);
+  l.push_back(5);
+  l.push_back(7);
+  l.push_back(9);
+
+  for (iterator it = l.begin(); it != l.end(); ++it)
+    std::cout << *it << " ";
+
 }
 
 void PmergeMe::run() {
