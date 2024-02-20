@@ -22,18 +22,18 @@ typedef std::list<unsigned int>::iterator             list_iterator;
 
 class PmergeMe : public std::list<unsigned int> {
   private:
-  std::list<unsigned int> _lst;
   int                     *_order;
                           PmergeMe             ();
 
   public:
+
                           PmergeMe             (int argc, char *argv[]);
                           PmergeMe             (const PmergeMe& o);
                           ~PmergeMe            ();
   PmergeMe&               operator=            (const PmergeMe& o);
   void                    calc_order_insertions(int argc);
   void                    run                  ();
-  void                    run(list_iterator begin, list_iterator end);
+  void                    run                  (list_iterator begin, list_iterator end);
 };
 
 #endif
