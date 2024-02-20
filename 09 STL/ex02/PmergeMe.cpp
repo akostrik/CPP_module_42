@@ -42,16 +42,14 @@ std::list<unsigned int> put_map_keys_to_list(std::map<unsigned int, unsigned int
   return lst;
 }
 
-unsigned int *PmergeMe::put_map_values_to_array_in_order(std::map<unsigned int, unsigned int> map) {
-  size_t i;
-  map_iterator it;
-
-  size_t size_array = map.size();
-  if ((--(map.end()))->second == 0)
-    size_array--;
+unsigned int *PmergeMe::put_map_values_to_array_in_order(std::list<unsigned int> *lst, std::map<unsigned int, unsigned int> map) {
+  size_t size_array = lst->size();
   unsigned int *arr = new unsigned int[size_array];
-  for(it = map.begin(), i = 0; it != map.end() && it->second != 0; ++it, ++i)
-    arr[_order[i]] = it->second;
+  size_t i = 0;
+  for(list_iterator it = lst->begin(); it != lst->end(); ++it) {
+    std::cout << "it = " << *it << ", insert " << map[*it] << std::endl;
+    arr[_order[i++]] = map[*it];
+  }
   return arr;
 }
 
@@ -112,42 +110,46 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PmergeMe::run(std::list<unsigned int> *lst) {
-  std::cout << std::endl << "run      : ";                          // 1 2 4 3 8 7 6 5 9
+  std::cout << std::endl << "run             : ";                          //  1 7 9 8 4 2 3 10 5 6
   for (list_iterator it = lst->begin(); it != lst->end(); it++)
     std::cout << *it << " ";
   if (lst->size() <= 1)
     return ;
 
-  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst); // [2 1] [4 3] [6 5] [8 7] [9 0]
-  sort_2_elts_of_pair(&map);
-  std::cout << std::endl << "map with sorted pairs: ";
+  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst); // [1 7] [3 10] [4 2] [5 6] [9 8]
+  std::cout << std::endl << "not sorted      : ";
   for (map_iterator it = map.begin(); it != map.end(); it++)
     std::cout << "[" << it->first << "," << it->second << "] ";
+  sort_2_elts_of_pair(&map);                                        // [4 2] [6 5]  [7 1] [9 8] [10 3]
+  std::cout << std::endl << "map sorted pairs: ";
+  for (map_iterator it = map.begin(); it != map.end(); it++)
+    std::cout << "[" << it->first << "," << it->second << "] ";
+  // std::map<unsigned int, unsigned int> map2;
 
-  std::list<unsigned int> half_lst = put_map_keys_to_list(map);     // 2 4 6 8 9 -> 2 4 6 8 9
+  std::list<unsigned int> half_lst = put_map_keys_to_list(map);     // 7 9 4 10 6
   std::cout << std::endl << "half list: ";
   for (list_iterator it = half_lst.begin(); it != half_lst.end(); it++)
     std::cout << *it << " ";
+  // sort lalf_list recursively                                     // 4 6 7 9 10
 
   size_t size_array = lst->size() / 2;
-  unsigned int *arr = put_map_values_to_array_in_order(map);        // 1 5 3 7 (insertion order already ok here)
-  std::cout << std::endl << "arr      : ";
-  for (size_t i = 0; i < size_array; i++)
+  unsigned int *arr = put_map_values_to_array_in_order(&half_lst, map);   // map[4] map[6] map[7] map[9] map[10]
+  std::cout << std::endl << "arr      : ";                          // 2      5      1      8      3
+  for (size_t i = 0; i < size_array; i++)                           // 5      2      8      1      3      (the order of the algo)
     std::cout << arr[i] << " ";
   std::cout << std::endl;
 
-  // lalf_list sort recursively
-
-  list_iterator it_end = ++(half_lst.begin());
-  for (size_t i = 0; i < size_array; i++) {
-    if (arr[i] < *(half_lst.begin())) {
-      std::cout << "insert " << arr[i] << " in the beginning\n";
-      half_lst.push_front(arr[i]);
-    }
-    else
-      binary_search_insert(half_lst, it_end, arr[i]);
-    ++it_end;
-  }
+  // for (size_t i = 0; i < size_array; i++) {
+  //   if (arr[i] < *(half_lst.begin())) {
+  //     std::cout << "insert " << arr[i] << " in the beginning\n";
+  //     half_lst.push_front(arr[i]);
+  //   }
+  //   else {
+  //     list_iterator it_end = ++(half_lst...);
+  //     binary_search_insert(half_lst, it_end, arr[i]);
+  //   }
+  //   ++it_end;
+  // }
 
   std::cout << std::endl;
   delete arr;
