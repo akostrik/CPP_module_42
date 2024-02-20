@@ -2,27 +2,20 @@
 
 /////////////////////////////////////////////////////////////////////////////// UTILS
 void PmergeMe::calc_order_insertions(int argc) {
-  int nb_insertions = (argc - 3) / 2;
-  std::cout << "nb_insertions = " << nb_insertions << std::endl;
+  int nb_insertions = (argc - 1) / 2;
   _order = new int[nb_insertions];
   int size_group = 0;
   int k = 1;
   int i = 0;
-  for(; i < nb_insertions && k < 5;) {
-    std::cout << "i < nb_insertions : " << i << " < " << nb_insertions << " : " << (i < nb_insertions) <<" => continue\n";
+  for(; i < nb_insertions;) {
     size_group = pow(2, k++) - size_group;                                // 0 1  2
-    std::cout << "size_group = " << size_group << std::endl;              // 1 0  3
     int where_to_stop = std::min(i + size_group - 1, nb_insertions - 1);
-    std::cout << "  where_to_stop = " << "min(" << (i + size_group - 1) << ", " << (nb_insertions - 1) << ") = " << where_to_stop << std::endl;
-    for(int v = where_to_stop; i <= where_to_stop; v--, i++) {
+    for(int v = where_to_stop; i <= where_to_stop; v--, i++)
       _order[i] = v;
-      std::cout << "order[" << i << "] = " << _order[i] << std::endl;
-    }
   }
   std::cout << std::endl << "order: ";
-  for(i = 0; i < nb_insertions; i++)
+  for(int i = 0; i < nb_insertions; i++)
     std::cout << _order[i] << " ";
-
 }
 
 list_iterator calc_where_insert(list_iterator begin, list_iterator end, unsigned int a) {
@@ -62,7 +55,6 @@ std::map<unsigned int, unsigned int> put_list_to_map(std::list<unsigned int> lst
 
 std::list<unsigned int> put_map_keys_to_list(std::map<unsigned int, unsigned int> map) {
   std::list<unsigned int> lst;
-  lst.push_back(map.begin()->second);
   for(map_iterator it = map.begin(); it != map.end(); ++it)
     lst.push_back(it->first);
   return lst;
@@ -74,13 +66,18 @@ unsigned int *PmergeMe::put_map_values_to_array_in_order(std::map<unsigned int, 
   map_iterator it;
 
   unsigned int last_value = (--(map.end()))->second;
+  size_array = map.size();
   if (last_value == 0)
-    size_array = map.size() - 2;
-  else
-    size_array = map.size() - 1;
+    size_array--;
+  std::cout << std::endl << "size array = " << size_array << std::endl;
   unsigned int *arr = new unsigned int[size_array];
-  for(it = ++(map.begin()), i = 0; i < size_array; ++it, ++i)
+  for(it = map.begin(), i = 0; it != map.end() && it->second != 0; ++it, ++i) {
     arr[_order[i]] = it->second;
+    std::cout << "i = " << i << ", insert = " << it->second << " to the place " << _order[i] << std::endl;
+  }
+  std::cout << std::endl << "arr: ";
+  for(size_t i =0; i < size_array; i++)
+    std::cout << arr[i] << " ";
   return arr;
 }
 
@@ -129,30 +126,34 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PmergeMe::run(std::list<unsigned int> *lst) {
-  std::cout << std::endl << "run        : ";                           // 1 2 4 3 8 7 6 5 9
+  std::cout << std::endl << "run      : ";                          // 1 2 4 3 8 7 6 5 9
   for (list_iterator it = lst->begin(); it != lst->end(); it++)
     std::cout << *it << " ";
   if (lst->size() <= 1)
     return ;
 
-  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst);    // [2 1] [4 3] [6 5] [8 7] [9 0]
+  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst); // [2 1] [4 3] [6 5] [8 7] [9 0]
   sort_every_pair(&map);
   std::cout << std::endl << "map with sorted pairs: ";
   for (map_iterator it = map.begin(); it != map.end(); it++)
     std::cout << "[" << it->first << "," << it->second << "] ";
 
-  std::list<unsigned int> half_lst = put_map_keys_to_list(map);        // 1 and 2 4 6 8 9 -> 1 2 4 6 8 9
+  std::list<unsigned int> half_lst = put_map_keys_to_list(map);     // 2 4 6 8 9 -> 2 4 6 8 9
   std::cout << std::endl << "half list: ";
   for (list_iterator it = half_lst.begin(); it != half_lst.end(); it++)
     std::cout << *it << " ";
 
-  size_t size_array = lst->size() / 2 - 1;
-  unsigned int *arr = put_map_values_to_array_in_order(map);          // 3 5 7 (in order)
+  size_t size_array = lst->size() / 2;
+  unsigned int *arr = put_map_values_to_array_in_order(map);        // 1 5 3 7 (insertion order already ok here)
   std::cout << std::endl << "arr      : ";
-  for (size_t i = 0; i < size_array; i++) // half_lst.size() - 2 if even, half_lst.size() - 3 if odd
+  for (size_t i = 0; i < size_array; i++)
     std::cout << arr[i] << " ";
 
   // lalf_list sort recursively
+
+  // int i = 0;
+  // for (list_iterator it = ++(++(lst.begin())); it != list.end() && *it != 0; ++it, i++)
+  //   my_insert(half_list.begin(), , arr[i]);
 
   std::cout << std::endl;
 }
