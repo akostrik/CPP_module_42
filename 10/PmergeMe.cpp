@@ -2,7 +2,7 @@
 
 /////////////////////////////////////////////////////////////////////////////// UTILS
 void PmergeMe::calc_order_insertions(int argc) {
-  int nb_insertions = (argc - 1) / 2;
+  int nb_insertions = 50; //(argc - 1) / 2;
   _order = new int[nb_insertions];
   int size_group = 0;
   int k = 1;
@@ -13,6 +13,18 @@ void PmergeMe::calc_order_insertions(int argc) {
     for(int v = where_to_stop; i <= where_to_stop; v--, i++)
       _order[i] = v;
   }
+  for(int i = 0; i < nb_insertions; i++)
+    std::cout << std::setw(2) << i << " ";
+  std::cout << std::endl;
+  for(int i = 0; i < nb_insertions; i++)
+    std::cout << std::setw(2) << _order[i] << " ";
+  std::cout << std::endl;
+  (void)argc;
+}
+
+void PmergeMe::my_advance(list_iterator *it, int k) {
+  std::advance(*it, k);
+  // std::advance(it, _order[k + 1] - _order[k]);
 }
 
 void binary_search_insert(std::list<unsigned int> half_lst, list_iterator begin, list_iterator end, unsigned int a) {
@@ -63,49 +75,6 @@ PmergeMe::~PmergeMe() { delete _order; } //
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-struct Position {
-  int* p;
-  Position(int* p) : p(p) {}
-
-  int& dereference() const; // Получение текущего элемента
-  bool equal(const Position& other) const;
-  void increment();
-  void decrement();
-  void advance(std::ptrdiff_t n);
-  std::ptrdiff_t distance_to(const Position& other) const;
-};
-
-struct my_iterator : std::iterator<std::random_access_iterator_tag, unsigned int> {
-  Position pos;                                  // Вложенный объект Position, и конструктор для него
-  iterator(Position pos) : pos(pos) {}
-  //iterator() = default;                        // для всех категорий итераторов
-  //iterator(const iterator&) = default;
-  //iterator& operator=(const iterator&) = default;
-  //~iterator() = default;
-  //reference operator*() const { return pos.dereference(); }
-  iterator& operator++() { pos.increment(); return *this; }
-  iterator operator++(int) { iterator old = *this; ++(*this); return old; }
-  //reference operator[](difference_type n) const { iterator tmp = *this; tmp += n; return tmp; } // для RandomAccessIterator.
-  iterator& operator+=(difference_type n) { pos.advance(n); return *this; }
-  iterator& operator-=(difference_type n) { return *this += -n; }
-};
-
-void swap(my_iterator& a, my_iterator& b) { std::swap(a.pos, b.pos); }   // для всех категорий итераторов
-bool operator<(const my_iterator& lhs, const my_iterator& rhs) { return lhs.pos.distance_to(rhs.pos) > 0; }   // Операции, необходимые для RandomAccessIterator.
-bool operator>(const my_iterator& lhs, const my_iterator& rhs) { return rhs < lhs; }
-bool operator<=(const my_iterator& lhs, const my_iterator& rhs) { return !(rhs > lhs); }
-bool operator>=(const my_iterator& lhs, const my_iterator& rhs) { return !(lhs < rhs); }
-my_iterator operator+(my_iterator it, my_iterator::difference_type n) { it += n; return it; }
-my_iterator operator+(my_iterator::difference_type n, my_iterator it) { return it + n; }
-my_iterator operator-(my_iterator it, my_iterator::difference_type n) { it -= n; return it; }
-my_iterator::difference_type operator-(const my_iterator& lhs, const my_iterator& rhs) { return rhs.pos.distance_to(lhs.pos); }
-int& Position::dereference() const { return *p; }
-bool Position::equal(const Position& other) const { return p == other.p; }
-void Position::increment() { ++p; }
-void Position::decrement() { --p; }
-void Position::advance(std::ptrdiff_t n) { p += n; }
-std::ptrdiff_t Position::distance_to(const Position& other) const { return other.p - p; }
-
 void PmergeMe::run(list_iterator begin, list_iterator end) {
   list_iterator it1;
   list_iterator it2;
@@ -127,6 +96,12 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {
     std::cout << *it << " ";
   std::cout << std::endl;
 
+  for (list_iterator it = this->begin(); it != this->end(); ) {
+    std::cout << *it << " ";
+    //std::advance(it, 1);
+    my_advance(&it, 1);
+  }
+  std::cout << std::endl;
 }
 
 void PmergeMe::run() {
