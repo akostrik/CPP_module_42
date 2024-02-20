@@ -18,14 +18,15 @@
 # include <algorithm>    // std::for_each
 # include <bits/stdc++.h>
 
-typedef std::list<unsigned int>::iterator list_iterator;
+typedef std::list<unsigned int>::iterator             list_iterator;
 typedef std::map<unsigned int,unsigned int>::iterator map_iterator;
+typedef std::vector<unsigned int>::iterator           vector_iterator;
 
 class PmergeMe {
   private:
   std::list<unsigned int> _lst;
   int                     nb_insertions; // size()
-  int                     *order;
+  int                     *_order;
                           PmergeMe             ();
 
   public:
@@ -34,7 +35,8 @@ class PmergeMe {
                           ~PmergeMe            ();
   PmergeMe&               operator=            (const PmergeMe& o);
   void                    calc_order_insertions(int argc);
-  void                    run                  (std::list<unsigned int> lst);
+  std::vector<unsigned int> put_map_values_to_vector_in_order(std::map<unsigned int, unsigned int> map);
+  void                    run                  (std::list<unsigned int> *lst); // * ?
   void                    run                  ();
 };
 
@@ -49,16 +51,3 @@ class PmergeMe {
 //     elt.pair = &(lst.back());
 //   lst.push_back(elt);
 // }
-
-// map no
-// void sort_every_pair(std::map<unsigned int, unsigned int> map) {
-//   for(map_iterator it = map.begin(); it != map.end();) {
-//     if(it->first < it->second) {
-//       map_iterator to_erase = it;
-//       it++;
-//       map.insert(map.begin(), std::pair<unsigned int, unsigned int>(to_erase->second, to_erase->first));
-//       map.erase(to_erase);
-//     } 
-//     else
-//       it++;
-//   }

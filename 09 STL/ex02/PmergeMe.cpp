@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////// UTILS
 void PmergeMe::calc_order_insertions(int argc) {
   nb_insertions = (argc - 3) / 2;
-  order = new int[nb_insertions];
+  _order = new int[nb_insertions];
   int size_group = 0;
   int k = 1;
   for(int i = 0; i < nb_insertions;) {
@@ -15,7 +15,7 @@ void PmergeMe::calc_order_insertions(int argc) {
       where_to_stop -= (where_to_stop - argc + 1);
     }
     for(; i < where_to_stop && i < nb_insertions; v--, i++)
-      order[i] = v;
+      _order[i] = v;
   }
 }
 
@@ -54,6 +54,24 @@ std::map<unsigned int, unsigned int> put_list_to_map(std::list<unsigned int> lst
   return map;
 }
 
+std::list<unsigned int> put_map_keys_to_list(std::map<unsigned int, unsigned int> map) {
+  std::list<unsigned int> lst;
+  for(map_iterator it = map.begin(); it != map.end(); ++it)
+    lst.push_back(it->first);
+  return lst;
+}
+
+std::vector<unsigned int> PmergeMe::put_map_values_to_vector_in_order(std::map<unsigned int, unsigned int> map) {
+  std::vector<unsigned int> vector;
+  int i = 0;
+  for(map_iterator itm = map.begin(); itm != map.end(); ++itm, ++i) {
+    vector_iterator itv = vector.begin();
+    std::advance(itv, _order[i]);
+    vector.insert(itv, itm->second);
+  }
+  return vector;
+}
+
 void erase_every_2nd_elt(std::list<unsigned int> *lst) {
   size_t size = lst->size();
   std::list<unsigned int>::iterator it = lst->begin();
@@ -65,11 +83,24 @@ void erase_every_2nd_elt(std::list<unsigned int> *lst) {
   }
 }
 
+void sort_every_pair(std::map<unsigned int, unsigned int> *map) {
+  for(map_iterator it = map->begin(); it != map->end();) {
+    if(it->first < it->second) {
+      map_iterator to_erase = it;
+      it++;
+      map->insert(map->begin(), std::pair<unsigned int, unsigned int>(to_erase->second, to_erase->first));
+      map->erase(to_erase);
+    } 
+    else
+      it++;
+  }
+}
+
 /////////////////////////////////////////////////////////////////////////////// CONSTRUCTORS
 PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {
-  delete order;
+  delete _order;
 }
 
 PmergeMe::PmergeMe(const PmergeMe& o) { *this = o; }
@@ -81,24 +112,31 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
     _lst.push_back(std::strtoul(argv[i], NULL, 10));
   calc_order_insertions(argc);
   for(int i = 0; i < nb_insertions; i++)
-    std::cout << order[i] << " ";
+    std::cout << _order[i] << " ";
   std::cout << std::endl;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void PmergeMe::run(std::list<unsigned int> lst) {
-  std::map<unsigned int, unsigned int> map = put_list_to_map(lst);
-  for (list_iterator it = lst.begin(); it != lst.end(); it++)
+void PmergeMe::run(std::list<unsigned int> *lst) {
+  if (lst->size() <= 1)
+    return ;
+  std::map<unsigned int, unsigned int> map = put_list_to_map(*lst);
+  sort_every_pair(&map);
+  for (list_iterator it = lst->begin(); it != lst->end(); it++)
     std::cout << *it << " ";
   std::cout << std::endl;
 
-  erase_every_2nd_elt(&lst);
-  for (list_iterator it = lst.begin(); it != lst.end(); it++)
+  std::list<unsigned int> half_lst = put_map_keys_to_list(map);
+  std::vector<unsigned int> vector = put_map_values_to_vector_in_order(map);
+
+  for (list_iterator it = lst->begin(); it != lst->end(); it++)
+    std::cout << *it << " ";
+  std::cout << std::endl;
+  for (vector_iterator it = vector.begin(); it != vector.end(); it++)
     std::cout << *it << " ";
   std::cout << std::endl;
 
-  // sort_every_pair(map);
 
   // // sort recursively
 
@@ -134,5 +172,5 @@ void PmergeMe::run(std::list<unsigned int> lst) {
 }
 
 void PmergeMe::run() {
-  run(_lst);
+  run(&_lst);
 }
