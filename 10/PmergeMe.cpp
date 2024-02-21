@@ -144,7 +144,7 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {         //  1 5 4 8
 
   list_iterator it = ++(this->begin());
   std::cout << "  treat elt " << std::setw(2) << *it << " in pos  1\n";
-  for (int k = 0; it != this->end() && k < std::distance(begin, end); k++) {
+  for (int k = 0; it != this->end() && k < std::distance(begin, end) - 1; k++) {
     my_advance(&it, begin, end);
     std::cout << "  treat elt " << std::setw(2) << *it << " in pos " << std::setw(2) << std::distance(this->begin(), it) << std::endl;
   }
