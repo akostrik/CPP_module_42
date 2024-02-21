@@ -33,7 +33,7 @@ class PmergeMe : public std::list<unsigned int> {
   void                    run                  ();
   void                    run                  (list_iterator begin, list_iterator end);
   void                    my_advance           (list_iterator *it, list_iterator begin, list_iterator end);
-  list_iterator           where_insert_        (list_iterator begin, list_iterator end, unsigned int a);
+  list_iterator           insert_before_       (list_iterator begin, list_iterator end, unsigned int a);
 };
 
 #endif

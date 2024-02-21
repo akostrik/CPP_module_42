@@ -1,6 +1,14 @@
 #include "PmergeMe.hpp"
 
 ////////////////////////////////////////////////////////// UTILS AND CONSTRUCTORS
+void print_list(std::list<unsigned int> *lst) {
+  list_iterator it;
+  for (it = lst->begin(); it != lst->end(); it++) 
+    std::cout << std::setw(2) << *it << " ";
+  --it;
+  std::cout << "(begin = " << *(lst->begin()) << " end = " << *it << ")\n";
+}
+
 std::list<unsigned int> calc_particular_positions(int N) {
   std::list<unsigned int> particular_positions;
   int jac1 = 0; // jacobstahl numbers
@@ -73,27 +81,25 @@ void PmergeMe::my_advance(list_iterator *it, list_iterator begin, list_iterator 
     std::advance(*it, -1);
 }
 
-list_iterator PmergeMe::where_insert_(list_iterator begin, list_iterator end, unsigned int a) {
+list_iterator PmergeMe::insert_before_(list_iterator begin, list_iterator end, unsigned int a) {
   while(1) {
     list_iterator middle = begin;
     std::advance(middle, std::distance(begin, end) / 2);
     if(a == *middle)
-      return middle ;
+      return ++middle;
     else if(a < *middle)
       end = middle;
     else if(a > *middle)
       begin = middle;
     if(std::distance(begin, end) <= 1)
-      return begin;
+      return ++begin;
   }
 }
 
-void PmergeMe::run(list_iterator begin, list_iterator end) { // 1 5 4 8 2 7 3 6
+void PmergeMe::run(list_iterator begin, list_iterator end) {
   if (std::distance(begin, end) <= 1) // <= 0
     return ;
-  for (list_iterator it = begin; it != end; ++it) 
-    std::cout << std::setw(2) << *it << " ";
-  std::cout << "(begin = " << *begin << " end = " << *end << ")\n";
+  print_list(this);
 
   list_iterator middle = begin;
   std::advance(middle, (std::distance(begin, end) + 1) / 2);
@@ -101,21 +107,25 @@ void PmergeMe::run(list_iterator begin, list_iterator end) { // 1 5 4 8 2 7 3 6
   list_iterator it2 = middle;
   for (; it2 != end; ++it, ++it2)
     if(*it < *it2)
-        std::swap(*it, *it2);
-  for (it = begin; it != end; ++it) 
-    std::cout << std::setw(2) << *it << " ";
-  std::cout << "(begin = " << *begin << " end = " << *end << ")\n";
+      std::swap(*it, *it2);
+  print_list(this);
 
   it = middle;
   ++it;
   for (int k = 0; it != end && k < std::distance(middle, end); k++) {
     std::cout << "insert " << std::setw(2) << *it << " (from pos " << std::setw(2) << std::distance(begin, it) << ") ";
-    if (*it < *begin)
-      std::cout << "  in the beginning " << std::endl;
+    //std::cout << *it << " < " << *begin << " ?\n";
+    if (*it < *begin) {
+      std::cout << "in the beginning " << std::endl;
+      this->insert(begin, *it);
+      --begin;
+      print_list(this);
+    }
     else {
-      list_iterator where_insert = where_insert_(begin, middle, *it);
-      std::cout << "  after " << *where_insert << std::endl;
-      this->insert(where_insert, *it);
+      list_iterator insert_before = insert_before_(begin, middle, *it);
+      std::cout << "before " << *insert_before << std::endl;
+      this->insert(insert_before, *it);
+      print_list(this);
     }
     my_advance(&it, middle, end);
   }
