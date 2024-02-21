@@ -11,9 +11,13 @@ int main(int argc, char *argv[]) {
     std::cout << "Error: give arguments (a sequence of numbers).\n";
     return 0;
   }
-  std::cout << "not sorted      : ";
+  std::cout << "                  : ";
+  for (int i = 0; i < argc - 1; i++)
+    std::cout << std::setw(2) << i << " ";
+  std::cout << std::endl;
+  std::cout << "not sorted        : ";
   for (int i = 1; i < argc; i++)
-    std::cout << argv[i] << " ";
+    std::cout << std::setw(2) << argv[i] << " ";
   std::cout << std::endl;
   PmergeMe(argc, argv).run();
 

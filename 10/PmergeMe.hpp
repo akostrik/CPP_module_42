@@ -23,7 +23,7 @@ typedef std::list<unsigned int>::iterator             list_iterator;
 class PmergeMe : public std::list<unsigned int> {
   private:
   int                     *_order;
-  std::list<unsigned int> jacobstal_numbers;
+  std::list<unsigned int> particular_positions;
                           PmergeMe             ();
 
   public:
@@ -34,7 +34,8 @@ class PmergeMe : public std::list<unsigned int> {
   void                    calc_order_insertions(int argc);
   void                    run                  ();
   void                    run                  (list_iterator begin, list_iterator end);
-  void                    my_advance(list_iterator *it, list_iterator begin);
+  void                    my_advance(list_iterator *it, list_iterator begin, list_iterator end);
+
 
 };
 
