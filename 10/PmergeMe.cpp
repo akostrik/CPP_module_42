@@ -119,22 +119,21 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {         //  1 5 4 8
   list_iterator middle = begin;
   std::advance(middle, (std::distance(begin, end) + 1) / 2);
 
-  list_iterator it1 = begin;
+  list_iterator it = begin;
   list_iterator it2 = middle;
-  for (; it2 != end; ++it1, ++it2)
-    if(*it1 < *it2)
-        std::swap(*it1, *it2);
+  for (; it2 != end; ++it, ++it2)
+    if(*it < *it2)
+        std::swap(*it, *it2);
   std::cout << "pairs swapped     : ";
-  for (list_iterator it = begin; it != end; ++it) 
+  for (it = begin; it != end; ++it) 
     std::cout << std::setw(2) << *it << " ";
   std::cout << std::endl;
 
-  list_iterator it = begin;
+  it = begin;
   ++it;
-  std::cout << "  treat " << std::setw(2) << *it << " in pos  1\n";
-  for (int k = 0; it != end && k < std::distance(begin, end) - 1; k++) {
-    my_advance(&it, begin, end);
+  for (int k = 0; it != end && k < std::distance(begin, end); k++) {
     std::cout << "  treat " << std::setw(2) << *it << " in pos " << std::setw(2) << std::distance(begin, it) << std::endl;
+    my_advance(&it, begin, end);
   }
   std::cout << std::endl;
 }
