@@ -15,7 +15,7 @@ void print_list(list_iterator begin, list_iterator end, std::string comment) {
   for (it = begin; it != end; it++) 
     std::cout << std::setw(2) << *it << " ";
   --it;
-  std::cout << " [" << *begin << ", " << *it << "]" << std::endl;
+  std::cout << " [" << *begin << " ... " << *it << "]" << std::endl;
 }
 
 std::list<unsigned int> calc_particular_positions(int N) {
@@ -41,7 +41,7 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
   particular_positions = calc_particular_positions(argc - 2);
 }
 
-PmergeMe::PmergeMe(const PmergeMe& o) { *this = o; }
+PmergeMe::PmergeMe(const PmergeMe& o) : std::list<unsigned int>() { *this = o; }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& o) { (void)o; return *this; }
 
@@ -122,27 +122,26 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {
   print_list(this, "swapped");
   print_list(begin, end, "swapped");
 
-  list_iterator end_tmp = --middle;
-  std::cout << "call run " << *begin << " " << *end_tmp << std::endl;
-  run(begin, middle);
+  //std::cout << "call run " << *begin << " " << *middle << std::endl;
+  //run(begin, middle);
 
   it = middle;
-  ++it;
   for (int k = 0; it != end && k < std::distance(middle, end); k++) {
-    //std::cout << "insert " << std::setw(2) << *it << " (from pos " << std::setw(2) << std::distance(begin, it) << ") ";
+    std::cout << "insert " << std::setw(2) << *it << " (from pos " << std::setw(2) << std::distance(begin, it) << ") ";
     if (*it < *begin) {
-      //std::cout << "in the beginning " << std::endl;
+      std::cout << "in the beginning " << std::endl;
       this->insert(begin, *it);
       --begin;
-      //print_list(this);
     }
     else {
       list_iterator insert_before = insert_before_(begin, middle, *it);
-      //std::cout << "before " << *insert_before << std::endl;
+      std::cout << "before " << *insert_before << std::endl;
       this->insert(insert_before, *it);
     }
     my_advance(&it, middle, end);
   }
+  print_list(this, "end");
+  print_list(begin, end, "end");
   this->erase(middle, this->end());
   print_list(this, "end");
   print_list(begin, end, "end");
