@@ -1,12 +1,21 @@
 #include "PmergeMe.hpp"
 
 ////////////////////////////////////////////////////////// UTILS AND CONSTRUCTORS
-void print_list(std::list<unsigned int> *lst) {
+void print_list(std::list<unsigned int> *lst, std::string comment) {
   list_iterator it;
+  std::cout << std::setw(15) << comment << " ";
   for (it = lst->begin(); it != lst->end(); it++) 
     std::cout << std::setw(2) << *it << " ";
+  std::cout << " (the whole)" << std::endl;
+}
+
+void print_list(list_iterator begin, list_iterator end, std::string comment) {
+  list_iterator it;
+  std::cout << std::setw(15) << comment << " ";
+  for (it = begin; it != end; it++) 
+    std::cout << std::setw(2) << *it << " ";
   --it;
-  std::cout << std::endl;
+  std::cout << " [" << *begin << ", " << *it << "]" << std::endl;
 }
 
 std::list<unsigned int> calc_particular_positions(int N) {
@@ -97,9 +106,11 @@ list_iterator PmergeMe::insert_before_(list_iterator begin, list_iterator end, u
 }
 
 void PmergeMe::run(list_iterator begin, list_iterator end) {
+  print_list(this, "run");
+  print_list(begin, end, "run");
+
   if (std::distance(begin, end) <= 1) // <= 0
     return ;
-  print_list(this);
 
   list_iterator middle = begin;
   std::advance(middle, (std::distance(begin, end) + 1) / 2);
@@ -108,29 +119,33 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {
   for (; it2 != end; ++it, ++it2)
     if(*it < *it2)
       std::swap(*it, *it2);
-  print_list(this);
+  print_list(this, "swapped");
+  print_list(begin, end, "swapped");
+
+  list_iterator end_tmp = --middle;
+  std::cout << "call run " << *begin << " " << *end_tmp << std::endl;
+  run(begin, middle);
 
   it = middle;
   ++it;
   for (int k = 0; it != end && k < std::distance(middle, end); k++) {
-    std::cout << "insert " << std::setw(2) << *it << " (from pos " << std::setw(2) << std::distance(begin, it) << ") ";
-    //std::cout << *it << " < " << *begin << " ?\n";
+    //std::cout << "insert " << std::setw(2) << *it << " (from pos " << std::setw(2) << std::distance(begin, it) << ") ";
     if (*it < *begin) {
-      std::cout << "in the beginning " << std::endl;
+      //std::cout << "in the beginning " << std::endl;
       this->insert(begin, *it);
       --begin;
-      print_list(this);
+      //print_list(this);
     }
     else {
       list_iterator insert_before = insert_before_(begin, middle, *it);
-      std::cout << "before " << *insert_before << std::endl;
+      //std::cout << "before " << *insert_before << std::endl;
       this->insert(insert_before, *it);
     }
     my_advance(&it, middle, end);
   }
-  print_list(this);
   this->erase(middle, this->end());
-  print_list(this);
+  print_list(this, "end");
+  print_list(begin, end, "end");
 }
 
 void PmergeMe::run() {
