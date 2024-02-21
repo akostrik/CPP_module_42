@@ -6,7 +6,7 @@ void print_list(std::list<unsigned int> *lst) {
   for (it = lst->begin(); it != lst->end(); it++) 
     std::cout << std::setw(2) << *it << " ";
   --it;
-  std::cout << "(begin = " << *(lst->begin()) << " end = " << *it << ")\n";
+  std::cout << std::endl;
 }
 
 std::list<unsigned int> calc_particular_positions(int N) {
@@ -125,10 +125,12 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {
       list_iterator insert_before = insert_before_(begin, middle, *it);
       std::cout << "before " << *insert_before << std::endl;
       this->insert(insert_before, *it);
-      print_list(this);
     }
     my_advance(&it, middle, end);
   }
+  print_list(this);
+  this->erase(middle, this->end());
+  print_list(this);
 }
 
 void PmergeMe::run() {
