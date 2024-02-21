@@ -93,9 +93,7 @@ int min (int a, int b) {
 void PmergeMe::my_advance(list_iterator *it, list_iterator begin, list_iterator end) {
   int pos = std::distance(begin, *it);
   int list_size = std::distance(begin, end);
-  std::cout << "  treat elt " << std::setw(2) << **it << " in pos " << std::setw(2) << pos << std::endl;
   std::list<unsigned int>::iterator it_in_part_pos_lst = std::find(particular_positions.begin(), particular_positions.end(), pos);
-
   if(it_in_part_pos_lst != particular_positions.end()) {
     int pos_in_part_pos_lst = std::distance(particular_positions.begin(),  it_in_part_pos_lst);
     int slide = min(pow(2, pos_in_part_pos_lst + 2) - 1, list_size - pos - 1);
@@ -145,10 +143,10 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {         //  1 5 4 8
   std::cout << std::endl;
 
   list_iterator it = ++(this->begin());
-  //std::cout << "traitement " << *it << " ";
+  std::cout << "  treat elt " << std::setw(2) << *it << " in pos  1\n";
   for (int k = 0; it != this->end() && k < std::distance(begin, end); k++) {
     my_advance(&it, begin, end);
-    //std::cout << "traitement " << *it << " ";
+    std::cout << "  treat elt " << std::setw(2) << *it << " in pos " << std::setw(2) << std::distance(this->begin(), it) << std::endl;
   }
   std::cout << std::endl;
 }
