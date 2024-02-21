@@ -22,7 +22,6 @@ typedef std::list<unsigned int>::iterator             list_iterator;
 
 class PmergeMe : public std::list<unsigned int> {
   private:
-  int                     *_order;
   std::list<unsigned int> particular_positions;
                           PmergeMe             ();
 
@@ -31,7 +30,6 @@ class PmergeMe : public std::list<unsigned int> {
                           PmergeMe             (const PmergeMe& o);
                           ~PmergeMe            ();
   PmergeMe&               operator=            (const PmergeMe& o);
-  void                    calc_order_insertions(int argc);
   void                    run                  ();
   void                    run                  (list_iterator begin, list_iterator end);
   void                    my_advance(list_iterator *it, list_iterator begin, list_iterator end);
@@ -40,6 +38,20 @@ class PmergeMe : public std::list<unsigned int> {
 };
 
 #endif
+
+// void PmergeMe::calc_order_insertions(int N) {
+//   int nb_insertions = N / 2;
+//   _order = new int[nb_insertions];
+//   int size_group = 0;
+//   int k = 1;
+//   int i = 0;
+//   for(; i < nb_insertions;) {
+//     size_group = pow(2, k++) - size_group;                                // 0 1  2
+//     int where_to_stop = std::min(i + size_group - 1, nb_insertions - 1);
+//     for(int v = where_to_stop; i <= where_to_stop; v--, i++)
+//       _order[i] = v;
+//   }
+// }
 
 // list is not adapted for binary search
 // for(int i = 1; argv[i] != NULL; i++) {

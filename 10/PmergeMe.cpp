@@ -31,20 +31,6 @@ void binary_search_insert(std::list<unsigned int> half_lst, list_iterator begin,
   //lst.insert(insert_after_this_elt, a);
 }
 
-void PmergeMe::calc_order_insertions(int N) {
-  int nb_insertions = N / 2;
-  _order = new int[nb_insertions];
-  int size_group = 0;
-  int k = 1;
-  int i = 0;
-  for(; i < nb_insertions;) {
-    size_group = pow(2, k++) - size_group;                                // 0 1  2
-    int where_to_stop = std::min(i + size_group - 1, nb_insertions - 1);
-    for(int v = where_to_stop; i <= where_to_stop; v--, i++)
-      _order[i] = v;
-  }
-}
-
 std::list<unsigned int> calc_particular_positions(int N) {
   std::list<unsigned int> particular_positions;
   int jac1 = 0; // jacobstahl numbers
@@ -110,7 +96,6 @@ PmergeMe::PmergeMe() {}
 PmergeMe::PmergeMe(int argc, char *argv[]) {
   for(int i = 1; i < argc; i++)
     this->push_back(std::strtoul(argv[i], NULL, 10));
-  calc_order_insertions(argc - 1);
   particular_positions = calc_particular_positions(argc - 2);
 }
 
@@ -118,7 +103,7 @@ PmergeMe::PmergeMe(const PmergeMe& o) { *this = o; }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& o) { (void)o; return *this; }
 
-PmergeMe::~PmergeMe() { delete _order; } //
+PmergeMe::~PmergeMe() { } //
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
