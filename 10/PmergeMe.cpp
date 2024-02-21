@@ -44,6 +44,11 @@ std::list<unsigned int> calc_particular_positions(int N) {
     jac1 = jac2;
     jac2 = jac3;
   }
+  // std::cout << "partic_positions  :  ";
+  // for(std::list<unsigned int>::iterator it = particular_positions.begin(); it != particular_positions.end(); ++it)
+  //   std::cout << *it << " ";
+  // std::cout << std::endl;
+
   return particular_positions;
 }
 
@@ -111,9 +116,11 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {         //  1 5 4 8
   if (std::distance(begin, end) <= 1)
     return ;
 
+  list_iterator middle = begin;
+  std::advance(middle, (std::distance(begin, end) + 1) / 2);
+
   list_iterator it1 = begin;
-  list_iterator it2 = begin;
-  std::advance(it2, (std::distance(begin, end) + 1) / 2);
+  list_iterator it2 = middle;
   for (; it2 != end; ++it1, ++it2)
     if(*it1 < *it2)
         std::swap(*it1, *it2);
@@ -122,17 +129,12 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {         //  1 5 4 8
     std::cout << std::setw(2) << *it << " ";
   std::cout << std::endl;
 
-  std::cout << "partic_positions  : ";
-  for(std::list<unsigned int>::iterator it = particular_positions.begin(); it != particular_positions.end(); ++it)
-    std::cout << *it << " ";
-  std::cout << std::endl;
-
-  list_iterator it = begin; // ++(this->begin());
+  list_iterator it = begin;
   ++it;
-  std::cout << "  treat elt " << std::setw(2) << *it << " in pos  1\n";
+  std::cout << "  treat " << std::setw(2) << *it << " in pos  1\n";
   for (int k = 0; it != end && k < std::distance(begin, end) - 1; k++) {
     my_advance(&it, begin, end);
-    std::cout << "  treat elt " << std::setw(2) << *it << " in pos " << std::setw(2) << std::distance(begin, it) << std::endl;
+    std::cout << "  treat " << std::setw(2) << *it << " in pos " << std::setw(2) << std::distance(begin, it) << std::endl;
   }
   std::cout << std::endl;
 }
