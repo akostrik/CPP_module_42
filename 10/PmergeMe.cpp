@@ -1,41 +1,10 @@
 #include "PmergeMe.hpp"
 
 ////////////////////////////////////////////////////////// UTILS AND CONSTRUCTORS
-void binary_search_insert(std::list<unsigned int> half_lst, list_iterator begin, list_iterator end, unsigned int a) {
-  //list_iterator insert_after_this_elt;
-  //list_iterator middle;
-  (void)half_lst;
-  (void)begin;
-  (void)end;
-  (void)a;
-  // std::cout << "binary_search_insert " << a << " between " << *begin << " and " << *end << std::endl;
-  // std::cout << "distance = " << std::distance(begin, end) << std::endl;
-  // while(1) {
-  //   middle = begin;
-  //   std::cout << "middle = " << *middle << " advance by " << (std::distance(begin, end) / 2) << std::endl;
-  //   std::advance(middle, std::distance(begin, end) / 2); // left ?
-  //   std::cout << "test middle " << *middle << std::endl;
-  //   if(a == *middle) {
-  //     insert_after_this_elt = middle ;
-  //     break ;
-  //   }
-  //   else if(a < *middle)
-  //     end = middle;
-  //   else if(a > *middle)
-  //     begin = middle;
-  //   if(std::distance(lst.begin(), end) <= 1) {
-  //     insert_after_this_elt = begin;
-  //     break ;
-  //   }
-  // }
-  //lst.insert(insert_after_this_elt, a);
-}
-
 std::list<unsigned int> calc_particular_positions(int N) {
   std::list<unsigned int> particular_positions;
   int jac1 = 0; // jacobstahl numbers
   int jac2 = 1;
-  // particular_positions.push_back(0);
   while (1) {
     int jac3 = 2 * jac1 + jac2;
     if (jac3 > N)
@@ -44,11 +13,6 @@ std::list<unsigned int> calc_particular_positions(int N) {
     jac1 = jac2;
     jac2 = jac3;
   }
-  // std::cout << "partic_positions  :  ";
-  // for(std::list<unsigned int>::iterator it = particular_positions.begin(); it != particular_positions.end(); ++it)
-  //   std::cout << *it << " ";
-  // std::cout << std::endl;
-
   return particular_positions;
 }
 
@@ -94,6 +58,7 @@ int min (int a, int b) {
 // 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40[41]42 43 44 45 46 47 48 49   -1 
 // 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19[20]21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49   -1 +64 (6th jn, 2^6)
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PmergeMe::my_advance(list_iterator *it, list_iterator begin, list_iterator end) {
   int pos = std::distance(begin, *it);
@@ -108,31 +73,52 @@ void PmergeMe::my_advance(list_iterator *it, list_iterator begin, list_iterator 
     std::advance(*it, -1);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void PmergeMe::run(list_iterator begin, list_iterator end) {         //  1 5 4 8 2 7 3 6
-  if (std::distance(begin, end) <= 1)
+list_iterator PmergeMe::where_insert_(list_iterator begin, list_iterator end, unsigned int a) {
+  while(1) {
+    list_iterator middle = begin;
+    std::advance(middle, std::distance(begin, end) / 2);
+    if(a == *middle)
+      return middle ;
+    else if(a < *middle)
+      end = middle;
+    else if(a > *middle)
+      begin = middle;
+    if(std::distance(begin, end) <= 1)
+      return begin;
+  }
+}
+
+void PmergeMe::run(list_iterator begin, list_iterator end) { // 1 5 4 8 2 7 3 6
+  if (std::distance(begin, end) <= 1) // <= 0
     return ;
+  for (list_iterator it = begin; it != end; ++it) 
+    std::cout << std::setw(2) << *it << " ";
+  std::cout << "(begin = " << *begin << " end = " << *end << ")\n";
 
   list_iterator middle = begin;
   std::advance(middle, (std::distance(begin, end) + 1) / 2);
-
   list_iterator it = begin;
   list_iterator it2 = middle;
   for (; it2 != end; ++it, ++it2)
     if(*it < *it2)
         std::swap(*it, *it2);
-  std::cout << "pairs swapped     : ";
   for (it = begin; it != end; ++it) 
     std::cout << std::setw(2) << *it << " ";
-  std::cout << std::endl;
+  std::cout << "(begin = " << *begin << " end = " << *end << ")\n";
 
   it = middle;
   ++it;
   for (int k = 0; it != end && k < std::distance(middle, end); k++) {
-    std::cout << "  insert " << std::setw(2) << *it << " (pos " << std::setw(2) << std::distance(begin, it) << ")" << std::endl;
+    std::cout << "insert " << std::setw(2) << *it << " (from pos " << std::setw(2) << std::distance(begin, it) << ") ";
+    if (*it < *begin)
+      std::cout << "  in the beginning " << std::endl;
+    else {
+      list_iterator where_insert = where_insert_(begin, middle, *it);
+      std::cout << "  after " << *where_insert << std::endl;
+      this->insert(where_insert, *it);
+    }
     my_advance(&it, middle, end);
   }
-  std::cout << std::endl;
 }
 
 void PmergeMe::run() {
