@@ -32,7 +32,7 @@ class PmergeMe : public std::list<unsigned int> {
   PmergeMe&               operator=            (const PmergeMe& o);
   void                    run                  ();
   void                    run                  (list_iterator begin, list_iterator end);
-  void                    my_advance(list_iterator *it, list_iterator begin, list_iterator end);
+  void                    my_advance           (list_iterator *it, list_iterator begin, list_iterator end);
 
 
 };

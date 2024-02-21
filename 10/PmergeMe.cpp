@@ -129,7 +129,7 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {         //  1 5 4 8
   it = middle;
   ++it;
   for (int k = 0; it != end && k < std::distance(middle, end); k++) {
-    std::cout << "  treat " << std::setw(2) << *it << " in pos " << std::setw(2) << std::distance(begin, it) << std::endl;
+    std::cout << "  insert " << std::setw(2) << *it << " (pos " << std::setw(2) << std::distance(begin, it) << ")" << std::endl;
     my_advance(&it, middle, end);
   }
   std::cout << std::endl;
