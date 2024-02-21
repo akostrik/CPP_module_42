@@ -114,11 +114,11 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {         //  1 5 4 8
   list_iterator it1 = begin;
   list_iterator it2 = begin;
   std::advance(it2, (std::distance(begin, end) + 1) / 2);
-  for (; it2 != this->end(); ++it1, ++it2)
+  for (; it2 != end; ++it1, ++it2)
     if(*it1 < *it2)
         std::swap(*it1, *it2);
   std::cout << "pairs swapped     : ";
-  for (list_iterator it = this->begin(); it != this->end(); ++it) 
+  for (list_iterator it = begin; it != end; ++it) 
     std::cout << std::setw(2) << *it << " ";
   std::cout << std::endl;
 
@@ -127,11 +127,12 @@ void PmergeMe::run(list_iterator begin, list_iterator end) {         //  1 5 4 8
     std::cout << *it << " ";
   std::cout << std::endl;
 
-  list_iterator it = ++(this->begin());
+  list_iterator it = begin; // ++(this->begin());
+  ++it;
   std::cout << "  treat elt " << std::setw(2) << *it << " in pos  1\n";
-  for (int k = 0; it != this->end() && k < std::distance(begin, end) - 1; k++) {
+  for (int k = 0; it != end && k < std::distance(begin, end) - 1; k++) {
     my_advance(&it, begin, end);
-    std::cout << "  treat elt " << std::setw(2) << *it << " in pos " << std::setw(2) << std::distance(this->begin(), it) << std::endl;
+    std::cout << "  treat elt " << std::setw(2) << *it << " in pos " << std::setw(2) << std::distance(begin, it) << std::endl;
   }
   std::cout << std::endl;
 }
