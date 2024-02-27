@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     return 0;
   }
   try {
-    PmergeMe p = PmergeMe(argc, argv);
+    A p = A(argc, argv);
     p.run();
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;

@@ -22,17 +22,17 @@ typedef std::list<unsigned int>::iterator             list_iterator;
 typedef std::map<unsigned int,unsigned int>::iterator map_iterator;
 typedef std::vector<unsigned int>::iterator           vector_iterator;
 
-class PmergeMe {
+class A {
   private:
   std::list<unsigned int> _lst;
   int                     *_order;
-                          PmergeMe             ();
+                          A             ();
 
   public:
-                          PmergeMe             (int argc, char *argv[]);
-                          PmergeMe             (const PmergeMe& o);
-                          ~PmergeMe            ();
-  PmergeMe&               operator=            (const PmergeMe& o);
+                          A             (int argc, char *argv[]);
+                          A             (const A& o);
+                          ~A            ();
+  A&               operator=            (const A& o);
   void                    calc_order_insertions(int argc);
   unsigned int*           put_map_values_to_array_in_order(std::list<unsigned int> *lst, std::map<unsigned int, unsigned int> map);
   void                    run                  (std::list<unsigned int> *lst); // * ?

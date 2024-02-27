@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 /////////////////////////////////////////////////////////////////////////////// UTILS
-void PmergeMe::calc_order_insertions(int argc) {
+void A::calc_order_insertions(int argc) {
   int nb_insertions = (argc - 1) / 2;
   _order = new int[nb_insertions];
   int size_group = 0;

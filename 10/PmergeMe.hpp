@@ -22,7 +22,7 @@ typedef std::list<unsigned int>::iterator             list_iterator;
 
 class PmergeMe : public std::list<unsigned int> {
   private:
-  std::list<unsigned int> particular_positions;
+  std::map<unsigned int, unsigned int> move_right;
                           PmergeMe             ();
 
   public:
