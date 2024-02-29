@@ -24,7 +24,8 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
     degree_of_2 *= 2;
   for(i = 1; i < argc ; i++)
     this->push_back(std::strtoul(argv[i], NULL, 10));
-  for(; i < degree_of_2; i++)
+  std::cout << "degree_of_2 = " << degree_of_2 << ", i= " << i << std::endl;
+  for(; i <= degree_of_2; i++)
     this->push_back(0);
 
   move_right[0] = 3;
@@ -92,9 +93,9 @@ PmergeMe::~PmergeMe() { } //
 // }
 
 // 11   3   9   15   1   10   14   8   16   4   7   2   13   12   6   5
-// 3-11     9-15     1-10     8-14     4-16     2-7     12-13     5-6
-// 3-11-9-15         1-10-8-14         2-7-4-16         5-6-12-13
-//  1-10- 8-14- 3-11- 9-15              2- 7- 4-16- 5- 6-12-13
+// 3-11     9-15     1-10     8-14     4-16     2-7     12-13     5-6         len=1
+// 3-11-9-15         1-10-8-14         2-7-4-16         5-6-12-13             len=2
+//  1-10- 8-14- 3-11- 9-15              2- 7- 4-16- 5- 6-12-13                len=4
 //              2                                1            
 //        4           6                       3           5   
 //     8                                   7                  
@@ -129,6 +130,7 @@ void PmergeMe::run() {
   if(this->size() <= 1)
     return ;
 
+  std::cout << "end = " << &(*this->end()) << std::endl;
   for(unsigned int len = 1; len <= this->size() / 2; len *= 2) {
     std::cout << "len = " << len << std::endl;
     it1 = this->begin();
@@ -137,19 +139,17 @@ void PmergeMe::run() {
       std::advance(it2, len);
       it3 = it2;
       std::advance(it3, len);
-      std::cout << *it1 << " : " << *it2 << " : " << *it3 << std::endl;
+      std::cout << &*it1 << "(" << *it1 << ") : " << &*it2 << "(" << *it2 << ") : " << &*it3 << ((*it1 > *it2) ? " splice" : "")<< std::endl;
       if(*it1 > *it2) {
         std::list<unsigned int>::splice(it1, *this, it2, it3);
-        print_list(this->begin(), this->end(), "spliced");
         std::swap(it1, it2);
-        std::cout << *it1 << " : " << *it2 << " : " << *it3 << std::endl;
+        print_list(this->begin(), this->end(), "spliced");
       }
-      if (it3 == this->end())
+      if (it1 == this->end() || it2 == this->end() || it3 == this->end())
         break ;
       std::advance(it1, 2 * len);
     }
   }
-
 }
 
 // 0  1  0  3  2  9  8  7  6  5  4 19 18 17 16 15 14 13 12 11 10 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20                        order
