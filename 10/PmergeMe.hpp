@@ -31,7 +31,7 @@ class PmergeMe : public std::list<unsigned int> {
                           ~PmergeMe            ();
   PmergeMe&               operator=            (const PmergeMe& o);
   void                    run                  ();
-  void                    run                  (list_iterator begin, list_iterator end);
+  void                    splice_              ();
   void                    my_advance           (list_iterator *it, list_iterator begin, list_iterator end);
   list_iterator           insert_before_       (list_iterator begin, list_iterator end, unsigned int a);
 };

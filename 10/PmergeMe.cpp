@@ -24,7 +24,6 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
     degree_of_2 *= 2;
   for(i = 1; i < argc ; i++)
     this->push_back(std::strtoul(argv[i], NULL, 10));
-  std::cout << "degree_of_2 = " << degree_of_2 << ", i= " << i << std::endl;
   for(; i <= degree_of_2; i++)
     this->push_back(0);
 
@@ -92,10 +91,6 @@ PmergeMe::~PmergeMe() { } //
 //   }
 // }
 
-// 11   3   9   15   1   10   14   8   16   4   7   2   13   12   6   5
-// 3-11     9-15     1-10     8-14     4-16     2-7     12-13     5-6         len=1
-// 3-11-9-15         1-10-8-14         2-7-4-16         5-6-12-13             len=2
-//  1-10- 8-14- 3-11- 9-15              2- 7- 4-16- 5- 6-12-13                len=4
 //              2                                1            
 //        4           6                       3           5   
 //     8                                   7                  
@@ -110,46 +105,39 @@ PmergeMe::~PmergeMe() { } //
 //   (2)      (1)    (4)    (3)       (8)     (7)    (6)     (5)
 
 
-// 11   3   9   15   1   10   14   8   16   4   7   2   13   12   6   5
-// 1   16   5   11   3   10    6  14    2  13   7  12    4   15   8   9
-
-// 1    2  
-
-
-// 4   1   3   2
-// 1*  2*  3*
-// 1   4   3   2
-// 2*  1*  3*
-
-void PmergeMe::run() {
+// 11   3   9   15   2   10   14   8   16   4   7   1   13   12   6   5
+// 3-11     9-15     2-10     8-14     4-16     1-7     12-13     5-6         len=1
+// 3-11-9-15         2-10-8-14         1-7-4-16         5-6-12-13             len=2
+//  2-10- 8-14- 3-11- 9-15              1- 7- 4-16- 5- 6-12-13                len=4
+void PmergeMe::splice_() {
   list_iterator it1;
   list_iterator it2;
   list_iterator it3;
 
-  print_list(this->begin(), this->end(), "this");
-  if(this->size() <= 1)
-    return ;
-
-  std::cout << "end = " << &(*this->end()) << std::endl;
   for(unsigned int len = 1; len <= this->size() / 2; len *= 2) {
-    std::cout << "len = " << len << std::endl;
     it1 = this->begin();
     while(1) {
       it2 = it1;
       std::advance(it2, len);
       it3 = it2;
       std::advance(it3, len);
-      std::cout << &*it1 << "(" << *it1 << ") : " << &*it2 << "(" << *it2 << ") : " << &*it3 << ((*it1 > *it2) ? " splice" : "")<< std::endl;
       if(*it1 > *it2) {
         std::list<unsigned int>::splice(it1, *this, it2, it3);
         std::swap(it1, it2);
-        print_list(this->begin(), this->end(), "spliced");
       }
       if (it1 == this->end() || it2 == this->end() || it3 == this->end())
         break ;
       std::advance(it1, 2 * len);
     }
   }
+  print_list(this->begin(), this->end(), "spliced");
+}
+
+void PmergeMe::run() {
+  print_list(this->begin(), this->end(), "this");
+  if(this->size() <= 1)
+    return ;
+  splice_();
 }
 
 // 0  1  0  3  2  9  8  7  6  5  4 19 18 17 16 15 14 13 12 11 10 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20                        order
