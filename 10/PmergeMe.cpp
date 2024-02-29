@@ -5,9 +5,12 @@
 ////////////////////////////////////////////////////////// UTILS AND CONSTRUCTORS
 void print_list(list_iterator begin, list_iterator end, std::string comment) {
   list_iterator it;
-  std::cout << std::setw(15) << comment << ":\n";
+  std::cout << std::setw(15) << comment << ": ";
   for (it = begin; it != end; ++it) 
-    std::cout << std::setw(2) << &(*it) << " " << *it << "\n";
+    std::cout << std::setw(2) << *it << " ";
+  // std::cout << std::setw(15) << comment << ":\n";
+  // for (it = begin; it != end; ++it) 
+  //   std::cout << std::setw(2) << &(*it) << " " << *it << "\n";
   std::cout << std::endl;
 }
 
@@ -19,11 +22,8 @@ PmergeMe::PmergeMe(int argc, char *argv[]) {
   int degree_of_2 = 1;
   while(degree_of_2 < argc - 1)
     degree_of_2 *= 2;
-
-  std::cout << "argc = " << argc << ", degree_of_2 = " << degree_of_2 << std::endl;
   for(i = 1; i < argc ; i++)
     this->push_back(std::strtoul(argv[i], NULL, 10));
-  std::cout << "i    = " << i << ", degree_of_2 = " << degree_of_2 << std::endl;
   for(; i < degree_of_2; i++)
     this->push_back(0);
 
@@ -53,12 +53,6 @@ PmergeMe::PmergeMe(const PmergeMe& o) : std::list<unsigned int>() { *this = o; }
 PmergeMe& PmergeMe::operator=(const PmergeMe& o) { (void)o; return *this; }
 
 PmergeMe::~PmergeMe() { } //
-
-int min (int a, int b) {
-  if(a < b)
-    return a;
-  return b;
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -121,21 +115,39 @@ int min (int a, int b) {
 // 1    2  
 
 
+// 4   1   3   2
+// 1*  2*  3*
+// 1   4   3   2
+// 2*  1*  3*
+
 void PmergeMe::run() {
+  list_iterator it1;
+  list_iterator it2;
+  list_iterator it3;
+
   print_list(this->begin(), this->end(), "this");
   if(this->size() <= 1)
     return ;
 
-  for(unsigned int len = 2; len <= this->size() / 2; len *= 2) {
-    list_iterator it1 = this->begin();
-    list_iterator it2 = it1;
-    std::advance(it2, len);
-    list_iterator it3 = it2;
-    std::advance(it3, len);
-    if(*it1 > *it2) {
-      std::list<unsigned int>::splice(it1, *this, it2, it3);
+  for(unsigned int len = 1; len <= this->size() / 2; len *= 2) {
+    std::cout << "len = " << len << std::endl;
+    it1 = this->begin();
+    while(1) {
+      it2 = it1;
+      std::advance(it2, len);
+      it3 = it2;
+      std::advance(it3, len);
+      std::cout << *it1 << " : " << *it2 << " : " << *it3 << std::endl;
+      if(*it1 > *it2) {
+        std::list<unsigned int>::splice(it1, *this, it2, it3);
+        print_list(this->begin(), this->end(), "spliced");
+        std::swap(it1, it2);
+        std::cout << *it1 << " : " << *it2 << " : " << *it3 << std::endl;
+      }
+      if (it3 == this->end())
+        break ;
+      std::advance(it1, 2 * len);
     }
-    print_list(this->begin(), this->end(), "spliced");
   }
 
 }
