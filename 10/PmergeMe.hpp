@@ -18,11 +18,12 @@
 # include <algorithm>    // std::for_each
 # include <bits/stdc++.h>
 
-typedef std::list<unsigned int>::iterator             list_iterator;
+typedef std::list<std::list<unsigned int> >::iterator lst_lst_iter;
+typedef std::list<unsigned int>::iterator            lst_iter;
 
-class PmergeMe : public std::list<unsigned int> {
+class PmergeMe : public std::list<std::list<unsigned int> > {
   private:
-  std::map<unsigned int, unsigned int> move_right;
+  //std::map<unsigned int, unsigned int> move_right;
                           PmergeMe             ();
 
   public:
@@ -31,9 +32,9 @@ class PmergeMe : public std::list<unsigned int> {
                           ~PmergeMe            ();
   PmergeMe&               operator=            (const PmergeMe& o);
   void                    run                  ();
-  void                    splice_              ();
-  void                    my_advance           (list_iterator *it, list_iterator begin, list_iterator end);
-  list_iterator           insert_before_       (list_iterator begin, list_iterator end, unsigned int a);
+  void                    sort_inside_paires_etc              ();
+  void                    join_pairs_etc();
+  void                    print_list(std::string comment);
 };
 
 #endif
