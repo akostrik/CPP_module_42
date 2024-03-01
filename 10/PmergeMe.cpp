@@ -109,16 +109,19 @@ PmergeMe::~PmergeMe() { } //
 // 2-10- 8-14- 3-11- 9-15              1- 7- 4-16- 5- 6-12-13                 len=4
 // 1- 7- 4-16- 5- 6-12-13              2-10- 8-14- 3-11- 9-15                 len=8
 void PmergeMe::sort_inside_paires_etc() {
-  lst_lst_iter it = this->begin();
   print_list("this");
-  for(; it != this->end() && next(it) != this->end(); ++(++it)) {
-    std::cout << "it = " << &*it << ", next =" << &*(next(it)) << "\n";
-    if(*(it->begin()) > *(next(it)->begin())) {
-      std::swap(*it, *(next(it)));
-      print_list("swapped");
+  for(int k = 0; this->size() > 1 && k < 3; k++) {
+    for(lst_lst_iter it = this->begin(); it != this->end() && next(it) != this->end(); ) {
+      //std::cout << "* it = " << &*it << ", next =" << &*(next(it)) << "\n";
+      if(*(it->begin()) <= *(next(it)->begin())) 
+        it->splice(it->end(), *next(it));
+      else 
+        it->splice(it->begin(), *next(it));
+      this->erase(next(it));
+      ++it;
+      //std::cout << "  it = " << &*it << ", next =" << &*(next(it)) << "\n";
     }
-    //std::list<std::list<unsigned int> >::splice(it1, *this, it2);
-    //this->erase();
+    print_list("swapped");
   }
 }
 
