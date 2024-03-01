@@ -4,17 +4,21 @@
 
 ////////////////////////////////////////////////////////// UTILS AND CONSTRUCTORS
 void PmergeMe::print_list(std::string comment) {
-  std::cout << std::setw(15) << comment << ":\n";
+  std::cout << comment << ":\n";
   for (lst_lst_iter it = this->begin(); it != this->end(); ++it) {
     std::cout << std::setw(2) << &(*it) << ": ";
     std::cout << "[";
     for (lst_iter it2 = it->begin(); it2 != it->end(); ++it2)
-      std::cout << std::setw(2) << *it2 << " ";
-    std::cout << "] ";
+      std::cout << std::setw(2) << &(*it2) << "(" << *it2 << ") ";
+    std::cout << "]\n";
   }
   std::cout << std::endl;
 }
 
+lst_lst_iter next(lst_lst_iter it) {
+  std::advance(it, 1);
+  return it;
+}
 
 PmergeMe::PmergeMe() {}
 
@@ -105,21 +109,16 @@ PmergeMe::~PmergeMe() { } //
 // 2-10- 8-14- 3-11- 9-15              1- 7- 4-16- 5- 6-12-13                 len=4
 // 1- 7- 4-16- 5- 6-12-13              2-10- 8-14- 3-11- 9-15                 len=8
 void PmergeMe::sort_inside_paires_etc() {
-  for(int k = 0; this->size() > 1 && k < 3; k++) {
-    lst_lst_iter it1 = this->begin();
-    lst_lst_iter it2 = it1;
-    ++it2;
-    print_list("this");
-    std::cout << "it1 = " << &*(it1->begin()) << " (" << std::setw(2) << *(it1->begin()) << "), it2 = " << &*(it2->begin()) << " (" << std::setw(2) << *(it2->begin()) << ")\n";
-    for(; it1 != this->end() && it2 != this->end(); ++(++it1), ++(++it2)) {
-      if(*(it1->begin()) > *(it2->begin())) {
-        std::swap(it1, it2);
-        print_list("swapped");
-        std::swap(*it1, *it2);
-      }
-      std::list<std::list<unsigned int> >::splice(it1, *this, it2);
-      //this->erase();
+  lst_lst_iter it = this->begin();
+  print_list("this");
+  for(; it != this->end() && next(it) != this->end(); ++(++it)) {
+    std::cout << "it = " << &*it << ", next =" << &*(next(it)) << "\n";
+    if(*(it->begin()) > *(next(it)->begin())) {
+      std::swap(*it, *(next(it)));
+      print_list("swapped");
     }
+    //std::list<std::list<unsigned int> >::splice(it1, *this, it2);
+    //this->erase();
   }
 }
 
@@ -160,7 +159,7 @@ void PmergeMe::run() {
     return ;
   //print_list("this");
   sort_inside_paires_etc();
-  print_list("spliced");
+  //print_list("spliced");
   //join_pairs_etc();
 }
 
