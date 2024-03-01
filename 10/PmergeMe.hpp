@@ -34,6 +34,7 @@ class PmergeMe : public std::list<std::list<unsigned int> > {
   void                    run                  ();
   void                    join_lists           ();
   void                    separate_lists();
+  void                    insert_dichotom(std::list<unsigned int> new_lst);
   void                    print_list(std::string comment);
 };
 
