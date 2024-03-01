@@ -104,66 +104,53 @@ PmergeMe::~PmergeMe() { } //
 
 
 // 11   3   9   15   2   10   14   8   16   4   7   1   13   12   6   5
-// 3-11     9-15     2-10     8-14     4-16     1-7     12-13     5-6         len=1
-// 3-11-9-15         2-10-8-14         1-7-4-16         5-6-12-13             len=2
-// 2-10- 8-14- 3-11- 9-15              1- 7- 4-16- 5- 6-12-13                 len=4
-// 1- 7- 4-16- 5- 6-12-13              2-10- 8-14- 3-11- 9-15                 len=8
-void PmergeMe::sort_inside_paires_etc() {
-  print_list("this");
-  for(int k = 0; this->size() > 1 && k < 3; k++) {
-    for(lst_lst_iter it = this->begin(); it != this->end() && next(it) != this->end(); ) {
-      //std::cout << "* it = " << &*it << ", next =" << &*(next(it)) << "\n";
+// 3-11     9-15     2-10     8-14     4-16     1-7     12-13     5-6
+// 3-11-9-15         2-10-8-14         1-7-4-16         5-6-12-13
+// 2-10- 8-14- 3-11- 9-15              1- 7- 4-16- 5- 6-12-13
+// 1- 7- 4-16- 5- 6-12-13-2-10- 8-14- 3-11- 9-15
+void PmergeMe::join_lists() {
+  for(; this->size() > 1 ; ) {
+    for(lst_lst_iter it = this->begin(); it != this->end() && next(it) != this->end(); ++it) { //
       if(*(it->begin()) <= *(next(it)->begin())) 
         it->splice(it->end(), *next(it));
       else 
         it->splice(it->begin(), *next(it));
       this->erase(next(it));
-      ++it;
-      //std::cout << "  it = " << &*it << ", next =" << &*(next(it)) << "\n";
     }
-    print_list("swapped");
   }
 }
 
-// 1- 7- 4-16- 5- 6-12-13              2-10- 8-14- 3-11- 9-15                 
+// 1- 7- 4-16- 5- 6-12-13              2-10- 8-14- 3-11- 9-15
 //            (2)                                 (1)
 
-  // 1-10-8-14         2-7-4-16     3-11-9-15     5-6-12-13
+// 1-10-8-14         2-7-4-16     3-11-9-15     5-6-12-13
 //     (2)              (1)           (4)           (3)
 
 // 1-10      2-7   3-11   4-16       5-6    8-14   9-15   12-13
 //   (2)      (1)    (4)    (3)       (8)     (7)    (6)     (5)
 
-// void PmergeMe::join_pairs_etc() {
-//   lst_lst_iter it1;
-//   lst_lst_iter it2;
-
-//   for(unsigned int len = this->size() / 4; len >=2 ;len /= 2) {
-//     it1 = this->begin();
-//     while(1) {
-//       it2 = it1;
-//       std::advance(it2, len);
-//       it3 = it2;
-//       std::advance(it3, len);
-//       if(*it1 > *it2) {
-//         std::list<unsigned int>::splice(it1, *this, it2, it3);
-//         std::swap(it1, it2);
-//       }
-//       if (it1 == this->end() || it2 == this->end() || it3 == this->end())
-//         break ;
-//       std::advance(it1, 2 * len);
-//     }
-//   }
-//   print_list("joined");
-// }
+void PmergeMe::separate_lists() {
+  for(int len = this->begin()->size() / 2 ; len >= 1; len /= 2) {
+    for(lst_lst_iter it = this->begin(); it != this->end(); ++it) { // надо будет препрыгивать
+      lst_iter middle = it->begin();
+      std::advance(middle, len);
+      std::list<unsigned int> new_lst;
+      new_lst.splice(new_lst.begin(), *it, middle, it->end());
+      this->push_front(new_lst); // надо будет дихотомически
+    }
+    std::cout << "len = " << len << std::endl;
+    print_list("separated");
+  }
+}
 
 void PmergeMe::run() {
   if(this->size() <= 1)
     return ;
-  //print_list("this");
-  sort_inside_paires_etc();
-  //print_list("spliced");
-  //join_pairs_etc();
+  print_list("this");
+  join_lists();
+  print_list("joined");
+  separate_lists();
+  print_list("separated");
 }
 
 // 0  1  0  3  2  9  8  7  6  5  4 19 18 17 16 15 14 13 12 11 10 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20                        order

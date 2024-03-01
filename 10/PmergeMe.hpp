@@ -32,8 +32,8 @@ class PmergeMe : public std::list<std::list<unsigned int> > {
                           ~PmergeMe            ();
   PmergeMe&               operator=            (const PmergeMe& o);
   void                    run                  ();
-  void                    sort_inside_paires_etc              ();
-  void                    join_pairs_etc();
+  void                    join_lists           ();
+  void                    separate_lists();
   void                    print_list(std::string comment);
 };
 
