@@ -102,8 +102,9 @@ PmergeMe::~PmergeMe() { } //
 //   }
 // }
 
-// 1  
-// *
+// 10 14 11 3 7 12 1 16 13 4 15 8 6 9 5 2 doesn't work
+//  6 3 1 2 8 4 7 5 
+
 void PmergeMe::insert_dichotom(std::list<unsigned int> new_lst) {    
   std::cout << "insert " << *(new_lst.begin()) << std::endl;
   int slide = this->size() / 2;
