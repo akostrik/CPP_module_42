@@ -102,22 +102,25 @@ PmergeMe::~PmergeMe() { } //
 //   }
 // }
 
-void PmergeMe::insert_dichotom(std::list<unsigned int> new_lst) {
+// 1  
+// *
+void PmergeMe::insert_dichotom(std::list<unsigned int> new_lst) {    
   std::cout << "insert " << *(new_lst.begin()) << std::endl;
   int slide = this->size() / 2;
   lst_lst_iter its_place = this->begin();
-  std::advance(its_place, slide);
+  std::advance(its_place, slide); // не уйти за end
   std::cout << "slide = " << slide << std::endl;
   std::cout << "its_place = " << *(its_place->begin()) << std::endl;
   for (; slide > 0; ) {
     if(*(new_lst.begin()) < *(its_place->begin())) // if ==
       slide = - slide / 2;
-    else 
+    else
       slide = + slide / 2;
     std::advance(its_place, slide);
     std::cout << "slide = " << slide << std::endl;
     std::cout << "its_place = " << *(its_place->begin()) << std::endl;
   }
+  ++its_place;
   this->insert(its_place, new_lst);
   print_list("inserted");
 }
