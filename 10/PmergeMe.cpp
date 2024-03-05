@@ -33,6 +33,14 @@ lst_lst_iter middle_(lst_lst_iter begin, lst_lst_iter end) {
   return begin;
 }
 
+void PmergeMe::suppr_zeros() {
+  for (lst_lst_iter it = this->begin(); it != this->end(); )
+    if (*(it->begin()) == 0)
+      this->erase(it);
+     else
+      ++it;
+}
+
 PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(int argc, char *argv[]) {
@@ -117,16 +125,10 @@ void PmergeMe::reverse(int n, int m) {
   lst_iter right  = this->begin()->begin();
   std::advance(left, n);
   std::advance(right, m + 1);
-  //std::cout << "reverse [" << *left << " " << *right << "]\n";
   std::reverse(left, right);
-
-  // std::list<unsigned int> tmp;
-  // std::list<unsignmed int>::iterator b = l.begin();
-  // tmp.splice(tmp.end(), this->begin(), next(b, pb), next(b, pe+1)); // reverse напрямую
-  // (this->begin()).splice(next(b,pb),tmp);
 }
 
-void PmergeMe::change_order() {
+void PmergeMe::change_order() { // применить позже
   unsigned long size_group = 2;
   unsigned long beg_group  = 0;
   unsigned long end_group  = beg_group + size_group - 1;
@@ -137,8 +139,8 @@ void PmergeMe::change_order() {
       break ;
     }
     reverse(beg_group, end_group);
-    size_group = pow2 - size_group;
     beg_group += size_group;
+    size_group = pow2 - size_group;
     end_group  = beg_group + size_group - 1;
     std::cout << "group [" << beg_group << " " << end_group << "], size = " << size_group << ", pow2 = " << pow2 << "\n";
   }
@@ -174,13 +176,15 @@ void PmergeMe::run() {
   print_list("joined  ");
   change_order();
   print_list("reversed");
-  //one_list_to_N();
+  one_list_to_N();
+  suppr_zeros();
+  print_list("final   ");
 }
 
 // 0  1  0  3  2  9  8  7  6  5  4 19 18 17 16 15 14 13 12 11 10 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20                        order
 
 // 0  1  3  5  11  21  43  85  171  341  683  1365  2731  5461  10923  21845  43691  87381  174763  349525                                                jacobstal numbers
-//    2  2  6  10  22  42                                                                                                                                         size group
+//    2  2  6  10  22  42                                                                                                                                 size group
 //    0  2  4  10  20                                                                                                                                     partic positions
 //[0] 1 [2] 3 [4] 5  6  7  8  9[10]11 12 13 14 15 16 17 18 19[20]21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41[42]43 44 45 46 47 48 49   partic positions
 //[1] 0 [3] 2 [9] 8  7  6  5  4[19]18 17 16 15 14 13 12 11 10[41]40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20
