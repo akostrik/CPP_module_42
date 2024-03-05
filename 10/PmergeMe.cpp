@@ -4,14 +4,23 @@
 
 ////////////////////////////////////////////////////////// UTILS AND CONSTRUCTORS
 void PmergeMe::print_list(std::string comment) {
-  std::cout << comment << ":\n";
+  std::cout << comment << ": ";
   for (lst_lst_iter it = this->begin(); it != this->end(); ++it) {
-    std::cout << std::setw(2) << &(*it) << ": ";
     std::cout << "[";
     for (lst_iter it2 = it->begin(); it2 != it->end(); ++it2)
-      std::cout << std::setw(2) << &(*it2) << "(" << *it2 << ") ";
-    std::cout << "]\n";
+      std::cout << std::setw(2) << *it2 << " ";
+    std::cout << "] ";
   }
+
+  // std::cout << comment << ":\n";
+  // for (lst_lst_iter it = this->begin(); it != this->end(); ++it) {
+  //   std::cout << std::setw(2) << &(*it) << ": ";
+  //   std::cout << "[";
+  //   for (lst_iter it2 = it->begin(); it2 != it->end(); ++it2)
+  //     std::cout << std::setw(2) << &(*it2) << "(" << *it2 << ") ";
+  //   std::cout << "]\n";
+  // }
+
   std::cout << std::endl;
 }
 
@@ -97,51 +106,29 @@ PmergeMe::~PmergeMe() { } //
 //   }
 // }
 
-// list_iterator PmergeMe::insert_before_(list_iterator begin, list_iterator end, unsigned int a) {
-//   while(1) {
-//     list_iterator middle = begin;
-//     std::advance(middle, std::distance(begin, end) / 2);
-//     if(a == *middle)
-//       return ++middle;
-//     else if(a < *middle)
-//       end = middle;
-//     else if(a > *middle)
-//       begin = middle;
-//     if(std::distance(begin, end) <= 1)
-//       return ++begin;
-//   }
-// }
-
-// 10 14 11 3 7 12 1 16 13 4 15 8 6 9 5 2 doesn't work
-//  6 3 1 2 8 4 7 5 
+// 29 24 17 10 18 14 22 11 28 3 7 32 12 1 23 16 27 31 13 4 15 8 6 9 5 26 21 20 2 19 25 30
 
 void PmergeMe::insert_dichotom(std::list<unsigned int> new_) {
   std::cout << "insert " << *(new_.begin()) << std::endl;
   lst_lst_iter left   = this->begin();
   lst_lst_iter right  = this->end();
-  std::cout << "left  = " << *(left->begin()) << std::endl;
-  //std::cout << "right = " << *(right->begin()) << std::endl;
-  std::cout << "dist  = " << std::distance(left, right) << std::endl;
   while (std::distance(left, right) > 1 && next(left) != this->end()) {
-    // if(*(new_.begin()) >= *(middle->begin()) && *(new_lst.begin()) < *(next(middle)->begin()) ) {
-    //   std::cout << "here  " << *(new_.begin()) << ">" << *(middle->begin()) << " && " << *(new_.begin()) << "<" << *(next(middle)->begin()) << std::endl;
-    //   break ;
-    // }
     lst_lst_iter middle  = middle_(left, right);
-    if(*(new_.begin()) < *(middle->begin())) {
+    if(*(new_.begin()) < *(middle->begin()))
       right = middle;
-      //std::cout << "right = " << *(right->begin()) << std::endl;
-    }
-    else if(*(new_.begin()) > *(middle->begin())) {
+    else if(*(new_.begin()) > *(middle->begin())) 
       left = middle;
-      std::cout << "left  =  " << *(left->begin()) << std::endl;
-    }
   }
   ++left;
   this->insert(left, new_);
   print_list("inserted");
 }
 
+// 11   3   9   15   2   10   14   8   16   4   7   1   13   12   6   5
+// 3-11     9-15     2-10     8-14     4-16     1-7     12-13     5-6
+// 3-11-9-15         2-10-8-14         1-7-4-16         5-6-12-13
+// 2-10- 8-14- 3-11- 9-15              1- 7- 4-16- 5- 6-12-13
+// 1- 7- 4-16- 5- 6-12-13-2-10- 8-14- 3-11- 9-15
 void PmergeMe::N_lists_to_one() {
   for(; this->size() > 1 ; )
     for(lst_lst_iter it = this->begin(); it != this->end() && next(it) != this->end(); ++it) { //
@@ -153,6 +140,25 @@ void PmergeMe::N_lists_to_one() {
     }
 }
 
+void PmergeMe::reverse() {
+  lst_iter left   = this->begin()->begin();
+  lst_iter right  = this->begin()->end();
+  std::reverse(left, right);
+
+  // std::list<unsigned int> tmp;
+  // std::list<unsignmed int>::iterator b = l.begin();
+  // tmp.splice(tmp.end(), this->begin(), next(b, pb), next(b, pe+1)); // reverse напрямую
+  // (this->begin()).splice(next(b,pb),tmp);
+}
+
+
+// 1- 7- 4-16- 5- 6-12-13-2-10- 8-14- 3-11- 9-15
+// 1- 7- 4-16- 5- 6-12-13              2-10- 8-14- 3-11- 9-15
+//            (2)                                 (1)
+// 1-10-8-14         2-7-4-16     3-11-9-15     5-6-12-13
+//     (2)              (1)           (4)           (3)
+// 1-10      2-7   3-11   4-16       5-6    8-14   9-15   12-13
+//   (2)      (1)    (4)    (3)       (8)     (7)    (6)     (5)
 void PmergeMe::one_list_to_N() {
   for(int len = this->begin()->size() / 2 ; len >= 1; len /= 2) {
     std::list<std::list<unsigned int> > inserts;
@@ -174,21 +180,12 @@ void PmergeMe::run() {
   print_list("this");
   N_lists_to_one();
   print_list("joined");
-  one_list_to_N();
+  reverse();
+  print_list("reverded");
+  //one_list_to_N();
 }
 
-// 11   3   9   15   2   10   14   8   16   4   7   1   13   12   6   5
-// 3-11     9-15     2-10     8-14     4-16     1-7     12-13     5-6
-// 3-11-9-15         2-10-8-14         1-7-4-16         5-6-12-13
-// 2-10- 8-14- 3-11- 9-15              1- 7- 4-16- 5- 6-12-13
-// 1- 7- 4-16- 5- 6-12-13-2-10- 8-14- 3-11- 9-15
 
-// 1- 7- 4-16- 5- 6-12-13              2-10- 8-14- 3-11- 9-15
-//            (2)                                 (1)
-// 1-10-8-14         2-7-4-16     3-11-9-15     5-6-12-13
-//     (2)              (1)           (4)           (3)
-// 1-10      2-7   3-11   4-16       5-6    8-14   9-15   12-13
-//   (2)      (1)    (4)    (3)       (8)     (7)    (6)     (5)
 
 
 // 0  1  0  3  2  9  8  7  6  5  4 19 18 17 16 15 14 13 12 11 10 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20                        order
