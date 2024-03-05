@@ -20,6 +20,16 @@ lst_lst_iter next(lst_lst_iter it) {
   return it;
 }
 
+lst_lst_iter prev(lst_lst_iter it) {
+  std::advance(it, -1);
+  return it;
+}
+
+lst_lst_iter middle_(lst_lst_iter begin, lst_lst_iter end) {
+  std::advance(begin, std::distance(begin, end) / 2 );
+  return begin;
+}
+
 PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(int argc, char *argv[]) {
@@ -105,28 +115,34 @@ PmergeMe::~PmergeMe() { } //
 // 10 14 11 3 7 12 1 16 13 4 15 8 6 9 5 2 doesn't work
 //  6 3 1 2 8 4 7 5 
 
-void PmergeMe::insert_dichotom(std::list<unsigned int> new_lst) {    
-  std::cout << "insert " << *(new_lst.begin()) << std::endl;
-  int slide = this->size() / 2;
-  lst_lst_iter its_place = this->begin();
-  std::advance(its_place, slide); // не уйти за end
-  std::cout << "slide = " << slide << std::endl;
-  std::cout << "its_place = " << *(its_place->begin()) << std::endl;
-  for (; slide > 0; ) {
-    if(*(new_lst.begin()) < *(its_place->begin())) // if ==
-      slide = - slide / 2;
-    else
-      slide = + slide / 2;
-    std::advance(its_place, slide);
-    std::cout << "slide = " << slide << std::endl;
-    std::cout << "its_place = " << *(its_place->begin()) << std::endl;
+void PmergeMe::insert_dichotom(std::list<unsigned int> new_) {
+  std::cout << "insert " << *(new_.begin()) << std::endl;
+  lst_lst_iter left   = this->begin();
+  lst_lst_iter right  = this->end();
+  std::cout << "left  = " << *(left->begin()) << std::endl;
+  //std::cout << "right = " << *(right->begin()) << std::endl;
+  std::cout << "dist  = " << std::distance(left, right) << std::endl;
+  while (std::distance(left, right) > 1 && next(left) != this->end()) {
+    // if(*(new_.begin()) >= *(middle->begin()) && *(new_lst.begin()) < *(next(middle)->begin()) ) {
+    //   std::cout << "here  " << *(new_.begin()) << ">" << *(middle->begin()) << " && " << *(new_.begin()) << "<" << *(next(middle)->begin()) << std::endl;
+    //   break ;
+    // }
+    lst_lst_iter middle  = middle_(left, right);
+    if(*(new_.begin()) < *(middle->begin())) {
+      right = middle;
+      //std::cout << "right = " << *(right->begin()) << std::endl;
+    }
+    else if(*(new_.begin()) > *(middle->begin())) {
+      left = middle;
+      std::cout << "left  =  " << *(left->begin()) << std::endl;
+    }
   }
-  ++its_place;
-  this->insert(its_place, new_lst);
+  ++left;
+  this->insert(left, new_);
   print_list("inserted");
 }
 
-void PmergeMe::join_lists() {
+void PmergeMe::N_lists_to_one() {
   for(; this->size() > 1 ; )
     for(lst_lst_iter it = this->begin(); it != this->end() && next(it) != this->end(); ++it) { //
       if(*(it->begin()) <= *(next(it)->begin())) 
@@ -137,9 +153,8 @@ void PmergeMe::join_lists() {
     }
 }
 
-void PmergeMe::separate_lists() {
+void PmergeMe::one_list_to_N() {
   for(int len = this->begin()->size() / 2 ; len >= 1; len /= 2) {
-    std::cout << "len = " << len << std::endl;
     std::list<std::list<unsigned int> > inserts;
     for(lst_lst_iter it = this->begin(); it != this->end(); ++it) {
       lst_iter middle = it->begin();
@@ -157,9 +172,9 @@ void PmergeMe::run() {
   if(this->size() <= 1)
     return ;
   print_list("this");
-  join_lists();
+  N_lists_to_one();
   print_list("joined");
-  separate_lists();
+  one_list_to_N();
 }
 
 // 11   3   9   15   2   10   14   8   16   4   7   1   13   12   6   5
