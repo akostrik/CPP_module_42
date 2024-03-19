@@ -105,13 +105,14 @@ void PmergeMe::insert_dichotom(std::list<unsigned int> new_) {
 }
 
 // 11   3   9   15   2   10   14   8   16   4   7   1   13   12   6   5
-// 3-11     9-15     2-10     8-14     4-16     1-7     12-13     5-6
-// 3-11-9-15         2-10-8-14         1-7-4-16         5-6-12-13
+// 3-11     9-15     2-10     8-14     4-16     1-7     12-13     5-6    // 3 < 11, 9 < 15, ...
+// 3-11-9-15         2-10-8-14         1-7-4-16         5-6-12-13        // 3 < 9, 2 < 8, 1 < 4, 5 < 12
 // 2-10- 8-14- 3-11- 9-15              1- 7- 4-16- 5- 6-12-13
 // 1- 7- 4-16- 5- 6-12-13-2-10- 8-14- 3-11- 9-15
+// in the specific order
 void PmergeMe::N_lists_to_one() {
   for(; this->size() > 1 ; )
-    for(lst_lst_iter it = this->begin(); it != this->end() && next(it) != this->end(); ++it) { //
+    for(lst_lst_iter it = this->begin(); it != this->end() && next(it) != this->end(); ++it) {
       if(*(it->begin()) <= *(next(it)->begin())) 
         it->splice(it->end(), *next(it));
       else 
@@ -128,21 +129,22 @@ void PmergeMe::reverse(int n, int m) {
   std::reverse(left, right);
 }
 
-void PmergeMe::change_order() { // применить позже
+void PmergeMe::change_order(std::list<unsigned int> *l) { // применить позже
   unsigned long size_group = 2;
   unsigned long beg_group  = 0;
   unsigned long end_group  = beg_group + size_group - 1;
-  std::cout << "group [" << beg_group << " " << end_group << "], size = " << size_group << ", pow2 = 2\n";
+  std::cout << "change order\n";
+  std::cout << "change order group [" << beg_group << " " << end_group << "], size = " << size_group << ", pow2 = 2\n";
   for (int pow2 = 4; ; pow2 *= 2) {
-    if (end_group > (this->begin())->size()) {
-      reverse(beg_group, this->begin()->size() - 1);
+    if (end_group > l->size()) {
+      reverse(beg_group, l->size() - 1);
       break ;
     }
     reverse(beg_group, end_group);
     beg_group += size_group;
     size_group = pow2 - size_group;
     end_group  = beg_group + size_group - 1;
-    std::cout << "group [" << beg_group << " " << end_group << "], size = " << size_group << ", pow2 = " << pow2 << "\n";
+    //std::cout << "group [" << beg_group << " " << end_group << "], size = " << size_group << ", pow2 = " << pow2 << "\n";
   }
 }
 
@@ -155,13 +157,16 @@ void PmergeMe::change_order() { // применить позже
 //   (2)      (1)    (4)    (3)       (8)     (7)    (6)     (5)
 void PmergeMe::one_list_to_N() {
   for(int len = this->begin()->size() / 2 ; len >= 1; len /= 2) {
+    std::cout << "one_list_to_N len = " << len << "\n";
     std::list<std::list<unsigned int> > inserts;
     for(lst_lst_iter it = this->begin(); it != this->end(); ++it) {
       lst_iter middle = it->begin();
       std::advance(middle, len);
-      std::list<unsigned int> insert;
-      insert.splice(insert.begin(), *it, middle, it->end());
-      inserts.push_front(insert);
+      std::list<unsigned int> *insert = NULL;
+      insert->splice(insert->begin(), *it, middle, it->end()); /////// here problem
+      std::cout << "call change order\n";
+      //change_order(insert);
+      inserts.push_front(*insert);
     }
     for(lst_lst_iter it = inserts.begin(); it != inserts.end(); ++it)
       insert_dichotom(*it);
@@ -174,8 +179,6 @@ void PmergeMe::run() {
   print_list("this    ");
   N_lists_to_one();
   print_list("joined  ");
-  change_order();
-  print_list("reversed");
   one_list_to_N();
   suppr_zeros();
   print_list("final   ");

@@ -34,7 +34,7 @@ class PmergeMe : public std::list<std::list<unsigned int> > {
   void                    run                  ();
   void                    N_lists_to_one       ();
   void                    reverse              (int n, int m);
-  void                    change_order         ();
+  void                    change_order         (std::list<unsigned int> *l);
   void                    one_list_to_N        ();
   void                    insert_dichotom      (std::list<unsigned int> new_lst);
   void                    suppr_zeros          ();
