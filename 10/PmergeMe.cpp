@@ -162,7 +162,7 @@ void PmergeMe::one_list_to_N() {
     for(lst_lst_iter it = this->begin(); it != this->end(); ++it) {
       lst_iter middle = it->begin();
       std::advance(middle, len);
-      std::list<unsigned int> *insert = NULL;
+      std::list<unsigned int> *insert = new std::list<unsigned int>();
       insert->splice(insert->begin(), *it, middle, it->end()); /////// here problem
       std::cout << "call change order\n";
       //change_order(insert);
