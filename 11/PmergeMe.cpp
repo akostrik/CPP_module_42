@@ -18,13 +18,14 @@ lst_iter next(lst_iter it) {
 
 lst_iter middle_(lst_iter begin, lst_iter end) {
   lst_iter middle = begin; 
-  std::advance(middle, std::distance(begin, end));
+  std::advance(middle, (std::distance(begin, end) + 1 ) / 2);
   return middle;
 }
 
 std::list<unsigned int> deep_copy_left_half(std::list<unsigned int> l1) {
   std::list<unsigned int> l2;
   std::list<unsigned int>::iterator middle = middle_(l1.begin(), l1.end());
+  std::cout << "middle = " << *middle << std::endl; 
   for (lst_iter it = l1.begin(); it != middle; ++it) 
     l2.push_back(*it);
   return l2;
@@ -88,9 +89,15 @@ void change_order(std::list<unsigned int> *l) {
 void insert_dichotom(std::list<unsigned int> *l, unsigned int a) {
   lst_iter left   = l->begin();
   lst_iter right  = l->end();
-  while (std::distance(left, right) > 1 && next(left) != l->end()) {
+  if (a < *(l->begin())) {
+    l->push_front(a);
+    return ;
+  }
+  while (std::distance(left, right) > 1) {
     lst_iter middle  = middle_(left, right);
-    if(a < *middle) 
+    if(next(left) == l->end())
+      break ;
+    else if(a < *middle) 
       right = middle;
     else if(a > *middle)
       left = middle;
@@ -112,15 +119,17 @@ void PmergeMe::run(std::list<unsigned int> *l) {
     std::swap(*(l->begin()), *(next(l->begin())));
     return ;
   }
-  print_list("this        ", *l);
+  print_list("this            ", *l);
   std::map<unsigned int, unsigned int> map_pairs = pairs_(*l);
   std::list<unsigned int> left_half  = deep_copy_left_half(*l);
-  //PmergeMe().run(&left_half);
+  PmergeMe().run(&left_half);
+  print_list("sorted left_half", left_half);
   std::list<unsigned int> right_half = right_half_(left_half, map_pairs);
-  change_order(&right_half);
+  print_list("right_half      ", right_half);
+  //change_order(&right_half);
   for(lst_iter it = right_half.begin(); it != right_half.end(); ++it)
     insert_dichotom(&left_half, *it);
-  print_list("final       ", *l);
+  print_list("final           ", left_half);
 }
 
 // 0  1  0  3  2  9  8  7  6  5  4 19 18 17 16 15 14 13 12 11 10 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20                        order
