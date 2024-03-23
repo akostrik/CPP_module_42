@@ -127,7 +127,7 @@ std::list<unsigned int> PmergeMe::run(std::list<unsigned int> l) {
   print_list("sorted left_half", left_half);
   std::list<unsigned int> right_half = right_half_(left_half, map_pairs);
   print_list("right_half      ", right_half);
-  //change_order(&right_half);
+  change_order(&right_half);
   for(lst_iter it = right_half.begin(); it != right_half.end(); ++it)
     insert_dichotom(&left_half, *it);
   print_list("final left_half ", left_half);
