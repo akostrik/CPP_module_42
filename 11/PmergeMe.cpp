@@ -1,16 +1,14 @@
-// std::valarray
-// 29 24 17 10 18 14 22 11 28 3 7 32 12 1 23 16 27 31 13 4 15 8 6 9 5 26 21 20 2 19 25 30
-
 #include "PmergeMe.hpp"
 
-////////////////////////////////////////////////////////// UTILS AND CONSTRUCTORS
-void print_list(std::string comment, std::list<unsigned int> l) {
-  std::cout << comment << ": ";
-  for (lst_iter it = l.begin(); it != l.end(); ++it) 
-     std::cout << std::setw(2) << *it << " ";
-  std::cout << std::endl;
-}
+PmergeMe::PmergeMe() {}
 
+PmergeMe::PmergeMe(const PmergeMe& o) { *this = o; }
+
+PmergeMe& PmergeMe::operator=(const PmergeMe& o) { (void)o; return *this; }
+
+PmergeMe::~PmergeMe() { } //
+
+////////////////////////////////////////////////////////// UTILS
 lst_iter next(lst_iter it) {
   std::advance(it, 1);
   return it;
@@ -25,20 +23,10 @@ lst_iter middle_(lst_iter begin, lst_iter end) {
 std::list<unsigned int> deep_copy_left_half(std::list<unsigned int> l1) {
   std::list<unsigned int> l2;
   std::list<unsigned int>::iterator middle = middle_(l1.begin(), l1.end());
-  std::cout << "middle = " << *middle << std::endl; 
   for (lst_iter it = l1.begin(); it != middle; ++it) 
     l2.push_back(*it);
   return l2;
 }
-
-PmergeMe::PmergeMe() {
-}
-
-PmergeMe::PmergeMe(const PmergeMe& o) { *this = o; }
-
-PmergeMe& PmergeMe::operator=(const PmergeMe& o) { (void)o; return *this; }
-
-PmergeMe::~PmergeMe() { } //
 
 std::map<unsigned int, unsigned int> pairs_(std::list<unsigned int> l) {
   std::map<unsigned int, unsigned int>  map;
@@ -50,7 +38,7 @@ std::map<unsigned int, unsigned int> pairs_(std::list<unsigned int> l) {
     else
       map.insert(std::pair<unsigned int, unsigned int>(*it1, *it2));
   if (l.size() % 2 == 1)
-    map.insert(std::pair<unsigned int, unsigned int>(*it1, 0)); //
+    map.insert(std::pair<unsigned int, unsigned int>(*it1, 0));
   return map;
 }
 
@@ -85,8 +73,8 @@ void change_order(std::list<unsigned int> *l) {
     end_group  = beg_group + size_group - 1;
   }
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////// ALGO
 void insert_dichotom(std::list<unsigned int> *l, unsigned int a) {
   lst_iter left   = l->begin();
   lst_iter right  = l->end();
@@ -120,17 +108,13 @@ std::list<unsigned int> PmergeMe::run(std::list<unsigned int> l) {
     std::swap(*(l.begin()), *(next(l.begin())));
     return l;
   }
-  print_list("this            ", l);
   std::map<unsigned int, unsigned int> map_pairs = pairs_(l);
   std::list<unsigned int> left_half  = deep_copy_left_half(l);
   left_half = PmergeMe().run(left_half);
-  print_list("sorted left_half", left_half);
   std::list<unsigned int> right_half = right_half_(left_half, map_pairs);
-  print_list("right_half      ", right_half);
   change_order(&right_half);
   for(lst_iter it = right_half.begin(); it != right_half.end(); ++it)
     insert_dichotom(&left_half, *it);
-  print_list("final left_half ", left_half);
   return left_half;
 }
 
