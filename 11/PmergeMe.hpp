@@ -28,7 +28,7 @@ class PmergeMe  {
                           PmergeMe             (const PmergeMe& o);
                           ~PmergeMe            ();
   PmergeMe&               operator=            (const PmergeMe& o);
-  void                    run                  (std::list<unsigned int> *l);
+  std::list<unsigned int> run                  (std::list<unsigned int> l);
 };
 
 #endif

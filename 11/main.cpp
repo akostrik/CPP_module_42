@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
   for(int i = 1; i < argc ; i++) 
     l.push_back(std::strtoul(argv[i], NULL, 10));
 
-  PmergeMe().run(&l);
+  PmergeMe().run(l);
 
   return 0;
 }

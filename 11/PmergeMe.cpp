@@ -50,14 +50,15 @@ std::map<unsigned int, unsigned int> pairs_(std::list<unsigned int> l) {
     else
       map.insert(std::pair<unsigned int, unsigned int>(*it1, *it2));
   if (l.size() % 2 == 1)
-    map.insert(std::pair<unsigned int, unsigned int>(*it1, *it1)); //
+    map.insert(std::pair<unsigned int, unsigned int>(*it1, 0)); //
   return map;
 }
 
 std::list<unsigned int> right_half_(std::list<unsigned int> left_half, std::map<unsigned int, unsigned int> map_pairs) {
   std::list<unsigned int> right_half;
-  for (std::list<unsigned int>::iterator it = left_half.begin(); it != left_half.end(); ++it )
-    right_half.push_back(map_pairs.find(*it)->second); 
+  for (std::list<unsigned int>::iterator it = left_half.begin(); it != left_half.end(); ++it) 
+    if (map_pairs.find(*it)->second > 0)
+      right_half.push_back(map_pairs.find(*it)->second); 
   return right_half;
 }
 
@@ -110,26 +111,27 @@ void insert_dichotom(std::list<unsigned int> *l, unsigned int a) {
   l->insert(left, a);
 }
 
-void PmergeMe::run(std::list<unsigned int> *l) {
-  if(l->size() <= 1)
-    return ;
-  if(l->size() == 2 && *(l->begin()) < *(next(l->begin())))
-    return ;
-  if(l->size() == 2 && *(l->begin()) >= *(next(l->begin()))) {
-    std::swap(*(l->begin()), *(next(l->begin())));
-    return ;
+std::list<unsigned int> PmergeMe::run(std::list<unsigned int> l) {
+  if(l.size() <= 1)
+    return l;
+  if(l.size() == 2 && *(l.begin()) < *(next(l.begin())))
+    return l;
+  if(l.size() == 2 && *(l.begin()) >= *(next(l.begin()))) {
+    std::swap(*(l.begin()), *(next(l.begin())));
+    return l;
   }
-  print_list("this            ", *l);
-  std::map<unsigned int, unsigned int> map_pairs = pairs_(*l);
-  std::list<unsigned int> left_half  = deep_copy_left_half(*l);
-  PmergeMe().run(&left_half);
+  print_list("this            ", l);
+  std::map<unsigned int, unsigned int> map_pairs = pairs_(l);
+  std::list<unsigned int> left_half  = deep_copy_left_half(l);
+  left_half = PmergeMe().run(left_half);
   print_list("sorted left_half", left_half);
   std::list<unsigned int> right_half = right_half_(left_half, map_pairs);
   print_list("right_half      ", right_half);
   //change_order(&right_half);
   for(lst_iter it = right_half.begin(); it != right_half.end(); ++it)
     insert_dichotom(&left_half, *it);
-  print_list("final           ", left_half);
+  print_list("final left_half ", left_half);
+  return left_half;
 }
 
 // 0  1  0  3  2  9  8  7  6  5  4 19 18 17 16 15 14 13 12 11 10 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20                        order
