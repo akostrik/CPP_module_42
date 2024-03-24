@@ -80,7 +80,8 @@ public:
 ## STL (Standard Template Library) (here: c++ 98 only)
 
 ### Standard containers 
-* https://en.cppreference.com/w/cpp/container  
+* https://cplusplus.com/reference/stl/#:~:text=Standard%20Containers,the%20types%20supported%20as%20elements
+* https://en.cppreference.com/w/cpp/container
 * **container** класс, объекты которого хранят набор однотипных значений
 * предоставляет средства доступа к своему содержимому
 * эти средства доступа строятся на обобщении понятия “указатель на элемент массива”, iterator
