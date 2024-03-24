@@ -28,21 +28,21 @@ std::list<unsigned int> deep_copy_left_half(std::list<unsigned int> l1) {
   return l2;
 }
 
-std::map<unsigned int, unsigned int> pairs_as_map(std::list<unsigned int> l) {
-  std::map<unsigned int, unsigned int>  pairs ;
-  lst_iter it1 = l.begin();
-  lst_iter it2 = middle_(l.begin(), l.end());
-  for( ; it2 != l.end() ; ++it1, ++it2)
+std::set<unsigned int, unsigned int> pairs_(std::set<unsigned int> s) {
+  std::set<unsigned int, unsigned int>  pairs ;
+  set_iter it1 = s.begin();
+  set_iter it2 = middle_(s.begin(), s.end());
+  for( ; it2 != s.end() ; ++it1, ++it2)
     if(*it1 < *it2) 
       pairs.insert(std::pair<unsigned int, unsigned int>(*it1, *it2));
     else
       pairs.insert(std::pair<unsigned int, unsigned int>(*it1, *it2));
-  if (l.size() % 2 == 1)
+  if (s.size() % 2 == 1)
     pairs.insert(std::pair<unsigned int, unsigned int>(*it1, 0));
   return pairs;
 }
 
-std::list<std::pair<unsigned int, unsigned int> > pairs_as_list(std::list<unsigned int> l) {
+std::list<std::pair<unsigned int, unsigned int> > pairs_(std::list<unsigned int> l) {
   std::list<std::pair<unsigned int, unsigned int> > pairs;
   lst_iter it1 = l.begin();
   lst_iter it2 = middle_(l.begin(), l.end());
@@ -56,17 +56,17 @@ std::list<std::pair<unsigned int, unsigned int> > pairs_as_list(std::list<unsign
   return pairs;
 }
 
-std::list<unsigned int> right_half_from_map(std::list<unsigned int> left_half, std::map<unsigned int, unsigned int> pairs) {
-  std::list<unsigned int> right_half;
-  for (std::list<unsigned int>::iterator it = left_half.begin(); it != left_half.end(); ++it) {
-    unsigned int wanted_second = pairs.find(*it)->second;
+std::set<unsigned int> right_half_(std::set<unsigned int> left_half, std::set<unsigned int, unsigned int> pairs) {
+  std::set<unsigned int> right_half;
+  for (std::set<unsigned int>::iterator it = left_half.begin(); it != left_half.end(); ++it) {
+    unsigned int wanted_second = *(pairs.find(*it));
     if (wanted_second > 0)
-      right_half.push_back(wanted_second); 
+      right_half.insert(wanted_second); 
   }
   return right_half;
 }
 
-std::list<unsigned int> right_half_from_list(std::list<unsigned int> left_half, std::list<std::pair<unsigned int, unsigned int> > pairs) {
+std::list<unsigned int> right_half_(std::list<unsigned int> left_half, std::list<std::pair<unsigned int, unsigned int> > pairs) {
   std::list<unsigned int> right_half;
   for (std::list<unsigned int>::iterator it1 = left_half.begin(); it1 != left_half.end(); ++it1) {
     unsigned int wanted_first = *it1;
@@ -89,7 +89,7 @@ void reverse(std::list<unsigned int> *l, int n, int m) {
 }
 
 //////////////////////////////////////////////////////////////////// ALGO
-void change_order(std::list<unsigned int> *l) {
+void change_order_list(std::list<unsigned int> *l) {
   unsigned long size_group = 2;
   unsigned long beg_group  = 0;
   unsigned long end_group  = beg_group + size_group - 1;
@@ -129,7 +129,7 @@ void insert_dichotom(std::list<unsigned int> *l, unsigned int a) {
   l->insert(left, a);
 }
 
-std::list<unsigned int> PmergeMe::run_list(std::list<unsigned int> l) {
+std::list<unsigned int> PmergeMe::run(std::list<unsigned int> l) {
   if(l.size() <= 1)
     return l;
   if(l.size() == 2 && *(l.begin()) < *(next(l.begin())))
@@ -138,11 +138,30 @@ std::list<unsigned int> PmergeMe::run_list(std::list<unsigned int> l) {
     std::swap(*(l.begin()), *(next(l.begin())));
     return l;
   }
-  std::list<std::pair<unsigned int, unsigned int> > pairs = pairs_as_list(l);
+  std::list<std::pair<unsigned int, unsigned int> > pairs = pairs_(l);
   std::list<unsigned int> left_half  = deep_copy_left_half(l);
-  left_half = PmergeMe().run_list(left_half);
-  std::list<unsigned int> right_half = right_half_from_list(left_half, pairs);
-  change_order(&right_half);
+  left_half = PmergeMe().run_(left_half);
+  std::list<unsigned int> right_half = right_half_(left_half, pairs);
+  change_order_list(&right_half);
+  for(lst_iter it = right_half.begin(); it != right_half.end(); ++it)
+    insert_dichotom(&left_half, *it);
+  return left_half;
+}
+
+std::set<unsigned int> PmergeMe::run(std::set<unsigned int> s) {
+  if(s.size() <= 1)
+    return s;
+  if(s.size() == 2 && *(s.begin()) < *(next(s.begin())))
+    return s;
+  if(s.size() == 2 && *(s.begin()) >= *(next(s.begin()))) {
+    std::swap(*(s.begin()), *(next(s.begin())));
+    return s;
+  }
+  std::set<std::pair<unsigned int, unsigned int> > pairs = pairs_(s);
+  std::set<unsigned int> left_half  = deep_copy_left_half(s);
+  left_half = PmergeMe().run_(left_half);
+  std::set<unsigned int> right_half = right_half_(left_half, pairs);
+  change_order_set(&right_half);
   for(lst_iter it = right_half.begin(); it != right_half.end(); ++it)
     insert_dichotom(&left_half, *it);
   return left_half;

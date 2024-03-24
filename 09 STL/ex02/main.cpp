@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
   std::cout << std::endl;
 
   clock_t start = clock();
-  l = PmergeMe().run_list(l);
+  l = PmergeMe().run(l);
   clock_t end = clock();
   float sec_list = (float)(end - start) / CLOCKS_PER_SEC;
 
