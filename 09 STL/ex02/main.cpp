@@ -21,8 +21,13 @@ int main(int argc, char *argv[]) {
   }
 
   std::list<unsigned int> l;
-  for(int i = 1; i < argc ; i++) 
+  for(int i = 1; i < argc ; i++) {
+    if(std::atoi(argv[i]) < 0) {
+      std::cout << "Error\n";
+      return 0;
+    }
     l.push_back(std::strtoul(argv[i], NULL, 10));
+  }
 
   std::cout << "Before:  ";
   for (lst_iter it = l.begin(); it != l.end();++it)
@@ -35,7 +40,7 @@ int main(int argc, char *argv[]) {
   float sec_list = (float)(end - start) / CLOCKS_PER_SEC;
 
   std::cout << "After:   ";
-  for (lst_iter it = l.begin(); it != l.end();++it)
+  for (lst_iter it = l.begin(); it != l.end(); ++it)
     std::cout << *it << " ";
   std::cout << std::endl;
 
