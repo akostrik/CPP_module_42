@@ -114,6 +114,7 @@ public:
    + the underlying containers are mostly vector, list, deque
    + the underlying container's elements are accessed by the members of the container adaptor
    + **value semantics** when you push an element into the queue, a copy is created, when you remove an object from the queue, that object is destroyed
+* two class templates share certain properties with containers, and are sometimes classified with them: bitset and valarray`
 
 collection             |operations                                                                                                                     |other
 -----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------
