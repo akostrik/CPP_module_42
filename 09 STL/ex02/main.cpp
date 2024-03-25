@@ -17,9 +17,24 @@ int main(int argc, char *argv[]) {
   }
 
   for(int i = 1; i < argc ; i++) {
-    if(std::atoi(argv[i]) < 0) {
+    if (argv[i][0] == '\0') {
       std::cout << "Error\n";
       return 0;
+    }
+    for(std::basic_string<char>::size_type j = 0; j < std::string(argv[i]).size(); j++) {
+      if(argv[i][j] >= '0' && argv[i][j] <= '9')
+        continue ;
+      if(j == 0 && argv[i][0] == '+' && argv[i][1] != '\0')
+        continue ;
+      if(j == 0 && argv[i][0] == '-') {
+        for (j++; argv[i][j] != '\0'; j++) 
+          if (argv[i][j] != '0') {
+            std::cout << "Error\n";
+            return 0;
+          }
+        continue ;
+      }
+      std::cout << "Error\n";
     }
     l.push_back(std::strtoul(argv[i], NULL, 10));
     v.push_back(std::strtoul(argv[i], NULL, 10));

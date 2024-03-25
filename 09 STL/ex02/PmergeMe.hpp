@@ -14,8 +14,8 @@
 # include <limits>
 # include <exception>
 # include <cmath>
-# include <iterator>     // std::next c+11 ?s
-# include <algorithm>    // std::for_each
+# include <iterator> 
+# include <algorithm>
 # include <bits/stdc++.h>
 
 typedef std::list<unsigned int>::iterator       lst_iter;

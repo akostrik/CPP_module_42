@@ -64,7 +64,7 @@ std::list<std::pair<unsigned int, unsigned int> > pairs_(std::list<unsigned int>
     else
       pairs.push_back(std::pair<unsigned int, unsigned int>(*it1, *it2));
   if (l.size() % 2 == 1)
-    pairs.push_back(std::pair<unsigned int, unsigned int>(*it1, 0)); //////////
+    pairs.push_back(std::pair<unsigned int, unsigned int>(*it1, 0));
   return pairs;
 }
 
@@ -90,7 +90,7 @@ std::list<unsigned int> right_half_(std::list<unsigned int> left_half, std::list
     for (std::list<std::pair<unsigned int, unsigned int> >::iterator it2 = pairs.begin(); it2 != pairs.end(); ++it2)
       if (it2->first == wanted_first)
         wanted_second = it2->second;
-    if (wanted_second > 0) ////////////
+    if (wanted_second > 0)
       right_half.push_back(wanted_second); 
   }
   return right_half;
@@ -105,7 +105,7 @@ std::vector<unsigned int> right_half_(std::vector<unsigned int> left_half, std::
         unsigned int wanted_second = it2->second;
         if (wanted_second > 0) {
           right_half.push_back(wanted_second); 
-          pairs.erase(it2); ///
+          pairs.erase(it2);
           break ;
         }
       }
@@ -149,7 +149,6 @@ void change_order(std::vector<unsigned int> *v) {
   unsigned long size_group = 2;
   unsigned long beg_group  = 0;
   unsigned long end_group  = beg_group + size_group - 1;
-  std::vector<unsigned int> ret; ///
   for (int pow2 = 4; ; pow2 *= 2) {
     if (end_group >= v->size()) {
       reverse(v, beg_group, v->size() - 1);
@@ -226,6 +225,8 @@ std::list<unsigned int> PmergeMe::run(std::list<unsigned int> l) {
   change_order(&right_half);
   for(lst_iter it = right_half.begin(); it != right_half.end(); ++it)
     insert_dichotom(&left_half, *it);
+  for (unsigned long i = 0; i < l.size() - left_half.size(); i++) ///
+    left_half.push_front(0);
   return left_half;
 }
 
