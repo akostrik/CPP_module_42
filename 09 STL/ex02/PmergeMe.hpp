@@ -18,19 +18,19 @@
 # include <algorithm>    // std::for_each
 # include <bits/stdc++.h>
 
-typedef std::list<unsigned int>::iterator      lst_iter;
-typedef std::set<unsigned int>::iterator       set_iter;
+typedef std::list<unsigned int>::iterator       lst_iter;
+typedef std::vector<unsigned int>::iterator     vec_iter;
 
 class PmergeMe  {
   private:
 
   public:
-                          PmergeMe             ();
-                          PmergeMe             (const PmergeMe& o);
-                          ~PmergeMe            ();
-  PmergeMe&               operator=            (const PmergeMe& o);
-  std::list<unsigned int> run                  (std::list<unsigned int> l);
-  std::set<unsigned int>  run                  (std::set<unsigned int> s);
+                            PmergeMe             ();
+                            PmergeMe             (const PmergeMe& o);
+                            ~PmergeMe            ();
+  PmergeMe&                 operator=            (const PmergeMe& o);
+  std::list<unsigned int>   run                  (std::list<unsigned int> l);
+  std::vector<unsigned int> run                  (std::vector<unsigned int> s);
 };
 
 #endif
