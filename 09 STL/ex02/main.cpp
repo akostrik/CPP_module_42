@@ -1,8 +1,7 @@
-//  avoid using a generic function
-
-// check this operation by using the following command as an argument to the program
 // `shuf -i 1-1000 -n 3000 | tr "\n" " " `
-// explain the difference in time used for each container selected
+// explain the difference in time used for each container selected !!!
+// нули
+// повторы
 
 #include "PmergeMe.hpp"
 #include <time.h> 
