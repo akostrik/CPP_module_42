@@ -12,19 +12,34 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& o) { (void)o; return *this; }
 PmergeMe::~PmergeMe() {} 
 
 ////////////////////////////////////////////////////////// UTILS
-void print_vect(std::string comment, std::vector<unsigned int> v) {
+void print(std::string comment, std::list<unsigned int> l) {
+  std::cout << comment << ": ";
+  for (lst_iter it = l.begin(); it != l.end(); ++it) 
+    std::cout << *it << " ";
+  std::cout << std::endl;
+}
+
+void print(std::string comment, std::vector<unsigned int> v) {
   std::cout << comment << ": ";
   for (vec_iter it = v.begin(); it != v.end(); ++it) 
     std::cout << *it << " ";
   std::cout << std::endl;
 }
 
-int nb_zeros_(std::list<unsigned int> l) {
-  int nb_zeros = 0;
-  for (lst_iter it = l.begin(); it != l.end(); ++it) 
-    if (*it == 0)
-      nb_zeros++;
-  return nb_zeros;
+std::list<unsigned int> erased_zeros(std::list<unsigned int> l) {
+  for (lst_iter it = l.begin(); it != l.end(); ++it) {
+    while (*it == 0) {
+      lst_iter tmp = it;
+      ++it;
+      l.erase(tmp);
+    }
+  }
+  std::cout << "end erased_zeros: ";
+  for (lst_iter it = l.begin(); it != l.end(); ++it)
+    std::cout << *it << " ";
+  std::cout << std::endl;
+
+  return l;
 }
 
 int nb_zeros_(std::vector<unsigned int> v) {
@@ -249,12 +264,33 @@ std::list<unsigned int> run2(std::list<unsigned int> l) {
 
 std::list<unsigned int> PmergeMe::run(std::list<unsigned int> l) {
   clock_t start = clock();
-  int nb_zeros = nb_zeros_(l);
+
+  std::cout << "run start:       ";
+  for (lst_iter it = l.begin(); it != l.end(); ++it)
+    std::cout << *it << " ";
+  std::cout << std::endl;
+
+  int nb_zeros = l.size();
+  l = erased_zeros(l);
+  nb_zeros -= l.size();
   std::cout << "nb_zeros = " << nb_zeros << std::endl;
-  std::list<unsigned int> ret = run2(l);
-  ret.insert(l.begin(), nb_zeros, 0); // pb
+
+  std::cout << "run zeros erased: ";
+  for (lst_iter it = l.begin(); it != l.end(); ++it)
+    std::cout << *it << " ";
+  std::cout << std::endl;
+
+  std::list<unsigned int> res = run2(l);
+  for (int i = 0; i < nb_zeros; i++)
+    res.push_front(0);
+
+  std::cout << "run end:         ";
+  for (lst_iter it = res.begin(); it != res.end(); ++it)
+    std::cout << *it << " ";
+  std::cout << std::endl;
+
   this->sec_list = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
-  return ret;
+  return res;
 }
 
 std::vector<unsigned int> run2(std::vector<unsigned int> v) {
@@ -268,7 +304,7 @@ std::vector<unsigned int> run2(std::vector<unsigned int> v) {
   }
   std::vector<std::pair<unsigned int, unsigned int> > pairs = pairs_(v);
   std::vector<unsigned int> left_half  = deep_copy_left_half(v);
-  left_half = PmergeMe().run(left_half);
+  left_half = run2(left_half);
   std::vector<unsigned int> right_half = right_half_(left_half, pairs);
   change_order(&right_half);
   for(vec_iter it = right_half.begin(); it != right_half.end(); ++it)
@@ -278,9 +314,11 @@ std::vector<unsigned int> run2(std::vector<unsigned int> v) {
 
 std::vector<unsigned int> PmergeMe::run(std::vector<unsigned int> v) {
   clock_t start = clock();
-  std::vector<unsigned int> ret = run2(v);
+  std::vector<unsigned int> res = run2(v);
   int nb_zeros = nb_zeros_(v);
-  v.insert(v.begin(), nb_zeros, 0);
+  std::cout << "nb_zeros = " << nb_zeros << std::endl;
+  for (int i = 0; i < nb_zeros; i++)
+    res.insert(res.begin(), 0);
   this->sec_vect = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
-  return ret;
+  return res;
 }
