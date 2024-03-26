@@ -26,8 +26,8 @@ class PmergeMe  {
   private:
 
   public:
-  int                       sec_list;
-  int                       sec_vect;
+  clock_t                   t_lst;
+  clock_t                   t_vec;
                             PmergeMe             ();
                             PmergeMe             (const PmergeMe& o);
                             ~PmergeMe            ();

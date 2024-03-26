@@ -1,8 +1,8 @@
 #include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe() {
-  sec_list = 0;
-  sec_vect = 0;
+  t_lst          = 0;
+  t_vec          = 0;
 }
 
 PmergeMe::PmergeMe(const PmergeMe& o) { *this = o; }
@@ -139,8 +139,8 @@ std::vector<unsigned int> right_half_(std::vector<unsigned int> left_half, std::
 }
 
 void reverse(std::list<unsigned int> *c, int n, int m) {
-  lst_iter left   = c->begin();
-  lst_iter right  = c->begin();
+  lst_iter left  = c->begin();
+  lst_iter right = c->begin();
   std::advance(left, n);
   std::advance(right, m + 1);
   std::reverse(left, right);
@@ -154,10 +154,11 @@ void reverse(std::vector<unsigned int> *c, int n, int m) {
 }
 
 //////////////////////////////////////////////////////////////////// ALGO
-void change_order(std::list<unsigned int> *c) {
+int change_order(std::list<unsigned int> *c) {
   unsigned long size_group = 2;
   unsigned long beg_group  = 0;
   unsigned long end_group  = beg_group + size_group - 1;
+  clock_t       start      = clock();
   for (int pow2 = 4; ; pow2 *= 2) {
     if (end_group >= c->size()) {
       reverse(c, beg_group, c->size() - 1);
@@ -167,12 +168,14 @@ void change_order(std::list<unsigned int> *c) {
     beg_group += size_group;
     end_group  = beg_group + size_group - 1;
   }
+  return 1000000 * (clock() - start) / CLOCKS_PER_SEC;
 }
 
-void change_order(std::vector<unsigned int> *c) {
+int change_order(std::vector<unsigned int> *c) {
   unsigned long size_group = 2;
   unsigned long beg_group  = 0;
   unsigned long end_group  = beg_group + size_group - 1;
+  clock_t       start      = clock();
   for (int pow2 = 4; ; pow2 *= 2) {
     if (end_group >= c->size()) {
       reverse(c, beg_group, c->size() - 1);
@@ -183,14 +186,16 @@ void change_order(std::vector<unsigned int> *c) {
     size_group = pow2 - size_group;
     end_group  = beg_group + size_group - 1;
   }
+  return 1000000 * (clock() - start) / CLOCKS_PER_SEC;
 }
 
-void insert_dichotom(std::list<unsigned int> *c, unsigned int a) {
-  lst_iter left   = c->begin();
-  lst_iter right  = c->end();
+int insert_dichotom(std::list<unsigned int> *c, unsigned int a) {
+  lst_iter   left  = c->begin();
+  lst_iter   right = c->end();
+  clock_t    start = clock();
   if (a < *(c->begin())) {
     c->push_front(a);
-    return ;
+    return 1000000 * (clock() - start) / CLOCKS_PER_SEC;
   }
   while (std::distance(left, right) > 1) {
     lst_iter middle  = middle_(left, right);
@@ -202,19 +207,21 @@ void insert_dichotom(std::list<unsigned int> *c, unsigned int a) {
       left = middle;
     else if (a == *middle) {
       c->insert(middle, a);
-      return ;
+      return 1000000 * (clock() - start) / CLOCKS_PER_SEC;
     }
   }
   ++left;
   c->insert(left, a);
+  return 1000000 * (clock() - start) / CLOCKS_PER_SEC;
 }
 
-void insert_dichotom(std::vector<unsigned int> *c, unsigned int a) {
-  vec_iter left   = c->begin();
-  vec_iter right  = c->end();
+int insert_dichotom(std::vector<unsigned int> *c, unsigned int a) {
+  vec_iter   left  = c->begin();
+  vec_iter   right = c->end();
+  clock_t    start = clock();
   if (a < *(c->begin())) {
     c->insert(c->begin(), a);
-    return ;
+    return 1000000 * (clock() - start) / CLOCKS_PER_SEC;
   }
   while (std::distance(left, right) > 1) {
     vec_iter middle  = middle_(left, right);
@@ -226,14 +233,17 @@ void insert_dichotom(std::vector<unsigned int> *c, unsigned int a) {
       left = middle;
     else if (a == *middle) {
       c->insert(middle, a);
-      return ;
+      return 1000000 * (clock() - start) / CLOCKS_PER_SEC;
     }
   }
   ++left;
   c->insert(left, a);
+  return 1000000 * (clock() - start) / CLOCKS_PER_SEC;
 }
 
-std::list<unsigned int> run2(std::list<unsigned int> c) {
+std::list<unsigned int> run2(std::list<unsigned int> c, int* t_insert0, int *t_ch_order0) {
+  static int t_insert = 0;
+  static int t_ch_order = 0;
   if(c.size() <= 1)
     return c;
   if(c.size() == 2 && *(c.begin()) < *(next(c.begin())))
@@ -243,53 +253,39 @@ std::list<unsigned int> run2(std::list<unsigned int> c) {
     return c;
   }
   c = sort_elts_in_every_pair(c);
-  std::cout << "run2 start:   ";
-  for (lst_iter it = c.begin(); it != c.end(); ++it)
-    std::cout << *it << " ";
-  std::cout << std::endl;
   std::list<std::pair<unsigned int, unsigned int> > pairs = pairs_(c);
-
-  std::cout << "pairs:        ";
-  for ( std::list<std::pair<unsigned int, unsigned int> >::iterator it = pairs.begin(); it != pairs.end(); ++it)
-    std::cout << "(" << it->first << " " << it->second << ") ";
-  std::cout << std::endl;
-
   std::list<unsigned int> res  = deep_copy_left_half(c);
-  res = run2(res);
+  res = run2(res, NULL, NULL);
   std::list<unsigned int> right_half = right_half_(res, pairs);
-
-  change_order(&right_half);
+  t_ch_order += change_order(&right_half);
   for(lst_iter it = right_half.begin(); it != right_half.end(); ++it)
-    insert_dichotom(&res, *it);
-
-  std::cout << "res2:         ";
-  for (lst_iter it = res.begin(); it != res.end(); ++it)
-    std::cout << *it << " ";
-  std::cout << std::endl;
-
+    t_insert += insert_dichotom(&res, *it);
+  if (t_insert0 != NULL) {
+    *t_insert0 = t_insert;
+    *t_ch_order0 = t_ch_order;
+  }
   return res;
 }
 
 std::list<unsigned int> PmergeMe::run(std::list<unsigned int> c) {
+  int     t_insert ;
+  int     t_ch_order;
   clock_t start = clock();
   int nb_zeros = c.size();
   c.erase(std::remove(c.begin(), c.end(), 0), c.end());  
   nb_zeros -= c.size();
-
-  std::list<unsigned int> res = run2(c);
-
-  std::cout << "res:          ";
-  for (lst_iter it = res.begin(); it != res.end(); ++it)
-    std::cout << *it << " ";
-  std::cout << std::endl;
-
+  std::list<unsigned int> res = run2(c, &t_insert, &t_ch_order);
+  std::cout << "t_insert   L : " << t_insert   << std::endl;
+  std::cout << "t_ch_order L : " << t_ch_order << std::endl;
   for (int i = 0; i < nb_zeros; i++)
     res.push_front(0);
-  this->sec_list = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
+  this->t_lst = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
   return res;
 }
 
-std::vector<unsigned int> run2(std::vector<unsigned int> c) {
+std::vector<unsigned int> run2(std::vector<unsigned int> c, int *t_insert0, int *t_ch_order0) {
+  static int t_insert   = 0;
+  static int t_ch_order = 0;
   if(c.size() <= 1)
     return c;
   if(c.size() == 2 && *(c.begin()) < *(next(c.begin())))
@@ -301,22 +297,30 @@ std::vector<unsigned int> run2(std::vector<unsigned int> c) {
   std::vector<std::pair<unsigned int, unsigned int> > pairs = pairs_(c);
   std::vector<unsigned int> res  = deep_copy_left_half(c);
   c = sort_elts_in_every_pair(c);
-  res = run2(res);
+  res = run2(res, NULL, NULL);
   std::vector<unsigned int> right_half = right_half_(res, pairs);
-  change_order(&right_half);
+  t_ch_order += change_order(&right_half);
   for(vec_iter it = right_half.begin(); it != right_half.end(); ++it)
-    insert_dichotom(&res, *it);
+    t_insert += insert_dichotom(&res, *it);
+  if (t_insert0 != NULL) {
+    *t_insert0   = t_insert;
+    *t_ch_order0 = t_ch_order;
+  }
   return res;
 }
 
 std::vector<unsigned int> PmergeMe::run(std::vector<unsigned int> c) {
+  int     t_insert;
+  int     t_ch_order;
   clock_t start = clock();
   int nb_zeros = c.size();
   c.erase(std::remove(c.begin(), c.end(), 0), c.end());  
   nb_zeros -= c.size();
-  std::vector<unsigned int> res = run2(c);
+  std::vector<unsigned int> res = run2(c, &t_insert, &t_ch_order);
+  std::cout << "t_insert   V : " << t_insert   << std::endl;
+  std::cout << "t_ch_order V : " << t_ch_order << std::endl;
   for (int i = 0; i < nb_zeros; i++)
     res.insert(res.begin(), 0);
-  this->sec_vect = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
+  this->t_vec = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
   return res;
 }

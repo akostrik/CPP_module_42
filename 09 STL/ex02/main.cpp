@@ -55,8 +55,8 @@ int main(int argc, char *argv[]) {
   for (vec_iter it = res_vect.begin(); it != res_vect.end(); ++it)
     std::cout << *it << " ";
   std::cout << std::endl;
-  std::cout << "Time to process a range of " << l.size() << " elements with std::list   : " << std::setw(10) << p.sec_list << " mircosec\n";
-  std::cout << "Time to process a range of " << l.size() << " elements with std::vector : " << std::setw(10) << p.sec_vect << " microsec\n";
+  std::cout << "Time to process a range of " << l.size() << " elements with std::list   : " << std::setw(10) << p.t_lst << " mircosec\n";
+  std::cout << "Time to process a range of " << l.size() << " elements with std::vector : " << std::setw(10) << p.t_vec << " microsec\n";
 
   return 0;
 }
