@@ -125,7 +125,7 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
   }
   in.close();
   if (file_is_empty)
-    throw std::underflow_error("Error: database es empty.");
+    throw std::underflow_error("Error: the database is empty.");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ void BitcoinExchange::run(std::string filename) {
   bool               file_is_empty = true;
 
   if (!in.is_open())
-    throw std::runtime_error("Error: can't open the argument file.");
+    throw std::runtime_error("Error: can't open the file.");
   std::getline(in, line);
   while (getline (in, line)) {
     file_is_empty = false;
@@ -155,5 +155,5 @@ void BitcoinExchange::run(std::string filename) {
   }
   in.close();
   if (file_is_empty)
-    throw std::underflow_error("Error: argument file es empty");
+    throw std::underflow_error("Error: the file is empty");
 }

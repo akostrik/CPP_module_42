@@ -1,7 +1,5 @@
 // `shuf -i 1-1000 -n 3000 | tr "\n" " " `
-// explain the difference in time used for each container selected !!!
-// нули
-// повторы
+// args [0 ... 4294967295]
 
 #include "PmergeMe.hpp"
 
@@ -33,6 +31,7 @@ int main(int argc, char *argv[]) {
         continue ;
       }
       std::cout << "Error\n";
+      return 0;
     }
     l.push_back(std::strtoul(argv[i], NULL, 10));
     v.push_back(std::strtoul(argv[i], NULL, 10));
@@ -51,10 +50,10 @@ int main(int argc, char *argv[]) {
   for (lst_iter it = res_list.begin(); it != res_list.end(); ++it)
     std::cout << *it << " ";
   std::cout << std::endl;
-  std::cout << "After V:      ";
-  for (vec_iter it = res_vect.begin(); it != res_vect.end(); ++it)
-    std::cout << *it << " ";
-  std::cout << std::endl;
+  // std::cout << "After V:      ";
+  // for (vec_iter it = res_vect.begin(); it != res_vect.end(); ++it)
+  //   std::cout << *it << " ";
+  // std::cout << std::endl;
   std::cout << "Time to process a range of " << l.size() << " elements with std::list   : " << std::setw(10) << p.t_lst << " mircosec\n";
   std::cout << "Time to process a range of " << l.size() << " elements with std::vector : " << std::setw(10) << p.t_vec << " microsec\n";
 

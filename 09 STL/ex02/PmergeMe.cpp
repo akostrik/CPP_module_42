@@ -275,8 +275,8 @@ std::list<unsigned int> PmergeMe::run(std::list<unsigned int> c) {
   c.erase(std::remove(c.begin(), c.end(), 0), c.end());  
   nb_zeros -= c.size();
   std::list<unsigned int> res = run2(c, &t_insert, &t_ch_order);
-  std::cout << "t_insert   L : " << t_insert   << std::endl;
-  std::cout << "t_ch_order L : " << t_ch_order << std::endl;
+  //std::cout << "t_insert   L : " << t_insert   << std::endl;
+  //std::cout << "t_ch_order L : " << t_ch_order << std::endl;
   for (int i = 0; i < nb_zeros; i++)
     res.push_front(0);
   this->t_lst = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
@@ -317,8 +317,8 @@ std::vector<unsigned int> PmergeMe::run(std::vector<unsigned int> c) {
   c.erase(std::remove(c.begin(), c.end(), 0), c.end());  
   nb_zeros -= c.size();
   std::vector<unsigned int> res = run2(c, &t_insert, &t_ch_order);
-  std::cout << "t_insert   V : " << t_insert   << std::endl;
-  std::cout << "t_ch_order V : " << t_ch_order << std::endl;
+  //std::cout << "t_insert   V : " << t_insert   << std::endl;
+  //std::cout << "t_ch_order V : " << t_ch_order << std::endl;
   for (int i = 0; i < nb_zeros; i++)
     res.insert(res.begin(), 0);
   this->t_vec = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
