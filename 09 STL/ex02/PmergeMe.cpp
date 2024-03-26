@@ -88,13 +88,6 @@ std::list<std::pair<unsigned int, unsigned int> > pairs_(std::list<unsigned int>
   lst_iter it2 = middle_(c.begin(), c.end());
   for( ; it2 != c.end() ; ++it1, ++it2)
     pairs.push_back(std::pair<unsigned int, unsigned int>(*it1, *it2));
-
-    // if(*it1 <= *it2) {
-    //   pairs.push_back(std::pair<unsigned int, unsigned int>(*it1, *it2));
-    // }
-    // else {
-    //   pairs.push_back(std::pair<unsigned int, unsigned int>(*it2, *it1));
-    // }
   if (c.size() % 2 == 1)
     pairs.push_back(std::pair<unsigned int, unsigned int>(*it1, 0));
   return pairs;
@@ -106,40 +99,27 @@ std::vector<std::pair<unsigned int, unsigned int> > pairs_(std::vector<unsigned 
   vec_iter it2 = middle_(c.begin(), c.end());
   for( ; it2 != c.end() ; ++it1, ++it2)
     pairs.push_back(std::pair<unsigned int, unsigned int>(*it1, *it2));
-    // if(*it1 <= *it2) 
-    //   pairs.push_back(std::pair<unsigned int, unsigned int>(*it1, *it2));
-    // else
-    //   pairs.push_back(std::pair<unsigned int, unsigned int>(*it2, *it1));
   if (c.size() % 2 == 1)
     pairs.push_back(std::pair<unsigned int, unsigned int>(*it1, 0));
   return pairs;
 }
 
 std::list<unsigned int> right_half_(std::list<unsigned int> left_half, std::list<std::pair<unsigned int, unsigned int> > pairs) {
-  std::cout << "* func right_half\n";
-  std::cout << "* left_half = ";
-  for (lst_iter it = left_half.begin(); it != left_half.end(); ++it)
-    std::cout << *it << " ";
-  std::cout << std::endl;
-  std::cout << "* pairs:      ";
-  for ( std::list<std::pair<unsigned int, unsigned int> >::iterator it = pairs.begin(); it != pairs.end(); ++it)
-    std::cout << "(" << it->first << " " << it->second << ") ";
-  std::cout << std::endl;
-
   std::list<unsigned int> right_half;
   for (std::list<unsigned int>::iterator it1 = left_half.begin(); it1 != left_half.end(); ++it1) {
     unsigned int wanted_first = *it1;
-    unsigned int wanted_second;
+    unsigned int wanted_second = 0;
     for (std::list<std::pair<unsigned int, unsigned int> >::iterator it2 = pairs.begin(); it2 != pairs.end(); ++it2)
-      if (it2->first == wanted_first)
+      if (it2->first == wanted_first) {
         wanted_second = it2->second;
+        std::list<std::pair<unsigned int, unsigned int> >::iterator tmp = it2;
+        ++it2;
+        pairs.erase(tmp); // it2 ?
+        break ;
+      }
     if (wanted_second > 0)
       right_half.push_back(wanted_second); 
   }
-  std::cout << "* right_hlf = ";
-  for (lst_iter it = right_half.begin(); it != right_half.end(); ++it)
-    std::cout << *it << " ";
-  std::cout << std::endl;
   return right_half;
 }
 
@@ -257,10 +237,6 @@ void insert_dichotom(std::vector<unsigned int> *c, unsigned int a) {
 }
 
 std::list<unsigned int> run2(std::list<unsigned int> c) {
-  std::cout << "run2 start:   ";
-  for (lst_iter it = c.begin(); it != c.end(); ++it)
-    std::cout << *it << " ";
-  std::cout << std::endl;
   if(c.size() <= 1)
     return c;
   if(c.size() == 2 && *(c.begin()) < *(next(c.begin())))
@@ -270,6 +246,10 @@ std::list<unsigned int> run2(std::list<unsigned int> c) {
     return c;
   }
   c = sort_elts_in_every_pair(c);
+  std::cout << "run2 start:   ";
+  for (lst_iter it = c.begin(); it != c.end(); ++it)
+    std::cout << *it << " ";
+  std::cout << std::endl;
   std::list<std::pair<unsigned int, unsigned int> > pairs = pairs_(c);
 
   std::cout << "pairs:        ";
@@ -280,14 +260,6 @@ std::list<unsigned int> run2(std::list<unsigned int> c) {
   std::list<unsigned int> res  = deep_copy_left_half(c);
   res = run2(res);
   std::list<unsigned int> right_half = right_half_(res, pairs);
-
-  std::cout << "two halfs:    ";
-  for (lst_iter it = res.begin(); it != res.end(); ++it)
-    std::cout << *it << " ";
-  std::cout << "  +  ";
-  for (lst_iter it = right_half.begin(); it != right_half.end(); ++it)
-    std::cout << *it << " ";
-  std::cout << std::endl;
 
   change_order(&right_half);
   for(lst_iter it = right_half.begin(); it != right_half.end(); ++it)
