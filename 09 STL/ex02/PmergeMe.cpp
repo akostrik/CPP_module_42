@@ -112,13 +112,11 @@ std::list<unsigned int> right_half_(std::list<unsigned int> left_half, std::list
     for (std::list<std::pair<unsigned int, unsigned int> >::iterator it2 = pairs.begin(); it2 != pairs.end(); ++it2)
       if (it2->first == wanted_first) {
         wanted_second = it2->second;
-        std::list<std::pair<unsigned int, unsigned int> >::iterator tmp = it2;
-        ++it2;
-        pairs.erase(tmp); // it2 ?
+        if (wanted_second > 0)
+          right_half.push_back(wanted_second); 
+        pairs.erase(it2);
         break ;
       }
-    if (wanted_second > 0)
-      right_half.push_back(wanted_second); 
   }
   return right_half;
 }
@@ -127,16 +125,15 @@ std::vector<unsigned int> right_half_(std::vector<unsigned int> left_half, std::
   std::vector<unsigned int> right_half;
   for (std::vector<unsigned int>::iterator it1 = left_half.begin(); it1 != left_half.end(); ++it1) {
     unsigned int wanted_first  = *it1;
-    for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it2 = pairs.begin(); it2 != pairs.end(); ++it2) {
+    unsigned int wanted_second = 0;
+    for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it2 = pairs.begin(); it2 != pairs.end(); ++it2)
       if (it2->first == wanted_first) {
-        unsigned int wanted_second = it2->second;
-        if (wanted_second > 0) {
+        wanted_second = it2->second;
+        if (wanted_second > 0) 
           right_half.push_back(wanted_second); 
-          pairs.erase(it2);
-          break ;
-        }
+        pairs.erase(it2);
+        break ;
       }
-    }
   }
   return right_half;
 }
