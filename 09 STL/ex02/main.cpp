@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     v.push_back(std::strtoul(argv[i], NULL, 10));
   }
 
-  std::cout << "Before:  ";
+  std::cout << "Before:       ";
   for (lst_iter it = l.begin(); it != l.end();++it)
     std::cout << *it << " ";
   std::cout << std::endl;
@@ -47,11 +47,11 @@ int main(int argc, char *argv[]) {
   std::list<unsigned int>   res_list = p.run(l);
   std::vector<unsigned int> res_vect = p.run(v);
 
-  std::cout << "After:   ";
+  std::cout << "After L:      ";
   for (lst_iter it = res_list.begin(); it != res_list.end(); ++it)
     std::cout << *it << " ";
   std::cout << std::endl;
-  std::cout << "After:   ";
+  std::cout << "After V:      ";
   for (vec_iter it = res_vect.begin(); it != res_vect.end(); ++it)
     std::cout << *it << " ";
   std::cout << std::endl;
