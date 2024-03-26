@@ -1,6 +1,9 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {}
+PmergeMe::PmergeMe() {
+  sec_list = 0;
+  sec_vect = 0;
+}
 
 PmergeMe::PmergeMe(const PmergeMe& o) { *this = o; }
 
@@ -14,6 +17,22 @@ void print_vect(std::string comment, std::vector<unsigned int> v) {
   for (vec_iter it = v.begin(); it != v.end(); ++it) 
     std::cout << *it << " ";
   std::cout << std::endl;
+}
+
+int nb_zeros_(std::list<unsigned int> l) {
+  int nb_zeros = 0;
+  for (lst_iter it = l.begin(); it != l.end(); ++it) 
+    if (*it == 0)
+      nb_zeros++;
+  return nb_zeros;
+}
+
+int nb_zeros_(std::vector<unsigned int> v) {
+  int nb_zeros = 0;
+  for (vec_iter it = v.begin(); it != v.end(); ++it) 
+    if (*it == 0)
+      nb_zeros++;
+  return nb_zeros;
 }
 
 lst_iter next(lst_iter it) {
@@ -209,7 +228,7 @@ void insert_dichotom(std::vector<unsigned int> *v, unsigned int a) {
   v->insert(left, a);
 }
 
-std::list<unsigned int> PmergeMe::run(std::list<unsigned int> l) {
+std::list<unsigned int> run2(std::list<unsigned int> l) {
   if(l.size() <= 1)
     return l;
   if(l.size() == 2 && *(l.begin()) < *(next(l.begin())))
@@ -220,31 +239,48 @@ std::list<unsigned int> PmergeMe::run(std::list<unsigned int> l) {
   }
   std::list<std::pair<unsigned int, unsigned int> > pairs = pairs_(l);
   std::list<unsigned int> left_half  = deep_copy_left_half(l);
-  left_half = PmergeMe().run(left_half);
+  left_half = run2(left_half);
   std::list<unsigned int> right_half = right_half_(left_half, pairs);
   change_order(&right_half);
   for(lst_iter it = right_half.begin(); it != right_half.end(); ++it)
     insert_dichotom(&left_half, *it);
-  for (unsigned long i = 0; i < l.size() - left_half.size(); i++) ///
-    left_half.push_front(0);
   return left_half;
 }
 
-std::vector<unsigned int> PmergeMe::run(std::vector<unsigned int> s) {
-  if(s.size() <= 1)
-    return s;
-  if(s.size() == 2 && *(s.begin()) < *(next(s.begin())))
-    return s;
-  if(s.size() == 2 && *(s.begin()) >= *(next(s.begin()))) {
-    std::swap(*(s.begin()), *(next(s.begin())));
-    return s;
+std::list<unsigned int> PmergeMe::run(std::list<unsigned int> l) {
+  clock_t start = clock();
+  int nb_zeros = nb_zeros_(l);
+  std::cout << "nb_zeros = " << nb_zeros << std::endl;
+  std::list<unsigned int> ret = run2(l);
+  ret.insert(l.begin(), nb_zeros, 0); // pb
+  this->sec_list = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
+  return ret;
+}
+
+std::vector<unsigned int> run2(std::vector<unsigned int> v) {
+  if(v.size() <= 1)
+    return v;
+  if(v.size() == 2 && *(v.begin()) < *(next(v.begin())))
+    return v;
+  if(v.size() == 2 && *(v.begin()) >= *(next(v.begin()))) {
+    std::swap(*(v.begin()), *(next(v.begin())));
+    return v;
   }
-  std::vector<std::pair<unsigned int, unsigned int> > pairs = pairs_(s);
-  std::vector<unsigned int> left_half  = deep_copy_left_half(s);
+  std::vector<std::pair<unsigned int, unsigned int> > pairs = pairs_(v);
+  std::vector<unsigned int> left_half  = deep_copy_left_half(v);
   left_half = PmergeMe().run(left_half);
   std::vector<unsigned int> right_half = right_half_(left_half, pairs);
   change_order(&right_half);
   for(vec_iter it = right_half.begin(); it != right_half.end(); ++it)
     insert_dichotom(&left_half, *it);
   return left_half;
+}
+
+std::vector<unsigned int> PmergeMe::run(std::vector<unsigned int> v) {
+  clock_t start = clock();
+  std::vector<unsigned int> ret = run2(v);
+  int nb_zeros = nb_zeros_(v);
+  v.insert(v.begin(), nb_zeros, 0);
+  this->sec_vect = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
+  return ret;
 }

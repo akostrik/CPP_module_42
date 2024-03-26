@@ -17,6 +17,7 @@
 # include <iterator> 
 # include <algorithm>
 # include <bits/stdc++.h>
+#include <time.h> 
 
 typedef std::list<unsigned int>::iterator       lst_iter;
 typedef std::vector<unsigned int>::iterator     vec_iter;
@@ -25,6 +26,8 @@ class PmergeMe  {
   private:
 
   public:
+  int                       sec_list;
+  int                       sec_vect;
                             PmergeMe             ();
                             PmergeMe             (const PmergeMe& o);
                             ~PmergeMe            ();

@@ -4,7 +4,6 @@
 // повторы
 
 #include "PmergeMe.hpp"
-#include <time.h> 
 
 int main(int argc, char *argv[]) {
   std::list<unsigned int> l;
@@ -44,26 +43,20 @@ int main(int argc, char *argv[]) {
     std::cout << *it << " ";
   std::cout << std::endl;
 
-  clock_t start = clock();
-  std::list<unsigned int> res_list = PmergeMe().run(l);
-  int sec_list = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
+  PmergeMe p;
+  std::list<unsigned int>   res_list = p.run(l);
+  std::vector<unsigned int> res_vect = p.run(v);
 
   std::cout << "After:   ";
   for (lst_iter it = res_list.begin(); it != res_list.end(); ++it)
     std::cout << *it << " ";
   std::cout << std::endl;
-
-  start = clock();
-  std::vector<unsigned int> res_vect = PmergeMe().run(v);
-  int sec_vect = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
-
   std::cout << "After:   ";
   for (vec_iter it = res_vect.begin(); it != res_vect.end(); ++it)
     std::cout << *it << " ";
   std::cout << std::endl;
-
-  std::cout << "Time to process a range of " << l.size() << " elements with std::list   : " << std::setw(10) << sec_list << " mircosec\n";
-  std::cout << "Time to process a range of " << l.size() << " elements with std::vector : " << std::setw(10) << sec_vect << " microsec\n";
+  std::cout << "Time to process a range of " << l.size() << " elements with std::list   : " << std::setw(10) << p.sec_list << " mircosec\n";
+  std::cout << "Time to process a range of " << l.size() << " elements with std::vector : " << std::setw(10) << p.sec_vect << " microsec\n";
 
   return 0;
 }
