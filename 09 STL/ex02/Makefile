@@ -18,7 +18,7 @@ clean:
 	@rmdir ./objs/ 2> /dev/null || true
 
 fclean: clean
-	rm -f a.out
+	rm -f $(NAME)
 
 re: fclean all
 

@@ -22,6 +22,10 @@ int main(int argc, char *argv[]) {
         continue ;
       if(j == 0 && argv[i][0] == '+' && argv[i][1] != '\0')
         continue ;
+      if(j == 0 && argv[i][0] == '-' && argv[i][1] == '\0') {
+        std::cout << "Error\n";
+        return 0;
+      }
       if(j == 0 && argv[i][0] == '-') {
         for (j++; argv[i][j] != '\0'; j++) 
           if (argv[i][j] != '0') {
@@ -46,11 +50,11 @@ int main(int argc, char *argv[]) {
   std::list<unsigned int>   res_list = p.run(l);
   std::vector<unsigned int> res_vect = p.run(v);
 
-  std::cout << "After L:      ";
+  std::cout << "After:        ";
   for (lst_iter it = res_list.begin(); it != res_list.end(); ++it)
     std::cout << *it << " ";
   std::cout << std::endl;
-  // std::cout << "After V:      ";
+  // std::cout << "After:        ";
   // for (vec_iter it = res_vect.begin(); it != res_vect.end(); ++it)
   //   std::cout << *it << " ";
   // std::cout << std::endl;
