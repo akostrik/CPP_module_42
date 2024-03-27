@@ -73,7 +73,7 @@ std::list<unsigned int> sort_elts_in_every_pair(std::list<unsigned int> c) {
   return c;
 }
 
-std::vector<unsigned int> sort_elts_in_every_pair(std::vector<unsigned int> c) { ////
+std::vector<unsigned int> sort_elts_in_every_pair(std::vector<unsigned int> c) {
   vec_iter it1 = c.begin();
   vec_iter it2 = middle_(c.begin(), c.end());
   for( ; it2 != c.end() ; ++it1, ++it2)
@@ -267,22 +267,6 @@ std::list<unsigned int> run2(std::list<unsigned int> c, int* t_insert0, int *t_c
   return res;
 }
 
-std::list<unsigned int> PmergeMe::run(std::list<unsigned int> c) {
-  int     t_insert ;
-  int     t_ch_order;
-  clock_t start = clock();
-  int nb_zeros = c.size();
-  c.erase(std::remove(c.begin(), c.end(), 0), c.end());  
-  nb_zeros -= c.size();
-  std::list<unsigned int> res = run2(c, &t_insert, &t_ch_order);
-  //std::cout << "t_insert   L : " << t_insert   << std::endl;
-  //std::cout << "t_ch_order L : " << t_ch_order << std::endl;
-  for (int i = 0; i < nb_zeros; i++)
-    res.push_front(0);
-  this->t_lst = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
-  return res;
-}
-
 std::vector<unsigned int> run2(std::vector<unsigned int> c, int *t_insert0, int *t_ch_order0) {
   static int t_insert   = 0;
   static int t_ch_order = 0;
@@ -306,6 +290,22 @@ std::vector<unsigned int> run2(std::vector<unsigned int> c, int *t_insert0, int 
     *t_insert0   = t_insert;
     *t_ch_order0 = t_ch_order;
   }
+  return res;
+}
+
+std::list<unsigned int> PmergeMe::run(std::list<unsigned int> c) {
+  int     t_insert ;
+  int     t_ch_order;
+  clock_t start = clock();
+  int nb_zeros = c.size();
+  c.erase(std::remove(c.begin(), c.end(), 0), c.end());  // erase zeros
+  nb_zeros -= c.size();
+  std::list<unsigned int> res = run2(c, &t_insert, &t_ch_order);
+  //std::cout << "t_insert   L : " << t_insert   << std::endl;
+  //std::cout << "t_ch_order L : " << t_ch_order << std::endl;
+  for (int i = 0; i < nb_zeros; i++)
+    res.push_front(0);
+  this->t_lst = 1000000 * (clock() - start) / CLOCKS_PER_SEC;
   return res;
 }
 

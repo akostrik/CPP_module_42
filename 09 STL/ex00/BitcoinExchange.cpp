@@ -1,18 +1,26 @@
 #include "BitcoinExchange.hpp"
 
 /////////////////////////////////////////////////////////////////////////////////// UTILS
-void print_without_trailing_zeros(std::string date, unsigned long long n) {
-  if (n % 100 == 0)
-    std::cout << date << " => " << n << " = " << n / 100 << std::endl;
-  else if (n % 10 == 0)
-    std::cout << date << " => " << n << " = " << n / 100 << "." << (n / 10) << std::endl;
+void print_without_trailing_zeros(std::string date, double value, unsigned long long day_price_in_cents) {
+  unsigned long long res = round(value * day_price_in_cents);
+  std::cout << "date = " << date << ", day_price_in_cents = " << day_price_in_cents << ", val = " << value << ", res = " << res << std::endl;
+  if (res % 100 == 0)
+    std::cout << date << " => " << value << " = " << res / 100 << std::endl;
+  else if (res % 10 == 0)
+    std::cout << date << " => " << value << " = " << res / 100 << "." << ((res / 10) % 10) << std::endl;
   else
-    std::cout << date << " => " << n << " = " << n / 100 << "." << n % 100 << std::endl;
+    std::cout << date << " => " << value << " = " << res / 100 << "." << res % 100 << std::endl;
 }
 
 bool is_valid_date(std::string date) {
   regex_t regex;
   bool ok;
+
+  regcomp(&regex, "^[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0][0]$", REG_EXTENDED); // 00
+  ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
+  regfree(&regex);
+  if (ok)
+    return false;
 
   regcomp(&regex, "^[0-9][0-9][0-9][0-9][-](01|03|05|07|08|10|12)[-]([0-2][0-9]|30|31)$", REG_EXTENDED); // 31
   ok = !regexec(&regex, date.c_str(), 0, NULL, 0);
@@ -51,11 +59,11 @@ bool is_valid_db_line(std::string line) {
   ok = !regexec(&regex, line.c_str(), 0, NULL, 0);
   regfree(&regex);
   if (!ok) {
-    std::cout << "Error: " << line << " : invalid line in the database\n";
+    std::cout << "Error: bad input => " << line << " (in the database)\n";
     return false;
   }
   if (!is_valid_date(date)) {
-    std::cout << "Error: invalide date " << date << " is the database.\n";
+    std::cout << "Error: bad input => " << date << " (in the database).\n";
     return false;
   }
   return true;
@@ -71,15 +79,15 @@ bool is_valid_arg_file_line(std::string line, double value, std::string firstDat
   regfree(&regex);
 
   if (!ok)
-    return (std::cout << "Error: " << line << " : invalid line in the argument file.\n", false);
+    return (std::cout << "Error: bad input => " << line << " (in the argument file).\n", false);
   if (std::count(line.begin(), line.end(), '-') == 3)
     return (std::cout << "Error: not a positive number.\n", false);
-  if (value > 10000)
-    return (std::cout << "Error: a too large number.\n", false);
+  if (value > 1000)
+    return (std::cout << "Error: too large number.\n", false);
   if(date < firstDate)
-    return (std::cout << "Error: the date " << date << " is invalid (the earliest possible date is " << firstDate << ").\n", false);
+    return (std::cout << "Error: bad input => " << date << " is invalid date (the earliest possible date is " << firstDate << ").\n", false); ////////////
   if (!is_valid_date(date))
-    return (std::cout << "Error: invalide date " << date << " in the argument file.\n", false);
+    return (std::cout << "Error: bad input => " << date << " is invalid date (in the argument file).\n", false);
   return true;
 }
 
@@ -107,10 +115,13 @@ BitcoinExchange::BitcoinExchange() : std::map<std::string, unsigned long long>()
 
   if (!in.is_open())
     throw std::runtime_error("Error: can't open the database.");
-  std::getline(in, line); // skip first line
+  std::getline(in, line);
+  line.erase(std::remove_if(line.begin(),line.end(),isspace),line.end()); // remove spaces
+  if (line.compare("date,exchange_rate") != 0)
+    throw std::underflow_error("Error: the fist line of the database should be: date,exchange_rate");
   while (getline (in, line)) {
     file_is_empty = false;
-    line.erase(std::remove_if(line.begin(),line.end(),isspace),line.end()); // remove spaces
+    line.erase(std::remove_if(line.begin(),line.end(),isspace),line.end());
     if (!is_valid_db_line(line))
       continue ;
     date    = line.substr(0, line.find(","));
@@ -140,6 +151,9 @@ void BitcoinExchange::run(std::string filename) {
   if (!in.is_open())
     throw std::runtime_error("Error: can't open the file.");
   std::getline(in, line);
+  line.erase(std::remove_if(line.begin(),line.end(),isspace),line.end());
+  if (line.compare("date|value") != 0)
+    throw std::underflow_error("Error: the fist line of the argument file should be: date | value");
   while (getline (in, line)) {
     file_is_empty = false;
     line.erase(std::remove_if(line.begin(),line.end(),isspace),line.end());
@@ -151,7 +165,7 @@ void BitcoinExchange::run(std::string filename) {
       day_price_in_cents = this->find(date)->second;
     else
       day_price_in_cents = (--(this->upper_bound(date)))->second;
-    print_without_trailing_zeros(date, (unsigned long long)value * day_price_in_cents);
+    print_without_trailing_zeros(date, value, day_price_in_cents);
   }
   in.close();
   if (file_is_empty)

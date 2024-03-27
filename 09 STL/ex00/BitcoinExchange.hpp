@@ -4,12 +4,13 @@
 # include <map>
 # include <string>
 # include <fstream>
-# include <stdlib.h> // strtod
+# include <stdlib.h>
 # include <iomanip>
 # include <stdexcept>
 # include <limits>
 # include <algorithm>
 # include <regex.h>
+# include <cmath>
 
 # define DB_FILE "data.csv"
 

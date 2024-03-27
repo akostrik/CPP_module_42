@@ -1,7 +1,4 @@
-// date 00
-// 1er ligne
-// val 1000
-
+// 0.32 0.36
 #include "BitcoinExchange.hpp"
 
 int main(int argc, char *argv[]) {
