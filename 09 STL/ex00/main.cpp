@@ -1,3 +1,7 @@
+// date 00
+// 1er ligne
+// val 1000
+
 #include "BitcoinExchange.hpp"
 
 int main(int argc, char *argv[]) {
