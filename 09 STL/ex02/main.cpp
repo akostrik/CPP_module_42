@@ -50,6 +50,7 @@ int main(int argc, char *argv[]) {
     std::cout << "Error: invalid arguments\n";
     return 0;
   }
+
   for(int i = 1; i < argc ; i++) {
     l.push_back(std::strtoul(argv[i], NULL, 10));
     v.push_back(std::strtoul(argv[i], NULL, 10));
@@ -68,10 +69,7 @@ int main(int argc, char *argv[]) {
   for (lst_iter it = res_list.begin(); it != res_list.end(); ++it)
     std::cout << *it << " ";
   std::cout << std::endl;
-  // std::cout << "After:        ";
-  // for (vec_iter it = res_vect.begin(); it != res_vect.end(); ++it)
-  //   std::cout << *it << " ";
-  // std::cout << std::endl;
+
   std::cout << "Time to process a range of " << l.size() << " elements with std::list   : " << std::setw(10) << p.t_lst << " mircosec\n";
   std::cout << "Time to process a range of " << l.size() << " elements with std::vector : " << std::setw(10) << p.t_vec << " microsec\n";
 
