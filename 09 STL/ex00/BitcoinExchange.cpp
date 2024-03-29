@@ -3,12 +3,13 @@
 /////////////////////////////////////////////////////////////////////////////////// UTILS
 void print_without_trailing_zeros(std::string date, double value, unsigned long long day_price_in_cents) {
   unsigned long long res = round(value * day_price_in_cents);
-  std::cout << "date = " << date << ", day_price_in_cents = " << day_price_in_cents << ", val = " << value << ", res = " << res << std::endl;
   if (res % 100 == 0)
     std::cout << date << " => " << value << " = " << res / 100 << std::endl;
   else if (res % 10 == 0)
     std::cout << date << " => " << value << " = " << res / 100 << "." << ((res / 10) % 10) << std::endl;
-  else
+  else if (res <= 9)
+    std::cout << date << " => " << value << " = " << res / 100 << ".0" << res % 100 << std::endl;
+  else if (res >= 10)
     std::cout << date << " => " << value << " = " << res / 100 << "." << res % 100 << std::endl;
 }
 
