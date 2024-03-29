@@ -1,50 +1,56 @@
 // `shuf -i 1-1000 -n 3000 | tr "\n" " " `
-
 #include "PmergeMe.hpp"
+#include <algorithm> 
+#include <cctype>
+#include <locale>
+
+std::string& trim(std::string& s, const char* t = " \t\n") {
+  s.erase(s.find_last_not_of(t) + 1);
+  s.erase(0, s.find_first_not_of(t));
+  return s;  // valgind ?
+}
+
+bool args_are_valid(int argc, char *argv[]) {
+  if (argc < 2)
+    return false;
+  for(int i = 1; i < argc ; i++) {
+    std::string s = std::string (argv[i]); 
+    s = trim(s);
+    if (s.at(0) == '-') {
+      s.erase(0, 1);
+      if (s.size() == 0)
+        return false;
+      if(s.find_first_not_of("0") == std::string::npos) // only zeros 
+        continue ;
+      else
+        return false;
+    }
+    if (s.at(0) == '+')
+      s.erase(0, 1);
+    if (s.size() == 0)
+      return false;
+    if (s.find_first_not_of("0") == std::string::npos)  // only zeros
+      continue ;
+    s.erase(0, s.find_first_not_of('0'));               // erase leading zeros
+    if(s.find_first_not_of("0123456789") != std::string::npos)
+      return false;
+    if (s.size() > std::string("4294967295").size())
+      return false;
+    if (s.size() == std::string("4294967295").size() && std::string(s).compare("4294967295") > 0)
+      return false;
+  }
+  return true;
+}
 
 int main(int argc, char *argv[]) {
   std::list<unsigned int> l;
   std::vector<unsigned int> v;
 
-  if (argc < 2) {                                                        // arguments verification
-    std::cout << "Error: give arguments (a sequence of numbers).\n";
+  if (!args_are_valid(argc, argv)) {
+    std::cout << "Error: invalid arguments\n";
     return 0;
   }
-
   for(int i = 1; i < argc ; i++) {
-    if (argv[i][0] == '\0') {
-      std::cout << "Error in arg " << argv[i] << std::endl;
-      std::cout << "Error\n";
-      return 0;
-    }
-    for(std::basic_string<char>::size_type j = 0; j < std::string(argv[i]).size(); j++) {
-      if(argv[i][j] >= '0' && argv[i][j] <= '9')
-        continue ;
-      if(j == 0 && argv[i][0] == '+' && argv[i][1] != '\0')
-        continue ;
-      if(j == 0 && argv[i][0] == '-' && argv[i][1] == '\0') {
-        std::cout << "Error in arg " << argv[i] << std::endl;
-        return 0;
-      }
-      if(j == 0 && argv[i][0] == '-') {
-        for (j++; argv[i][j] != '\0'; j++) 
-          if (argv[i][j] != '0') {
-            std::cout << "Error in arg " << argv[i] << std::endl;
-            return 0;
-          }
-        continue ;
-      }
-      std::cout << "Error in arg " << argv[i] << std::endl;
-      return 0;
-    }
-    if (std::string(argv[i]).size() > std::string("4294967295").size()) {
-      std::cout << "Error in arg " << argv[i] << std::endl;
-      return 0;
-    }
-    if (std::string(argv[i]).size() == std::string("4294967295").size() && std::string(argv[i]).compare("4294967295") > 0) {
-      std::cout << "Error in arg " << argv[i] << std::endl;
-      return 0;
-    }
     l.push_back(std::strtoul(argv[i], NULL, 10));
     v.push_back(std::strtoul(argv[i], NULL, 10));
   }
