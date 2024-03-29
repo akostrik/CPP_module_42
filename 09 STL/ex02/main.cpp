@@ -37,7 +37,11 @@ int main(int argc, char *argv[]) {
       std::cout << "Error in arg " << argv[i] << std::endl;
       return 0;
     }
-    if (std::string(argv[i]).compare("4294967295") > 0) {
+    if (std::string(argv[i]).size() > std::string("4294967295").size()) {
+      std::cout << "Error in arg " << argv[i] << std::endl;
+      return 0;
+    }
+    if (std::string(argv[i]).size() == std::string("4294967295").size() && std::string(argv[i]).compare("4294967295") > 0) {
       std::cout << "Error in arg " << argv[i] << std::endl;
       return 0;
     }
