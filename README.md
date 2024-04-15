@@ -257,6 +257,9 @@ partial_sum                            |the partial sum of a range of elements
 * all struct/union/enum/class declarations act like they are implicitly typedef'ed
 * a structure can notbe anonymous
 * a union can be anonymous
+* the only difference between a class and a struct:
+  + a class: members and base classes are private by default 
+  + a structure: members and base classes are public by default
 
 ### Structures, typedef
 ```
