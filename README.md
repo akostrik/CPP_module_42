@@ -285,6 +285,16 @@ struct strName { ... };                  // a compiler error (because strName is
 strName x;
 ```
 
+You can add a constructor to Height:
+```
+struct Height {
+    Height(int f, int i) : feet(f), inches(i) { }
+    int feet, inches;
+};
+```
+This allows you to use:
+```Person p("John Doe", 42, "Blonde", "Blue", Height(5, 7));```
+
 ### `std::string` 
 * = `basic_string<char>`
 * ≈ an array of char
