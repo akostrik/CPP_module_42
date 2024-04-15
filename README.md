@@ -1,4 +1,4 @@
-ty# C++ 98
+C++ 98
 
 ## Automatic initialisation and descruction
 Orthodox canonical class form (Coplien's form): 
@@ -478,7 +478,6 @@ Pointer:
 * доступны операции с целыми числами
 
 ## File manipulations
-
 C file manipulations:  
 * FILE *fp  
 * fopen, fclose, fwrite, fread, ftell, fseek, fprintf, fscanf, feof, fileno, fgets, fputs, fgetc, fputc  
@@ -534,6 +533,8 @@ C++ file manipulations:
 |  the size   
 the real beginning of the bloc  
 * free() reads the size of the bloc and so knows how much memory it should free
+* you need to balance new with delete, new[] with delete[], malloc with free
+  + well-written C++ will contain almost none of those, since you leave the responsibiltiy for dynamic memo­ry and lifetime management to suitable container or manager classes, most notably `std::vector` and `std::unique_ptr`
 
 ## Errors 
 * **undefined behavior** it could work, it could crash, it could do something else
