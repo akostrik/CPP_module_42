@@ -272,12 +272,10 @@ typedef struct strName { ... } typeName; // just an abbreviation
 ```
 
 ```
-typedef struct { ... } typeName;         // declare an anonymous structure
-                                         // create a typedef for it
+typedef struct { ... } typeName;         // declare an anonymous structure (the structure doesn't have a name in the tag namespace)
                                          // the structure has a name in the typedef namespace
-                                         // the structure doesn't have a name in the tag namespace
+                                         // create a typedef for it
                                          // it cannot be forward-declared
-                                         // if you want to make a forward declaration, you have to give it a name in the tag namespace
 ```
 
 ```
