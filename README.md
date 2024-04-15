@@ -255,6 +255,8 @@ partial_sum                            |the partial sum of a range of elements
 * **tag identifiers** for struct/union/enum 
 * **ordinary identifiers** for typedef and other identifiers
 * all struct/union/enum/class declarations act like they are implicitly typedef'ed
+* a structure can notbe anonymous
+* a union can be anonymous
 
 ### Structures, typedef
 ```
