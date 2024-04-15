@@ -1,4 +1,4 @@
-# C++ 98
+ty# C++ 98
 
 ## Automatic initialisation and descruction
 Orthodox canonical class form (Coplien's form): 
@@ -252,6 +252,39 @@ partial_sum                            |the partial sum of a range of elements
 ...
 
 ## Types
+* **tag identifiers** for struct/union/enum 
+* **ordinary identifiers** for typedef and other identifiers
+* all struct/union/enum/class declarations act like they are implicitly typedef'ed
+
+### Structures, typedef
+```
+struct strName x;                        // ok
+```
+ 
+```
+struct strName { ... };                  // strName (in the tag namespace) 
+typedef struct strName typeName;         // and typeName (in the ordinary identifier namespace) both refer to the same thing
+typeName x;                              // declare objects of type typeName
+```
+
+```
+typedef struct strName { ... } typeName; // just an abbreviation
+```
+
+```
+typedef struct { ... } typeName;         // declare an anonymous structure
+                                         // create a typedef for it
+                                         // the structure has a name in the typedef namespace
+                                         // the structure doesn't have a name in the tag namespace
+                                         // it cannot be forward-declared
+                                         // if you want to make a forward declaration, you have to give it a name in the tag namespace
+```
+
+```
+struct strName { ... };                  // a compiler error (because strName is only defined in the tag namespace)
+strName x;
+```
+
 ### `std::string` 
 * = `basic_string<char>`
 * ≈ an array of char
