@@ -537,8 +537,13 @@ C++ file manipulations:
   + two ways of handling errors:
     - ignoring SIGPIPE
     - flag MSG_NOSIGNAL = не посылать сигнал SIGPIPE, если другая сторона обрывает соединение (is a better way)
-  + код ошибки EPIPE возвращается в любом случае
+    - код ошибки EPIPE возвращается в любом случае
+  + MSG_DONTWAIT включает режим non-blocking
 * recv(), read()
+  + способы включить неблокирующий режим:
+    - to configure your socket not to generate a SIGPIPE `int opt = 1; setsockopt(cs, SOL_SOCK, SO_NOSIGPIPE, (void *)&opt, sizeof(int))` (this may not be available in your system)
+    - MSG_DONTWAIT
+    - флаг O_NONBLOCK в fcntl
 
 ## Signals 
 * асинхронное уведомление процесса о каком-либо событии
