@@ -534,17 +534,20 @@ C++ file manipulations:
 * программа, работающая с сокетом, может получить SIGPIPE
   + например, при работе по протоколу TCP
 * send(), write()
-  + two ways of handling errors:
+  + two ways to prevent SIGPIPEs or handle them properly
     - ignoring SIGPIPE
-    - flag MSG_NOSIGNAL = не посылать сигнал SIGPIPE, если другая сторона обрывает соединение (is a better way)
+    - flag MSG_NOSIGNAL = не посылать сигнал SIGPIPE, если другая сторона обрывает соединение, turns the SIGPIPE behavior off on a per call basis, not all OS support MSG_NOSIGNAL
     - код ошибки EPIPE возвращается в любом случае
   + MSG_DONTWAIT включает режим non-blocking
 * recv(), read()
   + способы включить неблокирующий режим:
-    - to configure your socket not to generate a SIGPIPE `int opt = 1; setsockopt(cs, SOL_SOCK, SO_NOSIGPIPE, (void *)&opt, sizeof(int))` (this may not be available in your system)
+    - to configure your socket not to generate a SIGPIPE `int opt = 1; setsockopt(cs, SOL_SOCK, SO_NOSIGPIPE, (void *)&opt, sizeof(int))`, signal SO_SIGNOPIPE socket flag, this may not be available in your system
     - MSG_DONTWAIT
     - флаг O_NONBLOCK в fcntl
-    - poll / select
+    - if you want to detect if the pipe is broken, you don't actually have to read or write to it, you can use poll / select
+    - `signal(SIGPIPE, SIG_IGN)` prevents any socket or pipe write from causing a SIGPIPE 
+
+  + once the signal is correctly ignored, your recv should return and you should be able to handle the error
 * блокирующие сокеты
   + обслуживание каждого соединения в отдельном потоке 
   + просто для программирования
