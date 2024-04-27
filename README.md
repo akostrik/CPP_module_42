@@ -524,7 +524,7 @@ C++ file manipulations:
 
 ## Pipe
 * однонаправленный канал между процессами, который позволяет одному процессу пересылать данные другому, без необходимости создавать файлы на диске
-* когда пайп рвется, процесс, который пытается туда писать получает SIGPIPE\
+* когда пайп рвется, процесс, который пытается туда писать получает SIGPIPE
 * Наиболее простой вариант пайпа создает шелл Unix, между программами, запускаемыми из командной строки, разделенными символом «|»
   + `dmesg | less` создает пайп от программы dmesg к программе постраничного просмотра less
     - если less завершится, прежде чем получит весь вывод dmesg, dmesg будет преждевременно завершена сигналом SIGPIPE
@@ -554,12 +554,11 @@ C++ file manipulations:
   + the only thing you can do in a signal handler is modify a variable or exit
   + function signal() is obsolete
 * SIGPIPE
-  + посылается процессу при записи в соединение (пайп, сокет) при отсутствии или обрыве соединения с другой (читающей) стороной
-  + when you ignore SIGPIPE, you no longer get a SIGPIPE signal, but write() gets a EPIPE error
-  + you get SIGPIPE when you write to a pipe where there is no process with the read end of the pipe open
-  + you get EOF (zero bytes read) when you read from a pipe that has no process with the write end of the pipe open
-  + if you to ignore SIGPIPE, monitor the return value from write()
-    - if it comes back with -1 and errno set to EINTR, you can assume you got interrupted by some signal, and most probably a SIGPIPE, especially if you don't have any other signal handling set
+  + you get SIGPIPE when you **write** to a pipe where there is no process with the read end of the pipe open
+  + you get EOF (zero bytes read) when you **read** from a pipe that has no process with the write end of the pipe open
+  + when you ignore SIGPIPE
+    - you no longer get a SIGPIPE signal, but write() gets a EPIPE error
+    - you should monitor the return value from write(), if it comes back with -1 and errno set to EINTR, you can assume you got interrupted by some signal, and most probably a SIGPIPE, especially if you don't have any other signal handling set
     - PS you should look at the return value from write() and read() anyway
   + an explicit SIGPIPE handler:
     - you can write a loop in main(), and have the signal handler set a flag which you test in the loop
