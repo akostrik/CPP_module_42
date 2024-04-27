@@ -554,6 +554,7 @@ C++ file manipulations:
 * function signal() is obsolete
 * SIGPIPE
   + сигнал, посылаемый процессу при записи в соединение (пайп, сокет) при отсутствии или обрыве соединения с другой (читающей) стороной
+  + when you ignore SIGPIPE, you no longer get a SIGPIPE signal, but write() gets a EPIPE error
 * SIGINT
   + для остановки процесса пользователем с терминала
   + посылается программе, выполняемой на терминале
