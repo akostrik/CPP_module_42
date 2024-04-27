@@ -582,6 +582,7 @@ Just keep a hold on the data and plan to set POLLOUT the next time through the l
   + `signal(SIGPIPE, SIG_IGN)` = all the sockets don't generate SIGPIPE
   + `sigprocmask(SIG_BLOCK, NULL, &old_state)`
   + send, flag MSG_NOSIGNAL: не посылать SIGPIPE, если другая сторона обрывает соединение, turns the SIGPIPE behavior off on a per call basis (not portable), `send(...MSG_NOSIGNAL)` = write() without SIGPIPE
+    - discord: * Add **MSG_NOSIGNAL** as a 4th argument for send, it will prevent your programm from crashing under certain condition,  Genre le client il fait legit connect();send();exit() ducoup il est plus rapide que toi. Et tu te tape des signal sigpipe
   + recv, flag MSG_NOSIGNAL: This  flag  turns  off raising of SIGPIPE on stream sockets when the other end disappears
   + just catching and ignoring the signal in a handler is not a good idea, you must note that the pipe is now defunct and modify the program's behaviour so it does not write to the pipe again 
 
