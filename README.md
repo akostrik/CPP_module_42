@@ -533,12 +533,14 @@ C++ file manipulations:
 * сетевое соединение
 * программа, работающая с сокетом, может получить SIGPIPE
 ### blocking sockets
+* the command blocks until data arrives
 * обслуживание каждого соединения в отдельном потоке 
 * просто для программирования
 * при современных нагрузках порождать поток на каждое соединение неприемлемо (расходы ОС на их переключение)
 ### non-blocking sockets
 * программа не лишается управления при временной невозможности выполнить операцию (не пришли данные в случае recv(), нет места в буфере отправки в случае send() и прочее)
 * программа лишь информируется об этом с помощью кода ошибки EWOULDBLOCK или EAGAIN
+* if data is not available, the command returns EWOULDBLOCK
 * постоянно вызывать потенциально блокирующую функцию, пока результат EWSAWOULDBLOCK, неэффективно 
 * позвонялет либо принимать данные из сокета, либо отправлять их
   + приемлемо только если клиент и сервер обмениваются запросами в строгой очередности
@@ -547,19 +549,18 @@ C++ file manipulations:
 * non-blocking recv():
   + flag MSG_DONTWAIT
   + `int opt = 1; setsockopt(cs, SOL_SOCK, SO_NOSIGPIPE, (void *)&opt, sizeof(int))` = the socket doesn't generate SIGPIPE (not portable)
-  + fcntl, flag O_NONBLOCK 
+* fcntl, flag O_NONBLOCK 
 * функция мультиплексор poll / select
   + блокирует выполнение программы, пока хотя бы один из набора сокетов не будет готов к работе
   + для сокетов, готовых к работе, соответствующая функция (например recv()) вызывается, пока не завершится с ошибкой WSAEWOULDBLOCK
   + let detect if the pipe is broken, even if you don't actually have to read or write to it
-* неблокирующий режим для клиентов 
-  + обычно менее актуален
-  + connect() в нем возвращает EWOULDBLOCK при первом вызове, затем нужно дожидаться возможности записи в сокет, что означает успешное завершение соединения
+* неблокирующий режим для клиентов  обычно менее актуален
 ### prevent SIGPIPE
+  + writing to non-responding socket will cause a SIGPIPE and make my server crash
   + `signal(SIGPIPE, SIG_IGN)` = all the sockets don't generate SIGPIPE
-  + send, flag MSG_NOSIGNAL: не посылать SIGPIPE, если другая сторона обрывает соединение, turns the SIGPIPE behavior off on a per call basis (not portable)
+  + `sigprocmask(SIG_BLOCK, NULL, &old_state)`
+  + send, flag MSG_NOSIGNAL: не посылать SIGPIPE, если другая сторона обрывает соединение, turns the SIGPIPE behavior off on a per call basis (not portable), `send(...MSG_NOSIGNAL)` = write() without SIGPIPE
   + recv, flag MSG_NOSIGNAL: This  flag  turns  off raising of SIGPIPE on stream sockets when the other end disappears
-  + once the signal is correctly ignored, your recv should return and you should be able to handle the error
   + just catching and ignoring the signal in a handler is not a good idea, you must note that the pipe is now defunct and modify the program's behaviour so it does not write to the pipe again 
 
 ## Signals 
@@ -601,6 +602,11 @@ C++ file manipulations:
   + для запроса завершения процесса
   + посылается процессу утилитой kill по умолчанию
   + в отличие от SIGKILL этот сигнал может быть обработан или проигнорирован программой
+* Ctrl+D is a keyboard input that typically represents the EOF character
+  + when entered at the beginning of a line in a terminal, it signals the end of input to the terminal
+  + it's commonly used to indicate the end of input when reading from stdin
+  + it doesn't raise a signal like SIGPIPE
+  + it's processed by the terminal or the program reading from stdin
 
 ## Memory
 * delete[ ] frees an array created with new[ ]
