@@ -560,6 +560,7 @@ C++ file manipulations:
   + send, flag MSG_NOSIGNAL: не посылать SIGPIPE, если другая сторона обрывает соединение, turns the SIGPIPE behavior off on a per call basis (not portable)
   + recv, flag MSG_NOSIGNAL: This  flag  turns  off raising of SIGPIPE on stream sockets when the other end disappears
   + once the signal is correctly ignored, your recv should return and you should be able to handle the error
+  + just catching and ignoring the signal in a handler is not a good idea, you must note that the pipe is now defunct and modify the program's behaviour so it does not write to the pipe again 
 
 ## Signals 
 * асинхронное уведомление процесса о каком-либо событии
