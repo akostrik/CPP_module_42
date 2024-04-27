@@ -557,7 +557,8 @@ C++ file manipulations:
   + connect() в нем возвращает EWOULDBLOCK при первом вызове, затем нужно дожидаться возможности записи в сокет, что означает успешное завершение соединения
 ### prevent SIGPIPE
   + `signal(SIGPIPE, SIG_IGN)` = all the sockets don't generate SIGPIPE
-  + send, flag MSG_NOSIGNAL = не посылать SIGPIPE, если другая сторона обрывает соединение, turns the SIGPIPE behavior off on a per call basis (not portable)
+  + send, flag MSG_NOSIGNAL: не посылать SIGPIPE, если другая сторона обрывает соединение, turns the SIGPIPE behavior off on a per call basis (not portable)
+  + recv, flag MSG_NOSIGNAL: This  flag  turns  off raising of SIGPIPE on stream sockets when the other end disappears
   + once the signal is correctly ignored, your recv should return and you should be able to handle the error
 
 ## Signals 
