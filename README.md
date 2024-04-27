@@ -533,6 +533,12 @@ C++ file manipulations:
 * сетевое соединение
 * программа, работающая с сокетом, может получить SIGPIPE
   + например, при работе по протоколу TCP
+* send(), write()
+  + two ways of handling errors:
+    - ignoring SIGPIPE
+    - flag MSG_NOSIGNAL = не посылать сигнал SIGPIPE, если другая сторона обрывает соединение (is a better way)
+  + код ошибки EPIPE возвращается в любом случае
+* recv(), read()
 
 ## Signals 
 * асинхронное уведомление процесса о каком-либо событии
