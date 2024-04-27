@@ -551,10 +551,18 @@ C++ file manipulations:
 * сигналы не могут быть посланы завершившемуся процессу, находящемуся в состоянии «зомби»
 * для альтернативной обработки сигналов (за исключением SIGKILL и SIGSTOP), процесс может назначить свой обработчик или игнорировать их 
   + процесс с pid 1 (init) имеет право игнорировать или обрабатывать также KILL и STOP
-* function signal() is obsolete
+  + the only thing you can do in a signal handler is modify a variable or exit
+  + function signal() is obsolete
 * SIGPIPE
-  + сигнал, посылаемый процессу при записи в соединение (пайп, сокет) при отсутствии или обрыве соединения с другой (читающей) стороной
+  + посылается процессу при записи в соединение (пайп, сокет) при отсутствии или обрыве соединения с другой (читающей) стороной
   + when you ignore SIGPIPE, you no longer get a SIGPIPE signal, but write() gets a EPIPE error
+  + you get SIGPIPE when you write to a pipe where there is no process with the read end of the pipe open
+  + you get EOF (zero bytes read) when you read from a pipe that has no process with the write end of the pipe open
+  + if you to ignore SIGPIPE, monitor the return value from write()
+    - if it comes back with -1 and errno set to EINTR, you can assume you got interrupted by some signal, and most probably a SIGPIPE, especially if you don't have any other signal handling set
+    - PS you should look at the return value from write() and read() anyway
+  + an explicit SIGPIPE handler:
+    - you can write a loop in main(), and have the signal handler set a flag which you test in the loop
 * SIGINT
   + для остановки процесса пользователем с терминала
   + посылается программе, выполняемой на терминале
