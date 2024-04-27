@@ -532,46 +532,33 @@ C++ file manipulations:
 ## Socket
 * сетевое соединение
 * программа, работающая с сокетом, может получить SIGPIPE
-  + например, при работе по протоколу TCP
-* send(), write()
-  + two ways to prevent SIGPIPEs or handle them properly
-    - ignoring SIGPIPE
-    - flag MSG_NOSIGNAL = не посылать сигнал SIGPIPE, если другая сторона обрывает соединение, turns the SIGPIPE behavior off on a per call basis, not all OS support MSG_NOSIGNAL
-    - код ошибки EPIPE возвращается в любом случае
-  + MSG_DONTWAIT включает режим non-blocking
-* recv(), read()
-  + способы включить неблокирующий режим:
-    - to configure your socket not to generate a SIGPIPE `int opt = 1; setsockopt(cs, SOL_SOCK, SO_NOSIGPIPE, (void *)&opt, sizeof(int))`, signal SO_SIGNOPIPE socket flag, this may not be available in your system
-    - MSG_DONTWAIT
-    - флаг O_NONBLOCK в fcntl
-    - if you want to detect if the pipe is broken, you don't actually have to read or write to it, you can use poll / select
-    - `signal(SIGPIPE, SIG_IGN)` prevents any socket or pipe write from causing a SIGPIPE 
-
+### blocking sockets
+* обслуживание каждого соединения в отдельном потоке 
+* просто для программирования
+* при современных нагрузках порождать поток на каждое соединение неприемлемо (расходы ОС на их переключение)
+### non-blocking sockets
+* программа не лишается управления при временной невозможности выполнить операцию (не пришли данные в случае recv(), нет места в буфере отправки в случае send() и прочее)
+* программа лишь информируется об этом с помощью кода ошибки EWOULDBLOCK или EAGAIN
+* постоянно вызывать потенциально блокирующую функцию, пока результат EWSAWOULDBLOCK, неэффективно 
+* позвонялет либо принимать данные из сокета, либо отправлять их
+  + приемлемо только если клиент и сервер обмениваются запросами в строгой очередности
+* non-blocking send():
+  + flag MSG_DONTWAIT
+* non-blocking recv():
+  + flag MSG_DONTWAIT
+  + `int opt = 1; setsockopt(cs, SOL_SOCK, SO_NOSIGPIPE, (void *)&opt, sizeof(int))` = the socket doesn't generate SIGPIPE (not portable)
+  + fcntl, flag O_NONBLOCK 
+* функция мультиплексор poll / select
+  + блокирует выполнение программы, пока хотя бы один из набора сокетов не будет готов к работе
+  + для сокетов, готовых к работе, соответствующая функция (например recv()) вызывается, пока не завершится с ошибкой WSAEWOULDBLOCK
+  + let detect if the pipe is broken, even if you don't actually have to read or write to it
+* неблокирующий режим для клиентов 
+  + обычно менее актуален
+  + connect() в нем возвращает EWOULDBLOCK при первом вызове, затем нужно дожидаться возможности записи в сокет, что означает успешное завершение соединения
+### prevent SIGPIPE
+  + `signal(SIGPIPE, SIG_IGN)` = all the sockets don't generate SIGPIPE
+  + send, flag MSG_NOSIGNAL = не посылать SIGPIPE, если другая сторона обрывает соединение, turns the SIGPIPE behavior off on a per call basis (not portable)
   + once the signal is correctly ignored, your recv should return and you should be able to handle the error
-* блокирующие сокеты
-  + обслуживание каждого соединения в отдельном потоке 
-  + просто для программирования
-  + при современных нагрузках порождать поток на каждое соединение неприемлемо (расходы ОС на их переключение)
-* Неблокирующие сокеты
-  + сложность программирования
-  + либо принимать данные из сокета, либо отправлять их
-    - приемлемо только если клиент и сервер обмениваются запросами в строгой очередности
-  + cтандартные операции над сокетом никогда не приводят к блокировке
-    - завершаются с кодом ошибки EWOULDBLOCK или EAGAIN
-    - операция не может быть выполнена в данный момент (не пришли данные в случае recv(), нет места в буфере отправки в случае send() и прочее)
-    - программа не лишается управления при временной невозможности выполнить операцию, а лишь информируется об этом
-  + постоянно вызывать потенциально блокирующую функцию, пока результат EWSAWOULDBLOCK, неэффективно 
-  + функция мультиплексор poll / select
-    - принимает набор сокетов
-    - блокирует выполнение, пока хотя бы один из них не будет готов к работе
-    - по ее завершении можно узнать, какие сокеты именно
-    - для каждого из сокетов можно указать, что для него считается готовностью к работе: возможность приема, отправки или любая из них
-    - сокет-слушатель также может быть неблокирующим, для него актуальна возможность приема, но для вызова не recv(), а accept()
-    - для сокетов, готовых к работе, соответствующая функция (например, recv() при готовности к приему) вызывается, пока не завершится с ошибкой WSAEWOULDBLOCK.
-  + неблокирующий режим для клиентов 
-    - обычно менее актуален
-    - возможен
-    - connect() в нем возвращает EWOULDBLOCK при первом вызове, затем нужно дожидаться возможности записи в сокет, что означает успешное завершение соединения
 
 ## Signals 
 * асинхронное уведомление процесса о каком-либо событии
