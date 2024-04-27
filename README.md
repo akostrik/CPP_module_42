@@ -607,6 +607,9 @@ C++ file manipulations:
   + it's commonly used to indicate the end of input when reading from stdin
   + it doesn't raise a signal like SIGPIPE
   + it's processed by the terminal or the program reading from stdin
+  + EOF processing (Control-D) is handled in canonical mode; it actually means 'make the accumulated input available to read()'
+    - if there is no accumulated input (if you type Control-D at the beginning of a line), then the read() will return zero bytes, which is then interpreted as EOF by programs
+    - you can type more characters on the keyboard after that
 
 ## Memory
 * delete[ ] frees an array created with new[ ]
