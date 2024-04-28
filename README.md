@@ -1,4 +1,6 @@
 C++ 98
+## Notes
+* static_cast< std::ostringstream &>((std::ostringstream() << std::dec << (int_number) )).str());
 
 ## Automatic initialisation and descruction
 Orthodox canonical class form (Coplien's form): 
