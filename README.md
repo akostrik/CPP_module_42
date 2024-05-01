@@ -554,6 +554,10 @@ C++ file manipulations:
 * if there is not enough available buffer space to hold the socket data to be transmitted
   + if the socket is in blocking mode, **send() blocks** the caller until additional buffer space becomes available
   + if the socket is in nonblocking mode, send() returns -1 and sets the error code to EWOULDBLOCK
+* если есть свободное место в буферах, неблокирующий send запихнёт в них столько, сколько сможет, и вернёт число запихнутых байтов
+  + даже блокирующий send не будет дожидаться от сетевой карты подтверждения отправки данных
+  + send вернёт отрицательное число только в том случае, если окно на отправку заполнено целиком
+    - ни один байт не будет скопирован в память ядра
 * `send(3)` `ssize_t send(int socket, const void *bufr, size_t leng, int flags)`
   + associated with high-level functions
 
